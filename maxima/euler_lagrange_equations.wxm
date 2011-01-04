@@ -1,0 +1,65 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created by wxMaxima version 0.7.4 ] */
+
+/* [wxMaxima: input   start ] */
+depends(u,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(V,u);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+vu : diff(u,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : m/2*vu^2 - V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EL : diff(diff(L,vu),t) - diff(L,u) = 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+SHO_eq : ev(EL,V=k/2*u^2,diff);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+u_SHO : rhs(ode2(SHO_eq,u,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+u_SHO;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+vu_SHO : diff(u_SHO,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : ev(u_SHO,t=0) = u0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq2 : ev(vu_SHO,t=0) = vu0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ICs : solve([eq1,eq2],[%k1,%k2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ICs;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ICs[0];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ICs[1;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

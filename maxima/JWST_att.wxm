@@ -1,0 +1,121 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created by wxMaxima version 0.7.4 ] */
+
+/* [wxMaxima: input   start ] */
+Rx(a) := matrix([1,0,0],[0,cos(a),-sin(a)],[0,sin(a),cos(a)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ry(a) := matrix([cos(a),0,sin(a)],[0,1,0],[-sin(a),0,cos(a)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Rz(a) := matrix([cos(a),-sin(a),0],[sin(a),cos(a),0],[0,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tx(a) := matrix([1,0,0],[0,cos(a),sin(a)],[0,-sin(a),cos(a)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ty(a) := matrix([cos(a),0,-sin(a)],[0,1,0],[sin(a),0,cos(a)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tz(a) := matrix([cos(a),sin(a),0],[-sin(a),cos(a),0],[0,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T : Tx(p).Tz(t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R : Rx(p).Rz(t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V : matrix([cos(t)],[sin(t)],[0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T.V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x : matrix([1],[0],[0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R.x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+y : matrix([0],[1],[0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R.y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+z : matrix([0],[0],[1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R.z;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T.x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Rz(t).x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Rz(t).y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Rx(p).x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Rx(p).Rz(t).x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V1 = matrix([1],[2],[3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T.x;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(T.transpose(T));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(transpose(T).T);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(R.transpose(R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(transpose(R).R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(R.T);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

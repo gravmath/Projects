@@ -1,0 +1,43 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+depends([r,theta,pr,pt],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(V,r);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : 1/2*m*diff(r,t)^2 + 1/2*m*r^2*diff(theta,t)^2- V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : pr = diff(L,diff(r,t));
+eq2 : pt = diff(L,diff(theta,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+conj_mo_r : solve(eq1,diff(r,t));
+conj_mo_t : solve(eq2,diff(theta,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h : pr*diff(r,t) + pt*diff(theta,t) - L;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : subst(conj_mo_t,subst(conj_mo_r,h));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x_dot : diff(H,p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p_dot : -diff(H,x);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

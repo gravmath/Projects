@@ -1,0 +1,47 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created by wxMaxima version 0.7.4 ] */
+
+/* [wxMaxima: input   start ] */
+g(L) := (L-x^2/L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a(m,L) := integrate(g(L)*cos(m*%pi*x/L),x,-L,L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+b(m,L) := integrate(g(L)*sin(m*%pi*x/L),x,-L,L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+declare(m,integer);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a(m,L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+b(m,L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+c(m,L) := cos(m*%pi*x/L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f : a(0,10)/2 + a(1,10)*c(1,10) + a(2,10)*c(2,10) + a(3,10)*c(3,10) + a(4,10)*c(4,10)
+  + a(5,10)*c(5,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+plot2d([g,f],[x,-10,10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+plot2d([g(10),f],[x,-10,10]);
+plot2d([g(10),f/10],[x,-10,10]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

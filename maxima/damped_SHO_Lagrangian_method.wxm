@@ -1,0 +1,92 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created by wxMaxima version 0.7.4 ] */
+
+/* [wxMaxima: comment start ]
+In this exercise, we would like to look at how the damped simple harmonic 
+oscillator equations of motion can be obtained from a Lagrangian.  In addition,
+it can be shown that a contact transformation can be made to find a Jacobi
+integral of the system.
+
+Start by defining the generalized coordinate q(t).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(q,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Next, define the Lagrangian and the conjugate momentum.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Lq : exp(g*t)*( m/2*diff(q,t)^2 - k/2*q^2 );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pq : diff(Lq,diff(q,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculate the equation of motion for the generalized coordinate.  And then solve 
+to show that the solutions are the same as the ones obtained for the damped simple
+harmonic oscillator.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+ELq : diff(pq,t) - diff(L,q) = 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ode2(ELq,q,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+hq : pq*q - Lq;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Now define a new generalized coordinate s in terms of t and q
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(s,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq_s : s = exp(g*t/2)*q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq_q : solve(eq_s,q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq_qdot : diff(eq_q,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq_qddot : diff(eq_qdot,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ls : subst(eq_q,subst(eq_qdot,Lq));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ps : diff(Ls,diff(s,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ELs : radcan(diff(ps,t) - diff(Ls,s) = 0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ode2(ELs,s,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ELq_s : radcan(subst(eq_q,subst(eq_qdot,subst(eq_qddot,ELq))));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

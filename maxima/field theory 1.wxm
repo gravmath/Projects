@@ -1,0 +1,37 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created by wxMaxima version 0.7.4 ] */
+
+/* [wxMaxima: input   start ] */
+depends([u,v],[t,x]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(U,[u,v]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : 1/2*(diff(u,t)^2 + diff(v,t)^2) - 1/2*(diff(u,x)^2+diff(v,x)) - U;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : 1/2*(diff(u,t)^2 + diff(v,t)^2) - 1/2*(diff(u,x)^2+diff(v,x)^2) - U;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(diff(L,diff(u,x)),x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(diff(L,diff(u,x)),x) - diff(L,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(diff(L,diff(u,x)),x) - diff(L,u);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(diff(L,diff(u,x)),x) - diff(diff(L,u),t);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

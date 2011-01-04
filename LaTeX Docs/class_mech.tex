@@ -1,0 +1,101 @@
+%Classical Mechanics - filename class_mech.tex
+
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Classical Mechanics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Classical Mechanics} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Invariance of the EL Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{65mm}(0mm,12.77mm)
+The Euler Lagrange equations are invariant to a basic change in coordinates from $q^i$ to
+$y^j$ of the form 
+\begin{equation}\label{ELinv_b}
+  q^i = q^i \left(y^j \right) .
+\end{equation}
+To see this first note that the from the 
+form of the transformation equation (\ref{ELinv_b}) we get
+\begin{equation}\label{ELinv_a}
+  {\dot q}^i = \frac{\partial q^i}{\partial y^j} {\dot y}^j \,
+\end{equation}
+where $\dot f = \frac{d}{dt} f$. Next note that the Lagrangian 
+$\tilde L \left(y^j,{\dot y}^j;t \right)$ in the $y^j$ coordinates 
+is related to the Lagrangian $L \left(q^i,{\dot q}^i;t \right)$ 
+in $q^i$ coordinates by virtue of a substitution of (\ref{ELinv_b}) 
+and (\ref{ELinv_a}) yielding
+\begin{equation}\label{ELinv_c}
+  \tilde L \left(y^j,{\dot y}^j;t \right) = L \left(q^i(y^j),{\dot q}^i(y^j,{\dot y}^j);t \right) .
+\end{equation}
+The parts of the Euler-Lagrange equation in terms
+of the $y^j$ coordinates in relation to the $q^i$ coordinates are
+\begin{equation}\label{ELinv_d}
+  \frac{\partial \tilde L}{\partial y^j} =    \frac{\partial L}{\partial q^i}        \frac{\partial q^i}{\partial y^j} 
+                                        +  \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial y^j}
+\end{equation}
+and
+\begin{equation}\label{ELinv_e}
+  \frac{\partial \tilde L}{\partial {\dot y}^j} = \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial {\dot y}^j} .
+\end{equation}
+Now substituting (\ref{ELinv_d}) and (\ref{ELinv_e}) into the Euler-\\Lagrange equations
+yields
+\begin{eqnarray}\label{ELinv_f}
+  \frac{d}{dt} \left( \frac{\partial \tilde L}{\partial {\dot y}^j } \right) - \frac{\partial \tilde L}{\partial y^j} 
+    & = &   \frac{d}{d t} \left( \frac{\partial L}{\partial {\dot q}^i} \right) \frac{\partial {\dot q}^i}{\partial {\dot y}^j} \\ \nonumber
+	&   & + \frac{\partial L}{\partial {\dot q}^i} \frac{d}{dt} \left( \frac{\partial {\dot q}^i}{\partial {\dot y}^j} \right) \\ \nonumber
+    & = & - \frac{\partial L}{\partial q^i}        \frac{\partial q^i}{\partial y^j} 
+	      - \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial y^j} .\nonumber
+\end{eqnarray}
+But from (\ref{ELinv_a}) $ {\partial {\dot q}^i}/{\partial {\dot y}^j} = {\partial q^i}/{\partial y^j}$ and thus the second and
+fourth terms in (\ref{ELinv_f}) cancel, leaving
+\begin{equation}\label{ELinv_g}
+  \frac{d}{dt} \left[ \frac{\partial \tilde L}{\partial {\dot y}^j } \right) - \frac{\partial \tilde L}{\partial y^j} = 
+  \left( \frac{d}{d t} \left( \frac{\partial L}{\partial {\dot q}^i} \right) - \frac{\partial L}{\partial q^i} \right] 
+  \frac{\partial q^i}{\partial y^j} ,
+\end{equation}
+which shows that the Euler-Lagrange equations transform like the components of a covariant vector
+\end{textblock*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          EL Equations in 1st order form
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{65mm}(64.85mm,12.77mm)
+The Euler-Lagrange equations can be cast into 1$^{st}$-order form by first making the identification
+\[
+  \frac{d}{d t} q^{\alpha} = {\dot q}^{\alpha}
+\]
+and then by expanding
+\[
+  \frac{d}{dt} \left( \frac{\partial L}{\partial {\dot q}^{\alpha}} \right) = 
+    \frac{\partial^2 L}{\partial q^{\beta} \partial {\dot q}^{\alpha}} {\dot q}^{\beta} + 
+	\frac{\partial^2 L}{\partial {\dot q}^{\alpha} \partial {\dot q}^{\beta}} {\ddot q^{\beta}}         +
+	\frac{\partial^2 L}{\partial t \partial q^{\alpha}}                 
+\]
+Substituting this form in the EL equations and solving for the ${\ddot q}^{\alpha}$ yields
+\begin{eqnarray*}
+  \frac{d}{dt} {\dot q}^{\alpha} & = & {\ddot q}^{\alpha} \\ 
+                                 & = & \left( \frac{\partial^2 L}{\partial {\dot q}^{\alpha} \partial {\dot q}^{\beta}} \right)^{-1} \\
+								 &   & \times \left( \frac{\partial L}  {\partial q^{\beta}}                    -
+							                         \frac{\partial^2 L}{\partial t \partial {\dot q}^{\beta}}  - 
+									                 \frac{\partial^2 L}{\partial q^{\beta} \partial {\dot q}^{\gamma}} {\dot q}^{\gamma} 
+									   \right)										  
+\end{eqnarray*}
+which requires that the Hessian, defined by
+\[
+  \left( \frac{\partial^2 L}{\partial {\dot q}^{\alpha} \partial {\dot q}^{\beta}} \right)
+\]
+be invertible.
+\end{textblock*}
+\newpage

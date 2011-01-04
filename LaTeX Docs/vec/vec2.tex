@@ -1,0 +1,1503 @@
+%vec
+\documentclass[10pt]{article}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+
+\TPshowboxestrue
+\begin{document}
+\null
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Euclidean Geometric Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Euclidean Geometric
+                                          Analysis} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Basic Geometric Objects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{60mm}(0mm,12.54mm)
+\begin{tabular*}{60mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Basic Geometric Objects} \\
+   & ~\\
+point:              & ${\mathcal P},{\mathcal Q},\dots$\\
+bounding points:    & $\partial \, {\mathcal C}$\\
+curve:              & ${\mathcal C}$\\
+bounding curve:     & $\partial \, {\mathcal S}$\\
+surface:            & ${\mathcal S}$\\
+bounding surface:   & $\partial \, {\mathcal V}$\\
+volume:             & ${\mathcal V}$\\
+                    & ~\\
+scalar:             & $m$, $n$, etc.\\
+indices:            & $i, j = 1, 2, \dots, N$\\
+coordinates:        & $x^i$, $q^{i'}$ \quad $i$, $j'$ = 1,2,3\\
+transformations:    & $x^i = x^i \left( q^{j'} \right)$\\
+field:              & $\phi = \phi \left( q^i \right)$\\
+parametric curve:   & $q^i \left( s \right)$\\
+implicit surface:   & $\phi_{\mathcal S}\left(q^i \right) 
+                      - c = 0$\\
+parametric surface: & $q^i\left(u,v\right)$\\
+                    & ~\\
+Kronecker delta:    & $\delta_{ij}$\\
+permutation symb:   & $[i,j,k]$\\
+column array:       & $| {\mathbf q} \rangle$\\
+row array:          & $\langle {\mathbf q} |$\\
+\end{tabular*}
+\vspace{11.56mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Defining Vectors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{60mm}(59.85mm,12.54mm)
+\begin{tabular*}{60mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Defining Vectors} \\
+   & ~\\
+A01:                  & ${\mathbf A} + {\mathbf B} = 
+                         {\mathbf B} + {\mathbf A}$\\
+A02:                  & ${\mathbf A} + \left( {\mathbf B} 
+                        + {\mathbf C} \right) 
+                      = \left( {\mathbf A} + {\mathbf B} \right) 
+                        + {\mathbf C}$\\
+A03:                  & $ m {\mathbf A} = {\mathbf A} m$\\
+A04:                  & $ m \left( n {\mathbf A} \right) 
+                        = \left( m n \right) {\mathbf A}$\\
+A05:                  & $\left( m + n \right) {\mathbf A} 
+                        = m {\mathbf A} + m {\mathbf B}$\\
+A06:                  & $m \left( {\mathbf A} + {\mathbf B} \right) 
+                        = m {\mathbf A} + m {\mathbf B}$\\
+A07:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf B} 
+                        = {\mathbf B} \cdot {\mathbf A}$\\
+A08:${}^\dagger$      & ${\mathbf A} \cdot \left( {\mathbf B} 
+                        + {\mathbf C} \right) 
+                        = {\mathbf A} \cdot {\mathbf B} 
+                        + {\mathbf A} \cdot {\mathbf C}$\\
+A09:${}^\dagger$      & $m \left( {\mathbf A} \cdot 
+                        {\mathbf B} \right) 
+                        = \left( m {\mathbf A} \right) 
+                        \cdot {\mathbf B}$\\
+					  & \quad $ = {\mathbf A} \cdot 
+                        \left( m {\mathbf B} \right)
+                        = \left( {\mathbf A} \cdot 
+                        {\mathbf B} \right) m$\\
+A10:${}^\dagger$      & ${\mathbf e}_i \cdot {\mathbf e}_j 
+                        = g_{ij}$\\
+A11:${}^\dagger$      & ${\mathbf A} = A^i {\mathbf e}_i$ 
+                        with $A^i = {\mathbf A} 
+                        \cdot {\mathbf e}_i$\\
+A12:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf A} 
+                        = |{\mathbf A}|^2$\\
+A13:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf B} 
+                        = | {\mathbf A} | | {\mathbf B} | 
+                        \cos \left( \theta \right)$\\
+A14:${}^\ddag$        & ${\mathbf A} \times {\mathbf B} 
+                        = - {\mathbf B} \times {\mathbf A}$\\
+A15:${}^\ddag$        & ${\mathbf A} \times \left( {\mathbf B}
+                        + {\mathbf C} \right) 
+                        = {\mathbf A} \times {\mathbf B} 
+                        + {\mathbf A} \times {\mathbf C}$\\
+A16:${}^\ddag$        & $m \left( {\mathbf A} \times 
+                        {\mathbf B} \right) 
+                         = \left( m {\mathbf A} \right) 
+                        \times {\mathbf B}$\\
+                      & $\quad = {\mathbf A} \times 
+                        \left( m {\mathbf B} \right) 
+				  	    = \left( {\mathbf A} \times 
+                        {\mathbf B} \right) m$\\
+A17:${}^\ddag$        & $ {\mathbf e}_i \times 
+                       {\mathbf e}_j = [ijk] {\mathbf e}_k$\\
+A18:${}^\ddag$        & ${\mathbf A} \times 
+                        \left( {\mathbf B} \times 
+                        {\mathbf C} \right) 
+                        \neq \left( {\mathbf A} \times 
+                        {\mathbf B} \right) \times 
+                        {\mathbf C}$\\
+A19:${}^\dag{}^\ddag$ & $| {\mathbf A} \times {\mathbf B} | 
+                        = |{\mathbf A}| |{\mathbf B}| 
+                        \sin \left( \theta \right)$\\
+\end{tabular*}
+\vspace{10.98mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Defining Vector Fields
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{70.8mm}(119.7mm,12.54mm)
+\begin{tabular*}{70.8mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Defining Vector Fields} \\
+   & ~\\
+F01:                  & vector field ${\mathbf F} = {\mathbf F} \left(q^i \right)$\\
+F02:                  & fundamental field ${\mathbf r} = x {\mathbf e}_x + y {\mathbf e}_y + z {\mathbf e}_z$\\
+                      & \\
+F03:${}^\dag$         & covariant basis ${\mathbf e}_i = \frac{ \partial_{q^i} {\mathbf r}}{|\partial_{q^i} {\mathbf r}|}$\\
+                      & \\
+F04:                  & curve tangent ${\mathbf e}_{\mathcal C} = \frac{ d {\mathbf r}_{\mathcal C}}{ d s}$\\
+                      & \\
+F05:                  & surface tangents ${\mathbf e}_{u} = \frac{ \partial {\mathbf r}_{\mathcal S}}{\partial u}$,
+                                         ${\mathbf e}_{v} = \frac{ \partial {\mathbf r}_{\mathcal S}}{\partial v}$\\
+                      & \\
+F06:${}^\dag{}^\ddag$ & surface normal (parametric): ${\mathbf n}_{\mathcal S} = \frac{ {\mathbf e}_u \times {\mathbf e}_v }
+                                                                                     {|{\mathbf e}_u \times {\mathbf e}_v|}$\\
+                      & \\
+F07:${}^\dag$         & surface normal (implicit): ${\mathbf n}_{\mathcal S} = \frac{\nabla \phi_{\mathcal S}}{|\nabla \phi_{\mathcal S}|}$\\
+                      & \\
+F08:${}^\dag$         & $div({\mathbf F}) = \lim_{{\mathcal V} -> 0} 
+                            \frac{ \int_{\partial {\mathcal V}} {\mathbf F} \cdot {\mathbf n} d {\mathcal S}}
+							{\mathcal V}$\\
+                      & \\
+F09:${}^\dag{}^\ddag$ & $curl({\mathbf F}) \cdot {\mathbf n} = \lim_{{\mathcal S} -> 0}
+                              \frac{ \int_{\partial {\mathcal S}} {\mathbf F} \cdot {\hat t} dl}{\mathcal S}$\\
+                      & \\
+F10:${}^\dag$         & $grad(\phi) = \lim_{{\mathcal C}->0}
+                            \frac{ \int_{\partial {\mathcal C}} \phi {\hat t} dl}{\mathcal C}$\\
+                      & \\
+F11:${}^\dag$         & $\int_{{\mathcal V}} div({\mathbf F}) d {\mathcal V} 
+                         = \int_{\partial {\mathcal V}} {\mathbf F} \cdot {\mathbf n} d {\mathcal S}$\\
+                      & \\
+F12:${}\dag$          & $\int_{\mathcal S} curl({\mathbf F}) \cdot {\mathbf n} d {\mathcal S} 
+                           = \int_{\partial {\mathcal S}} {\mathbf F} \cdot d {\mathbf r}$\\
+\end{tabular*}
+\vspace{2mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Orthogonal Coordinates
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{65mm}(0mm,95.3mm)
+\begin{tabular*}{65mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Orthogonal Coordinates$
+                  {}^\dag{}^\ddag$} \\
+   & \\
+N01:  & $h_i = |\partial {\mathbf r}/\partial q^i|$\\
+N02:  & ${\mathbf e}_i = \frac{1}{h_i} \partial 
+        {\mathbf r}/\partial q^i$ (no sum)\\
+N03:  & $\Omega = h_1 h_2 h_3$\\
+      & \\
+N04:  & $grad(\phi) = \sum_i {\mathbf e}_i \frac{1}{h_i} \
+        \partial_{q^i} \phi$\\
+N05:  & $curl({\mathbf F}) = \frac{1}{\Omega} \sum_{ijk} 
+        {\mathbf e}_i [ijk] h_i \partial_{q^j} 
+        \left( h_k F_k \right)$\\
+N06:  & $div({\mathbf F}) = \sum_i \frac{1}{\Omega} 
+        \partial_{q^i} \left( \frac{ \Omega F_i }{h_i} 
+        \right)$\\
+      & \\
+N07:  & $laplacian(\phi) = \frac{1}{\Omega} \sum_i 
+        \partial_{q^i} \left( \frac{\Omega}{ {h_i}^2 } 
+        \partial_{q^i} \phi \right)$\\
+      & \\
+\multicolumn{2}{l}{$grad$, $div$, and $curl$ can all 
+                    be represented}\\
+\multicolumn{2}{l}{by a single operator $\nabla$, 
+                    which gives}\\      
+\multicolumn{2}{l}{functionally the relations 
+                    $grad(\phi) = \nabla \phi$,}\\
+\multicolumn{2}{l}{$div({\mathbf F}) = \nabla \cdot 
+                  {\mathbf F}$, $curl({\mathbf F})= 
+                  \nabla \times {\mathbf F}$, and}\\
+\multicolumn{2}{l}{$laplacian(\phi) =  \nabla \cdot \nabla 
+                    \phi = \nabla^2 \phi$.}\\
+\multicolumn{2}{l}{In Cartesian components, $\nabla$ 
+                   takes on}\\
+\multicolumn{2}{l}{the form:}\\
+	  & \\
+N08:  & $\nabla = {\mathbf e}_x \partial_x + 
+                  {\mathbf e}_y \partial_y + 
+                  {\mathbf e}_z \partial_z$\\
+      & \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Derivative Theorems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{62mm}(64.85mm,95.3mm)
+\begin{tabular*}{62mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Derivative Theorems${}^\dag{}^\ddag$} \\
+   & \\
+D01: & $\nabla \cdot \nabla \phi = \nabla^2 \phi$\\
+D02: & $\nabla( \phi \psi ) = (\nabla \phi) \psi 
+        + \phi (\nabla \psi)$\\
+D03: & $\nabla \times \nabla \phi = 0$\\
+D04: & $ \nabla( {\mathbf F} \cdot {\mathbf G} ) = 
+        ({\mathbf F} \cdot \nabla) {\mathbf G} 
+        + {\mathbf F} \times (\nabla \times {\mathbf G})$\\
+     & $+ ( {\mathbf G} \cdot ) {\mathbf F} + {\mathbf G} 
+        \times ( \nabla \times {\mathbf F} )$\\
+D05: & $\frac{1}{2} \nabla^2 {\mathbf F} = {\mathbf F} 
+        \times (\nabla \times {\mathbf F}) 
+        + ({\mathbf F} \cdot ) {\mathbf F}$\\
+D06: & $\nabla \cdot ( \nabla \times {\mathbf F} ) = 0$\\
+D07: & $\nabla( \phi {\mathbf F}) 
+        = {\mathbf F} \cdot \nabla \phi 
+        + \phi \nabla \cdot {\mathbf F}$\\
+D08: & $\nabla( {\mathbf F} \times {\mathbf G} ) 
+        = (\nabla \times {\mathbf F})\cdot {\mathbf G} 
+        - (\nabla \times {\mathbf G})\cdot {\mathbf F}$\\
+D09: & $\nabla \times (\phi {\mathbf F}) 
+        = (\nabla \phi) \times {\mathbf F} 
+        + \phi \nabla \times {\mathbf F}$\\
+D10: & $ \nabla \times (\nabla \times {\mathbf F}) 
+        = \nabla( \nabla \cdot {\mathbf F} ) 
+        - \nabla ^2 {\mathbf F}$\\
+D11: & $\nabla \times ({\mathbf F} \times {\mathbf G}) 
+        = (\nabla \cdot {\mathbf G}) {\mathbf F} 
+        - (\nabla \cdot {\mathbf F}) {\mathbf G}$\\
+     & $\quad + ({\mathbf G} \cdot \nabla ){\mathbf F}  
+     - ({\mathbf F} \cdot \nabla ) {\mathbf G}$\\
+	 & \\
+D12: & $\nabla \cdot {\mathbf r} = 3$\\
+D13: & $\nabla \times {\mathbf r} = 0$\\
+D14: & $({\mathbf G} \cdot \nabla) {\mathbf r} = {\mathbf G}$\\
+D15: & $\nabla^2 {\mathbf r} = 0 $\\
+D16: & $\phi(r)$ or ${\mathbf F}(r)$: $\nabla 
+        = \frac{{\mathbf r}}{r} \frac{d}{d r}$\\
+D17: & $\nabla( {\mathbf A} \cdot {\mathbf r} = {\mathbf A}$\\
+D18: & $\phi({\mathbf A}\cdot{\mathbf r})$ 
+        or ${\mathbf F}({\mathbf A}\cdot {\mathbf r})$: 
+        $\nabla = {\mathbf A} \frac{d}{d ({\mathbf A}
+        \cdot {\mathbf r})}$\\
+\end{tabular*}
+\vspace{0.96mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Integral Theorems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{63.8mm}(126.7mm,95.3mm)
+\begin{tabular*}{63.8mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Integral Theorems${}^\dag{}^\ddag$} \\
+   & \\
+I01: & $\int_{\mathcal V} \nabla \times {\mathbf F} 
+        d {\mathcal V} = \int_{\partial {\mathcal V}} 
+        {\hat n} \times {\mathbf F} d {\mathcal S}$\\
+   & \\
+I02: & $ \int_{\mathcal V} \nabla \phi \, d {\mathcal V} 
+    = \int_{\partial {\mathcal V}} \phi \, {\hat n} 
+      \, d {\mathcal S}$\\
+   & \\
+I03: & $\int_{\mathcal V} ( \phi \nabla^2 \psi 
+        + \nabla \phi \cdot \nabla \psi) d {\mathcal V} 
+        = \int_{\partial {\mathcal V}} \phi\nabla\psi 
+        \cdot {\hat n} d{\mathcal S}$\\
+     & \\
+I04: & $\int_{\mathcal V} ( \phi \nabla^2 \psi 
+       - \psi \nabla^2 \phi) d {\mathcal V}$\\ 
+     & $\quad  = \int_{\partial {\mathcal V}}
+       ( \phi\nabla\psi -\psi\nabla\phi) \cdot 
+       {\hat n} d{\mathcal S}$\\
+     & \\
+I05: & $\int_{\mathcal V} \nabla \phi \cdot {\mathbf F} 
+       = \int_{\partial {\mathcal V}} \phi {\mathbf F} 
+       \cdot {\hat n} - 
+       \int_{\partial {\mathcal V}} \phi \nabla 
+       \cdot {\mathbf F} d {\mathcal S}$\\
+     & \\
+I06: & $\int_{\partial {\mathcal S}} \phi \,{\hat t} 
+     d \ell = \int_{\mathcal S} ({\hat n} 
+     \times \nabla \phi )\, d{\mathcal S}$\\
+     & \\
+I07: & $\int_{\partial {\mathcal S}} d \ell \, 
+       {\hat t}\times {\mathbf F} = \int_{\mathcal S} 
+       ({\hat n} \times \nabla )\times {\mathbf F} 
+       d {\mathcal S}$\\
+     & \\
+I08: & $\int_{\partial {\mathcal V}} d{\mathcal S} 
+       \, {\hat n} \circ  = \int_{\mathcal V} 
+       \, d{\mathcal V} \nabla \circ$\\
+     & \\
+I09: & $ \int_{\partial {\mathcal S}} d \ell \, 
+      {\hat t} \circ = \int_{\mathcal S} d \, 
+      {\mathcal S} ( {\hat n} \times \nabla )\circ$\\
+\end{tabular*}
+\vspace{9.24mm}
+\end{textblock*}
+\newpage
+\null
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{74mm}(0mm,12.54mm)
+\begin{tabular*}{74mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Stuff} \\
+\end{tabular*}
+\end{textblock*}
+
+\TPMargin{2mm}
+\begin{textblock*}{69mm}(0mm,20mm)
+\begin{tabular*}{69mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Dual Vectors} \\
+\end{tabular*}
+Let a $n$-dimensional space be spanned by a
+set of vectors $\{ | {\mathbf e}_i \rangle\}$.
+Then the column-wise collection
+  \[
+    {\mathbf J} = \left[\, |{\mathbf e}_1 \rangle, \, | {\mathbf e}_2 \rangle, \,  \dots , \, | {\mathbf e}_n \rangle \, \vspace{10mm} \right]
+  \]
+is know as the \emph{Jacobian matrix}.  Its inverse
+  \[
+   {\mathbf J}^{-1} = \left[ \begin{array}{c} \langle {\mathbf e}^1 | \vspace{1mm}\\ \langle {\mathbf e}^2 | \\ \vdots \\ \langle {\mathbf e}^n | \end{array} \right]
+\]
+gives a vector space spanned by the \emph{dual vectors} that obey the contraction rule
+\begin{eqnarray*}
+  {\mathbf J}^{-1} {\mathbf J} & = &  \left[ \begin{array}{cccc}
+                 \langle {\mathbf e}^1 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
+                 \langle {\mathbf e}^2 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^2 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^2 | {\mathbf e}_n \rangle \\
+	    	     \vdots                   &     \vdots                 & \ddots &   \vdots \\
+                 \langle {\mathbf e}^n | {\mathbf e}_1 \rangle & \langle {\mathbf e}^n | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^n | {\mathbf e}_n \rangle \\
+			   \end{array} \right] \\
+		   & = & \langle {\mathbf e}^i | {\mathbf e}_j \rangle = {\delta^i}_j
+\end{eqnarray*}
+and the completeness relation
+\[
+  {\mathbf J} {\mathbf J}^{-1} = \sum_i | {\mathbf e}_i \rangle \langle {\mathbf e}^i | = \mbox{Id}_{n \times n} .
+\]
+\end{textblock*}
+
+\begin{textblock*}{50mm}(68.85mm,20mm)
+  \begin{tabular*}{50mm}{l @{\extracolsep{\fill}} l}
+    & \\
+  \multicolumn{2}{c}{\bf Permutation Tensor}\\
+  \end{tabular*}
+  \[
+    \epsilon_{ijk} = \det({\mathbf J}) [ijk] = J [ijk]
+  \]
+  \[
+    \epsilon^{ijk} = \det \left( {\mathbf J}^{-1} \right) [ijk] = J^{-1} [ijk]
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pqr} = \left| 
+	   \begin{array}{ccc}
+	   {\delta^i}_p & {\delta^i}_q & {\delta^i}_p\\
+	   {\delta^j}_p & {\delta^j}_q & {\delta^j}_r\\
+	   {\delta^k}_p & {\delta^k}_q & {\delta^k}_r\\
+	   \end{array}
+	  \right|
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pqk} = {\delta^i}_p {\delta^j}_q - {\delta^i}_q {\delta^j}_p
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pjk} = 2 {\delta^i}_p
+  \]
+  \[
+      \epsilon^{ijk} \epsilon_{ijk} = 6
+  \]
+\end{textblock*}
+\newpage
+\null
+
+\begin{tabular}{cc}
+  1: & $Q = \left[ \begin{array}{cc}
+               1 & 2 \\
+			   3 & 4
+			 \end{array} \right]$
+\end{tabular}
+
+\[
+  M = \left[ \begin{array}{cccc}
+		|{\mathbf e}_1 \rangle_1 &  | {\mathbf e}_2 \rangle_1 & \dots & | {\mathbf e}_n \rangle_1 \vspace{1mm}\\
+		|{\mathbf e}_1 \rangle_2 &  | {\mathbf e}_2 \rangle_2 & \dots & | {\mathbf e}_n \rangle_2 \\
+		\vdots                   &     \vdots                 & \ddots &   \vdots \\
+		|{\mathbf e}_1 \rangle_n &  | {\mathbf e}_2 \rangle_2 & \dots & | {\mathbf e}_n \rangle_2 \\
+	  \end{array} \right]
+\]
+
+\[
+  M^{-1} = \left[ \begin{array}{cccc}
+		    \langle{\mathbf e}^1 |_1 &  \langle{\mathbf e}^1 |_2 & \dots & \langle{\mathbf e}^1 |_n \vspace{1mm}\\
+		    \langle{\mathbf e}^2 |_1 &  \langle{\mathbf e}^2 |_2 & \dots & \langle{\mathbf e}^2 |_n \\
+	    	\vdots                   &     \vdots                 & \ddots &   \vdots \\
+		    \langle{\mathbf e}^n |_1 &  \langle{\mathbf e}^n |_2 & \dots & \langle{\mathbf e}^n |_n \vspace{1mm}\\
+	  \end{array} \right]
+\]
+
+
+\[
+  M M^{-1} = \left[ \begin{array}{cccc}
+                 | {\mathbf e}_1 \rangle_1 \langle {\mathbf e}^1 | & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
+                 \langle {\mathbf e}^2 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^2 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^2 | {\mathbf e}_n \rangle \\
+	    	     \vdots                   &     \vdots                 & \ddots &   \vdots \\
+                 \langle {\mathbf e}^n | {\mathbf e}_1 \rangle & \langle {\mathbf e}^n | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^n | {\mathbf e}_n \rangle \\
+			   \end{array}
+			   \right]
+\]
+\[
+  {\mathcal L}_{\mathbf A} f = A^{\alpha} \partial_{q^{\alpha}} f
+\]
+\[
+  {\mathcal L}_{\mathbf A} {\mathbf B} = [{\mathbf A},{\mathbf B}]
+\]
+\[
+  {\mathcal L}_{\mathbf A} {\mathbf \omega} = ( \omega_{\sigma} {A^{\sigma}}_{,\gamma} + A^{\sigma} \omega_{\gamma,\sigma} ) d q^{\gamma}
+\]
+
+\newpage
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Classical Mechanics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Classical Mechanics} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Invariance of the EL Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{65mm}(0mm,12.54mm)
+The Euler Lagrange equations are invariant to a basic change in coordinates from $q^i$ to
+$y^j$ of the form 
+\begin{equation}\label{ELinv_b}
+  q^i = q^i \left(y^j \right) .
+\end{equation}
+To see this first note that the from the 
+form of the transformation equation (\ref{ELinv_b}) we get
+\begin{equation}\label{ELinv_a}
+  {\dot q}^i = \frac{\partial q^i}{\partial y^j} {\dot y}^j \,
+\end{equation}
+where $\dot f = \frac{d}{dt} f$. Next note that the Lagrangian 
+$\tilde L \left(y^j,{\dot y}^j;t \right)$ in the $y^j$ coordinates 
+is related to the Lagrangian $L \left(q^i,{\dot q}^i;t \right)$ 
+in $q^i$ coordinates by virtue of a substitution of (\ref{ELinv_b}) 
+and (\ref{ELinv_a}) yielding
+\begin{equation}\label{ELinv_c}
+  \tilde L \left(y^j,{\dot y}^j;t \right) = L \left(q^i(y^j),{\dot q}^i(y^j,{\dot y}^j);t \right) .
+\end{equation}
+The parts of the Euler-Lagrange equation in terms
+of the $y^j$ coordinates in relation to the $q^i$ coordinates are
+\begin{equation}\label{ELinv_d}
+  \frac{\partial \tilde L}{\partial y^j} =    \frac{\partial L}{\partial q^i}        \frac{\partial q^i}{\partial y^j} 
+                                        +  \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial y^j}
+\end{equation}
+and
+\begin{equation}\label{ELinv_e}
+  \frac{\partial \tilde L}{\partial {\dot y}^j} = \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial {\dot y}^j} .
+\end{equation}
+Now substituting (\ref{ELinv_d}) and (\ref{ELinv_e}) into the Euler-\\Lagrange equations
+yields
+\begin{eqnarray}\label{ELinv_f}
+  \frac{d}{dt} \left( \frac{\partial \tilde L}{\partial {\dot y}^j } \right) - \frac{\partial \tilde L}{\partial y^j} 
+    & = &   \frac{d}{d t} \left( \frac{\partial L}{\partial {\dot q}^i} \right) \frac{\partial {\dot q}^i}{\partial {\dot y}^j} \\ \nonumber
+	&   & + \frac{\partial L}{\partial {\dot q}^i} \frac{d}{dt} \left( \frac{\partial {\dot q}^i}{\partial {\dot y}^j} \right) \\ \nonumber
+    & = & - \frac{\partial L}{\partial q^i}        \frac{\partial q^i}{\partial y^j} 
+	      - \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial y^j} .\nonumber
+\end{eqnarray}
+But from (\ref{ELinv_a}) $ {\partial {\dot q}^i}/{\partial {\dot y}^j} = {\partial q^i}/{\partial y^j}$ and thus the second and
+fourth terms in (\ref{ELinv_f}) cancel, leaving
+\begin{equation}\label{ELinv_g}
+  \frac{d}{dt} \left[ \frac{\partial \tilde L}{\partial {\dot y}^j } \right) - \frac{\partial \tilde L}{\partial y^j} = 
+  \left( \frac{d}{d t} \left( \frac{\partial L}{\partial {\dot q}^i} \right) - \frac{\partial L}{\partial q^i} \right] 
+  \frac{\partial q^i}{\partial y^j} ,
+\end{equation}
+which shows that the Euler-Lagrange equations transform like the components of a covariant vector
+\end{textblock*}
+
+\[
+  \Delta_L = {\dot q}^{\alpha} \frac{\partial}{\partial q^{\alpha}} + {\ddot q}^{\alpha} \frac{\partial}{\partial {\dot q}^{\alpha}}
+\]
+\[
+  \Theta_L = \frac{\partial L}{\partial {\dot q}^{\alpha}} d q^{\alpha}
+\]
+\[
+  {\mathcal L}_{\Delta_L} \Theta_L = d L
+\]
+\[
+  \Delta_H = {\dot \xi}^{j} \partial_j = {\dot q}^{\alpha} \frac{\partial}{\partial {q^{\alpha}}} + {\dot p}^{\alpha} \frac{\partial}{\partial {p^{\alpha}}}
+\]
+\[
+  \Theta_H = p_{\alpha} d q^{\alpha}
+\]
+\[
+  i_{\Delta_H} \omega = d H
+\]
+\[
+ {\mathcal L}_{\Delta} f = \left\{ f , H \right\} + \partial_t f
+\]
+\[
+  i_{\mathbf X} {\mathbf \alpha} = \langle {\mathbf \alpha} , {\mathbf X} \rangle
+\]
+\[
+  i_{\mathbf X} {\mathbf \omega} = {\mathbf \omega} \left( \bullet , \bullet, \dots, \bullet, {\mathbf X} \right)
+\]
+\[
+   {\mathcal L}_{\mathbf X} \left[ {\mathbf Y}, {\mathbf Z} \right] 
+ = \left[ {\mathcal L}_{\mathbf X} {\mathbf Y}, {\mathbf Z} \right] + \left[ {\mathbf Y}, {\mathcal L}_{\mathbf X} {\mathbf Z} \right]
+\]
+\[
+  {\mathcal L}_{\mathbf X} \left( \alpha \wedge \beta \right) 
+ = \left( {\mathcal L}_{\mathbf X} \alpha \right) \wedge \beta
+ = \alpha \wedge \left( {\mathcal L}_{\mathbf X} \beta \right) 
+\]
+\[
+  \left[ {\mathcal L}_{\mathbf X}, {\mathcal L}_{\mathbf Y} \right] \alpha = {\mathcal L}_{\left[ {\mathbf X}, {\mathbf Y} \right] } \alpha
+\]
+\[
+    \left[ {\mathcal L}_{\mathbf X} , i_{\mathbf Y} \right] \alpha 
+  = \left[ i_{\mathbf Y}, {\mathcal L}_{\mathbf X} \right] \alpha 
+  = i_{\left[ {\mathbf X}, {\mathbf Y} \right] } \alpha
+  = i_{ \left( {\mathcal L}_{\mathbf X} {\mathbf Y} \right) } \alpha
+\]
+\[
+ {\mathcal L}_{\mathbf X} \alpha = i_{\mathbf X} d \alpha + d i_{\mathbf X} \alpha
+\]
+
+\[
+  \frac{d}{d t} {\mathbf S}_\phi = {\mathbf F}_\phi \left( {\mathbf S}_{\phi} ; t \right)
+\]
+\[
+  \frac{d}{d t} {\mathbf S}_\eta = {\mathbf F}_\eta \left( {\mathbf S}_\eta ; t \right)
+\]
+\[
+  \frac{d}{d t} {\mathbf T}_\phi = {\mathbf F}_\phi \left( {\mathbf T}_\phi ; t \right)
+\]
+\[
+  \frac{d}{d t} {\mathbf T}_\eta = {\mathbf F}_\eta \left( {\mathbf T}_\eta ; t \right)
+\]
+
+\[
+  \theta(x - q) = \left\{ \begin{array}{ll} 0 & x < q \\ 1 & x > q \end{array} \right.
+\]
+\[
+ \int_{a}^{b} dx \, \theta(x-q) = \int_{a}^{q} d x
+\]
+\begin{eqnarray*}
+ \int_{a}^{b} dx \, \theta(q - x)	& = & \int_{a}^{b} dx \left\{1 - \theta(x-q) \right\} \\
+								& = & \int_{a}^{b} dx - \int_{a}^{q} dx \\
+								& = & \int_{a}^{q} dx + \int_{q}^{b} dx - \int_{a}^{q} dx\\
+								& = & \int_{q}^{b} dx
+\end{eqnarray*}
+
+
+\newpage
+\null
+
+Define an integrand
+\[
+  L(a,b)[f] = a f(x)^2 + b f'(x)^2
+\]
+
+\[
+  I_v(a,b)[f] = \int_0^1 L(a,b)[f] dx = \int_0^1 \left( a f(x)^2 + b f'(x)^2 \right) dx
+\]
+
+\begin{tabular}{cc}
+  $I_p(1,1)\left[x\right]$   & 1.33333 \\
+  $I_p(1,1)\left[x^2\right]$ & 1.53333 \\
+  $I_p(1,1)\left[x^3\right]$ & 1.94286
+\end{tabular}
+subject to the boundary conditions $f(0) = 0$ and $f(1) = 1$.
+$I_p$ has as its domain any well-behaved function that is continuous and differentiable (this may be 
+too restrictive).  Let the set of such functions be called $\mathcal D$.  Then let $\mathcal D'$ be
+the subset of $\mathcal D$ that satisfies the boundary conditions.  Examples of $\mathcal D$ are:
+$const, 0, \cos(x), x, x^2, (1-x^3), ln(x), \sin \left( \frac{\pi}{2} x \right), e^x$.  Examples
+of $\mathcal D'$ are: $x, x^2, \sin \left( \frac{\pi}{2} \right)$.  
+
+
+The goal is to find
+$q \backepsilon {\mathcal D'}$ extremizes $I_p(a,b)[f]$ by taking the variation $\delta I_p$
+and solve for $f$
+\[
+  \delta I_p = 2 \int_0^1 d\,x \left( a f \delta f + b f' \delta f' \right)
+\]
+\normalsize
+\begin{figure}[htpb!]
+\centering
+\includegraphics[width=170mm,height=150mm]{var_1.eps}
+\scriptsize\caption{Blah Blag}\label{fig:erptsqfit}
+\end{figure}
+\newpage
+\null
+dude
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\null
+\scriptsize
+
+\textblockcolor{LightYellow}
+\begin{textblock*}{65mm}(0mm,12.54mm)
+One of the most basic 
+\[
+  I = \oint_{C} z^n dz 
+\]
+Assume on $C$ that $z = R e^{i \theta}$ where $\theta$ goes from $0$ to $2 \pi$.
+With this parametrization $dz = R i e^{i \theta} d \theta$ and
+\[
+  I = i r^{n+1} \int_0^{2 \pi} e^{i \theta \left( n + 1 \right)} d \theta
+\]
+There are two cases to consider: 1) $n \neq -1$ and $n = -1$. 
+In the first case
+\begin{eqnarray*}
+  I_{n \neq -1}  & = & i R^{n+1} \int_0^{2 \pi} e^{i \theta \left(n+1\right)} d \theta \\
+                & = & \frac{R^{n+1}}{n+1} \left. e^{i \theta \left(n+1\right)} \right|^{2 \pi}_0 \\
+                & = & 0
+\end{eqnarray*}
+and in the second
+\[
+  I_{n = -1}   = i \int_0^{2 \pi} d \theta = 2 \pi i
+\]
+
+\begin{figure}[htp]
+\centering
+\psscalebox{2}{
+\begin{pspicture}(-1.5,-1.5)(1.5,1.5)
+  \pscircle[fillstyle=solid,fillcolor=LightGreen,linestyle=none](0,0){1.005}
+  \psarc[linewidth=0.5pt]{->}(0,0){1}{32.96709734}{212}
+  \psarc[linewidth=0.5pt]{-}(0,0){1}{210}{27.03290266}
+  \pscircle[fillstyle=solid,fillcolor=LightYellow,linestyle=none](0,0){0.21}  
+  \psarc[linewidth=0.5pt]{-}(0,0){0.205}{45}{190}
+  \psarc[linewidth=0.5pt]{<-}(0,0){0.205}{180}{15}
+  \pspolygon[fillstyle=solid,fillcolor=LightYellow,linestyle=none,linewidth=0.5pt](0.19125331,0.05124617)(0.89067955,0.45446836)(0.83892092,0.54411694)(0.14140721,0.14140721)
+  \psline[linewidth=0.5pt]{-}(0.19318517,0.05176381)(0.89076863,0.45451381)
+  \psline[linewidth=0.5pt]{-}(0.14142136,0.14142136)(0.83900482,0.54417136)
+  \psline[linewidth=0.5pt]{<-}(0.5419769,0.25313881)(0.89076863,0.45451381)
+  \psline[linewidth=0.5pt]{->}(0.14142136,0.14142136)(0.49021309,0.34279636)
+  \psline[linewidth=0.2pt]{->}(0,0)(1.29903811,0.75)
+  \pscircle[fillstyle=solid,fillcolor=black,linestyle=none](0,0){0.05}
+  \uput[45](0.6,0.6){${\scriptsize C}$}
+  \uput[1](-0.8,-0.05){${z_0}$}
+  \uput[1](-0.4,-0.4){${C_2}$}
+  \uput[1](-0.2,0.45){${C_{in}}$}  
+  \uput[1](0.2,0){${C_{out}}$}  
+  %\psgrid(-1.5,-1.5)(1.5,1.5)
+\end{pspicture}}
+\caption{}\label{fig_simp_vec}
+\end{figure}
+\end{textblock*}
+
+\newpage
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{74mm}(0mm,12.54mm)
+\begin{tabular*}{74mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Stuff} \\
+\end{tabular*}
+\end{textblock*}
+\newpage
+\null
+
+\TPMargin{2mm}
+\begin{textblock*}{69mm}(0mm,20mm)
+\begin{tabular*}{69mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Dual Vectors} \\
+\end{tabular*}
+Let a $n$-dimensional space be spanned by a
+set of vectors $\{ | {\mathbf e}_i \rangle\}$.
+Then the column-wise collection
+  \[
+    {\mathbf J} = \left[\, |{\mathbf e}_1 \rangle, \, | {\mathbf e}_2 \rangle, \,  \dots , \, | {\mathbf e}_n \rangle \, \vspace{10mm} \right]
+  \]
+is know as the \emph{Jacobian matrix}.  Its inverse
+  \[
+   {\mathbf J}^{-1} = \left[ \begin{array}{c} \langle {\mathbf e}^1 | \vspace{1mm}\\ \langle {\mathbf e}^2 | \\ \vdots \\ \langle {\mathbf e}^n | \end{array} \right]
+\]
+gives a vector space spanned by the \emph{dual vectors} that obey the contraction rule
+\begin{eqnarray*}
+  {\mathbf J}^{-1} {\mathbf J} & = &  \left[ \begin{array}{cccc}
+                 \langle {\mathbf e}^1 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
+                 \langle {\mathbf e}^2 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^2 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^2 | {\mathbf e}_n \rangle \\
+	    	     \vdots                   &     \vdots                 & \ddots &   \vdots \\
+                 \langle {\mathbf e}^n | {\mathbf e}_1 \rangle & \langle {\mathbf e}^n | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^n | {\mathbf e}_n \rangle \\
+			   \end{array} \right] \\
+		   & = & \langle {\mathbf e}^i | {\mathbf e}_j \rangle = {\delta^i}_j
+\end{eqnarray*}
+and the completeness relation
+\[
+  {\mathbf J} {\mathbf J}^{-1} = \sum_i | {\mathbf e}_i \rangle \langle {\mathbf e}^i | = \mbox{Id}_{n \times n} .
+\]
+\end{textblock*}
+\newpage
+\null
+
+\begin{textblock*}{50mm}(68.85mm,20mm)
+  \begin{tabular*}{50mm}{l @{\extracolsep{\fill}} l}
+    & \\
+  \multicolumn{2}{c}{\bf Permutation Tensor}\\
+  \end{tabular*}
+  \[
+    \epsilon_{ijk} = \det({\mathbf J}) [ijk] = J [ijk]
+  \]
+  \[
+    \epsilon^{ijk} = \det \left( {\mathbf J}^{-1} \right) [ijk] = J^{-1} [ijk]
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pqr} = \left| 
+	   \begin{array}{ccc}
+	   {\delta^i}_p & {\delta^i}_q & {\delta^i}_p\\
+	   {\delta^j}_p & {\delta^j}_q & {\delta^j}_r\\
+	   {\delta^k}_p & {\delta^k}_q & {\delta^k}_r\\
+	   \end{array}
+	  \right|
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pqk} = {\delta^i}_p {\delta^j}_q - {\delta^i}_q {\delta^j}_p
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pjk} = 2 {\delta^i}_p
+  \]
+  \[
+      \epsilon^{ijk} \epsilon_{ijk} = 6
+  \]
+\end{textblock*}
+\newpage
+\null
+
+\begin{tabular}{cc}
+  1: & $Q = \left[ \begin{array}{cc}
+               1 & 2 \\
+			   3 & 4
+			 \end{array} \right]$
+\end{tabular}
+
+\[
+  M = \left[ \begin{array}{cccc}
+		|{\mathbf e}_1 \rangle_1 &  | {\mathbf e}_2 \rangle_1 & \dots & | {\mathbf e}_n \rangle_1 \vspace{1mm}\\
+		|{\mathbf e}_1 \rangle_2 &  | {\mathbf e}_2 \rangle_2 & \dots & | {\mathbf e}_n \rangle_2 \\
+		\vdots                   &     \vdots                 & \ddots &   \vdots \\
+		|{\mathbf e}_1 \rangle_n &  | {\mathbf e}_2 \rangle_2 & \dots & | {\mathbf e}_n \rangle_2 \\
+	  \end{array} \right]
+\]
+
+\[
+  M^{-1} = \left[ \begin{array}{cccc}
+		    \langle{\mathbf e}^1 |_1 &  \langle{\mathbf e}^1 |_2 & \dots & \langle{\mathbf e}^1 |_n \vspace{1mm}\\
+		    \langle{\mathbf e}^2 |_1 &  \langle{\mathbf e}^2 |_2 & \dots & \langle{\mathbf e}^2 |_n \\
+	    	\vdots                   &     \vdots                 & \ddots &   \vdots \\
+		    \langle{\mathbf e}^n |_1 &  \langle{\mathbf e}^n |_2 & \dots & \langle{\mathbf e}^n |_n \vspace{1mm}\\
+	  \end{array} \right]
+\]
+
+
+\[
+  M M^{-1} = \left[ \begin{array}{cccc}
+                 | {\mathbf e}_1 \rangle_1 \langle {\mathbf e}^1 | & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
+                 \langle {\mathbf e}^2 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^2 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^2 | {\mathbf e}_n \rangle \\
+	    	     \vdots                   &     \vdots                 & \ddots &   \vdots \\
+                 \langle {\mathbf e}^n | {\mathbf e}_1 \rangle & \langle {\mathbf e}^n | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^n | {\mathbf e}_n \rangle \\
+			   \end{array}
+			   \right]
+\]
+\[
+  {\mathcal L}_{\mathbf A} f = A^{\alpha} \partial_{q^{\alpha}} f
+\]
+\[
+  {\mathcal L}_{\mathbf A} {\mathbf B} = [{\mathbf A},{\mathbf B}]
+\]
+\[
+  {\mathcal L}_{\mathbf A} {\mathbf \omega} = ( \omega_{\sigma} {A^{\sigma}}_{,\gamma} + A^{\sigma} \omega_{\gamma,\sigma} ) d q^{\gamma}
+\]
+
+\newpage
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Classical Mechanics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Classical Mechanics} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Invariance of the EL Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{65mm}(0mm,12.54mm)
+The Euler Lagrange equations are invariant to a basic change in coordinates from $q^i$ to
+$y^j$ of the form 
+\begin{equation}\label{ELinv_b}
+  q^i = q^i \left(y^j \right) .
+\end{equation}
+To see this first note that the from the 
+form of the transformation equation (\ref{ELinv_b}) we get
+\begin{equation}\label{ELinv_a}
+  {\dot q}^i = \frac{\partial q^i}{\partial y^j} {\dot y}^j \,
+\end{equation}
+where $\dot f = \frac{d}{dt} f$. Next note that the Lagrangian 
+$\tilde L \left(y^j,{\dot y}^j;t \right)$ in the $y^j$ coordinates 
+is related to the Lagrangian $L \left(q^i,{\dot q}^i;t \right)$ 
+in $q^i$ coordinates by virtue of a substitution of (\ref{ELinv_b}) 
+and (\ref{ELinv_a}) yielding
+\begin{equation}\label{ELinv_c}
+  \tilde L \left(y^j,{\dot y}^j;t \right) = L \left(q^i(y^j),{\dot q}^i(y^j,{\dot y}^j);t \right) .
+\end{equation}
+The parts of the Euler-Lagrange equation in terms
+of the $y^j$ coordinates in relation to the $q^i$ coordinates are
+\begin{equation}\label{ELinv_d}
+  \frac{\partial \tilde L}{\partial y^j} =    \frac{\partial L}{\partial q^i}        \frac{\partial q^i}{\partial y^j} 
+                                        +  \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial y^j}
+\end{equation}
+and
+\begin{equation}\label{ELinv_e}
+  \frac{\partial \tilde L}{\partial {\dot y}^j} = \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial {\dot y}^j} .
+\end{equation}
+Now substituting (\ref{ELinv_d}) and (\ref{ELinv_e}) into the Euler-\\Lagrange equations
+yields
+\begin{eqnarray}\label{ELinv_f}
+  \frac{d}{dt} \left( \frac{\partial \tilde L}{\partial {\dot y}^j } \right) - \frac{\partial \tilde L}{\partial y^j} 
+    & = &   \frac{d}{d t} \left( \frac{\partial L}{\partial {\dot q}^i} \right) \frac{\partial {\dot q}^i}{\partial {\dot y}^j} \\ \nonumber
+	&   & + \frac{\partial L}{\partial {\dot q}^i} \frac{d}{dt} \left( \frac{\partial {\dot q}^i}{\partial {\dot y}^j} \right) \\ \nonumber
+    & = & - \frac{\partial L}{\partial q^i}        \frac{\partial q^i}{\partial y^j} 
+	      - \frac{\partial L}{\partial {\dot q}^i} \frac{\partial {\dot q}^i}{\partial y^j} .\nonumber
+\end{eqnarray}
+But from (\ref{ELinv_a}) $ {\partial {\dot q}^i}/{\partial {\dot y}^j} = {\partial q^i}/{\partial y^j}$ and thus the second and
+fourth terms in (\ref{ELinv_f}) cancel, leaving
+\begin{equation}\label{ELinv_g}
+  \frac{d}{dt} \left( \frac{\partial \tilde L}{\partial {\dot y}^j } \right) - \frac{\partial \tilde L}{\partial y^j} = 
+  \left[ \frac{d}{d t} \left( \frac{\partial L}{\partial {\dot q}^i} \right) - \frac{\partial L}{\partial q^i} \right] 
+  \frac{\partial q^i}{\partial y^j} ,
+\end{equation}
+which shows that the Euler-Lagrange equations transform like the components of a covariant vector
+\end{textblock*}
+
+
+\begin{textblock*}{65mm}(64.85mm,12.54mm)
+The Euler-Lagrange equations can be cast into 1$^{st}$-order form by first making the identification
+\[
+  \frac{d}{d t} q^{\alpha} = {\dot q}^{\alpha}
+\]
+and then by expanding
+\[
+  \frac{d}{dt} \left( \frac{\partial L}{\partial {\dot q}^{\alpha}} \right) = 
+    \frac{\partial^2 L}{\partial q^{\beta} \partial {\dot q}^{\alpha}} {\dot q}^{\beta} + 
+	\frac{\partial^2 L}{\partial {\dot q}^{\alpha} \partial {\dot q}^{\beta}} {\ddot q^{\beta}}         +
+	\frac{\partial^2 L}{\partial t \partial q^{\alpha}}                 
+\]
+Substituting this form in the EL equations and solving for the ${\ddot q}^{\alpha}$ yields
+\begin{eqnarray*}
+  \frac{d}{dt} {\dot q}^{\alpha} & = & {\ddot q}^{\alpha} \\ 
+                                 & = & \left( \frac{\partial^2 L}{\partial {\dot q}^{\alpha} \partial {\dot q}^{\beta}} \right)^{-1} \\
+								 &   & \times \left( \frac{\partial L}  {\partial q^{\beta}}                    -
+							                         \frac{\partial^2 L}{\partial t \partial {\dot q}^{\beta}}  - 
+									                 \frac{\partial^2 L}{\partial q^{\beta} \partial {\dot q}^{\gamma}} {\dot q}^{\gamma} 
+									   \right)										  
+\end{eqnarray*}
+which requires that the Hessian, defined by
+\[
+  \left( \frac{\partial^2 L}{\partial {\dot q}^{\alpha} \partial {\dot q}^{\beta}} \right)
+\]
+be invertible.
+\end{textblock*}
+
+\newpage
+\null
+\[
+  \Delta_L = {\dot q}^{\alpha} \frac{\partial}{\partial q^{\alpha}} + {\ddot q}^{\alpha} \frac{\partial}{\partial {\dot q}^{\alpha}}
+\]
+\[
+  \Theta_L = \frac{\partial L}{\partial {\dot q}^{\alpha}} d q^{\alpha}
+\]
+\[
+  {\mathcal L}_{\Delta_L} \Theta_L = d L
+\]
+\[
+  \Delta_H = {\dot \xi}^{j} \partial_j = {\dot q}^{\alpha} \frac{\partial}{\partial {q^{\alpha}}} + {\dot p}^{\alpha} \frac{\partial}{\partial {p^{\alpha}}}
+\]
+\[
+  \Theta_H = p_{\alpha} d q^{\alpha}
+\]
+\[
+  i_{\Delta_H} \omega = d H
+\]
+\[
+ {\mathcal L}_{\Delta} f = \left\{ f , H \right\} + \partial_t f
+\]
+\[
+  i_{\mathbf X} {\mathbf \alpha} = \langle {\mathbf \alpha} , {\mathbf X} \rangle
+\]
+\[
+  i_{\mathbf X} {\mathbf \omega} = {\mathbf \omega} \left( \bullet , \bullet, \dots, \bullet, {\mathbf X} \right)
+\]
+\[
+   {\mathcal L}_{\mathbf X} \left[ {\mathbf Y}, {\mathbf Z} \right] 
+ = \left[ {\mathcal L}_{\mathbf X} {\mathbf Y}, {\mathbf Z} \right] + \left[ {\mathbf Y}, {\mathcal L}_{\mathbf X} {\mathbf Z} \right]
+\]
+\[
+  {\mathcal L}_{\mathbf X} \left( \alpha \wedge \beta \right) 
+ = \left( {\mathcal L}_{\mathbf X} \alpha \right) \wedge \beta
+ = \alpha \wedge \left( {\mathcal L}_{\mathbf X} \beta \right) 
+\]
+\[
+  \left[ {\mathcal L}_{\mathbf X}, {\mathcal L}_{\mathbf Y} \right] \alpha = {\mathcal L}_{\left[ {\mathbf X}, {\mathbf Y} \right] } \alpha
+\]
+\[
+    \left[ {\mathcal L}_{\mathbf X} , i_{\mathbf Y} \right] \alpha 
+  = \left[ i_{\mathbf Y}, {\mathcal L}_{\mathbf X} \right] \alpha 
+  = i_{\left[ {\mathbf X}, {\mathbf Y} \right] } \alpha
+  = i_{ \left( {\mathcal L}_{\mathbf X} {\mathbf Y} \right) } \alpha
+\]
+\[
+ {\mathcal L}_{\mathbf X} \alpha = i_{\mathbf X} d \alpha + d i_{\mathbf X} \alpha
+\]
+
+\[
+  \frac{d}{d t} {\mathbf S}_\phi = {\mathbf F}_\phi \left( {\mathbf S}_{\phi} ; t \right)
+\]
+\[
+  \frac{d}{d t} {\mathbf S}_\eta = {\mathbf F}_\eta \left( {\mathbf S}_\eta ; t \right)
+\]
+\[
+  \frac{d}{d t} {\mathbf T}_\phi = {\mathbf F}_\phi \left( {\mathbf T}_\phi ; t \right)
+\]
+\[
+  \frac{d}{d t} {\mathbf T}_\eta = {\mathbf F}_\eta \left( {\mathbf T}_\eta ; t \right)
+\]
+
+\[
+  \theta(x - q) = \left\{ \begin{array}{ll} 0 & x < q \\ 1 & x > q \end{array} \right.
+\]
+\[
+ \int_{a}^{b} dx \, \theta(x-q) = \int_{a}^{q} d x
+\]
+\begin{eqnarray*}
+ \int_{a}^{b} dx \, \theta(q - x)	& = & \int_{a}^{b} dx \left\{1 - \theta(x-q) \right\} \\
+								& = & \int_{a}^{b} dx - \int_{a}^{q} dx \\
+								& = & \int_{a}^{q} dx + \int_{q}^{b} dx - \int_{a}^{q} dx\\
+								& = & \int_{q}^{b} dx
+\end{eqnarray*}
+
+$\bullet$  
+
+
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Fourier Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Periodic Functions, Fourier Analysis, and Sturm-Liouville Theory} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+\begin{textblock*}{90mm}(0mm,15mm)
+Consider a periodic function $f(x-2\ell) = f(x) = f(x + 2\ell)$ defined on the interval $[-\ell,\ell]$.  
+Because of the underlying periodicity of $f(x)$, both the derivative and the integral also inherit 
+periodic properties.
+
+In the case of the derivative, the observation is evident simply from 
+the standard definition as follows:
+\begin{eqnarray*}
+  \frac{d f}{d x}(x) & = & \lim_{dx \rightarrow 0} \frac{ f(x+dx)-f(x)}{dx}\\
+                     & = & \lim_{dx \rightarrow 0} \frac{ f(x + 2\ell + dx) - f(x + 2\ell) }{dx} \\
+                     & = & \frac{d f}{d x}(x + 2\ell).
+\end{eqnarray*}
+In the case of the integral, a bit more thinking and manipulation is needed.
+To begin, consider the integral of $f(x)$ over an interval $[a,b]$.  The value of this integral 
+is invariant if the entire interval is shifted by $2 \ell$.  This is proven by direct substitution
+as 
+\begin{eqnarray}\label{eq_per_ab_int}
+  \int_{a}^{b} f(x) dx & = & \int_{a}      ^{b}       f(x - 2\ell) dx            \\
+                       & = & \int_{a+2\ell}^{b+2\ell} f(y)         dy  \nonumber \\
+                       & = & \int_{a+2\ell}^{b+2\ell} f(x)         dx. \nonumber
+\end{eqnarray}
+With this result, it is easy (although somewhat subtle) to show that the integral
+of $f(x)$ over the interval $[c-\ell,c+\ell]$ is equal to the integral over 
+the interval $[-\ell,\ell]$.  To do so, start by letting $a = c - \ell$ and $b = -\ell$
+in (\ref{eq_per_ab_int}), which yields the identity 
+\begin{equation}\label{eq_per_int}
+  \int_{c-\ell}^{-\ell} f(x) dx  =  \int_{c+\ell}^{\ell} f(x) dx,
+\end{equation}
+which is then used to manipulate the integral over $[c-\ell,c+\ell]$ as follows,
+\begin{eqnarray} 
+  \int_{c-\ell}^{c+\ell} f(x) dx  & = &  \int_{c-\ell}^{-\ell} f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \\
+                                  & = &  \int_{c+\ell}^{\ell}  f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \nonumber \\
+                                  & = &  \int_{-\ell}^{c+\ell} f(x) dx + \int_{c+\ell}^{\ell}  f(x) dx \nonumber \\
+                                  & = &  \int_{-\ell}^{\ell}   f(x) dx                                 \nonumber
+\end{eqnarray}
+where (\ref{eq_per_int}) was used in going from the first to the second line.
+
+\[
+  -\frac{d}{d x}\left( p(x) \frac{d y}{d x} \right) + q(x) y = \lambda w(x) y
+\]
+\end{textblock*}
+
+\begin{textblock*}{100mm}(89.85mm,15mm)
+\[
+  \int_{c}^{c+2L} \cos \left( \frac{m \pi x}{L} \right) dx = 0
+ \]
+ \[
+  \int_{c}^{c+2L} \sin \left( \frac{m \pi x}{L} \right) dx = 0
+ \]
+ 
+\[
+  \int_{c}^{c+2L} dx \, \cos \left( \frac{m \pi x}{L} \right) \cos \left( \frac{n \pi x}{L} \right) = 
+      \left\{ \begin{array}{cc} 2 L \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
+\]
+\[
+  \int_{c}^{c+2L} dx \, \sin \left( \frac{m \pi x}{L} \right) \sin \left( \frac{n \pi x}{L} \right) = 
+      \left\{ \begin{array}{cc} 0 \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
+\]
+\[
+ {\tilde f}(x) = \frac{a_0}{2} + 
+    \sum_{n=1}^{\infty} \left( a_n \cos \left( \frac{n \pi x}{L} \right) + b_n \sin \left( \frac{n \pi x}{L} \right) \right)
+\]
+\[
+  a_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \cos \left( \frac{n \pi x}{L} \right) dx
+\]
+\[
+  b_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \sin \left( \frac{n \pi x}{L} \right) dx
+\]
+
+\[
+  {\tilde f}(x) = \sum_{n = - \infty}^{\infty} c_n e^{i n \pi x/L}
+\]
+\[
+  c_n = \frac{1}{2 L} \int_{c}^{c+2L} f(x) e^{-i n \pi x/L} dx
+\]
+\end{textblock*}
+\newpage
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Harmonic Oscillators
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Harmonic Oscillators} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+\begin{textblock*}{2.5in}(0mm,30mm)
+The equation for a damped simple harmonic oscillator is
+\[
+  m {\ddot x} + \Gamma {\dot x} + k x = 0 .
+\]
+Assume a solution of the form $x = A e^{\imath \omega t}$ and then substitute into the equation of motion.
+Factoring out $A e^{i \omega t}$, yields the characteristic equation
+\[
+  -m \omega^2 + i \Gamma \omega + k = 0 .
+\]
+Before solving the charateristic equation, divide by $m$ and then define the parameters ${\omega_0}^2 = k/m$ and 
+$\gamma = \Gamma/2$.  The equation then becomes
+\[
+  \omega^2 - i \gamma \omega + {\omega_0}^2 = 0
+\]
+with corresponding roots
+\[
+  \omega = \frac{i \gamma}{2} \pm \sqrt{ {\omega_0}^2 - \frac{\gamma^2}{4} } 
+         = \frac{i \gamma}{2} \pm \omega_D
+\]
+Thus the final solution looks like
+\[
+  x = e^{-i \gamma/2} \left[ x_0 \cos(\omega_D t) + \frac{v_0}{\omega_D} \sin(\omega_D t) \right]
+\]
+\end{textblock*}
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Variational Example
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Define an integrand
+\[
+  L(a,b)[f] = a f(x)^2 + b f'(x)^2
+\]
+
+\[
+  I_v(a,b)[f] = \int_0^1 L(a,b)[f] dx = \int_0^1 \left( a f(x)^2 + b f'(x)^2 \right) dx
+\]
+\normalsize
+%\begin{figure}[htp]
+%\centering
+%\scriptsize\caption{Blah Blag}\label{fig:erptsqfit}
+%\includegraphics[width=170mm,height=150mm]{var_1.eps}
+%\end{figure}
+
+\newpage
+\null
+Suppose we have a vector specified against a set of coordinate
+axes $\{ \hat \imath, \hat \jmath \}$ as shown in 
+Fig. \ref{fig_simp_vec}.
+
+\begin{figure}[htp]
+\centering
+%\begin{pspicture}(0,0)(4,4)
+%  \psline[linecolor=black]{->}(4,0)
+%  \psline[linecolor=black]{->}(0,4)
+%  \psline[linecolor=black,linewidth=2pt]{->}(2,2)
+%  \uput[45](4.2,0){$\hat \imath$}  
+%  \uput[45](0,4.2){$\hat \jmath$}  
+%  \uput[45](2.2,2.2){$\vec V$}
+%\end{pspicture}
+\caption{Vector $V$ against the $\{\hat \imath, \hat \jmath\}$ coordinate system}\label{fig_simp_vec}
+\end{figure}
+
+\noindent By definition, an expression for $\vec V$ in terms of this basis
+is 
+\begin{eqnarray}\label{vec_def_A}
+  \vec V & =       &   \left( \vec V \cdot \hat \imath \right) \hat \imath 
+                     + \left( \vec V \cdot \hat \jmath \right) \hat \jmath \\
+         & \equiv  &   V_{\hat \imath} \hat \imath 
+                     + V_{\hat \jmath} \hat \jmath
+\end{eqnarray}
+To see that Eq. (\ref{vec_def_A}) is a consistent definition, take the 
+dot product of both sides first with $\hat \imath$ and then $\hat \jmath$.
+
+On the surface of it, Eq. (\ref{vec_def_A}) may seem a tautology except
+for a clever manipulation that immediately elevates its usefulness. To
+see this utility, consider another coordinate system spanned by the set
+$\{ \hat \imath ', \hat \jmath'\}$ as shown in Fig. 
+\ref{fig_vec_trans_A}.
+
+\begin{figure}[htp]
+\centering
+%\begin{pspicture}(0,0)(4.5,4.5)
+%  \psline[linecolor=black]{->}(4,0)
+%  \psline[linecolor=black]{->}(0,4)
+%  \psline[linecolor=black]{->}(3.75877,1.36808)
+%  \psline[linecolor=black]{->}(-1.36808,3.75877)  
+%  \psline[linecolor=black,linewidth=2pt]{->}(2,2)
+%  \uput[45](4.2,0){$\hat \imath$}  
+%  \uput[45](0,4.2){$\hat \jmath$}  
+%  \uput[45](3.8,1.4){$\hat \imath'$}  
+%  \uput[45](-1.4,3.8){$\hat \jmath'$}  
+%  \uput[45](2.2,2.2){$\vec V$}
+%  \uput[45](1.2,0.02){$\phi$}
+%  \psarc[linecolor=black]{->}(0,0){1}{0}{20}
+%\end{pspicture}
+\caption{}\label{fig_vec_trans_A}
+\end{figure}
+
+In terms of the new coordinates, $\vec V$ can be written as
+\begin{eqnarray}\label{vec_def_B}
+  \vec V & =       &   \left( \vec V \cdot \hat \imath' \right) \hat \imath 
+                     + \left( \vec V \cdot \hat \jmath' \right) \hat \jmath \\
+         & \equiv  &   V_{\hat \imath'} \hat \imath 
+                     + V_{\hat \jmath'} \hat \jmath .
+\end{eqnarray}
+So far, there is nothing new.  But now take the dot product of both sides
+of Eq. \ref{vec_def_B} with first $\hat \imath$ and then $\hat \jmath$.
+The relations
+\begin{eqnarray}\label{vec_rel_A}
+\left(\hat \imath \cdot \vec V \right) \equiv V_{\hat \imath} 
+   & = &
+    \hat \imath \cdot \hat \imath' \, V_{\hat \imath'}
++  \hat \imath \cdot \hat \jmath' \, V_{\hat \jmath'} \\
+\left(\hat \jmath \cdot \vec V \right) \equiv V_{\hat \jmath} 
+   & = &
+    \hat \jmath \cdot \hat \imath' \, V_{\hat \imath'}
++  \hat \jmath \cdot \hat \jmath' \, V_{\hat \jmath'}
+\end{eqnarray}
+result.  Placing these into matrix form gives
+\begin{equation}\label{vec_rel_B}
+\left[ \begin{array}{c} V_{\hat \imath} \\ V_{\hat \jmath} \end{array} \right]
+   = 
+\left[ \begin{array}{cc} \hat \imath \cdot \hat \imath' & \hat \imath \cdot \hat \jmath' \\
+                          \hat \jmath \cdot \hat \imath' & \hat \jmath \cdot \hat \jmath' 
+        \end{array} \right]
+\left[ \begin{array}{c} V_{\hat \imath'} \\ V_{\hat \jmath'} \end{array} \right]        
+\end{equation}
+as the equation for relating the components of $\vec V$ against the set 
+$\{ \hat \imath, \hat \jmath \}$ in terms of its components against the
+set $\{ \hat \imath', \hat \jmath' \}$.
+
+Using similar reasoning the dual relation of the components of $\vec V$ 
+against the set $\{ \hat \imath', \hat \jmath' \}$ in terms of its
+components against the set $\{\hat \imath, \hat \jmath\}$ must be
+\begin{equation}\label{vec_rel_C}
+\left[ \begin{array}{c} V_{\hat \imath'} \\ V_{\hat \jmath'} \end{array} \right]
+   = 
+\left[ \begin{array}{cc} \hat \imath' \cdot \hat \imath & \hat \imath' \cdot \hat \jmath \\
+                          \hat \jmath' \cdot \hat \imath & \hat \jmath' \cdot \hat \jmath 
+        \end{array} \right]
+\left[ \begin{array}{c} V_{\hat \imath} \\ V_{\hat \jmath} \end{array} \right] .
+\end{equation}
+
+If, for convenience, we name the coordinate systems ${\mathcal A} \doteq \{\hat \imath, \hat \jmath\}$
+and ${\mathcal B} \doteq \{\hat \imath', \hat \jmath'\}$ and we adopt the notation
+that $\left[ \vec V \right]_{\mathcal A}$ are the components of $\vec V$ against $\mathcal A$
+presented column-wise and likewise for $\left[ \vec V \right]_{\mathcal B}$.  Then we
+can concisely write the transformation matrix from $\mathcal A$ to $\mathcal B$ as
+\begin{equation}\label{trans_matrix_A}
+  {\mathcal T}_{ {\mathcal A} -> {\mathcal B} } = 
+     \left[ \begin{array}{c} {\left[ \hat \imath' \right]}^{T}_{\mathcal A} \\ 
+                             {\left[ \hat \jmath' \right]}^{T}_{\mathcal A}
+            \end{array} \right]
+\end{equation}
+which is to say that ${\mathcal T}_{ {\mathcal A} -> {\mathcal B} }$ can be thought of 
+as the matrix whose rows are the components of the basis vectors of $\mathcal B$ in 
+the $\mathcal A$ frame.
+
+Finally, we can evaluate ${\mathcal T}_{ {\mathcal A} -> {\mathcal B} }$ in terms 
+of the angle $\phi$ (see Fig. \ref{fig_vec_trans_A}).  Using standard trigonometric
+relations
+\begin{eqnarray}\label{vec_rel_D}
+  \hat \imath' &= &  \cos \phi \hat \imath + \sin \phi \hat \jmath \\
+  \hat \jmath' &= & -\sin \phi \hat \imath + \cos \phi \hat \jmath
+\end{eqnarray}
+so that ${\mathcal T}_{ {\mathcal A} -> {\mathcal B} }$  now specifically becomes
+\begin{equation}\label{trans_matrix_B}
+  {\mathcal T}_{ {\mathcal A} -> {\mathcal B} } = 
+  \left[ \begin{array}{cc} \cos \phi & \sin \phi \\ -\sin \phi & \cos \phi \end{array} \right] .
+\end{equation}
+
+For those of a skeptical mind, a few test cases will help to build confindence.  First consider 
+$\vec V$ parallel to $\hat \imath$ ($\vec V = V \hat \imath$), the using basic trigonometry,
+$\vec V$ should have components in the $\mathcal B$ frame of
+\begin{equation}\label{vec_test_A}
+  \vec V = V \cos \phi \hat \imath' + V \sin \phi \hat \jmath'
+\end{equation}
+Multiplying out Eq. \ref{vec_rel_C} in this case we get
+\begin{equation}
+  \left[ \vec V \right]_{\mathcal B}
+= \left[ \begin{array}{cc} \cos \phi & \sin \phi \\ -\sin \phi & \cos \phi \end{array} \right] 
+  \left[ \begin{array}{c} V \\ 0 \end{array} \right]
+= \left[ \begin{array}{c} V \cos \phi \\ -V \sin \phi \end{array} \right].
+\end{equation}
+Next consider $\vec V$ parallel to $\hat \jmath$ ($\vec V = V \hat \jmath$), then,
+again from trigonometry, the components of $\vec V$ are
+\begin{equation}\label{vec_test_B}
+  \vec V = V \sin \phi \hat \imath' + V \cos \phi \hat \jmath' .
+\end{equation}
+Multiplying out Eq. \ref{vec_rel_C} in this case we get
+\begin{equation}
+  \left[ \vec V \right]_{\mathcal B}
+= \left[ \begin{array}{cc} \cos \phi & \sin \phi \\ -\sin \phi & \cos \phi \end{array} \right] 
+  \left[ \begin{array}{c} 0 \\ V \end{array} \right]
+= \left[ \begin{array}{c} V \sin \phi \\ V \cos \phi \end{array} \right].
+\end{equation}
+For the final test suppose $\vec V$ is parallel to $\hat \imath'$ ($\vec V = V \hat \imath'$)
+then $\vec V = V \cos \phi \hat \imath + V \sin \phi \hat \jmath$ and multiplying out Eq.
+\ref{vec_rel_C} yields
+\begin{eqnarray}
+      \left[ \vec V \right]_{\mathcal B}
+& = & \left[ \begin{array}{cc} \cos \phi & \sin \phi \\ -\sin \phi & \cos \phi \end{array} \right]
+  \left[ \begin{array}{c} V \cos \phi \\ V \sin \phi \end{array} \right] \\
+& = & \left[ \begin{array}{c} V \left( \cos^2 \phi + \sin^2 \phi \right) \\
+                              V \left( \cos \phi \sin \phi - \cos \phi \sin \phi \right) 
+             \end{array} \right] \\
+& = & \left[ \begin{array}{c} V \\ 0 \end{array} \right] .
+\end{eqnarray}
+The result found in Eq. \ref{vec_rel_B} can be extended easily and straightforwardly 
+to an arbitrary number of dimensions.  Specifically, for three dimensions 
+\begin{equation}\label{vec_rel_3d}
+ \left[ \begin{array}{c} V_{\hat \imath} \\ V_{\hat \jmath} \\ V_{\hat k} \end{array} \right]
+ = \left[
+      \begin{array}{ccc}
+         \hat \imath \cdot \hat \imath' & \hat \imath \cdot \hat \jmath' & \hat \imath \cdot \hat k' \\
+         \hat \jmath \cdot \hat \imath' & \hat \jmath \cdot \hat \jmath' & \hat \imath \cdot \hat k' \\
+         \hat      k \cdot \hat \imath' &           k \cdot \hat \jmath' & \hat \imath \cdot \hat k'
+	  \end{array}
+	\right]
+\left[ \begin{array}{c} V_{\hat \imath'} \\ V_{\hat \jmath'} \\ V_{\hat k'} \end{array} \right].
+\end{equation}
+Now how to actually construct the matrix found in Eq. \ref{vec_rel_3d}?  In two dimensions it was trivial
+(see Eq. \ref{vec_rel_D}) since there was only one angle to deal with and the corresponding trigonometry
+was easy to determine.  What if there are two separate angles that are not in the same plane?  To see how
+tackle this consider Fig. \ref{2d_Euler}
+\begin{figure}[htp]
+\caption{Something goes here}\label{2d_Euler}
+\end{figure}
+First rotate about $z^{(0)}$ by $\theta$.  The unit vectors $\{x^{(1)},y^{(1)},z^{(1)}\}$ can be expressed
+in terms of the unit vectors $\{x^{(0)},y^{(0)},z^{(0)}\}$ as
+\begin{equation}
+ \begin{array}{ccccccc}
+ x^{(1)} & = &  \cos \theta \, x^{(0)} & + & \sin \theta \, y^{(0)} &   &   \\ 
+ y^{(1)} & = & -\sin \theta \, x^{(0)} & + & \cos \theta \, y^{(0)} &   &   \\
+ z^{(1)} & = &                         &   &                        &   &   z^{(0)}
+ \end{array}.
+\end{equation}
+Next rotate about $y^{(1)}$ by $\phi$ and express the unit vectors $\{x^{(2)},y^{(2)},z^{(2)}\}$ in terms
+of the unit vectors $\{x^{(1)},y^{(1)},z^{(1)}\}$ as
+\begin{equation}
+ \begin{array}{ccccccc}
+ x^{(2)} & = &  \cos \phi \, x^{(1)} &   &                  & + & -\sin \phi z^{(1)} \\ 
+ y^{(2)} & = &                       &   &          y^{(1)} &   &                   \\
+ z^{(2)} & = &  \sin \phi \, x^{(1)} &   &                  & + & \cos \phi z^{(1)}
+ \end{array}.
+\end{equation}
+
+
+\newpage
+\null
+\begin{figure}[htp]
+\centering
+\begin{pspicture}(-2.5,-1.5)(4,1.5)
+  %create top anchor
+  \psline[linecolor=black](-2,1)(2,1)
+  \psline( 2.0,1)( 2.2,1.5)
+  \psline( 1.5,1)( 1.7,1.5)
+  \psline( 1.0,1)( 1.2,1.5)
+  \psline( 0.5,1)( 0.7,1.5)
+  \psline( 0.0,1)( 0.2,1.5)
+  \psline(-0.5,1)(-0.3,1.5)
+  \psline(-1.0,1)(-0.8,1.5)
+  \psline(-1.5,1)(-1.3,1.5)
+  \psline(-2.0,1)(-1.8,1.5)
+  %create bottom anchor
+  \psline[linecolor=black](-2,-1)(2,-1)
+  \psline(-2.0,-1)(-2.2,-1.5)
+  \psline(-1.5,-1)(-1.7,-1.5)
+  \psline(-1.0,-1)(-1.2,-1.5)
+  \psline(-0.5,-1)(-0.7,-1.5)
+  \psline( 0.0,-1)(-0.2,-1.5)
+  \psline( 0.5,-1)( 0.3,-1.5)
+  \psline( 1.0,-1)( 0.8,-1.5)
+  \psline( 1.5,-1)( 1.3,-1.5)
+  \psline( 2.0,-1)( 1.8,-1.5)
+  %create origin and coord axes
+  \pscircle[fillstyle=solid,fillcolor=black](0,0){0.05}
+  \psline[linecolor=black,linewidth=0.5pt,linestyle=dashed,dash=1pt 2pt](-2,0)(3,0)
+  \psline[linecolor=black,linewidth=0.5pt,linestyle=dashed,dash=1pt 2pt](0,1)(0,-1)
+  \psline[linecolor=black,linewidth=0.5pt]{->}(2.4,0)(2.9,0)
+  \psline[linecolor=black,linewidth=0.5pt]{->}(2.4,0)(2.4,0.5)  
+  %create slider and springs
+  \pscoil[coilwidth=0.25cm](0,1) (1.7,0)
+  \pscoil[coilwidth=0.25cm](0,-1)(1.7,0)  
+  \pscircle[fillstyle=solid,fillcolor=white](1.7,0){0.22}
+  \pscircle[fillstyle=solid,fillcolor=gray](0,1){0.08}
+  \pscircle[fillstyle=solid,fillcolor=gray](0,-1){0.08}
+  %create annotation
+  \uput[45](1.44,-0.2){$m$}  
+  \uput[45](2.8,0.0){$x$}  
+  \uput[45](2.3,0.4){$y$}
+  \uput[45](0.1,1) {$\mathcal P$}
+  \uput[45](-0.1,-1.5){$\mathcal Q$}
+  \uput[45](1.1,0.4){$k$}
+  \uput[45](1.1,-0.9){$k$}
+\end{pspicture}
+\caption{}\label{fig_simp_vec}
+\end{figure}
+
+\begin{eqnarray}
+   {\mathcal P} & \equiv & \left[0, h\right]^T\\
+   {\mathcal Q} & \equiv & \left[0,-h\right]^T \nonumber \\
+   {\mathcal R} & \equiv & \left[x,0\right]^T \nonumber
+\end{eqnarray}
+
+
+\begin{equation}
+  \ell = || {\mathcal R} - {\mathcal P} || = \sqrt{x^2+h^2}
+\end{equation}
+
+\begin{equation}
+  T = 1/2 m {\dot x}^2
+\end{equation}
+
+\begin{equation}
+  U = k \left( \ell - \ell_0 \right)^2
+\end{equation}
+
+\begin{equation}
+  L = T - U = \frac{1}{2} m \dot x ^2 - k \left( \ell - \ell_0 \right)^2
+\end{equation}
+
+\begin{equation}
+  \frac{d}{dt} \left( \frac{\partial L}{\partial \dot x} \right) - \frac{\partial L}{\partial x} = 0 \rightarrow
+  m \ddot x + 2 k x \left(1 - \frac{\ell_0}{\ell}\right) = 0
+\end{equation}
+
+\begin{equation}
+  \omega_0^2 = k/m
+\end{equation}
+
+\begin{equation}
+\frac{d}{dt} 
+\underbrace{\left[ \begin{array}{c} x      \\ \dot x \end{array} \right]}_{\bar S}
+  = 
+\underbrace{\left[ \begin{array}{c} \dot x \\ - 2 \omega_0^2 x \left(1-\ell_0/\ell\right) \end{array} \right]}_{\bar f (\bar S)}
+  =              
+\end{equation}
+
+\begin{equation}
+  A   = \frac{\partial \bar f}{\partial \bar s}
+      = \left[  \begin{array}{cc} 0 & 1 \\ 1 & \partial_x f_{\dot x} \end{array}\right]
+\end{equation}
+\begin{equation}
+  \partial_x f_{\dot x} = -2 \omega_0^2 \left( 1-\ell_0/\ell +x^2 \ell_0/\ell^3 \right)
+\end{equation}
+
+\begin{equation}
+  \frac{d}{dt} \Phi(t,t_0) = A(t) \Phi(t,t_0)
+\end{equation}
+with
+\begin{equation}
+  \Phi(t_0,t_0) = \left[ \begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array} \right]
+\end{equation}
+
+\begin{equation}
+  \frac{d}{dt} \left[ \begin{array}{c} \Phi_{11} \\ \Phi_{12} \\ \Phi_{21} \\ \Phi_{22} \end{array} \right]
+    = 
+  \left[ \begin{array}{c} \Phi_{21}                                   \\ \Phi_{22} \\
+                          \Phi_{11} + \partial_x f_{\dot x} \Phi_{21} \\ \Phi_{12} + \partial_x f_{\dot x} \Phi_{22} 
+         \end{array} 
+  \right]
+\end{equation}
+
+
+\end{document}

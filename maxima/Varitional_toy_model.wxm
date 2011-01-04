@@ -1,0 +1,259 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: title   start ]
+Variational Toy Model
+Conrad Schiff - 10/13/10
+
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Purpose
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+The aim of this wxMaxima worksheet to give the user a concrete example of how 
+variational principles work.  A simple toy model will be proposed and a analytic 
+and numerical laboratory will be used to try to give the user some hands-on 
+feeling as to what can be done by intuition and what the variational calculus buys us
+(and hopefully why it works). 
+
+Along the line, I'll try to supplement the dicussion of the theory with an explanation 
+of the Maxima commands.  I'll separate these from the usual flow with a different cell 
+with a <WXM> precursor.  These cells can be collapsed if desired.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+<WXM> - the 'kill' command deletes a variable and the 'kill(all)' clears all variables
+from memory.  Functionally, 'kill' behaves like the 'clear' command in Matlab.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+The Definition of the Lagrangian
+
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+The toy model we will be using is based on a simple Lagrangian in only one independent variable.  
+It is important to think about the Lagrangian as a machine that takes a function as input
+and gives another function as output.  Any algebraic mapping can serve as a mapping but 
+the ones most closely aligned with physics are those Lagrangians that also include a 
+piece involving the derivative of the input function.  Because of its origin in physics, this
+derivative piece is often referred to a the 'kinetic piece'.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+<WXM> In ordinary human discourse, a single symbol can mean a variety of things depending on context.  Most
+notable is the '=' symbol.  It can mean: 1) One thing is the same as another, 2) one thing should be updated to 
+be the other, or 3) one thing is equal to a process that works on another.  In mathematics, a = b could mean: 
+1) a is the same as b, 2) a's value should be equal to b's value, or 3) a is equal to the function b.  This 
+works well for us because it gives a great deal of freedom.  A computer on the other hand needs certainty.  For
+wxMaxima there are three separate operators: 1) ':' is used for assignment that means 'a is equal to b', 2) '=' 
+is used defining an equation to be solved such as 'a + b = 0', and 3) := which says that 'a is a function that 
+does b (whatever the body of b is) to the input.   For the definition of a function, I like to use 'a', 'b', etc.
+for denoting the argument but they can be called anything.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L(a) := a^2 + diff(a,x)^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Now we should play a little with the Lagrangian before moving on.  The simplest way to play is to plug in a
+function for the input argument and see what is returned.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L(x^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L(cos(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(%o4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L(1/(x+2)^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h(a) := 1 - 1/a*sum(cos((2*i+1)*%pi/2*x),i,1,a);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h(20);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(h(10),0);
+BC(h(10),1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L(h(1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+<WXM> you can also assign the functional form to a variable name by using something like 'expr : x^2' and 
+then 'L(expr)'.  Try it and see!
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+The Definition of the Action
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+The next piece we need to define is the action.  The action is a different beast than the Lagrangian in that 
+it doesn't take in a function and give out another function but rather it takes in a function and returns a
+real number.  The action does this because it is a definite integral of the function returned by the Lagrangian
+over some interval.  
+
+For the sake of our toy model, we will take the limits of integration to be x = 0 and x = 1. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+<WXM> - The definite integral of any function is given by the 'integrate' command.  This command takes four arguments:
+1) the function to be integrated, 2) the variable of integration, 3) lower limit of integration, and 4) upper
+limit of integration.  The last two arguments are optional, and when omitted, allows the integrate command to
+return the indefinite integral (i.e. the anti-derivative).  
+
+Note that the action, denoted by S is defined with one argument and as a result the ':=' operator is needed. 
+
+One final note: the float( ) command wrapped around the integrate command is used for convenience to return 
+the value of the integral in a decimal number format rather than a rational number since I think more 
+easily in the latter.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+S(a) := float( integrate(L(a),x,0,1) );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Again we should play with the action by substituting in a few candidate functions
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+S(x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(x^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(cos(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(1/(x+2)^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(h(1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(h(10));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Hunting for a Minimum of the Action
+
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(a,b) := ev(a,x=b);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(x,0);
+BC(x,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(x^2,0);
+BC(x^2,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(cos(x),0);
+BC(cos(x),1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(1/(x+2)^2,0);
+BC(1/(x+2)^2,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BC(h(10),0);
+BC(h(10),1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([x,x^2,h(1),h(10)],[x,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Solving the Euler Lagrange Equations
+
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(y,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EL_eq : diff( diff(L(y),diff(y,x)), x) - diff(L(y),y) = 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+y_general_soln : rhs(ode2(EL_eq,y,x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : ev(y_general_soln,x=0) = 0;
+eq2 : ev(y_general_soln,x=1) = 1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln : solve([eq1,eq2],[%k1,%k2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+y_particular_soln : ev(y_general_soln,soln);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S(y_particular_soln);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([x,x^2,h(1),h(10),y_particular_soln],[x,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

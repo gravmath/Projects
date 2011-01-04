@@ -1,0 +1,310 @@
+\documentclass[10pt]{article}
+\usepackage[absolute]{textpos}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+
+\usepackage[absolute]{textpos}
+\TPshowboxestrue
+\begin{document}
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header - PERL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf PERL} \\
+       \multicolumn{2}{r}{\scriptsize \emph{C. Schiff - 1/09/08}} \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Array Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{100mm}(0mm,12.54mm)
+\begin{tabular*}{100mm}{l @{\extracolsep{\fill}} l}
+                & \\
+\multicolumn{2}{c}{\bf Array Commands} \\
+                & \\
+push:           & pushes a value onto the bottom of an array\\
+                & \\
+pop:            & returns the last element of an array and removes it\\
+                & \\
+shift:          & like pop but on the front of the array\\
+                & \\
+unshift:        & like push but on the front of the array\\
+                & \\
+reverse:        & reverse the order of a list\\
+                & \\
+join:           & takes a separator string and an array and produces\\
+                & a scalar consisting of all array elements with the\\
+			    & separator between them\\
+                & \\
+split:          & opposite of join - takes a scalar with a separator\\
+                & string and turns it into an array with the\\
+			    & separator discarded - split($pattern$,\$var)\\
+				& \emph{Note:} split /\textbackslash s+ / splits with all contiguous white\\
+				& space being treated as a unit\\
+                & \emph{Note:} split //``.'' splits a string with `.' as the deliminter\\
+				& --- good for use with filenames\\
+				& split on multiple criteria works with a structure like: /[-\_+,*``.'']/\\
+                & \\
+sort:           & sorts a list into dictionary order\\
+                & \\
+@data = $<\mbox{STDIN}>$   & reads all lines in from $< \mbox{STDIN} >$ in the array @data\\
+                & \\
+\$size = @array & place the integer size of the array @array into \$size\\
+                & \\
+@c = (1$\ldots$100) & creates a 100-element array @c\\
+                & \\
+\$c[q]          & q-th element of the array @c\\
+                & \\
+@c[0,8]         & array slice of c\\
+                & \\
+@ARGV           & builtin array that holds the arguments sent \\
+                & in from the command line\\
+                & \\
+splice          & displaces a slice of a list with another list\\
+\end{tabular*}
+\end{textblock*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Looping Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightGreen}
+\begin{textblock*}{90.68mm}(99.85mm,12.54mm)
+\begin{tabular*}{90.68mm}{l @{\extracolsep{\fill}} l}
+                & \\
+\multicolumn{2}{c}{\bf Conditional Commands} \\
+                & \\
+if      & if (\$a $>$ \$b ) \\
+        & \{...\} \\
+		& elsif (\$a == \$b) \\
+		& \{...\} \\
+		& elsif (\$a $<$ \$b) \\
+		& \{...\} \\
+		& else \\
+		& \{...\}\\
+		& \\
+switch  &   use Switch;\\
+        &  \\
+        & switch (\$val) \\
+		& \{ \\
+		& case 1		\{ print "number 1" \}\\
+	    & case "a"	\{ print "string a" \}\\
+	    & case [1..10,42]	\{ print "number in list" \}\\
+	    & case (@array)	\{ print "number in list" \}\\
+		& case /\textbackslash w+/	\{ print "pattern" \}\\
+	    & case qr/\textbackslash w+ / \{ print "pattern" \}\\
+	    & case (\%hash)	\{ print "entry in hash" \}\\
+	    & case (\textbackslash \%hash)	\{ print "entry in hash" \}\\
+	    & case (\textbackslash \&sub)	\{ print "arg to subroutine" \}\\
+	    & else		\{ print "previous case not true" \}\\
+        & \}\\
+        & \\
+unless  & unless (\$a == \$b)\\
+		& \{...\}\\
+		& \\
+\multicolumn{2}{c}{\bf Looping Commands} \\
+        & \\
+for     & for( \$i = 1; \$i $<$= 10; \$i = \$i + 1)\\
+        & \{ ... \}\\
+	    & \\
+foreach & foreach \$item (@list)\\
+        & \{ ...\}\\
+		& \\
+until   & until( \$i $>$ 10 ) \\
+        & \{ ...\}\\
+		& \\
+while   & while( \$i $>$ 10 ) \\
+        & \{ ...\}\\
+		& \\
+\multicolumn{2}{c}{\bf Altering Loop Control Commands} \\
+        & \\
+last    & breaks the loop and causes control to be thrown to the first \\
+        & statement following the loop\\
+		& when used with a labeled block (e.g. \emph{OUT:}), last will\\
+		& break out of a nested loop to an outer loop.\\
+		& \\
+next    & causes control of the program to jump to the next iteration\\
+        & of the loop.\\
+		& \\
+redo    & redoes the current loop without modifying the control\\
+        & variable\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Directory Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{test}
+\begin{textblock*}{100mm}(0mm,127.7mm)
+\begin{tabular*}{100mm}{l @{\extracolsep{\fill}} l}
+                & \\
+\multicolumn{2}{c}{\bf Directory Commands} \\
+                & \\
+opendir:        & opendir(DIR,\$dir\_path) opens the directory specified by\\
+                &\$dir\_path, assigns a directory handle DIR is possible\\
+                &(return of $true$) or returns $false$\\
+                & \\
+readdir:        & @files = readdir(DIR); puts a list of files in the\\
+                & directory handle specified by DIR.  \emph{Note:} that\\
+				& @files includes the directories `$.$' and `$..$'\\
+                & \\
+closedir:       & closedir(DIR) closes the directory specified by the\\
+                & directory handle DIR\\
+				&\\
+system:         & system(``dir'') run a system command with a \$string = ``dir'' or\\
+                & system(@command) where @command is a list of strings\\
+                & \\
+\end{tabular*}
+\end{textblock*}
+
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header - FreeFlyer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf FreeFlyer} \\
+       \multicolumn{2}{r}{\scriptsize \emph{C. Schiff - 1/28/08}} \\
+\end{tabular*}
+\vspace{0.85mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Ephemeris Object
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TPMargin{1mm}
+\textblockcolor{LightYellow}
+\begin{textblock*}{101.65mm}(0mm,10mm)
+\normalsize \textbf{Ephemeris Object}\\
+\scriptsize\\
+\textbf{Object Representation}\\
+\begin{tabular*}{97.15 mm}{|lll|}\hline
+  \textbf{\emph{Parameter}} & \textbf{\emph{Values}} & \textbf{\emph{Explanation}}\\
+                            &                        &                            \\
+  Name                      & ``Ephemeris''          & String denoting the\\
+                            &                        & object name\\
+  CentralBody               & ``Earth''              & Central body\\
+                            &                        & as origin\\
+  StepSize                  & 0 \emph{or} $\# > 0$   & 0 variable step\\
+                            &                        & $\# > 0$ fixed step\\
+  Branch                    &  ????                  & ???? 		      \\
+  WritePosVel               & Record position and    & `0' off   	      \\
+                            & velocity               & `1' on\\ 
+  WriteAcceleration         & Record accelerations   & `0' off	      \\
+                            & (derived from what)    & `1' on\\ 
+  WriteAttitude             & Record attitude        & `0' off				      \\
+                            & (what parametrization) & `1' on\\ 
+  WriteAngularVelocity      & Record attitude rates  & `0' off				      \\
+                            & (what parametrization) & `1' on\\ 
+  WriteAngularAcceleration  & Record `torque'        & `0' off			      \\
+                            & (what parametrization) & `1' on\\ 
+\hline
+\end{tabular*}\\
+\\
+\textbf{Create}\\
+Create Ephemeris ephem\_name;\\
+\\
+\textbf{Putting a SC to an Ephem}\\
+Put SC to Ephem;\\
+Put SC to Ephem as Global;\\
+\\
+\textbf{Ephem to Disk}\\
+Put Ephem to FFephem  ``\textless path \textgreater \textbackslash \textless filename \textgreater'';\\
+Put Ephem to STKephem ``\textless path \textgreater \textbackslash \textless filename \textgreater'';\\
+Put Ephem to PCephem  ``\textless path \textgreater \textbackslash \textless filename \textgreater'';\\
+Put Ephem to PCephem  ``\textless path \textgreater \textbackslash \textless filename \textgreater'' with StepSize = 60 and CS as J2000 or TOD;\\
+Put Ephem to ephem    ``\textless path \textgreater \textbackslash \textless filename \textgreater'' with StepSize = 60 and CS as J2000 or TOD;\\
+\\
+where:\\
+~~~FFephem - flat ASCII file in native FF format\\
+~~~STKephem - flat ASCII file in native STK format\\
+~~~PCephem - Code 500 binary file (little endian)\\
+~~~ephem   - Code 500 binary file (big endian)\\
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Dynamic Ephemeris Naming
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightGreen}
+\begin{textblock*}{89mm}(101.5mm,10mm)
+\normalsize \textbf{Dynamic Ephemeris Naming}\\
+\scriptsize\\
+\textbullet Create String eph\_name\\
+\textbullet Create UserInterface my\_gui\\
+\begin{tabular*}{60 mm}{llll}
+  & \textperiodcentered my\_gui.NumberOfInputs      &     &= 1;\\
+  & \textperiodcentered my\_gui.ObjectNameToDisplay &     &= ``'';\\
+  & \textperiodcentered my\_gui.ContinueButtonLabel &     &= ``Continue'';\\  
+  & \textperiodcentered my\_gui.ExplicitEdit        &(0)  &= 0;\\
+  & \textperiodcentered my\_gui.ParameterLabel      &(0)  &= ``Input Ephem Name'';\\
+  & \textperiodcentered my\_gui.DefaultValue        &(0)  &= ``'';\\
+  & \textperiodcentered my\_gui.MinimumRange        &(0)  &= 999;\\
+  & \textperiodcentered my\_gui.MaximumRange        &(0)  &= -999;\\
+  & \textperiodcentered my\_gui.Units               &(0)  &= ``'';\\
+  & \textperiodcentered my\_gui.ParameterName       &(0)  &= ``eph\_name.Value'';\\
+  & \textperiodcentered my\_gui.EntryType           &(0)  &= ``Enter Value'';\\
+  & \textperiodcentered my\_gui.FormatString        &(0)  &= ``'';\\
+\end{tabular*}\\
+\textbullet Create Ephemeris  ephem;\\
+\textbullet Create Spacecraft SC using ephem;\\
+\textbullet Show my\_gui; \emph{//gets string via UserInterface into eph\_name}\\
+\textbullet Get ephem from FFephem eph\_name;\\
+\end{textblock*}
+
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header - Maxima
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Maxima} \\
+       \multicolumn{2}{r}{\scriptsize \emph{C. Schiff - 2/4/08}} \\
+\end{tabular*}
+\vspace{0.85mm}
+\end{textblock*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,417 @@
+%Euclidean Vector Analysis - filename eucl_geo_anal.tex
+
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Euclidean Geometric Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Euclidean Geometric
+                                          Analysis} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Basic Geometric Objects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{60mm}(0mm,12.54mm)
+\begin{tabular*}{58mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Basic Geometric Objects} \\
+   & ~\\
+point:              & ${\mathcal P},{\mathcal Q},\dots$\\
+bounding points:    & $\partial \, {\mathcal C}$\\
+curve:              & ${\mathcal C}$\\
+bounding curve:     & $\partial \, {\mathcal S}$\\
+surface:            & ${\mathcal S}$\\
+bounding surface:   & $\partial \, {\mathcal V}$\\
+                    & ~\\
+volume:             & ${\mathcal V}$\\
+scalar:             & $m$, $n$, etc.\\
+indices:            & $i, j = 1, 2, \dots, N$\\
+coordinates:        & $x^i$, $q^{i'}$ \, $i$, $j'$ = 1,2,3\\
+transformations:    & $x^i = x^i \left( q^{j'} \right)$\\
+field:              & $\phi = \phi \left( q^i \right)$\\
+parametric curve:   & $q^i \left( s \right)$\\
+implicit surface:   & $\phi_{\mathcal S}\left(q^i \right) 
+                      - c = 0$\\
+parametric surface: & $q^i\left(u,v\right)$\\
+                    & ~\\
+Kronecker delta:    & $\delta_{ij}$\\
+permutation symb:   & $[i,j,k]$\\
+column array:       & $| {\mathbf q} \rangle$\\
+row array:          & $\langle {\mathbf q} |$\\
+\end{tabular*}
+\vspace{11.56mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Defining Vectors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{60mm}(59.85mm,12.54mm)
+\begin{tabular*}{58mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Defining Vectors} \\
+   & ~\\
+A01:                  & ${\mathbf A} + {\mathbf B} = 
+                         {\mathbf B} + {\mathbf A}$\\
+A02:                  & ${\mathbf A} + \left( {\mathbf B} 
+                        + {\mathbf C} \right) 
+                      = \left( {\mathbf A} + {\mathbf B} \right) 
+                        + {\mathbf C}$\\
+A03:                  & $ m {\mathbf A} = {\mathbf A} m$\\
+A04:                  & $ m \left( n {\mathbf A} \right) 
+                        = \left( m n \right) {\mathbf A}$\\
+A05:                  & $\left( m + n \right) {\mathbf A} 
+                        = m {\mathbf A} + m {\mathbf A}$\\
+A06:                  & $m \left( {\mathbf A} + {\mathbf B} \right) 
+                        = m {\mathbf A} + m {\mathbf B}$\\
+A07:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf B} 
+                        = {\mathbf B} \cdot {\mathbf A}$\\
+A08:${}^\dagger$      & ${\mathbf A} \cdot \left( {\mathbf B} 
+                        + {\mathbf C} \right) 
+                        = {\mathbf A} \cdot {\mathbf B} 
+                        + {\mathbf A} \cdot {\mathbf C}$\\
+A09:${}^\dagger$      & $m \left( {\mathbf A} \cdot 
+                        {\mathbf B} \right) 
+                        = \left( m {\mathbf A} \right) 
+                        \cdot {\mathbf B}$\\
+					  & \quad $ = {\mathbf A} \cdot 
+                        \left( m {\mathbf B} \right)
+                        = \left( {\mathbf A} \cdot 
+                        {\mathbf B} \right) m$\\
+A10:${}^\dagger$      & ${\mathbf e}_i \cdot {\mathbf e}_j 
+                        = g_{ij}$\\
+A11:${}^\dagger$      & ${\mathbf A} = A^i {\mathbf e}_i$ 
+                        with $A^i = {\mathbf A} 
+                        \cdot {\mathbf e}_i$\\
+A12:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf A} 
+                        = |{\mathbf A}|^2$\\
+A13:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf B} 
+                        = | {\mathbf A} | | {\mathbf B} | 
+                        \cos \left( \theta \right)$\\
+A14:${}^\ddag$        & ${\mathbf A} \times {\mathbf B} 
+                        = - {\mathbf B} \times {\mathbf A}$\\
+A15:${}^\ddag$        & ${\mathbf A} \times \left( {\mathbf B}
+                        + {\mathbf C} \right) 
+                        = {\mathbf A} \times {\mathbf B} 
+                        + {\mathbf A} \times {\mathbf C}$\\
+A16:${}^\ddag$        & $m \left( {\mathbf A} \times 
+                        {\mathbf B} \right) 
+                         = \left( m {\mathbf A} \right) 
+                        \times {\mathbf B}$\\
+                      & $\quad = {\mathbf A} \times 
+                        \left( m {\mathbf B} \right) 
+				  	    = \left( {\mathbf A} \times 
+                        {\mathbf B} \right) m$\\
+A17:${}^\ddag$        & $ {\mathbf e}_i \times 
+                       {\mathbf e}_j = [ijk] {\mathbf e}_k$\\
+A18:${}^\ddag$        & ${\mathbf A} \times 
+                        \left( {\mathbf B} \times 
+                        {\mathbf C} \right) 
+                        \neq \left( {\mathbf A} \times 
+                        {\mathbf B} \right) \times 
+                        {\mathbf C}$\\
+A19:${}^\dag{}^\ddag$ & $| {\mathbf A} \times {\mathbf B} | 
+                        = |{\mathbf A}| |{\mathbf B}| 
+                        \sin \left( \theta \right)$\\
+A20:${}^\ddag$       & ${\mathbf A} \cdot( {\mathbf B} \times {\mathbf C} )
+                       ={\mathbf B} \cdot( {\mathbf C} \times {\mathbf A} )$\\
+\end{tabular*}
+\vspace{7.85mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Defining Vector Fields
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{70.8mm}(119.7mm,12.54mm)
+\begin{tabular*}{70mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Defining Vector Fields} \\
+   & ~\\
+F01:                  & vector field ${\mathbf F} = {\mathbf F} \left(q^i \right)$\\
+F02:                  & fundamental field ${\mathbf r} = x {\mathbf e}_x + y {\mathbf e}_y + z {\mathbf e}_z$\\
+                      & \\
+F03:${}^\dag$         & covariant basis ${\mathbf e}_i = \frac{ \partial_{q^i} {\mathbf r}}{|\partial_{q^i} {\mathbf r}|}$\\
+                      & \\
+F04:                  & curve tangent ${\mathbf e}_{\mathcal C} = \frac{ d {\mathbf r}_{\mathcal C}}{ d s} \equiv {\hat t}$\\
+                      & \\
+F05:                  & surface tangents ${\mathbf e}_{u} = \frac{ \partial {\mathbf r}_{\mathcal S}}{\partial u}$,
+                                         ${\mathbf e}_{v} = \frac{ \partial {\mathbf r}_{\mathcal S}}{\partial v}$\\
+                      & \\
+F06:${}^\dag{}^\ddag$ & surface normal (parametric): ${\mathbf n}_{\mathcal S} = \frac{ {\mathbf e}_u \times {\mathbf e}_v }
+                                                                                     {|{\mathbf e}_u \times {\mathbf e}_v|}$\\
+                      & \\
+F07:${}^\dag$         & surface normal (implicit): ${\mathbf n}_{\mathcal S} = \frac{\nabla \phi_{\mathcal S}}{|\nabla \phi_{\mathcal S}|}$\\
+                      & \\
+F08:${}^\dag$         & $div({\mathbf F}) = \lim_{{\mathcal V} -> 0} 
+                            \frac{ \int_{\partial {\mathcal V}} {\mathbf F} \cdot {\mathbf n} d {\mathcal S}}
+							{\mathcal V}$\\
+                      & \\
+F09:${}^\dag{}^\ddag$ & $curl({\mathbf F}) \cdot {\mathbf n} = \lim_{{\mathcal S} -> 0}
+                              \frac{ \int_{\partial {\mathcal S}} {\mathbf F} \cdot {\hat t} dl}{\mathcal S}$\\
+                      & \\
+F10:${}^\dag$         & $grad(\phi) = \lim_{{\mathcal C}->0}
+                            \frac{ \int_{\partial {\mathcal C}} \phi {\hat t} dl}{\mathcal C}$\\
+                      & \\
+F11:${}^\dag$         & $\int_{{\mathcal V}} div({\mathbf F}) d {\mathcal V} 
+                         = \int_{\partial {\mathcal V}} {\mathbf F} \cdot {\mathbf n} d {\mathcal S}$\\
+                      & \\
+F12:${}\dag$          & $\int_{\mathcal S} curl({\mathbf F}) \cdot {\mathbf n} d {\mathcal S} 
+                           = \int_{\partial {\mathcal S}} {\mathbf F} \cdot d {\mathbf r}$\\
+\end{tabular*}
+\vspace{2mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Orthogonal Coordinates
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{65mm}(0mm,95.3mm)
+\begin{tabular*}{64mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Orthogonal Coordinates$
+                  {}^\dag{}^\ddag$} \\
+   & \\
+N01:  & $h_i = |\partial {\mathbf r}/\partial q^i|$\\
+N02:  & ${\mathbf e}_i = \frac{1}{h_i} \partial 
+        {\mathbf r}/\partial q^i$ (no sum)\\
+N03:  & $\Omega = h_1 h_2 h_3$\\
+      & \\
+N04:  & $grad(\phi) = \sum_i {\mathbf e}_i \frac{1}{h_i} \
+        \partial_{q^i} \phi$\\
+N05:  & $curl({\mathbf F}) = \frac{1}{\Omega} \sum_{ijk} 
+        {\mathbf e}_i [ijk] h_i \partial_{q^j} 
+        \left( h_k F_k \right)$\\
+N06:  & $div({\mathbf F}) = \sum_i \frac{1}{\Omega} 
+        \partial_{q^i} \left( \frac{ \Omega F_i }{h_i} 
+        \right)$\\
+      & \\
+N07:  & $laplacian(\phi) = \frac{1}{\Omega} \sum_i 
+        \partial_{q^i} \left( \frac{\Omega}{ {h_i}^2 } 
+        \partial_{q^i} \phi \right)$\\
+      & \\
+\multicolumn{2}{l}{$grad$, $div$, and $curl$ can all 
+                    be represented}\\
+\multicolumn{2}{l}{by a single operator $\nabla$, 
+                    which gives}\\      
+\multicolumn{2}{l}{functionally the relations 
+                    $grad(\phi) = \nabla \phi$,}\\
+\multicolumn{2}{l}{$div({\mathbf F}) = \nabla \cdot 
+                  {\mathbf F}$, $curl({\mathbf F})= 
+                  \nabla \times {\mathbf F}$, and}\\
+\multicolumn{2}{l}{$laplacian(\phi) =  \nabla \cdot \nabla 
+                    \phi = \nabla^2 \phi$.}\\
+\multicolumn{2}{l}{In Cartesian components, $\nabla$ 
+                   takes on}\\
+\multicolumn{2}{l}{the form:}\\
+	  & \\
+N08:  & $\nabla = {\mathbf e}_x \partial_x + 
+                  {\mathbf e}_y \partial_y + 
+                  {\mathbf e}_z \partial_z$\\
+      & \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Derivative Theorems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{64mm}(64.85mm,95.3mm)
+\begin{tabular*}{63mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Derivative Theorems${}^\dag{}^\ddag$} \\
+   & \\
+D01: & $\nabla \cdot \nabla \phi = \nabla^2 \phi$\\
+D02: & $\nabla( \phi \psi ) = (\nabla \phi) \psi 
+        + \phi (\nabla \psi)$\\
+D03: & $\nabla \times \nabla \phi = 0$\\
+D04: & $ \nabla( {\mathbf F} \cdot {\mathbf G} ) = 
+        ({\mathbf F} \cdot \nabla) {\mathbf G} 
+        + {\mathbf F} \times (\nabla \times {\mathbf G})$\\
+     & $+ ( {\mathbf G} \cdot \nabla ) {\mathbf F} + {\mathbf G} 
+        \times ( \nabla \times {\mathbf F} )$\\
+D05: & $\frac{1}{2} \nabla^2 {\mathbf F} = {\mathbf F} 
+        \times (\nabla \times {\mathbf F}) 
+        + ({\mathbf F} \cdot \nabla) {\mathbf F}$\\
+D06: & $\nabla \cdot ( \nabla \times {\mathbf F} ) = 0$\\
+D07: & $\nabla \cdot ( \phi {\mathbf F}) 
+        = {\mathbf F} \cdot \nabla \phi 
+        + \phi \nabla \cdot {\mathbf F}$\\
+D08: & $\nabla \cdot ( {\mathbf F} \times {\mathbf G} ) 
+        = (\nabla \times {\mathbf F})\cdot {\mathbf G} 
+        - (\nabla \times {\mathbf G})\cdot {\mathbf F}$\\
+D09: & $\nabla \times (\phi {\mathbf F}) 
+        = (\nabla \phi) \times {\mathbf F} 
+        + \phi \nabla \times {\mathbf F}$\\
+D10: & $ \nabla \times (\nabla \times {\mathbf F}) 
+        = \nabla( \nabla \cdot {\mathbf F} ) 
+        - \nabla ^2 {\mathbf F}$\\
+D11: & $\nabla \times ({\mathbf F} \times {\mathbf G}) 
+        = (\nabla \cdot {\mathbf G}) {\mathbf F} 
+        - (\nabla \cdot {\mathbf F}) {\mathbf G}$\\
+     & $\quad + ({\mathbf G} \cdot \nabla ){\mathbf F}  
+     - ({\mathbf F} \cdot \nabla ) {\mathbf G}$\\
+	 & \\
+D12: & $\nabla \cdot {\mathbf r} = 3$\\
+D13: & $\nabla \times {\mathbf r} = 0$\\
+D14: & $({\mathbf G} \cdot \nabla) {\mathbf r} = {\mathbf G}$\\
+D15: & $\nabla^2 {\mathbf r} = 0 $\\
+D16: & $\phi(r)$ or ${\mathbf F}(r)$: $\nabla 
+        = \frac{{\mathbf r}}{r} \frac{d}{d r}$\\
+D17: & $\nabla( {\mathbf A} \cdot {\mathbf r} ) = {\mathbf A}$\\
+D18: & $\phi({\mathbf A}\cdot{\mathbf r})$ 
+        or ${\mathbf F}({\mathbf A}\cdot {\mathbf r})$: 
+        $\nabla = {\mathbf A} \frac{d}{d ({\mathbf A}
+        \cdot {\mathbf r})}$\\
+\end{tabular*}
+\vspace{0.96mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Integral Theorems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{61.8mm}(128.7mm,95.3mm)
+\begin{tabular*}{60.8mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Integral Theorems${}^\dag{}^\ddag$} \\
+   & \\
+I01: & $\int_{\mathcal V} \nabla \times {\mathbf F} \, 
+        d {\mathcal V} = \int_{\partial {\mathcal V}} 
+        {\hat n} \times {\mathbf F} \, d {\mathcal S}$ \vspace{1.5mm}\\
+I02: & $ \int_{\mathcal V} \nabla \phi \, d {\mathcal V} 
+    = \int_{\partial {\mathcal V}} \phi \, {\hat n} 
+      \, d {\mathcal S}$ \vspace{1.5mm}\\
+I03: & $\int_{\mathcal V} ( \phi \nabla^2 \psi 
+        + \nabla \phi \cdot \nabla \psi) d {\mathcal V}$ \\
+     & $ = \int_{\partial {\mathcal V}} \phi\nabla\psi 
+        \cdot {\hat n} d{\mathcal S}$\vspace{1.5mm}\\
+I04: & $\int_{\mathcal V} ( \phi \nabla^2 \psi 
+       - \psi \nabla^2 \phi) d {\mathcal V}$\\ 
+     & $\quad  = \int_{\partial {\mathcal V}}
+       ( \phi\nabla\psi -\psi\nabla\phi) \cdot 
+       {\hat n} d{\mathcal S}$\vspace{1.5mm}\\
+I05: & $\int_{\mathcal V} d {\mathcal V} \nabla \phi \cdot {\mathbf F} 
+       = \int_{\partial {\mathcal V}} \phi {\mathbf F} 
+       \cdot {\hat n} \, d {\mathcal S} -$ \\
+     & $\int_{\partial {\mathcal V}} \phi \nabla 
+       \cdot {\mathbf F} d {\mathcal S}$\vspace{1.5mm}\\
+I06: & $\int_{\partial {\mathcal S}} \phi \,{\hat t} 
+     d \ell = \int_{\mathcal S} ({\hat n} 
+     \times \nabla \phi )\, d{\mathcal S}$\vspace{1.5mm}\\
+I07: & $\int_{\partial {\mathcal S}} d \ell \, 
+       {\hat t}\times {\mathbf F} = \int_{\mathcal S} 
+       ({\hat n} \times \nabla )\times {\mathbf F} 
+       d {\mathcal S}$\vspace{1.5mm}\\
+I08: & $\int_{\partial {\mathcal V}} d{\mathcal S} 
+       \, {\hat n} \circ  = \int_{\mathcal V} 
+       \, d{\mathcal V} \nabla \circ$\vspace{1.5mm}\\
+I09: & $ \int_{\partial {\mathcal S}} d \ell \, 
+      {\hat t} \circ = \int_{\mathcal S} d \, 
+      {\mathcal S} ( {\hat n} \times \nabla )\circ$\vspace{1.5mm}\\
+I10: & $\frac{d \Phi}{dt} = \int_{{\mathcal S}} 
+                           \left[  \frac{\partial {\mathbf F}}{\partial t} 
+                                 + ( \nabla \cdot {\mathbf F} ) {\mathbf V}
+                           \right] \cdot d {\mathcal S}$ \\
+     & $ + \quad \int_{\partial {\mathcal S}} 
+           {\mathbf F} \times {\mathbf V} \cdot {\hat t} d \ell$\vspace{1.5mm}\\
+I11: & $\frac{d }{dt} \int_{\mathcal V} \rho d {\mathbf V} = 
+        \int_{\mathcal V} \frac{\partial \rho}{\partial t} d {\mathcal V} 
+        + \int_{\partial {\mathcal V}} \rho {\mathbf v} \cdot d {\mathcal S}$\\ 
+\end{tabular*}
+\vspace{1.5mm}
+\end{textblock*}
+
+\TPshowboxesfalse
+\begin{textblock*}{70mm}(0.2mm,170mm)
+{\centering \bf Jacobian}\\
+  Let a $n$-dimensional space be spanned by a
+  set of vectors $\{ | {\mathbf e}_i \rangle\}$.
+  Then the column-wise collection
+    \[
+      {\mathbf J} = \left[\, |{\mathbf e}_1 \rangle, \, | {\mathbf e}_2 \rangle, \,  \dots , \, | {\mathbf e}_n \rangle \, \vspace{10mm} \right]
+    \]
+  is know as the \emph{Jacobian matrix}.  Its inverse
+    \[
+      {\mathbf J}^{-1} = \left[ \begin{array}{c} \langle {\mathbf e}^1 | \vspace{1mm}\\ \langle {\mathbf e}^2 | \\ \vdots \\ \langle {\mathbf e}^n | \end{array} \right]
+    \]
+    gives a vector space spanned by the \emph{dual vectors} that obey the contraction rule
+\end{textblock*}
+\begin{textblock*}{70mm}(70mm,170mm)
+\begin{eqnarray*}
+  {\mathbf J}^{-1} {\mathbf J} & = &  \left[ \begin{array}{cccc}
+                 \langle {\mathbf e}^1 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
+                 \langle {\mathbf e}^2 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^2 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^2 | {\mathbf e}_n \rangle \\
+	    	     \vdots                   &     \vdots                 & \ddots &   \vdots \\
+                 \langle {\mathbf e}^n | {\mathbf e}_1 \rangle & \langle {\mathbf e}^n | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^n | {\mathbf e}_n \rangle \\
+			   \end{array} \right] \\
+		   & = & \langle {\mathbf e}^i | {\mathbf e}_j \rangle = {\delta^i}_j
+\end{eqnarray*}
+and the completeness relation
+\[
+  {\mathbf J} {\mathbf J}^{-1} = \sum_i | {\mathbf e}_i \rangle \langle {\mathbf e}^i | = \mbox{Id}_{n \times n} .
+\]
+\end{textblock*}
+
+\TPshowboxestrue
+\begin{textblock*}{50.5mm}(140mm,170mm)
+  \begin{tabular*}{50mm}{l @{\extracolsep{\fill}} l}
+    & \\
+  \multicolumn{2}{c}{\bf Permutation Tensor}\\
+  \end{tabular*}
+  \[
+    \epsilon_{ijk} = \det({\mathbf J}) [ijk] = J [ijk]
+  \]
+  \[
+    \epsilon^{ijk} = \det \left( {\mathbf J}^{-1} \right) [ijk] = J^{-1} [ijk]
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pqr} = \left| 
+	   \begin{array}{ccc}
+	   {\delta^i}_p & {\delta^i}_q & {\delta^i}_p\\
+	   {\delta^j}_p & {\delta^j}_q & {\delta^j}_r\\
+	   {\delta^k}_p & {\delta^k}_q & {\delta^k}_r\\
+	   \end{array}
+	  \right|
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pqk} = {\delta^i}_p {\delta^j}_q - {\delta^i}_q {\delta^j}_p
+  \]
+  \[
+    \epsilon^{ijk} \epsilon_{pjk} = 2 {\delta^i}_p
+  \]
+  \[
+      \epsilon^{ijk} \epsilon_{ijk} = 6
+  \]
+\end{textblock*}
+
+\begin{textblock*}{140.15mm}(0mm,170mm)
+ \vspace{51.05mm}
+\end{textblock*}
+
+%\begin{textblock*}
+%A vector is uniquely specified by givings its divergence and curl within a reqion and its 
+%normal component over the boundary.
+
+%\emph{Helmholtz's Theorem:} A vector with both source and circulation densities vanishing at inifinity
+%may be written as the sum of two parts, one of which is irrotational, the other solenoidal --- 
+%$\mathbf{V} = - {\mathbf \nabla} \phi + \nabla \times {\mathbf A}$.
+%\end{textblock*}
+
+\begin{textblock*}{7.5in}(0mm,224.90mm)
+  $\dag$ = inner product required \quad \quad $\ddag$ = valid only in 3 dimensions 
+\end{textblock*}
+\newpage

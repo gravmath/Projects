@@ -1,0 +1,74 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+Tx(a) := matrix([1,0,0],[0,cos(a),sin(a)],[0,-sin(a),cos(a)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ty(a) := matrix([cos(a),0,-sin(a)],[0,1,0],[sin(a),0,cos(a)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tz(a) := matrix([cos(a),sin(a),0],[-sin(a),cos(a),0],[1,0,0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+J : matrix([0,cos(CA),sin(CA)],[0,-sin(CA),cos(CA)],[1,0,0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+xPLF : matrix([cos(dK)*cos(AK)],[cos(dK)*sin(AK)],[sin(dK)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+zGCI : matrix([0],[0],[1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+yPLF : zGCI cross xPLF
+zPLF : xPLF cross yPLF;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI : J.Tx(PHI_PLF).Ty(PSI_PLF).Tz(TETA_PLF);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[1][1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[1][2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[1][3];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[2][1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[2][2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[2][3];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[3][1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[3][1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T_J_GCI[3][3];
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

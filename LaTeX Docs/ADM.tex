@@ -1,0 +1,118 @@
+\documentclass[10pt]{article}
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+%\usepackage{geometry}
+%\geometry{hmargin={1in,1in}}
+%\geometry{vmargin={1in,1in}}
+%\pagestyle{empty}
+\usepackage{color}
+\usepackage{amssymb}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen} {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}{rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+
+
+\usepackage[absolute]{textpos}
+\begin{document}
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightGreen}
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \tiny ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf $3+1$ Relationships and the ADM Formalism} \\
+                                          \multicolumn{2}{|c|}{\tiny 5/10/07}\\
+       \tiny~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Structure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{80mm}(0mm,17mm)
+\begin{tabular*}{80mm}{|l @{\extracolsep{\fill}} l|}\hline
+\multicolumn{2}{|c|}{\bf Expressing the Metric} \\
+~ & ~\\
+$g_{ab} = \left[ 
+                \begin{array}{cc} 
+                   {\tilde \beta}^T {\vec \beta} - \alpha^2 & {\tilde \beta}^T\\ 
+                   {\tilde \beta}                           & {\tilde {\tilde \gamma}}
+                \end{array} 
+          \right]$ 
+        & 
+ $g^{ab} = \left[
+                 \begin{array}{cc}
+                   - \frac{1}{\alpha^2}                     & \frac{\vec \beta ^T}{\alpha^2}\\
+                     \frac{\vec \beta}{\alpha^2}            & {\vec {\vec \gamma}} - \frac{\vec \beta \tilde \beta ^T}{\alpha^2} 
+                 \end{array}
+            \right]$\\
+        ~ & ~ \\            
+\multicolumn{2}{|c|}{$\beta^i$ is raised and lowered with $\gamma^{ij}$}\\
+        ~ & ~ \\            
+$\beta ^a = \left[
+                   \begin{array}{cc}
+                      0 & \vec \beta
+                   \end{array}
+            \right]^T$
+          &
+$\beta_a = g_{ab} \beta^a = \left[
+                                   \begin{array}{cc}
+                                       {\tilde \beta}^T \vec \beta & {\tilde {\tilde \gamma}} \cdot \vec \beta
+                                   \end{array}
+                            \right]$\\
+\hline
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Translation Operator
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{68mm}(80mm,17mm)
+\begin{tabular*}{68mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\bf Translation Operator} \\
+  \multicolumn{2}{|l|}{A translation operator should satisfy:}\\
+  1~ & ${\mathcal T}(d \vec x) | \vec x \rangle = |\vec x + d \vec x \rangle $\\
+  2~ & ${\mathcal T}^{\dagger} (d \vec x) {\mathcal T} (d \vec x) 
+         = {\mathcal T} (d \vec x) {\mathcal T}^{\dagger} (d \vec x) = 1$ \\
+  3~ & ${\mathcal T} (d \vec x) {\mathcal T} (d \vec x_1) = {\mathcal T} (d \vec x + d \vec x_1)$\\
+  4~ & ${\mathcal T} (-d \vec x) = {\mathcal T}^{-1} (d \vec x)$\\
+  5~ & $\lim_{|d \vec x| \rightarrow 0} {\mathcal T} (d \vec x) = 1$\\
+  \multicolumn{2}{|l|}{These conditions are met by ${\mathcal T} (d \vec x) = 1 - i \vec K \cdot d \vec x$,}\\
+  \multicolumn{2}{|l|}{where $\vec K \doteq \{\hat K_i\}$ are Hermitian operators. The}\\
+  \multicolumn{2}{|l|}{commutator is found to be $[\hat X_i,\hat K_j] = i \delta_{ij}$ and}\\
+  \multicolumn{2}{|l|}{since classically $\{x_i, p_j\}_{PB} = \delta_{ij}$ then $\hat K_{i} = \hat p_{i} / \hbar$.}\\
+  \hline
+\end{tabular*}
+\end{textblock*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightGreen}
+\normalsize
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \tiny ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf Quantum Mechanics} \\
+       \tiny~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+\scriptsize
+
+\end{document}
+

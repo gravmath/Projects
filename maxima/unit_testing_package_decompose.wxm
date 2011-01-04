@@ -1,0 +1,97 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(x,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("decompose.mac");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f : (x+y)^4*sin(z);
+g : expand(f);
+h : "skippy";
+M : matrix([1,2],[3,4]);
+v : diff(x,t);
+array(A,2,4);
+L : [1,2,3];
+Lc : [a,a*b,[a/b,sin(c),[log(d)+e,q/p+j/i]]];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+find_op(f);
+find_op(g);
+find_op(h);
+find_op(M);
+find_op(v);
+find_op(A);
+find_op(L);
+find_op(Lc);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+num_terms(f);
+num_terms(g);
+num_terms(h);
+num_terms(M);
+num_terms(v);
+num_terms(A);
+num_terms(L);
+num_terms(Lc);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+print_terms(f);
+print_terms(g);
+print_terms(h);
+print_terms(M);
+print_terms(v);
+print_terms(A);
+print_terms(L);
+print_terms(Lc);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+derivative(x,t,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(concat("derivative","(",x,",",t,",",1,")"));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+concat(derivative,x,t,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(x,t,2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+derivative(x,t,2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+derivative(f,x,3,y,1,z,2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+LL : [x,3,y,1,z,2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+apply(derivative,[x,t,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+apply(derivative,[f,x,3,y,1,z,2]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

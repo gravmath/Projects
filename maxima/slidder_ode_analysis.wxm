@@ -1,0 +1,85 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created by wxMaxima version 0.7.4 ] */
+
+/* [wxMaxima: input   start ] */
+depends(x,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T : m/2*diff(x,t)^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D : sqrt(x^2 + h^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+U : k*(D-D0)^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : T - U;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EL : diff(diff(L,diff(x,t)),t) - diff(L,x) = 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Ux : diff(U/m,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+series : expand(taylor(Ux/m,x,0,6));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+corr : subst(7,h,subst(6.8,D0,x*(1 - D0/D)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+plot2d(corr,[x,-10,10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eqp : p = diff(L,diff(x,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eqxdot : solve(eqp,diff(x,t))[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : p*rhs(eqxdot) - subst(eqxdot,L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(H,p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+-diff(H,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F : matrix([diff(x,t)],[-Ux]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A : matrix([diff(F[1,1],x),diff(F[1,1],diff(x,t))],[diff(F[2,1],x),diff(F[2,1],diff(x,t))]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+q : 2*k/m*(1-D0/D + x^2*D0/D^3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A[2,1] - q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+radcan(%);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

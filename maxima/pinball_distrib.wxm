@@ -1,0 +1,88 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+calc_pinball1_distrib(n,p_r,p_d,p_l) := block(
+                              dst  : create_list(0,i,1,2*n+1),
+                              M    : args( expand( (l + r + d)^n ) ),
+                              for i:1 thru length(M) step 1 do 
+                                block(
+                                       num_r       : hipow(M[i],r),
+                                       num_l       : hipow(M[i],l),
+                                       num_d       : n - num_r - num_l,
+                                       position    : num_r - num_l,
+                                       index       : position + n + 1,
+                                       coeff       : if atom(M[i]) then 1 elseif length(args(M[i])) < 3 then 1 else args(M[i])[1],
+                                       raw_prob    : p_r^num_r*p_d^num_d*p_l^num_l,
+                                       dst[index]  : dst[index] + coeff*raw_prob
+                                     ),
+                              return(dst)
+                               )$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n : 20;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z_2_5 : calc_pinball1_distrib(n,2/5,1/5,2/5)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z_1_3 : calc_pinball1_distrib(n,1/3,1/3,1/3)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z_5_11 : calc_pinball1_distrib(n,5/11,1/11,5/11)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z_29_59 : calc_pinball1_distrib(n,29/59,1/59,29/59)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M : makelist(i,i,-n,n)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([discrete,M,Z_29_59]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([[discrete,M,Z_2_5],[discrete,M,Z_1_3],[discrete,M,Z_5_11],[discrete,M,Z_29_59]]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum : 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru length(Z_29_59) step 1 do sum : sum + Z_29_59[i];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(Z_1_3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ZZ : calc_pinball1_distrib(2,1/3,1/3,1/3)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+float(ZZ);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ZZ;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
