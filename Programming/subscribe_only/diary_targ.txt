@@ -1,0 +1,6988 @@
+fp_targeter(12,'STD_SCHW',1,400,'bare')
+
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.333333333333333
+
+Rbar_nom =
+
+          11.9903933425668
+
+
+Rsigma_nom =
+
+       0.00645899559565579
+
+Rbar_du =
+
+          11.9906901250132
+
+
+Rsigma_du =
+
+       0.00729113357900598
+
+Rbar_dv =
+
+          12.0018383204605
+
+
+Rsigma_dv =
+
+        0.0012384903489553
+
+
+M =
+
+          2.96782446408628          114.449778937402
+          8.32137983350185         -52.2050524670049
+
+
+diff =
+
+      -0.00960665743319211
+       0.00645899559565579
+
+
+corrs =
+
+     -0.000214676449202659
+     8.95045804902929e-005
+
+
+vel =
+
+     -0.000214676449202659
+         0.333422837913824
+
+
+du =
+
+      0.000107338224601329
+
+
+dv =
+
+     4.47522902451464e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     -0.000214676449202659
+
+
+v =
+
+         0.333422837913824
+
+Rbar_nom =
+
+          11.9999914281991
+
+
+Rsigma_nom =
+
+       0.00645647888675732
+
+Rbar_du =
+
+          12.0003007397939
+
+
+Rsigma_du =
+
+       0.00326817219942754
+
+Rbar_dv =
+
+           12.005104564793
+
+
+Rsigma_dv =
+
+        0.0077020686141739
+
+
+M =
+
+          2.88165372547499          114.254188242656
+          -29.703367082618          27.8329828617355
+
+
+diff =
+
+    -8.57180092594945e-006
+       0.00645647888675732
+
+
+corrs =
+
+      0.000212415447976751
+    -5.28239686761317e-006
+
+
+vel =
+
+    -2.26100122590833e-006
+         0.333417555516956
+
+
+du =
+
+      0.000106207723988375
+
+
+dv =
+
+     2.64119843380659e-006
+
+
+counter =
+
+     3
+
+
+u =
+
+    -2.26100122590833e-006
+
+
+v =
+
+         0.333417555516956
+
+Rbar_nom =
+
+          11.9999846573094
+
+
+Rsigma_nom =
+
+     7.80445983080476e-005
+
+Rbar_du =
+
+           12.000316288823
+
+
+Rsigma_du =
+
+        0.0030936310793899
+
+Rbar_dv =
+
+          12.0002898765302
+
+
+Rsigma_dv =
+
+       0.00023653895217707
+
+
+M =
+
+          3.12248018434798          115.560882113244
+          28.3932878687045          60.0084991117442
+
+
+diff =
+
+    -1.53426906237542e-005
+     7.80445983080476e-005
+
+
+corrs =
+
+    -3.21276908805471e-006
+     2.19576884271486e-007
+
+
+vel =
+
+    -5.47377031396304e-006
+          0.33341777509384
+
+
+du =
+
+     1.60638454402735e-006
+
+
+dv =
+
+     1.09788442135743e-007
+
+
+counter =
+
+     4
+
+
+u =
+
+    -5.47377031396304e-006
+
+
+v =
+
+          0.33341777509384
+
+Rbar_nom =
+
+          12.0000065090494
+
+
+Rsigma_nom =
+
+      0.000174888872957484
+
+Rbar_du =
+
+          12.0000074712631
+
+
+Rsigma_du =
+
+      0.000127608284953534
+
+Rbar_dv =
+
+          12.0000170363834
+
+
+Rsigma_dv =
+
+      0.000176428550695541
+
+
+M =
+
+           0.5989933790285           95.887452952541
+         -29.4329201434007          14.0240421314401
+
+
+diff =
+
+     6.50904936705388e-006
+      0.000174888872957484
+
+
+corrs =
+
+     5.89206608435595e-006
+    -1.04688962228978e-007
+
+
+vel =
+
+     4.18295770392914e-007
+         0.333417670404878
+
+
+du =
+
+     2.94603304217797e-006
+
+
+dv =
+
+      5.2344481114489e-008
+
+
+counter =
+
+     5
+
+
+u =
+
+     4.18295770392914e-007
+
+
+v =
+
+         0.333417670404878
+
+Rbar_nom =
+
+          12.0000093208427
+
+
+Rsigma_nom =
+
+     3.43845967376086e-005
+
+Rbar_du =
+
+          12.0000228967648
+
+
+Rsigma_du =
+
+     9.87705498812213e-005
+
+Rbar_dv =
+
+          12.0000159816033
+
+
+Rsigma_dv =
+
+     3.69353819959705e-005
+
+
+M =
+
+          4.60820427987835          127.248573712665
+          21.8551361175545          48.7307392116997
+
+
+diff =
+
+       9.320842703886e-006
+     3.43845967376086e-005
+
+
+corrs =
+
+    -1.53382346166185e-006
+    -1.77029164064715e-008
+
+
+vel =
+
+    -1.11552769126894e-006
+         0.333417652701962
+
+
+du =
+
+     7.66911730830926e-007
+
+
+dv =
+
+     8.85145820323574e-009
+
+
+counter =
+
+     6
+
+
+u =
+
+    -1.11552769126894e-006
+
+
+v =
+
+         0.333417652701962
+
+Rbar_nom =
+
+          12.0000015614158
+
+
+Rsigma_nom =
+
+     4.90493621982962e-005
+
+Rbar_du =
+
+           12.000006741555
+
+
+Rsigma_du =
+
+     3.50275799975127e-005
+
+Rbar_dv =
+
+          12.0000027724331
+
+
+Rsigma_dv =
+
+     4.94452950972458e-005
+
+
+M =
+
+          6.75454423009108          136.815572550006
+         -18.2834368507981          44.7308104335767
+
+
+diff =
+
+     1.56141575402557e-006
+     4.90493621982962e-005
+
+
+corrs =
+
+     2.36869908089795e-006
+    -1.28354529652013e-007
+
+
+vel =
+
+     1.25317138962901e-006
+         0.333417524347432
+
+
+du =
+
+     1.18434954044898e-006
+
+
+dv =
+
+     6.41772648260064e-008
+
+fp_targeter(12,'STD_SCHW',1,400,'bare')
+
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.333333333333333
+
+Rbar_nom =
+
+          11.9903933425668
+
+
+Rsigma_nom =
+
+       0.00645899559565579
+
+Rbar_du =
+
+          11.9906901250132
+
+
+Rsigma_du =
+
+       0.00729113357900598
+
+Rbar_dv =
+
+          12.0018383204605
+
+
+Rsigma_dv =
+
+        0.0012384903489553
+
+
+M =
+
+          2.96782446408628          114.449778937402
+          8.32137983350185         -52.2050524670049
+
+
+diff =
+
+      -0.00960665743319211
+       0.00645899559565579
+
+
+corrs =
+
+     -0.000214676449202659
+     8.95045804902929e-005
+
+
+vel =
+
+     -0.000214676449202659
+         0.333422837913824
+
+
+du =
+
+      0.000107338224601329
+
+
+dv =
+
+     4.47522902451464e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     -0.000214676449202659
+
+
+v =
+
+         0.333422837913824
+
+Rbar_nom =
+
+          11.9999914281991
+
+
+Rsigma_nom =
+
+       0.00645647888675732
+
+Rbar_du =
+
+          12.0003007397939
+
+
+Rsigma_du =
+
+       0.00326817219942754
+
+Rbar_dv =
+
+           12.005104564793
+
+
+Rsigma_dv =
+
+        0.0077020686141739
+
+
+M =
+
+          2.88165372547499          114.254188242656
+          -29.703367082618          27.8329828617355
+
+
+diff =
+
+    -8.57180092594945e-006
+       0.00645647888675732
+
+
+corrs =
+
+      0.000212415447976751
+    -5.28239686761317e-006
+
+
+vel =
+
+    -2.26100122590833e-006
+         0.333417555516956
+
+
+du =
+
+      0.000106207723988375
+
+
+dv =
+
+     2.64119843380659e-006
+
+
+counter =
+
+     3
+
+
+u =
+
+    -2.26100122590833e-006
+
+
+v =
+
+         0.333417555516956
+
+Rbar_nom =
+
+          11.9999846573094
+
+
+Rsigma_nom =
+
+     7.80445983080476e-005
+
+Rbar_du =
+
+           12.000316288823
+
+
+Rsigma_du =
+
+        0.0030936310793899
+
+Rbar_dv =
+
+          12.0002898765302
+
+
+Rsigma_dv =
+
+       0.00023653895217707
+
+
+M =
+
+          3.12248018434798          115.560882113244
+          28.3932878687045          60.0084991117442
+
+
+diff =
+
+    -1.53426906237542e-005
+     7.80445983080476e-005
+
+
+corrs =
+
+    -3.21276908805471e-006
+     2.19576884271486e-007
+
+
+vel =
+
+    -5.47377031396304e-006
+          0.33341777509384
+
+
+du =
+
+     1.60638454402735e-006
+
+
+dv =
+
+     1.09788442135743e-007
+
+
+counter =
+
+     4
+
+
+u =
+
+    -5.47377031396304e-006
+
+
+v =
+
+          0.33341777509384
+
+Rbar_nom =
+
+          12.0000065090494
+
+
+Rsigma_nom =
+
+      0.000174888872957484
+
+Rbar_du =
+
+          12.0000074712631
+
+
+Rsigma_du =
+
+      0.000127608284953534
+
+Rbar_dv =
+
+          12.0000170363834
+
+
+Rsigma_dv =
+
+      0.000176428550695541
+
+
+M =
+
+           0.5989933790285           95.887452952541
+         -29.4329201434007          14.0240421314401
+
+
+diff =
+
+     6.50904936705388e-006
+      0.000174888872957484
+
+
+corrs =
+
+     5.89206608435595e-006
+    -1.04688962228978e-007
+
+
+vel =
+
+     4.18295770392914e-007
+         0.333417670404878
+
+
+du =
+
+     2.94603304217797e-006
+
+
+dv =
+
+      5.2344481114489e-008
+
+
+counter =
+
+     5
+
+
+u =
+
+     4.18295770392914e-007
+
+
+v =
+
+         0.333417670404878
+
+Rbar_nom =
+
+          12.0000093208427
+
+
+Rsigma_nom =
+
+     3.43845967376086e-005
+
+Rbar_du =
+
+          12.0000228967648
+
+
+Rsigma_du =
+
+     9.87705498812213e-005
+
+Rbar_dv =
+
+          12.0000159816033
+
+
+Rsigma_dv =
+
+     3.69353819959705e-005
+
+
+M =
+
+          4.60820427987835          127.248573712665
+          21.8551361175545          48.7307392116997
+
+
+diff =
+
+       9.320842703886e-006
+     3.43845967376086e-005
+
+
+corrs =
+
+    -1.53382346166185e-006
+    -1.77029164064715e-008
+
+
+vel =
+
+    -1.11552769126894e-006
+         0.333417652701962
+
+
+du =
+
+     7.66911730830926e-007
+
+
+dv =
+
+     8.85145820323574e-009
+
+
+counter =
+
+     6
+
+
+u =
+
+    -1.11552769126894e-006
+
+
+v =
+
+         0.333417652701962
+
+Rbar_nom =
+
+          12.0000015614158
+
+
+Rsigma_nom =
+
+     4.90493621982962e-005
+
+Rbar_du =
+
+           12.000006741555
+
+
+Rsigma_du =
+
+     3.50275799975127e-005
+
+Rbar_dv =
+
+          12.0000027724331
+
+
+Rsigma_dv =
+
+     4.94452950972458e-005
+
+
+M =
+
+          6.75454423009108          136.815572550006
+         -18.2834368507981          44.7308104335767
+
+
+diff =
+
+     1.56141575402557e-006
+     4.90493621982962e-005
+
+
+corrs =
+
+     2.36869908089795e-006
+    -1.28354529652013e-007
+
+
+vel =
+
+     1.25317138962901e-006
+         0.333417524347432
+
+
+du =
+
+     1.18434954044898e-006
+
+
+dv =
+
+     6.41772648260064e-008
+
+pwd
+
+ans =
+
+c:\school\programming\subscribe_only
+
+cd ..
+cd subscribe_only
+dir *.m
+
+fp_targeter.m 
+
+copy fp_targeter.m a:
+??? copy fp_targeter
+         |
+Missing operator, comma, or semi-colon.
+
+copy 'fp_targeter.m' a:\
+??? copy '
+         |
+Missing operator, comma, or semi-colon.
+
+help copy
+
+copy.m not found.
+
+help cp
+
+cp.m not found.
+
+
+ans =
+
+29-Mar-2004
+
+??? Undefined function or variable 'time'.
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeting_analysis.m
+On line 3  ==> time
+
+time
+??? Undefined function or variable 'time'.
+
+date
+
+ans =
+
+29-Mar-2004
+
+help time
+
+time.m not found.
+
+current_time
+??? Undefined function or variable 'current_time'.
+
+help
+
+HELP topics:
+
+matlab\general       -  General purpose commands.
+matlab\ops           -  Operators and special characters.
+matlab\lang          -  Programming language constructs.
+matlab\elmat         -  Elementary matrices and matrix manipulation.
+matlab\elfun         -  Elementary math functions.
+matlab\specfun       -  Specialized math functions.
+matlab\matfun        -  Matrix functions - numerical linear algebra.
+matlab\datafun       -  Data analysis and Fourier transforms.
+matlab\polyfun       -  Interpolation and polynomials.
+matlab\funfun        -  Function functions and ODE solvers.
+matlab\sparfun       -  Sparse matrices.
+matlab\graph2d       -  Two dimensional graphs.
+matlab\graph3d       -  Three dimensional graphs.
+matlab\specgraph     -  Specialized graphs.
+matlab\graphics      -  Handle Graphics.
+matlab\uitools       -  Graphical user interface tools.
+matlab\strfun        -  Character strings.
+matlab\iofun         -  File input/output.
+matlab\timefun       -  Time and dates.
+matlab\datatypes     -  Data types and structures.
+matlab\winfun        -  Windows Operating System Interface Files (DDE/ActiveX)
+matlab\demos         -  Examples and demonstrations.
+toolbox\tour         -  MATLAB Tour
+MATLABR11\work       -  (No table of contents file)
+toolbox\local        -  Preferences.
+
+For more help on directory/topic, type "help topic".
+
+
+help date
+
+ DATE   Current date as date string.
+    S = DATE returns a string containing the date in dd-mmm-yyyy format.
+ 
+    See also NOW, CLOCK, DATENUM.
+
+now
+
+ans =
+
+          732035.773681817
+
+datenum
+??? Error using ==> datenum
+Not enough input arguments.
+
+clock
+
+ans =
+
+  Columns 1 through 3 
+
+                      2004                         3                        29
+
+  Columns 4 through 6 
+
+                        18                        34                    12.078
+
+help now
+
+ NOW    Current date and time as date number.
+    T = NOW returns the current date and time as a serial date 
+    number.
+ 
+    FLOOR(NOW) is the current date and REM(NOW,1) is the current time.
+    DATESTR(NOW) is the current date and time as a string.
+ 
+    See also DATE, DATENUM, DATESTR, CLOCK.
+
+help clock
+
+ CLOCK  Current date and time as date vector.
+    CLOCK returns a six element date vector vector containing the
+    current time and date in decimal form:
+  
+       CLOCK = [year month day hour minute seconds]
+  
+    The first five elements are integers. The seconds element
+    is accurate to several digits beyond the decimal point.
+    FIX(CLOCK) rounds to integer display format.
+ 
+    See also DATEVEC, DATENUM, NOW, ETIME, TIC, TOC, CPUTIME.
+
+tic
+toc
+
+elapsed_time =
+
+                     1.953
+
+etime
+??? Input argument 't1' is undefined.
+
+Error in ==> C:\Applications\math\MATLABR11\toolbox\matlab\timefun\etime.m
+On line 23  ==> t = (t1 - t0) * [0 0 86400 3600 60 1]';
+
+help etime
+
+ ETIME  Elapsed time.
+    ETIME(T1,T0) returns the time in seconds that has elapsed between
+    vectors T1 and T0.  The two vectors must be six elements long, in
+    the format returned by CLOCK:
+ 
+        T = [Year Month Day Hour Minute Second]
+ 
+    Here's an example of using ETIME to time an operation:
+ 
+      t0 = clock;
+      operation
+      etime(clock,t0)
+ 
+    Caution: As currently implemented, it won't work across month or year
+    boundaries.  Use date numbers if you require this (see DATENUM).
+ 
+    See also TIC, TOC, CLOCK, CPUTIME, DATENUM.
+
+clock
+
+ans =
+
+  Columns 1 through 3 
+
+                      2004                         3                        29
+
+  Columns 4 through 6 
+
+                        18                        35                    16.859
+
+A = clock
+
+A =
+
+  Columns 1 through 3 
+
+                      2004                         3                        29
+
+  Columns 4 through 6 
+
+                        18                        35                    37.031
+
+[A(4),':',A(5),':',A(6)]
+Warning: Out of range or non-integer values truncated during conversion from 
+double to character.
+
+ans =
+
+:#:%
+
+A(4)
+
+ans =
+
+    18
+
+[num2str(A(4)),':',num2str(A(5)),':',num2str(A(6))]
+
+ans =
+
+18:35:37.031
+
+disp(which('fp_targeting_analysis'));
+c:\school\programming\subscribe_only\fp_targeting_analysis.m
+clear 'c:\school\programming\subscribe_only\fp_targeting_analysis.m'
+fp_targeting_analysis
+
+ans =
+
+29-Mar-2004
+
+
+ans =
+
+18:37:18.109
+
+??? Error using ==> ==
+Array dimensions must match for binary array op.
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeter.m
+On line 125  ==> if slicing == 'bare'
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeting_analysis.m
+On line 7  ==> fp_targeter(12,'STD_SCHW',1,400,'r3g'      ,0,'STD_12_400_h1_r3g_nom.eph')
+
+disp(which('fp_targeting_analysis'));
+c:\school\programming\subscribe_only\fp_targeting_analysis.m
+clear 'c:\school\programming\subscribe_only\fp_targeting_analysis.m'
+disp(which('fp_targeter'));
+c:\school\programming\subscribe_only\fp_targeter.m
+dbstop at 125 in 'c:\school\programming\subscribe_only\fp_targeter.m'
+fp_targeting_analysis
+
+ans =
+
+29-Mar-2004
+
+
+ans =
+
+18:55:48.937
+
+dbstack
+> In c:\school\programming\subscribe_only\fp_targeter.m at line 125
+  In c:\school\programming\subscribe_only\fp_targeting_analysis.m at line 7
+eval( 'if exist(''filename'',''var''), mauifunc(filename), end', '');
+STD_12_400_h1_r3g_nom.eph
+eval( 'if exist(''subscribe_geodesics_scalar'',''var''), mauifunc(subscribe_geodesics_scalar), end', '');
+eval( 'if exist(''scalar'',''var''), mauifunc(scalar), end', '');
+eval( 'if exist(''subscribe_geodesics_spherical'',''var''), mauifunc(subscribe_geodesics_spherical), end', '');
+eval( 'if exist(''spherical'',''var''), mauifunc(spherical), end', '');
+slicing
+
+slicing =
+
+r3g
+
+dbstep
+??? Error using ==> ==
+Array dimensions must match for binary array op.
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeter.m
+On line 125  ==> if slicing == 'bare'
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeting_analysis.m
+On line 7  ==> fp_targeter(12,'STD_SCHW',1,400,'r3g'      ,0,'STD_12_400_h1_r3g_nom.eph')
+
+
+» dbstack
+slicing
+??? Undefined function or variable 'slicing'.
+
+help ==
+
+  Operators and special characters.
+ 
+  Arithmetic operators.
+    plus       - Plus                               +    
+    uplus      - Unary plus                         +    
+    minus      - Minus                              -    
+    uminus     - Unary minus                        -    
+    mtimes     - Matrix multiply                    *    
+    times      - Array multiply                    .*    
+    mpower     - Matrix power                       ^    
+    power      - Array power                       .^    
+    mldivide   - Backslash or left matrix divide    \    
+    mrdivide   - Slash or right matrix divide       /    
+    ldivide    - Left array divide                 .\    
+    rdivide    - Right array divide                ./    
+    kron       - Kronecker tensor product         kron   
+ 
+  Relational operators.
+    eq         - Equal                             ==     
+    ne         - Not equal                         ~=     
+    lt         - Less than                          <      
+    gt         - Greater than                       >      
+    le         - Less than or equal                <=     
+    ge         - Greater than or equal             >=     
+ 
+  Logical operators.
+    and        - Logical AND                        &      
+    or         - Logical OR                         |      
+    not        - Logical NOT                        ~      
+    xor        - Logical EXCLUSIVE OR
+    any        - True if any element of vector is nonzero
+    all        - True if all elements of vector are nonzero
+ 
+  Special characters. 
+    colon      - Colon                              : 
+    paren      - Parentheses and subscripting      ( )              
+    paren      - Brackets                          [ ]     
+    paren      - Braces and subscripting           { }          
+    punct      - Decimal point                      .      
+    punct      - Structure field access             .      
+    punct      - Parent directory                   ..     
+    punct      - Continuation                       ...    
+    punct      - Separator                          ,      
+    punct      - Semicolon                          ;      
+    punct      - Comment                            %      
+    punct      - Invoke operating system command    !            
+    punct      - Assignment                         =
+    punct      - Quote                              '      
+    transpose  - Transpose                         .'
+    ctranspose - Complex conjugate transpose        ' 
+    horzcat    - Horizontal concatenation          [,]     
+    vertcat    - Vertical concatenation            [;]     
+    subsasgn   - Subscripted assignment          ( ),{ },.   
+    subsref    - Subscripted reference           ( ),{ },.   
+    subsindex  - Subscript index                               
+ 
+  Bitwise operators.
+    bitand     - Bit-wise AND.
+    bitcmp     - Complement bits.
+    bitor      - Bit-wise OR.
+    bitmax     - Maximum floating point integer.
+    bitxor     - Bit-wise XOR.
+    bitset     - Set bit.
+    bitget     - Get bit.
+    bitshift   - Bit-wise shift.
+ 
+  Set operators.
+    union      - Set union.
+    unique     - Set unique.
+    intersect  - Set intersection.
+    setdiff    - Set difference.
+    setxor     - Set exclusive-or.
+    ismember   - True for set member.
+ 
+  See also ARITH, RELOP, SLASH.
+
+help eq
+
+ ==  Equal.
+    A == B does element by element comparisons between A and B
+    and returns a matrix of the same size with elements set to one
+    where the relation is true and elements set to zero where it is
+    not.  A and B must have the same dimensions unless one is a
+    scalar. A scalar can be compared with anything.
+ 
+    C = EQ(A,B) is called for the syntax 'A == B' when A or B is an
+    object.
+
+ Overloaded methods
+    help scribehandle/eq.m
+    help printjob/eq.m
+
+slicing1 = 'bare'
+
+slicing1 =
+
+bare
+
+slicing2 = 'r3g'
+
+slicing2 =
+
+r3g
+
+( slicing1 == 'bare' )
+
+ans =
+
+     1     1     1     1
+
+( slicing1 == 'r3g' )
+??? Error using ==> ==
+Array dimensions must match for binary array op.
+
+( slicing1 eq 'r3g' )
+??? ( slicing1 eq
+               |
+A closing right parenthesis is missing. 
+Check for a missing ")" or a missing operator.
+
+eq(slicing1,'r3g')
+??? Error using ==> eq
+Array dimensions must match for binary array op.
+
+help strings
+
+ STRINGS Character strings in MATLAB.
+    S = 'Any Characters' is a vector whose components are the numeric
+    codes for the characters (the first 127 codes are ASCII). The
+    actual characters displayed depends on the character set
+    encoding for a given font.  The length of S is the number of
+    characters. A quote within the string is indicated by two
+    quotes.
+    
+    S = CHAR(X) can be used to convert an array that contains
+    positive integers representing character codes into a MATLAB
+    character array. 
+ 
+    X = DOUBLE(S) converts the string to its equivalent double precision
+    numeric codes.
+ 
+    A collection of strings can be created in two ways: 1) as the rows of a
+    character array via STRVCAT or 2) as a cell array of strings via the
+    curly braces.  The two are different but can be converted back and
+    forth with CHAR and CELLSTR.  Most string functions support both
+    types.
+ 
+    ISCHAR(S) tells if S is a character array (string) and ISCELLSTR(S)
+    tells if S is a cell array of strings.
+ 
+    Examples
+        msg = 'You''re right!'
+        C = strvcat('Hello','Yes','No','Goodbye')
+        S = {'Hello' 'Yes' 'No' 'Goodbye'}
+ 
+    See also TEXT, CHAR, CELLSTR, DOUBLE, ISCHAR, ISCELLSTR, STRVCAT,
+             STRFUN, SPRINTF, SSCANF, INPUT.
+
+help strfun
+
+  Character strings.
+ 
+  General.
+    char        - Create character array (string).
+    double      - Convert string to numeric character codes.
+    cellstr     - Create cell array of strings from character array.
+    blanks      - String of blanks.
+    deblank     - Remove trailing blanks.
+    eval        - Execute string with MATLAB expression.
+ 
+  String tests.
+    ischar      - True for character array (string).
+    iscellstr   - True for cell array of strings.
+    isletter    - True for letters of the alphabet.
+    isspace     - True for white space characters.
+ 
+  String operations.
+    strcat      - Concatenate strings.
+    strvcat     - Vertically concatenate strings.
+    strcmp      - Compare strings.
+    strncmp     - Compare first N characters of strings.
+    strcmpi     - Compare strings ignoring case.
+    strncmpi    - Compare first N characters of strings ignoring case.
+    findstr     - Find one string within another.
+    strjust     - Justify character array.
+    strmatch    - Find possible matches for string.
+    strrep      - Replace string with another.
+    strtok      - Find token in string.
+    upper       - Convert string to uppercase.
+    lower       - Convert string to lowercase.
+ 
+  String to number conversion.
+    num2str     - Convert number to string.
+    int2str     - Convert integer to string.
+    mat2str     - Convert matrix to eval'able string.
+    str2double  - Convert string to double precision value.
+    str2num     - Convert string matrix to numeric array.
+    sprintf     - Write formatted data to string.
+    sscanf      - Read string under format control.
+ 
+  Base number conversion.
+    hex2num     - Convert IEEE hexadecimal to double precision number.
+    hex2dec     - Convert hexadecimal string to decimal integer.
+    dec2hex     - Convert decimal integer to hexadecimal string.
+    bin2dec     - Convert binary string to decimal integer.
+    dec2bin     - Convert decimal integer to binary string.
+    base2dec    - Convert base B string to decimal integer.
+    dec2base    - Convert decimal integer to base B string.
+ 
+    See also STRINGS.
+
+strcmp(slicing1,'bare')
+
+ans =
+
+     1
+
+strcmp(slicing1,'r3g')
+
+ans =
+
+     0
+
+dbclear all
+disp(which('fp_targeter'));
+c:\school\programming\subscribe_only\fp_targeter.m
+fp_targeting_analysis
+
+ans =
+
+29-Mar-2004
+
+
+ans =
+
+19:0:51.031
+
+??? Error using ==> ==
+Array dimensions must match for binary array op.
+
+Error in ==> \school\analysis\matlab\write_FP_file.m
+On line 32  ==> elseif metric_choice == 'PG_SCHW'
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeter.m
+On line 123  ==> write_FP_file('\School\Programming\subscribe_only\subscribe_geodesics_parms.txt',M,radius,metric,kernel_choice,h,time,vel,grid);
+
+Error in ==> c:\school\programming\subscribe_only\fp_targeting_analysis.m
+On line 11  ==> fp_targeter(12,'ISO_SCHW',1,400,'bare'     ,0,'ISO_12_400_h1_bare_nom.eph')
+
+
+ans =
+
+29-Mar-2004
+
+
+ans =
+
+19:25:24.093
+
+
+ans =
+
+19:51:57.25
+
+
+ans =
+
+29-Mar-2004
+
+
+ans =
+
+20:52:44.296
+
+
+ans =
+
+21:46:15.046
+
+
+ans =
+
+29-Mar-2004
+
+
+ans =
+
+22:44:23.031
+**************************************
+Bare
+**************************************
+
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.333333333333333
+
+Rbar_nom =
+
+          11.9902204664838
+
+
+Rsigma_nom =
+
+        0.0065210517257946
+
+Rbar_du =
+
+           11.990497686577
+
+
+Rsigma_du =
+
+       0.00729792356182473
+
+Rbar_dv =
+
+          12.0016450470832
+
+
+Rsigma_dv =
+
+       0.00118232504304751
+
+
+M =
+
+           2.7722009320641           114.24580599412
+          7.76871836030132          -53.387266827471
+
+
+diff =
+
+      -0.00977953351619831
+        0.0065210517257946
+
+
+corrs =
+
+     -0.000215249477586639
+     9.08238882670613e-005
+
+
+vel =
+
+     -0.000215249477586639
+           0.3334241572216
+
+
+du =
+
+       0.00010762473879332
+
+
+dv =
+
+     4.54119441335307e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     -0.000215249477586639
+
+
+v =
+
+           0.3334241572216
+
+Rbar_nom =
+
+          11.9999891127371
+
+
+Rsigma_nom =
+
+       0.00654257251648366
+
+Rbar_du =
+
+          12.0003127523448
+
+
+Rsigma_du =
+
+       0.00334949007210339
+
+Rbar_dv =
+
+          12.0051698672962
+
+
+Rsigma_dv =
+
+        0.0078087223963586
+
+
+M =
+
+          3.00711166763446          114.083522692786
+         -29.6686661466579          27.8814286424716
+
+
+diff =
+
+    -1.08872629027701e-005
+       0.00654257251648366
+
+
+corrs =
+
+      0.000215278312798579
+    -5.57905864299493e-006
+
+
+vel =
+
+     2.88352119393845e-008
+         0.333418578162957
+
+
+du =
+
+      0.000107639156399289
+
+
+dv =
+
+     2.78952932149747e-006
+
+
+counter =
+
+     3
+
+
+u =
+
+     2.88352119393845e-008
+
+
+v =
+
+         0.333418578162957
+
+Rbar_nom =
+
+          11.9999733374068
+
+
+Rsigma_nom =
+
+      0.000144810331165747
+
+Rbar_du =
+
+          12.0002755823413
+
+
+Rsigma_du =
+
+       0.00313714627547643
+
+Rbar_dv =
+
+          12.0002936556738
+
+
+Rsigma_dv =
+
+      0.000281697052493522
+
+
+M =
+
+          2.80794596172116          114.828786556155
+          27.7996971028884          49.0716194566801
+
+
+diff =
+
+    -2.66625932390241e-005
+      0.000144810331165747
+
+
+corrs =
+
+    -5.87240799493726e-006
+       3.757942485344e-007
+
+
+vel =
+
+    -5.84357278299787e-006
+         0.333418953957206
+
+
+du =
+
+     2.93620399746863e-006
+
+
+dv =
+
+       1.878971242672e-007
+
+
+counter =
+
+     4
+
+
+u =
+
+    -5.84357278299787e-006
+
+
+v =
+
+         0.333418953957206
+
+Rbar_nom =
+
+          12.0000012746669
+
+
+Rsigma_nom =
+
+      0.000295431020380418
+
+Rbar_du =
+
+          12.0000086926759
+
+
+Rsigma_du =
+
+      0.000221493217922455
+
+Rbar_dv =
+
+          12.0000176584671
+
+
+Rsigma_dv =
+
+      0.000301465096355975
+
+
+M =
+
+          2.52639427571185          87.1955878148232
+         -25.1814255827275          32.1137217990402
+
+
+diff =
+
+     1.27466689114897e-006
+      0.000295431020380418
+
+
+corrs =
+
+     1.12960657902359e-005
+    -3.41909305147171e-007
+
+
+vel =
+
+     5.45249300723801e-006
+         0.333418612047901
+
+
+du =
+
+     5.64803289511794e-006
+
+
+dv =
+
+     1.70954652573586e-007
+
+
+counter =
+
+     5
+
+
+u =
+
+     5.45249300723801e-006
+
+
+v =
+
+         0.333418612047901
+
+Rbar_nom =
+
+          11.9999977461666
+
+
+Rsigma_nom =
+
+      0.000131556960706526
+
+Rbar_du =
+
+          12.0000027462114
+
+
+Rsigma_du =
+
+      0.000262244484172107
+
+Rbar_dv =
+
+           12.000019777735
+
+
+Rsigma_dv =
+
+      0.000135275350464166
+
+
+M =
+
+         0.885271891130212          128.873757118837
+           23.138591062128          21.7507374128922
+
+
+diff =
+
+    -2.25383339014229e-006
+      0.000131556960706526
+
+
+corrs =
+
+     -5.7391068055432e-006
+     5.69123108478982e-008
+
+
+vel =
+
+    -2.86613798305194e-007
+         0.333418668960212
+
+
+du =
+
+      2.8695534027716e-006
+
+
+dv =
+
+     2.84561554239491e-008
+
+
+counter =
+
+     6
+
+
+u =
+
+    -2.86613798305194e-007
+
+
+v =
+
+         0.333418668960212
+
+Rbar_nom =
+
+          11.9999807959437
+
+
+Rsigma_nom =
+
+      0.000153369433895254
+
+Rbar_du =
+
+          11.9999940435656
+
+
+Rsigma_du =
+
+      0.000117198229532136
+
+Rbar_dv =
+
+           11.999987583537
+
+
+Rsigma_dv =
+
+      0.000155740806250492
+
+
+M =
+
+          4.61661450486594          238.528121863962
+         -12.6051685701967          83.3342494763866
+
+
+diff =
+
+     -1.9204056266986e-005
+      0.000153369433895254
+
+
+corrs =
+
+     1.12588235074166e-005
+    -1.37399277657376e-007
+
+
+vel =
+
+     1.09722097091114e-005
+         0.333418531560934
+
+
+du =
+
+     5.62941175370828e-006
+
+
+dv =
+
+     6.86996388286882e-008
+
+
+counter =
+
+     7
+
+
+u =
+
+     1.09722097091114e-005
+
+
+v =
+
+         0.333418531560934
+
+Rbar_nom =
+
+          11.9999888493797
+
+
+Rsigma_nom =
+
+      0.000259185688467077
+
+Rbar_du =
+
+          12.0000111833011
+
+
+Rsigma_du =
+
+      0.000418973842504816
+
+Rbar_dv =
+
+          12.0000028066165
+
+
+Rsigma_dv =
+
+      0.000258359694960982
+
+
+M =
+
+          3.96736326652878          203.163176708299
+           28.384520626419         -12.0232583486312
+
+
+diff =
+
+    -1.11506203346323e-005
+      0.000259185688467077
+
+
+corrs =
+
+    -9.03326418023699e-006
+     2.31286306807563e-007
+
+
+vel =
+
+     1.93894552887438e-006
+         0.333418762847241
+
+
+du =
+
+      4.5166320901185e-006
+
+
+dv =
+
+     1.15643153403782e-007
+
+
+counter =
+
+     8
+
+
+u =
+
+     1.93894552887438e-006
+
+
+v =
+
+         0.333418762847241
+
+Rbar_nom =
+
+          12.0000029920713
+
+
+Rsigma_nom =
+
+      0.000128102260008991
+
+Rbar_du =
+
+          12.0000134770608
+
+
+Rsigma_du =
+
+       0.00015346337326429
+Rbar_dv =
+
+          12.0000203047173
+
+
+Rsigma_dv =
+
+      0.000130152987072372
+
+
+M =
+
+          2.32141765788938           149.70748828311
+          5.61504960981516          17.7332336850076
+
+
+diff =
+
+     2.99207130005641e-006
+      0.000128102260008991
+
+
+corrs =
+
+    -2.39224952489588e-005
+     3.50964619032883e-007
+
+
+vel =
+
+    -2.19835497200845e-005
+          0.33341911381186
+
+
+du =
+
+     1.19612476244794e-005
+
+
+dv =
+
+     1.75482309516441e-007
+
+
+counter =
+
+     9
+
+
+u =
+
+    -2.19835497200845e-005
+
+
+v =
+
+          0.33341911381186
+
+Rbar_nom =
+
+          11.9999628650368
+
+
+Rsigma_nom =
+
+       0.00074533735521144
+
+Rbar_du =
+
+          12.0000019005184
+
+
+Rsigma_du =
+
+      0.000405796047569423
+
+Rbar_dv =
+
+          11.9999770653372
+
+
+Rsigma_dv =
+
+      0.000746295937024004
+
+
+M =
+
+          3.26349582441432          80.9215497283114
+         -28.3867802341225          5.46255525816862
+
+
+diff =
+
+    -3.71349632324325e-005
+       0.00074533735521144
+
+
+corrs =
+
+     2.61419242074978e-005
+    -5.95380308739144e-007
+
+
+vel =
+
+     4.15837448741334e-006
+         0.333418518431551
+
+
+du =
+
+     1.30709621037489e-005
+
+
+dv =
+
+     2.97690154369572e-007
+
+************************************
+R3G
+************************************
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.333333333333333
+
+Rbar_nom =
+
+          11.9872661864665
+
+
+Rsigma_nom =
+
+       0.00850897890965505
+
+Rbar_du =
+
+          11.9875464316464
+
+
+Rsigma_du =
+
+       0.00918989521925995
+
+Rbar_dv =
+
+          11.9987068484058
+
+
+Rsigma_dv =
+
+      0.000812308112683375
+
+
+M =
+
+          2.80245179812511           114.40661939254
+          6.80916309604896         -76.9667079697168
+
+
+diff =
+
+         -0.01273381353346
+       0.00850897890965505
+
+
+corrs =
+
+     6.63128334937456e-006
+      0.000111140681798197
+
+
+vel =
+
+     6.63128334937456e-006
+         0.333444474015132
+
+
+du =
+
+     3.31564167468728e-006
+
+
+dv =
+
+     5.55703408990986e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     6.63128334937456e-006
+
+
+v =
+
+         0.333444474015132
+
+Rbar_nom =
+
+          11.9999740005816
+
+
+Rsigma_nom =
+
+      0.000155420080826042
+Rbar_du =
+
+           11.999994083212
+
+
+Rsigma_du =
+
+      0.000240070784957425
+
+Rbar_dv =
+
+           12.006340495365
+
+
+Rsigma_dv =
+
+       0.00432221070058481
+
+
+M =
+
+           6.0569363011017          114.566415832404
+          25.5307154502355          74.9822756589632
+
+
+diff =
+
+    -2.59994184439449e-005
+      0.000155420080826042
+
+
+corrs =
+
+    -7.99555593527007e-006
+     6.49649296392845e-007
+
+
+vel =
+
+    -1.36427258589551e-006
+         0.333445123664428
+
+
+du =
+
+     3.99777796763503e-006
+
+
+dv =
+
+     3.24824648196423e-007
+
+
+counter =
+
+     3
+
+
+u =
+
+    -1.36427258589551e-006
+
+
+v =
+
+         0.333445123664428
+
+Rbar_nom =
+
+           12.000039372024
+
+
+Rsigma_nom =
+
+      0.000186141541510832
+
+Rbar_du =
+
+          12.0000550504386
+
+
+Rsigma_du =
+
+      0.000136548900215789
+
+Rbar_dv =
+
+          12.0000717474131
+
+
+Rsigma_dv =
+
+      0.000196294378334919
+
+
+M =
+
+          3.92178222430142          99.6703584630562
+         -12.4050514302026          31.2563621032466
+
+
+diff =
+
+     3.93720240126072e-005
+      0.000186141541510832
+
+
+corrs =
+
+     1.27462926210858e-005
+    -8.96557504334131e-007
+
+
+vel =
+
+     1.13820200351903e-005
+         0.333444227106924
+
+
+du =
+
+     6.37314631054291e-006
+
+
+dv =
+
+     4.48278752167066e-007
+
+
+counter =
+
+     4
+
+
+u =
+
+     1.13820200351903e-005
+
+
+v =
+
+         0.333444227106924
+
+Rbar_nom =
+
+           11.999975754477
+
+
+Rsigma_nom =
+
+      0.000272063960887683
+
+Rbar_du =
+
+          11.9999928407227
+
+
+Rsigma_du =
+
+       0.00045606899932993
+
+Rbar_dv =
+
+          12.0000305370373
+
+
+Rsigma_dv =
+
+      0.000282311663763435
+
+
+M =
+
+          2.68097496811755          122.206462131778
+          28.8719306722729          22.8601128789003
+
+
+diff =
+
+    -2.42455230221594e-005
+      0.000272063960887683
+
+
+corrs =
+
+    -9.74956755298856e-006
+     4.12284822772814e-007
+
+
+vel =
+
+     1.63245248220175e-006
+         0.333444639391746
+
+
+du =
+
+     4.87478377649428e-006
+
+
+dv =
+
+     2.06142411386407e-007
+
+
+counter =
+
+     5
+
+
+u =
+
+     1.63245248220175e-006
+
+
+v =
+
+         0.333444639391746
+
+Rbar_nom =
+
+          11.9999893732024
+
+
+Rsigma_nom =
+
+      0.000112630660537844
+
+Rbar_du =
+
+          12.0000014860058
+
+
+Rsigma_du =
+
+      0.000155713462714857
+
+Rbar_dv =
+
+          12.0000111176546
+
+
+Rsigma_dv =
+
+      0.000123826412548358
+
+
+M =
+
+          2.48478782861651          105.482670902481
+          8.83788987416301           54.310764753437
+
+
+diff =
+
+    -1.06267975841234e-005
+      0.000112630660537844
+
+
+corrs =
+
+    -1.56250268864156e-005
+     4.68813254254939e-007
+
+
+vel =
+
+    -1.39925744042139e-005
+         0.333445108205001
+
+
+du =
+
+     7.81251344320782e-006
+
+
+dv =
+
+     2.34406627127469e-007
+
+
+counter =
+
+     6
+
+
+u =
+
+    -1.39925744042139e-005
+
+
+v =
+
+         0.333445108205001
+
+Rbar_nom =
+
+          12.0000049735037
+
+
+Rsigma_nom =
+
+       0.00051685777948159
+
+Rbar_du =
+
+          12.0000150512094
+
+
+Rsigma_du =
+
+       0.00029439659794674
+
+Rbar_dv =
+
+          12.0000281181988
+
+
+Rsigma_dv =
+
+      0.000526588108176801
+
+
+M =
+
+          1.28994410167533          98.7373752301546
+         -28.4749822386876          41.5104675770065
+
+
+diff =
+
+     4.97350374395467e-006
+       0.00051685777948159
+
+
+corrs =
+
+     1.77400036153815e-005
+    -2.82133454594886e-007
+
+
+vel =
+
+     3.74742921116756e-006
+         0.333444826071546
+
+
+du =
+
+     8.87000180769073e-006
+
+
+dv =
+
+     1.41066727297443e-007
+
+
+counter =
+
+     7
+
+
+u =
+
+     3.74742921116756e-006
+
+
+v =
+
+         0.333444826071546
+
+Rbar_nom =
+
+          12.0000222536981
+
+
+Rsigma_nom =
+
+      0.000120417134954062
+
+Rbar_du =
+
+          12.0000491685105
+
+
+Rsigma_du =
+
+       0.00031146386913677
+
+Rbar_dv =
+
+          12.0000427858442
+
+
+Rsigma_dv =
+
+      0.000128482034636532
+
+
+M =
+
+          3.03436380140897          145.549176921374
+          21.5385225758423          57.1708143867642
+
+
+diff =
+
+      2.2253698135799e-005
+      0.000120417134954062
+
+
+corrs =
+
+    -5.48867047583251e-006
+    -3.84686141447255e-008
+
+
+vel =
+
+    -1.74124126466494e-006
+         0.333444787602932
+
+
+du =
+
+     2.74433523791625e-006
+
+
+dv =
+
+     1.92343070723627e-008
+
+
+counter =
+
+     8
+
+
+u =
+
+    -1.74124126466494e-006
+
+
+v =
+
+         0.333444787602932
+
+Rbar_nom =
+
+          11.9999989615697
+
+
+Rsigma_nom =
+
+      0.000179169296359704
+
+Rbar_du =
+
+          12.0000077472536
+
+
+Rsigma_du =
+
+      0.000126411318293264
+
+Rbar_dv =
+
+           12.000001216859
+
+
+Rsigma_dv =
+
+      0.000178145089257898
+
+
+M =
+
+          3.20138875368455          117.253476214665
+         -19.2243197323439         -53.2489731993939
+
+
+diff =
+
+    -1.03843033549822e-006
+      0.000179169296359704
+
+
+corrs =
+
+      1.0055888026235e-005
+    -2.65701090541357e-007
+
+
+vel =
+
+     8.31464676157006e-006
+         0.333444521901841
+
+
+du =
+
+      5.0279440131175e-006
+
+
+dv =
+
+     1.32850545270678e-007
+
+
+counter =
+
+     9
+
+
+u =
+
+     8.31464676157006e-006
+
+
+v =
+
+         0.333444521901841
+
+Rbar_nom =
+
+          11.9999880306266
+
+
+Rsigma_nom =
+
+      0.000195871020712481
+
+Rbar_du =
+
+            12.00001717019
+
+
+Rsigma_du =
+
+      0.000332284288883954
+
+Rbar_dv =
+
+           12.000006325118
+
+
+Rsigma_dv =
+
+      0.000202311820380051
+
+
+M =
+
+          5.79552265144353          137.707311245196
+          27.1310236978739          48.4815448400885
+
+
+diff =
+
+    -1.19693734106363e-005
+      0.000195871020712481
+
+
+corrs =
+
+    -7.97448742526044e-006
+     4.22531638961286e-007
+
+
+vel =
+
+     3.40159336309616e-007
+          0.33344494443348
+
+
+du =
+
+     3.98724371263022e-006
+
+
+dv =
+
+     2.11265819480643e-007
+
+
+********************************
+Spherical
+********************************
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.333333333333333
+
+Rbar_nom =
+
+          11.9955031806581
+
+
+Rsigma_nom =
+
+       0.00310544445313261
+
+Rbar_du =
+
+          11.9957824415364
+
+
+Rsigma_du =
+
+       0.00449824215287434
+
+Rbar_dv =
+
+          12.0069020904196
+
+
+Rsigma_dv =
+
+       0.00459445482123442
+
+
+M =
+
+           2.7926087829222          113.989097615317
+          13.9279769974173          14.8901036810181
+
+
+diff =
+
+      -0.00449681934192192
+       0.00310544445313261
+
+
+corrs =
+
+     -0.000272270285832206
+      4.6119882018956e-005
+
+
+vel =
+
+     -0.000272270285832206
+         0.333379453215352
+
+
+du =
+
+      0.000136135142916103
+
+
+dv =
+
+      2.3059941009478e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     -0.000272270285832206
+
+
+v =
+
+         0.333379453215352
+
+Rbar_nom =
+
+          11.9999809316683
+
+
+Rsigma_nom =
+
+        0.0080537899661195
+
+Rbar_du =
+
+          12.0003725863124
+
+
+Rsigma_du =
+
+       0.00403290732424519
+
+Rbar_dv =
+
+          12.0026233331327
+
+
+Rsigma_dv =
+
+       0.00846505381156809
+
+
+M =
+
+          2.87695473556093          114.588387858751
+         -29.5359637177029          17.8345575680158
+
+
+diff =
+
+    -1.90683316745321e-005
+        0.0080537899661195
+
+
+corrs =
+
+      0.000268704288307234
+    -6.57991404823586e-006
+
+
+vel =
+
+     -3.5659975249715e-006
+         0.333372873301304
+
+
+du =
+
+      0.000134352144153617
+
+
+dv =
+
+     3.28995702411793e-006
+
+
+counter =
+
+     3
+
+
+u =
+
+     -3.5659975249715e-006
+
+
+v =
+
+         0.333372873301304
+
+Rbar_nom =
+
+          11.9999927829507
+
+
+Rsigma_nom =
+
+       0.00011216116280787
+
+Rbar_du =
+
+          12.0003951494935
+
+
+Rsigma_du =
+
+       0.00398306306319836
+
+Rbar_dv =
+
+          12.0003634348409
+
+
+Rsigma_dv =
+
+      0.000217456584847521
+
+
+M =
+
+          2.99486506398571          112.661620650553
+          28.8116123845745          32.0051056192388
+
+
+diff =
+
+    -7.21704930661815e-006
+       0.00011216116280787
+
+
+corrs =
+
+    -4.08469315224686e-006
+     1.72642236220915e-007
+
+
+vel =
+
+    -7.65069067721836e-006
+          0.33337304594354
+
+
+du =
+
+     2.04234657612343e-006
+
+
+dv =
+
+     8.63211181104577e-008
+
+
+counter =
+
+     4
+
+
+u =
+
+    -7.65069067721836e-006
+
+
+v =
+
+          0.33337304594354
+
+Rbar_nom =
+
+          11.9999968429474
+
+
+Rsigma_nom =
+
+      0.000176353217795466
+
+Rbar_du =
+
+          12.0000090135568
+
+
+Rsigma_du =
+
+      0.000131072917811274
+
+Rbar_dv =
+
+          12.0000134744755
+
+
+Rsigma_dv =
+
+      0.000173898385547201
+
+
+M =
+
+          5.95913033995057          192.670443608791
+         -22.1707228898133          -28.438374085044
+
+
+diff =
+
+    -3.15705261932919e-006
+      0.000176353217795466
+
+
+corrs =
+
+     8.26104955535583e-006
+    -2.39121359575906e-007
+
+
+vel =
+
+     6.10358878137464e-007
+         0.333372806822181
+
+
+du =
+
+     4.13052477767791e-006
+
+
+dv =
+
+     1.19560679787953e-007
+
+
+counter =
+
+     5
+
+
+u =
+
+     6.10358878137464e-007
+
+
+v =
+
+         0.333372806822181
+
+Rbar_nom =
+
+          11.9999917029452
+
+
+Rsigma_nom =
+
+      0.000155215546763779
+
+Rbar_du =
+
+          12.0000022049503
+
+
+Rsigma_du =
+
+       0.00025767628331116
+
+Rbar_dv =
+
+           12.000004018803
+
+
+Rsigma_dv =
+
+      0.000150476973378035
+
+
+M =
+
+          2.54253531014348          103.009265512582
+          24.8057431106811         -39.6332087952967
+
+
+diff =
+
+    -8.29705476768083e-006
+      0.000155215546763779
+
+
+corrs =
+
+    -5.89603097879926e-006
+     2.26075990398488e-007
+
+
+vel =
+
+    -5.28567210066179e-006
+         0.333373032898171
+
+
+du =
+
+     2.94801548939963e-006
+
+
+dv =
+
+     1.13037995199244e-007
+
+
+counter =
+
+     6
+
+
+u =
+
+    -5.28567210066179e-006
+
+
+v =
+
+         0.333373032898171
+
+Rbar_nom =
+
+          12.0000057532487
+
+
+Rsigma_nom =
+
+       0.00012619474123618
+
+Rbar_du =
+
+          12.0000155184035
+
+
+Rsigma_du =
+
+      0.000103300173775433
+
+Rbar_dv =
+
+          12.0000242981185
+
+
+Rsigma_dv =
+
+      0.000120804556106382
+
+
+M =
+
+          3.31245031599297           164.05872859157
+         -7.76609469762641         -47.6847198174087
+
+
+diff =
+
+     5.75324870055738e-006
+       0.00012619474123618
+
+
+corrs =
+
+      1.8794816560051e-005
+    -4.14547554633574e-007
+
+
+vel =
+
+     1.35091444593893e-005
+         0.333372618350616
+
+
+du =
+
+     9.39740828002552e-006
+
+
+dv =
+
+     2.07273777316787e-007
+
+
+counter =
+
+     7
+
+
+u =
+
+     1.35091444593893e-005
+
+
+v =
+
+         0.333372618350616
+
+Rbar_nom =
+
+          12.0000096040922
+
+
+Rsigma_nom =
+
+      0.000505900743989105
+
+Rbar_du =
+
+          12.0000267607494
+
+
+Rsigma_du =
+
+      0.000783035759691009
+
+Rbar_dv =
+
+          12.0000315317997
+
+
+Rsigma_dv =
+
+      0.000503880186147807
+
+
+M =
+
+          1.82567965934578          105.791035019282
+          29.4905794708274         -9.74825598999722
+
+
+diff =
+
+     9.60409221484326e-006
+      0.000505900743989105
+
+
+corrs =
+
+    -1.70871906279692e-005
+     2.04097106584395e-007
+
+
+vel =
+
+    -3.57804616857993e-006
+         0.333372822447723
+
+
+du =
+
+     8.54359531398459e-006
+
+
+dv =
+
+     1.02048553292198e-007
+
+
+counter =
+
+     8
+
+
+u =
+
+    -3.57804616857993e-006
+
+
+v =
+
+         0.333372822447723
+
+Rbar_nom =
+
+          11.9999854283429
+
+
+Rsigma_nom =
+
+      0.000113084244459588
+
+Rbar_du =
+
+          12.0000028921691
+
+
+Rsigma_du =
+
+       0.00026359869280425
+
+Rbar_dv =
+
+          11.9999971773343
+
+
+Rsigma_dv =
+
+      0.000109409820980841
+
+
+M =
+
+          2.04408395870607          115.131385425218
+          17.6172258648876         -36.0066199882925
+
+
+diff =
+
+    -1.45716570632004e-005
+      0.000113084244459588
+
+
+corrs =
+
+    -5.94457031777839e-006
+     2.32107498684874e-007
+
+
+vel =
+
+    -9.52261648635833e-006
+         0.333373054555222
+
+
+du =
+
+      2.9722851588892e-006
+
+
+dv =
+
+     1.16053749342437e-007
+
+
+counter =
+
+     9
+
+
+u =
+
+    -9.52261648635833e-006
+
+
+v =
+
+         0.333373054555222
+
+Rbar_nom =
+
+          11.9999910416189
+
+
+Rsigma_nom =
+
+      0.000226679422128738
+
+Rbar_du =
+
+          12.0000046993343
+
+
+Rsigma_du =
+
+      0.000149304835454618
+
+Rbar_dv =
+
+          12.0000080359602
+
+
+Rsigma_dv =
+
+      0.000221248804906351
+
+
+M =
+
+          4.59502190345142          146.435090708067
+         -26.0320199906513         -46.7939834185162
+
+
+diff =
+
+    -8.95838109649105e-006
+      0.000226679422128738
+
+
+corrs =
+
+     9.11170113017051e-006
+    -2.24741795256951e-007
+
+
+vel =
+
+    -4.10915356187816e-007
+         0.333372829813426
+
+
+du =
+
+     4.55585056508526e-006
+
+
+dv =
+
+     1.12370897628475e-007
+
+*************************************
+Scalar
+*************************************
+
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.333333333333333
+
+Rbar_nom =
+
+          11.9930349289354
+
+
+Rsigma_nom =
+
+         0.004751954932224
+
+Rbar_du =
+
+           11.993326869939
+
+
+Rsigma_du =
+
+       0.00581177067085933
+
+Rbar_dv =
+
+          12.0044567796018
+
+
+Rsigma_dv =
+
+       0.00294427349057661
+
+
+M =
+
+          2.91941003672136          114.218506664923
+          10.5981573863533         -18.0768144164739
+
+
+diff =
+
+      -0.00696507106464495
+         0.004751954932224
+
+
+corrs =
+
+     -0.000329978402011047
+     6.94144368971351e-005
+
+
+vel =
+
+     -0.000329978402011047
+          0.33340274777023
+
+
+du =
+
+      0.000164989201005524
+
+
+dv =
+
+     3.47072184485675e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     -0.000329978402011047
+
+
+v =
+
+          0.33340274777023
+
+Rbar_nom =
+
+          12.0000291300305
+
+
+Rsigma_nom =
+
+       0.00980848948720202
+
+Rbar_du =
+
+          12.0004930956231
+
+
+Rsigma_du =
+
+       0.00490957150978791
+
+Rbar_dv =
+
+          12.0039870224148
+
+
+Rsigma_dv =
+
+        0.0104832513733671
+
+
+M =
+
+          2.81209672957141           114.03657686093
+         -29.6923553030001          19.4415431811385
+
+
+diff =
+
+     2.91300305139686e-005
+       0.00980848948720202
+
+
+corrs =
+
+      0.000324923638427322
+    -8.26793260065763e-006
+
+
+vel =
+
+    -5.05476358372516e-006
+          0.33339447983763
+
+
+du =
+
+      0.000162461819213661
+
+
+dv =
+
+     4.13396630032881e-006
+
+
+counter =
+
+     3
+
+
+u =
+
+    -5.05476358372516e-006
+
+
+v =
+
+          0.33339447983763
+
+Rbar_nom =
+
+          12.0000008007086
+
+
+Rsigma_nom =
+
+      0.000121240671884242
+
+Rbar_du =
+
+          12.0004710489616
+
+
+Rsigma_du =
+
+        0.0047828019444228
+
+Rbar_dv =
+
+          12.0004844139492
+
+
+Rsigma_dv =
+
+      0.000294508967867485
+
+
+M =
+
+          2.89451549432772          116.985288573473
+          28.6932726415425          41.9133305391147
+
+
+diff =
+
+      8.0070862296111e-007
+      0.000121240671884242
+
+
+corrs =
+
+    -4.37347378973852e-006
+     1.01366412564136e-007
+
+
+vel =
+
+    -9.42823737346368e-006
+         0.333394581204042
+
+
+du =
+
+     2.18673689486926e-006
+
+
+dv =
+
+     5.06832062820681e-008
+
+
+counter =
+
+     4
+
+
+u =
+
+    -9.42823737346368e-006
+
+
+v =
+
+         0.333394581204042
+
+Rbar_nom =
+
+          12.0000021090166
+
+
+Rsigma_nom =
+
+      0.000224217190274264
+
+Rbar_du =
+
+          11.9999978329628
+
+
+Rsigma_du =
+
+      0.000165529447587509
+
+Rbar_dv =
+
+          12.0000054997098
+
+
+Rsigma_dv =
+
+      0.000223283623798565
+
+
+M =
+
+          -1.9554495797988          66.8997381408912
+         -26.8380447709341         -18.4196412220446
+
+
+diff =
+
+     2.10901656672036e-006
+      0.000224217190274264
+
+
+corrs =
+
+     8.21136159516801e-006
+     2.08489411195491e-007
+
+
+vel =
+
+    -1.21687577829567e-006
+         0.333394789693453
+
+
+du =
+
+       4.105680797584e-006
+
+
+dv =
+
+     1.04244705597746e-007
+
+
+counter =
+
+     5
+
+
+u =
+
+    -1.21687577829567e-006
+
+
+v =
+
+         0.333394789693453
+
+Rbar_nom =
+
+          12.0000517414173
+
+
+Rsigma_nom =
+
+      0.000103482989965197
+
+Rbar_du =
+
+          12.0000652135819
+
+
+Rsigma_du =
+
+      0.000193938595657946
+
+Rbar_dv =
+
+          12.0000655273624
+
+
+Rsigma_dv =
+
+      0.000100796219079281
+
+
+M =
+
+          3.28134728401345          132.245997000235
+          22.0318164397918         -25.7736915319573
+
+
+diff =
+
+     5.17414173426545e-005
+      0.000103482989965197
+
+
+corrs =
+
+    -5.00927848960244e-006
+    -2.66958817482149e-007
+
+
+vel =
+
+    -6.22615426789812e-006
+         0.333394522734636
+
+
+du =
+
+     2.50463924480122e-006
+
+
+dv =
+
+     1.33479408741074e-007
+
+
+counter =
+
+     6
+
+
+u =
+
+    -6.22615426789812e-006
+
+
+v =
+
+         0.333394522734636
+
+Rbar_nom =
+
+          11.9999985427426
+
+
+Rsigma_nom =
+
+      0.000145133161037354
+
+Rbar_du =
+
+          12.0000153501267
+
+
+Rsigma_du =
+
+      0.000104897313155313
+
+Rbar_dv =
+
+          12.0000218471984
+
+
+Rsigma_dv =
+
+      0.000142083803323948
+
+
+M =
+
+          6.71050095159636          174.592140975696
+         -16.0645282411655         -22.8451544861196
+
+
+diff =
+
+    -1.45725738143199e-006
+      0.000145133161037354
+
+
+corrs =
+
+     9.54418641276097e-006
+    -3.58487010204693e-007
+
+
+vel =
+
+     3.31803214486285e-006
+         0.333394164247626
+
+
+du =
+
+     4.77209320638048e-006
+
+
+dv =
+
+     1.79243505102347e-007
+
+
+counter =
+
+     7
+
+
+u =
+
+     3.31803214486285e-006
+
+
+v =
+
+         0.333394164247626
+
+Rbar_nom =
+
+          11.9999928064972
+
+
+Rsigma_nom =
+
+      0.000217419037875758
+
+Rbar_du =
+
+          12.0000136370784
+
+
+Rsigma_du =
+
+      0.000347688323062142
+
+Rbar_dv =
+
+           12.000013506595
+
+
+Rsigma_dv =
+
+      0.000209309448508853
+
+
+M =
+
+          4.36508262889692          115.485901726746
+          27.2981435090597           -45.24342102256
+
+
+diff =
+
+    -7.19350278544084e-006
+      0.000217419037875758
+
+
+corrs =
+
+     -7.3979296504484e-006
+     3.41912531330825e-007
+
+
+vel =
+
+    -4.07989750558554e-006
+         0.333394506160157
+
+
+du =
+
+      3.6989648252242e-006
+
+
+dv =
+
+     1.70956265665413e-007
+
+
+counter =
+
+     8
+
+
+u =
+
+    -4.07989750558554e-006
+
+
+v =
+
+         0.333394506160157
+
+Rbar_nom =
+
+          12.0000056899543
+
+
+Rsigma_nom =
+
+      0.000106767462765003
+
+Rbar_du =
+
+          12.0000269877368
+
+
+Rsigma_du =
+
+      0.000123579915672622
+
+Rbar_dv =
+
+          12.0000299706603
+
+
+Rsigma_dv =
+
+        0.0001020095740258
+
+
+M =
+
+           5.7577683150543          142.028757558794
+          4.54517782731291         -27.8310287176871
+
+
+diff =
+
+     5.68995432992381e-006
+      0.000106767462765003
+
+
+corrs =
+
+    -1.90153717870644e-005
+     7.30810806407605e-007
+
+
+vel =
+
+    -2.30952692926499e-005
+         0.333395236970964
+
+
+du =
+
+     9.50768589353218e-006
+
+
+dv =
+
+     3.65405403203803e-007
+
+
+counter =
+
+     9
+
+
+u =
+
+    -2.30952692926499e-005
+
+
+v =
+
+         0.333395236970964
+
+Rbar_nom =
+
+          12.0000379585965
+
+
+Rsigma_nom =
+
+      0.000618325156712039
+
+Rbar_du =
+
+          12.0000642310223
+
+
+Rsigma_du =
+
+      0.000337726491366599
+
+Rbar_dv =
+
+          12.0000896885554
+
+
+Rsigma_dv =
+
+      0.000623510374910259
+
+
+M =
+
+          2.76328289542417          141.568675205528
+         -29.5128245177224          14.1903161605075
+
+
+diff =
+
+     3.79585965077922e-005
+      0.000618325156712039
+
+
+corrs =
+
+     2.06285443710903e-005
+    -6.70777629218193e-007
+
+
+vel =
+
+    -2.46672492155964e-006
+         0.333394566193334
+
+
+du =
+
+     1.03142721855451e-005
+
+
+dv =
+
+     3.35388814609097e-007
+
+***************************************
+Bare
+***************************************
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.364390799173422
+
+Rbar_nom =
+
+          10.9792758059117
+
+
+Rsigma_nom =
+
+       0.00145023665392825
+
+Rbar_du =
+
+          10.9795492466238
+
+
+Rsigma_du =
+
+       0.00315404423774526
+
+Rbar_dv =
+
+          10.9897215507483
+
+
+Rsigma_dv =
+
+       0.00847100671689058
+
+
+M =
+
+          2.73440712081907          104.457448365736
+          17.0380758381702          70.2077006296234
+
+
+diff =
+
+       0.00205023086006584
+       0.00145023665392825
+
+
+corrs =
+
+    -4.75257143741011e-006
+    -1.95030170347665e-005
+
+
+vel =
+
+    -4.75257143741011e-006
+         0.364371296156387
+
+
+du =
+
+     2.37628571870506e-006
+
+
+dv =
+
+     9.75150851738324e-006
+
+
+counter =
+
+     2
+
+
+u =
+
+    -4.75257143741011e-006
+
+
+v =
+
+         0.364371296156387
+
+Rbar_nom =
+
+          10.9772285685689
+
+
+Rsigma_nom =
+
+      0.000257018842703053
+
+Rbar_du =
+
+          10.9772278149912
+
+
+Rsigma_du =
+
+         0.000191906477259
+
+Rbar_dv =
+
+          10.9782471290197
+
+
+Rsigma_dv =
+
+      0.000811755252488229
+
+
+M =
+
+        -0.317124196004171          104.451577815915
+         -27.4008991980709           56.887240450674
+
+
+diff =
+
+     2.99351726695818e-006
+      0.000257018842703053
+
+
+corrs =
+
+     9.37956364874176e-006
+    -1.82196251879846e-010
+
+
+vel =
+
+     4.62699221133165e-006
+         0.364371295974191
+
+
+du =
+
+     4.68978182437088e-006
+
+
+dv =
+
+     9.10981259399229e-011
+
+
+counter =
+
+     3
+
+
+u =
+
+     4.62699221133165e-006
+
+
+v =
+
+         0.364371295974191
+
+Rbar_nom =
+
+          10.9772223759552
+
+
+Rsigma_nom =
+
+      0.000134778118817646
+
+Rbar_du =
+
+          10.9772404130303
+
+
+Rsigma_du =
+
+      0.000236284079127722
+
+Rbar_dv =
+
+          10.9772223781023
+
+
+Rsigma_dv =
+
+      0.000134782219120449
+
+
+M =
+
+          3.84603714252135          23.5688208094607
+          21.6440687672487          45.0097382502268
+
+
+diff =
+
+    -3.19909642421123e-006
+      0.000134778118817646
+
+
+corrs =
+
+    -9.85280016144268e-006
+     1.74354636301808e-006
+
+
+vel =
+
+    -5.22580795011103e-006
+         0.364373039520554
+
+
+du =
+
+     4.92640008072134e-006
+
+
+dv =
+
+     8.71773181509042e-007
+
+
+counter =
+
+     4
+
+
+u =
+
+    -5.22580795011103e-006
+
+
+v =
+
+         0.364373039520554
+
+Rbar_nom =
+
+          10.9773918258638
+
+
+Rsigma_nom =
+
+      0.000326176329854999
+
+Rbar_du =
+
+          10.9773881046279
+
+
+Rsigma_du =
+
+      0.000230808766311765
+
+Rbar_dv =
+
+          10.9774813704753
+
+
+Rsigma_dv =
+
+      0.000370706260947993
+
+
+M =
+
+        -0.755366163928905          102.715492340408
+         -19.3584690606919          51.0797212365634
+
+
+diff =
+
+      0.000166250812132063
+      0.000326176329854999
+
+
+corrs =
+
+     1.28274296071698e-005
+    -1.52422387576909e-006
+
+
+vel =
+
+     7.60162165705876e-006
+         0.364371515296678
+
+
+du =
+
+      6.4137148035849e-006
+
+
+dv =
+
+     7.62111937884547e-007
+
+
+counter =
+
+     5
+
+
+u =
+
+     7.60162165705876e-006
+
+
+v =
+
+         0.364371515296678
+
+Rbar_nom =
+
+          10.9772588699349
+
+
+Rsigma_nom =
+
+      0.000195569881922591
+
+Rbar_du =
+
+          10.9772597724287
+
+
+Rsigma_du =
+
+      0.000368055439568063
+
+Rbar_dv =
+
+          10.9773354232871
+
+
+Rsigma_dv =
+
+      0.000215236619723402
+
+
+M =
+
+         0.140713118785837          100.448960852507
+           26.893237839179          25.8055763506368
+
+
+diff =
+
+     3.32948832699742e-005
+      0.000195569881922591
+
+
+corrs =
+
+    -6.96338878199193e-006
+    -3.21706096736942e-007
+
+
+vel =
+
+     6.38232875066828e-007
+         0.364371193590581
+
+
+du =
+
+     3.48169439099597e-006
+
+
+dv =
+
+     1.60853048368471e-007
+
+
+counter =
+
+     6
+
+
+u =
+
+     6.38232875066828e-007
+
+
+v =
+
+         0.364371193590581
+
+Rbar_nom =
+
+          10.9772144746936
+
+
+Rsigma_nom =
+
+      0.000127009641696095
+
+Rbar_du =
+
+          10.9772104892977
+
+
+Rsigma_du =
+
+      0.000123846750908815
+
+Rbar_dv =
+
+          10.9772297760885
+
+
+Rsigma_dv =
+
+      0.000138978838046943
+
+
+M =
+
+         -1.14467136909412          95.1265461438502
+        -0.908434351808577          74.4107523746133
+
+
+diff =
+
+    -1.11003581118041e-005
+      0.000127009641696095
+
+
+corrs =
+
+         0.010406597934926
+      0.000125340775495678
+
+
+vel =
+
+        0.0104072361678011
+         0.364496534366077
+
+
+du =
+
+         0.005203298967463
+
+
+dv =
+
+     6.26703877478389e-005
+
+
+counter =
+
+     7
+
+
+u =
+
+        0.0104072361678011
+
+
+v =
+
+         0.364496534366077
+
+Rbar_nom =
+
+          11.0404295838422
+
+
+Rsigma_nom =
+
+         0.309159948776828
+Rbar_du =
+
+          11.0740866283082
+
+
+Rsigma_du =
+
+         0.458653022595698
+
+Rbar_dv =
+
+          11.0472088583656
+
+
+Rsigma_dv =
+
+         0.309057923392777
+
+
+M =
+
+          6.46840488630972          108.173489378467
+          28.7304409671004         -1.62796797208322
+
+
+diff =
+
+        0.0632040087905139
+         0.309159948776828
+
+
+corrs =
+
+       -0.0107573687296915
+     5.89701571162231e-005
+
+
+vel =
+
+      -0.00035013256189048
+         0.364555504523193
+
+
+du =
+
+       0.00537868436484577
+
+
+dv =
+
+     2.94850785581116e-005
+
+
+counter =
+
+     8
+
+
+u =
+
+      -0.00035013256189048
+
+
+v =
+
+         0.364555504523193
+
+Rbar_nom =
+
+          10.9954867555959
+
+
+Rsigma_nom =
+
+        0.0172576001146171
+
+Rbar_du =
+
+          11.0157648232635
+
+
+Rsigma_du =
+
+          0.14977850834805
+
+Rbar_dv =
+
+          10.9986046538078
+
+
+Rsigma_dv =
+
+        0.0189623718230813
+
+
+M =
+
+          3.77007950124834          105.744951833144
+          24.6381641390911          57.8181165467896
+
+
+diff =
+
+        0.0182611805442345
+        0.0172576001146171
+
+
+corrs =
+
+     -0.000322142346598666
+     -0.000161205598861465
+
+
+vel =
+
+     -0.000672274908489146
+         0.364394298924332
+
+
+du =
+
+      0.000161071173299333
+
+
+dv =
+
+     8.06027994307327e-005
+
+
+counter =
+
+     9
+
+
+u =
+
+     -0.000672274908489146
+
+
+v =
+
+         0.364394298924332
+
+Rbar_nom =
+
+          10.9778320426556
+
+
+Rsigma_nom =
+
+        0.0203802390182597
+
+Rbar_du =
+
+          10.9782098019378
+
+
+Rsigma_du =
+
+        0.0155594197467022
+
+Rbar_dv =
+
+          10.9862690553328
+
+
+Rsigma_dv =
+
+        0.0219577925333319
+
+
+M =
+
+          2.34529416064795          104.673941063888
+          -29.929745793796          19.5719444760465
+
+
+diff =
+
+      0.000606467603954997
+        0.0203802390182597
+
+
+corrs =
+
+      0.000667369007676883
+    -2.07467514701825e-005
+
+
+vel =
+
+    -4.90590081226325e-006
+         0.364373552172862
+
+
+du =
+
+      0.000333684503838441
+
+
+dv =
+
+     1.03733757350912e-005
+
+*********************************
+R3G
+*********************************
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.364390799173422
+
+Rbar_nom =
+
+          10.9694674756099
+
+
+Rsigma_nom =
+
+        0.0051636569044371
+
+Rbar_du =
+
+          10.9697157192306
+
+
+Rsigma_du =
+
+       0.00610074668511044
+
+Rbar_dv =
+
+          10.9799199443913
+
+
+Rsigma_dv =
+
+       0.00187585114695461
+
+
+M =
+
+           2.4824362073339          104.524687813718
+          9.37089780673334         -32.8780575748249
+
+
+diff =
+
+      -0.00775809944176231
+        0.0051636569044371
+
+
+corrs =
+
+     -0.000268265272227507
+     8.05938868884575e-005
+
+
+vel =
+
+     -0.000268265272227507
+          0.36447139306031
+
+
+du =
+
+      0.000134132636113754
+
+
+dv =
+
+     4.02969434442288e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     -0.000268265272227507
+
+
+v =
+
+          0.36447139306031
+
+Rbar_nom =
+
+          10.9771248170675
+
+
+Rsigma_nom =
+
+       0.00816753559634036
+
+Rbar_du =
+
+          10.9775105889334
+
+
+Rsigma_du =
+
+       0.00416797822699113
+
+Rbar_dv =
+
+          10.9813364634589
+
+
+Rsigma_dv =
+
+       0.00895998717808904
+
+
+M =
+
+          2.87604774653179          104.515281593056
+         -29.8179286207224          19.6653024774805
+
+
+diff =
+
+     -0.000100757984139221
+       0.00816753559634036
+
+
+corrs =
+
+      0.000269655554623269
+    -6.45632156168487e-006
+
+
+vel =
+
+     1.39028239576214e-006
+         0.364464936738749
+
+
+du =
+
+      0.000134827777311635
+
+
+dv =
+
+     3.22816078084243e-006
+
+
+counter =
+
+     3
+
+
+u =
+
+     1.39028239576214e-006
+
+
+v =
+
+         0.364464936738749
+
+Rbar_nom =
+
+          10.9772274461992
+
+
+Rsigma_nom =
+
+      0.000126874045905251
+
+Rbar_du =
+
+          10.9775996022229
+
+
+Rsigma_du =
+
+       0.00400886281225785
+
+Rbar_dv =
+
+           10.977555669256
+
+
+Rsigma_dv =
+
+      0.000296440075986447
+
+
+M =
+
+          2.76023258058094          101.674940947768
+          28.7922032370225          52.5271328142909
+
+
+diff =
+
+     1.87114754979234e-006
+      0.000126874045905251
+
+
+corrs =
+
+     -4.6008324260685e-006
+     1.06498414550324e-007
+
+
+vel =
+
+    -3.21055003030636e-006
+         0.364465043237163
+
+
+du =
+
+     2.30041621303425e-006
+
+
+dv =
+
+     5.32492072751621e-008
+
+
+counter =
+
+     4
+
+
+u =
+
+    -3.21055003030636e-006
+
+
+v =
+
+         0.364465043237163
+
+Rbar_nom =
+
+          10.9772091533243
+
+
+Rsigma_nom =
+
+      0.000212770785520777
+
+Rbar_du =
+
+          10.9772266043946
+
+
+Rsigma_du =
+
+      0.000166242716623204
+
+Rbar_dv =
+
+          10.9772234028929
+
+
+Rsigma_dv =
+
+      0.000213908628160612
+
+
+M =
+
+          7.58604905330554           267.60151605018
+          -20.225935043382          21.3682550043392
+
+
+diff =
+
+    -1.64217273148637e-005
+      0.000212770785520777
+
+
+corrs =
+
+     1.02767509174944e-005
+    -2.29962109939288e-007
+
+
+vel =
+
+     7.06620088718806e-006
+         0.364464813275053
+
+
+du =
+
+     5.13837545874721e-006
+
+
+dv =
+
+     1.14981054969644e-007
+
+
+counter =
+
+     5
+
+
+u =
+
+     7.06620088718806e-006
+
+
+v =
+
+         0.364464813275053
+
+Rbar_nom =
+
+           10.977228667961
+
+
+Rsigma_nom =
+
+       0.00016472455646229
+
+Rbar_du =
+
+           10.977233271446
+
+
+Rsigma_du =
+
+      0.000298268974696393
+
+Rbar_dv =
+
+          10.9772420307693
+
+
+Rsigma_dv =
+
+      0.000169339953665372
+
+
+M =
+
+         0.895902798500156          116.217478423269
+          25.9896185684069          40.1405014443475
+
+
+diff =
+
+     3.09290934907835e-006
+       0.00016472455646229
+
+
+corrs =
+
+    -6.37286353094622e-006
+     2.25143150432705e-008
+
+
+vel =
+
+     6.93337356241834e-007
+         0.364464835789368
+
+
+du =
+
+     3.18643176547311e-006
+
+
+dv =
+
+     1.12571575216352e-008
+
+
+counter =
+
+     6
+
+
+u =
+
+     6.93337356241834e-007
+
+
+v =
+
+         0.364464835789368
+
+Rbar_nom =
+
+          10.9772077836211
+
+
+Rsigma_nom =
+
+      0.000132425264239486
+
+Rbar_du =
+
+          10.9772109149049
+
+
+Rsigma_du =
+
+      0.000117766171940828
+
+Rbar_dv =
+
+          10.9772088552202
+
+
+Rsigma_dv =
+
+      0.000132876476255707
+
+
+M =
+
+         0.982692884368156          95.1926963208969
+         -4.60047268468062           40.082233490527
+
+
+diff =
+
+    -1.77914305954374e-005
+      0.000132425264239486
+
+
+corrs =
+
+     2.79037968999825e-005
+    -1.01157257197218e-007
+
+
+vel =
+
+     2.85971342562244e-005
+         0.364464734632111
+
+
+du =
+
+     1.39518984499913e-005
+
+
+dv =
+
+      5.0578628598609e-008
+
+
+counter =
+
+     7
+
+
+u =
+
+     2.85971342562244e-005
+
+
+v =
+
+         0.364464734632111
+
+Rbar_nom =
+
+          10.9772781726131
+
+
+Rsigma_nom =
+
+      0.000777267784051589
+
+Rbar_du =
+
+           10.977300541863
+
+
+Rsigma_du =
+
+        0.0011929422217326
+
+Rbar_dv =
+
+          10.9772800192287
+
+
+Rsigma_dv =
+
+      0.000777669896614351
+
+
+M =
+
+          1.60331226766911          36.5098011899282
+          29.7933961583038          7.95024645594279
+
+
+diff =
+
+     5.25975614014129e-005
+      0.000777267784051589
+
+
+corrs =
+
+    -2.60089472922514e-005
+    -2.98470459532195e-007
+
+
+vel =
+
+     2.58818696397293e-006
+         0.364464436161651
+
+
+du =
+
+     1.30044736461257e-005
+
+
+dv =
+
+     1.49235229766097e-007
+
+
+counter =
+
+     8
+
+
+u =
+
+     2.58818696397293e-006
+
+
+v =
+
+         0.364464436161651
+
+Rbar_nom =
+
+          10.9771707411968
+
+
+Rsigma_nom =
+
+      0.000101593612247839
+
+Rbar_du =
+
+          10.9771954449204
+
+
+Rsigma_du =
+
+       0.00039432251532845
+
+Rbar_dv =
+
+          10.9771765682128
+
+
+Rsigma_dv =
+
+      0.000104884463799431
+
+
+M =
+
+          1.89963271234559          39.0458470384583
+          22.5098616865451          22.0514389045358
+
+
+diff =
+
+    -5.48338548487237e-005
+      0.000101593612247839
+
+
+corrs =
+
+    -6.18376009132629e-006
+     1.70519358276248e-006
+
+
+vel =
+
+    -3.59557312735336e-006
+         0.364466141355234
+
+
+du =
+
+     3.09188004566315e-006
+
+
+dv =
+
+     8.52596791381238e-007
+
+
+counter =
+
+     9
+
+
+u =
+
+    -3.59557312735336e-006
+
+
+v =
+
+         0.364466141355234
+
+Rbar_nom =
+
+          10.9773384567639
+
+
+Rsigma_nom =
+
+      0.000270932676555444
+
+Rbar_du =
+
+          10.9773543489947
+
+
+Rsigma_du =
+
+      0.000212731772656129
+
+Rbar_dv =
+
+           10.977431733058
+
+
+Rsigma_dv =
+
+      0.000306551999736408
+
+
+M =
+
+           5.1399894257117          109.402586325542
+         -18.8237910396785          41.7774539395806
+
+
+diff =
+
+      0.000112881712249546
+      0.000270932676555444
+
+
+corrs =
+
+     1.09602687791371e-005
+    -1.54674019655934e-006
+
+
+vel =
+
+      7.3646956517837e-006
+         0.364464594615038
+
+
+du =
+
+     5.48013438956853e-006
+
+
+dv =
+
+     7.73370098279668e-007
+
+********************************
+Spherical
+********************************
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.364390799173422
+
+Rbar_nom =
+
+          10.9927711246961
+
+
+Rsigma_nom =
+
+        0.0104572136032151
+
+Rbar_du =
+
+            10.99305350419
+
+
+Rsigma_du =
+
+        0.0106860958082567
+
+Rbar_dv =
+
+          11.0032224622312
+
+
+Rsigma_dv =
+
+        0.0174919524997299
+
+
+M =
+
+          2.82379493818041          104.513375351054
+          2.28882205041612          70.3473889651483
+
+
+diff =
+
+        0.0155455496444699
+        0.0104572136032151
+
+
+corrs =
+
+     1.65197072801195e-005
+     -0.000149188540298258
+
+
+vel =
+
+     1.65197072801195e-005
+         0.364241610633124
+
+
+du =
+
+     8.25985364005973e-006
+
+
+dv =
+
+     7.45942701491289e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     1.65197072801195e-005
+
+
+v =
+
+         0.364241610633124
+
+Rbar_nom =
+
+          10.9772600225255
+
+
+Rsigma_nom =
+
+      0.000494212751308317
+
+Rbar_du =
+
+           10.977282704951
+
+
+Rsigma_du =
+
+       0.00074082615495736
+
+Rbar_dv =
+
+          10.9850332686049
+
+
+Rsigma_dv =
+
+       0.00521127891659451
+
+
+M =
+
+          2.74610501520761          104.207013003307
+          29.8568733049924          63.2363069690987
+
+
+diff =
+
+     3.44474738511735e-005
+      0.000494212751308317
+
+
+corrs =
+
+    -1.67896914652448e-005
+     1.11880973739779e-007
+
+
+vel =
+
+    -2.69984185125395e-007
+         0.364241722514097
+
+
+du =
+
+     8.39484573262242e-006
+
+
+dv =
+
+     5.59404868698897e-008
+
+
+counter =
+
+     3
+
+
+u =
+
+    -2.69984185125395e-007
+
+
+v =
+
+         0.364241722514097
+
+Rbar_nom =
+
+          10.9772255982926
+
+
+Rsigma_nom =
+
+     8.19955909143534e-006
+
+Rbar_du =
+
+          10.9772483715236
+
+
+Rsigma_du =
+
+      0.000242762305597013
+
+Rbar_dv =
+
+          10.9772314138328
+
+
+Rsigma_dv =
+
+     9.66528112827171e-006
+
+
+M =
+
+          2.71276348915276          103.959413657815
+          27.9412813500629          26.2014529878055
+
+
+diff =
+
+     2.32409416156543e-008
+     8.19955909143534e-006
+
+
+corrs =
+
+     -3.0060280064661e-007
+     7.62050624220681e-009
+
+
+vel =
+
+    -5.70586985772005e-007
+         0.364241730134604
+
+
+du =
+
+     1.50301400323305e-007
+
+
+dv =
+
+     3.81025312110341e-009
+
+
+counter =
+
+     4
+
+
+u =
+
+    -5.70586985772005e-007
+
+
+v =
+
+         0.364241730134604
+
+Rbar_nom =
+
+           10.977225567904
+
+
+Rsigma_nom =
+
+      1.7211267813687e-005
+
+Rbar_du =
+
+          10.9772259649899
+
+
+Rsigma_du =
+
+     1.27418598283362e-005
+
+Rbar_dv =
+
+          10.9772259603721
+
+
+Rsigma_dv =
+
+     1.72520746232944e-005
+
+
+M =
+
+          2.64193054906466          103.003156131182
+         -29.7363030266974          10.7097372039132
+
+
+diff =
+
+    -7.14763892517567e-009
+      1.7211267813687e-005
+
+
+corrs =
+
+     5.73523458408256e-007
+    -1.46409252210504e-008
+
+
+vel =
+
+     2.93647263625077e-009
+         0.364241715493678
+
+
+du =
+
+     2.86761729204128e-007
+
+
+dv =
+
+     7.32046261052519e-009
+
+
+counter =
+
+     5
+
+
+u =
+
+     2.93647263625077e-009
+
+
+v =
+
+         0.364241715493678
+
+Rbar_nom =
+
+          10.9772256253406
+
+
+Rsigma_nom =
+
+     7.21576338438958e-007
+
+Rbar_du =
+
+          10.9772264037381
+
+
+Rsigma_du =
+
+     8.64897244278588e-006
+
+Rbar_dv =
+
+          10.9772263944594
+
+
+Rsigma_dv =
+
+     1.07075233019799e-006
+
+
+M =
+
+          2.71444013630344          105.064242546846
+          27.6445400379906          47.6986237532308
+
+
+diff =
+
+     5.02889054843081e-008
+     7.21576338438958e-007
+
+
+corrs =
+
+    -2.64554062824647e-008
+     2.04852865535405e-010
+
+
+vel =
+
+    -2.35189336462139e-008
+         0.364241715698531
+
+
+du =
+
+     1.32277031412323e-008
+
+
+dv =
+
+     1.02426432767702e-010
+
+
+counter =
+
+     6
+
+
+u =
+
+    -2.35189336462139e-008
+
+
+v =
+
+         0.364241715698531
+
+Rbar_nom =
+
+          10.9772255765529
+
+
+Rsigma_nom =
+
+     1.04575573381585e-006
+
+Rbar_du =
+
+          10.9772256114893
+
+
+Rsigma_du =
+
+     8.09758661835912e-007
+
+Rbar_dv =
+
+          10.9772255870998
+
+
+Rsigma_dv =
+
+     1.04853611020407e-006
+
+
+M =
+
+          2.64115408719252          102.970544674128
+         -17.8411224881746          27.1451061321743
+
+
+diff =
+
+     1.50124357389814e-009
+     1.04575573381585e-006
+
+
+corrs =
+
+     5.63919907082127e-008
+    -1.46101179511014e-009
+
+
+vel =
+
+     3.28730570619988e-008
+         0.364241714237519
+
+
+du =
+
+     2.81959953541064e-008
+
+
+dv =
+
+     7.30505897555071e-010
+
+
+counter =
+
+     7
+
+
+u =
+
+     3.28730570619988e-008
+
+
+v =
+
+         0.364241714237519
+
+Rbar_nom =
+
+          10.9772255750861
+
+
+Rsigma_nom =
+
+     1.16296781192618e-006
+
+Rbar_du =
+
+          10.9772256495474
+
+
+Rsigma_du =
+
+     1.91048757698613e-006
+
+Rbar_dv =
+
+          10.9772256502878
+
+
+Rsigma_dv =
+
+     1.17253948403848e-006
+
+
+M =
+
+          2.64084952937111          102.944689282523
+          26.5115579596334          13.1027992304071
+
+
+diff =
+
+     3.43938211244676e-011
+     1.16296781192618e-006
+
+
+corrs =
+
+    -4.44295816835021e-008
+     1.13942202240267e-009
+
+
+vel =
+
+    -1.15565246215032e-008
+         0.364241715376941
+
+
+du =
+
+      2.2214790841751e-008
+
+
+dv =
+
+     5.69711011201336e-010
+
+
+counter =
+
+     8
+
+
+u =
+
+    -1.15565246215032e-008
+
+
+v =
+
+         0.364241715376941
+
+Rbar_nom =
+
+          10.9772255749843
+
+
+Rsigma_nom =
+
+     8.16948118382033e-007
+
+Rbar_du =
+
+          10.9772256337212
+
+
+Rsigma_du =
+
+     7.66466774870138e-007
+
+Rbar_dv =
+
+          10.9772256337035
+
+
+Rsigma_dv =
+
+     8.35252152687344e-007
+
+
+M =
+
+          2.64404493096073          103.068368044766
+         -2.27242038295581          32.1286300342234
+
+
+diff =
+
+    -6.73896494163273e-011
+     8.16948118382033e-007
+
+
+corrs =
+
+     2.63825560669727e-007
+    -6.76734540314352e-009
+
+
+vel =
+
+     2.52269036048224e-007
+         0.364241708609596
+
+
+du =
+
+     1.31912780334864e-007
+
+
+dv =
+
+     3.38367270157176e-009
+
+
+counter =
+
+     9
+
+
+u =
+
+     2.52269036048224e-007
+
+
+v =
+
+         0.364241708609596
+
+Rbar_nom =
+
+          10.9772255750431
+
+
+Rsigma_nom =
+
+     7.55385265157547e-006
+
+Rbar_du =
+
+          10.9772259443238
+
+
+Rsigma_du =
+
+     1.14928797544074e-005
+
+Rbar_dv =
+
+          10.9772259442703
+
+
+Rsigma_dv =
+
+     7.54330863743547e-006
+
+
+M =
+
+          2.79943022139418          109.120231469121
+          29.8608451192723         -3.11614481362336
+
+
+diff =
+
+     -8.5265128291212e-012
+     7.55385265157547e-006
+
+
+corrs =
+
+    -2.52293036029048e-007
+     6.47254195405281e-009
+
+
+vel =
+
+    -2.39999808245777e-011
+         0.364241715082138
+
+
+du =
+
+     1.26146518014524e-007
+
+
+dv =
+
+      3.2362709770264e-009
+
+************************************
+Scalar
+************************************
+
+counter =
+
+     1
+
+
+u =
+
+     0
+
+
+v =
+
+         0.364390799173422
+
+Rbar_nom =
+
+          10.9845974806487
+
+
+Rsigma_nom =
+
+       0.00496090561692143
+
+Rbar_du =
+
+          10.9848817614574
+
+
+Rsigma_du =
+
+       0.00562175836122832
+
+Rbar_dv =
+
+          10.9950531676303
+
+
+Rsigma_dv =
+
+        0.0119998097488822
+
+
+M =
+
+          2.84280808736881          104.556869816115
+          6.60852744306896          70.3890413196082
+
+
+diff =
+
+       0.00737190559699208
+       0.00496090561692143
+
+
+corrs =
+
+     4.16825724713476e-007
+    -7.05175142054314e-005
+
+
+vel =
+
+     4.16825724713476e-007
+         0.364320281659216
+
+
+du =
+
+     2.08412862356738e-007
+
+
+dv =
+
+     3.52587571027157e-005
+
+
+counter =
+
+     2
+
+
+u =
+
+     4.16825724713476e-007
+
+
+v =
+
+         0.364320281659216
+
+Rbar_nom =
+
+          10.9772373310456
+
+
+Rsigma_nom =
+
+     1.37674713815269e-005
+
+Rbar_du =
+
+          10.9772378910305
+
+
+Rsigma_du =
+
+     1.93430048669631e-005
+
+Rbar_dv =
+
+          10.9809169985948
+
+
+Rsigma_dv =
+
+        0.0024823005131958
+
+
+M =
+
+          2.68690176111501          104.361805451768
+          26.7523483070473          70.0119131999733
+
+
+diff =
+
+     1.17559939027956e-005
+     1.37674713815269e-005
+
+
+corrs =
+
+    -2.35708043538397e-007
+    -1.06577971676081e-007
+
+
+vel =
+
+     1.81117681175079e-007
+         0.364320175081245
+
+
+du =
+
+     1.17854021769198e-007
+
+
+dv =
+
+     5.32889858380407e-008
+
+
+counter =
+
+     3
+
+
+u =
+
+     1.81117681175079e-007
+
+
+v =
+
+         0.364320175081245
+
+Rbar_nom =
+
+          10.9772255917791
+
+
+Rsigma_nom =
+
+     5.15509145784517e-006
+
+Rbar_du =
+
+          10.9772259384877
+
+
+Rsigma_du =
+
+      8.6829232132987e-006
+
+Rbar_dv =
+
+          10.9772311353387
+
+
+Rsigma_dv =
+
+     6.07166196917602e-006
+
+
+M =
+
+          2.94184809819122          104.028242780512
+          29.9339106336339          17.1999991539818
+
+
+diff =
+
+     1.67274336604351e-008
+     5.15509145784517e-006
+
+
+corrs =
+
+    -1.74966453553463e-007
+     4.78713550918863e-009
+
+
+vel =
+
+     6.15122762161621e-009
+          0.36432017986838
+
+
+du =
+
+     8.74832267767314e-008
+
+
+dv =
+
+     2.39356775459431e-009
+
+
+counter =
+
+     4
+
+
+u =
+
+     6.15122762161621e-009
+
+
+v =
+
+          0.36432017986838
+
+Rbar_nom =
+
+          10.9772255870789
+
+
+Rsigma_nom =
+
+     5.73489376504808e-007
+
+Rbar_du =
+
+          10.9772258220713
+
+
+Rsigma_du =
+
+     2.56670308701398e-006
+
+Rbar_dv =
+
+          10.9772258413223
+
+
+Rsigma_dv =
+
+     6.54501059312709e-007
+
+
+M =
+
+          2.68614271880548          106.219417659376
+           22.783952809561          33.8455774449686
+
+
+diff =
+
+     1.20272218850914e-008
+     5.73489376504808e-007
+
+
+corrs =
+
+    -2.59784694948084e-008
+     5.43729725381341e-010
+
+
+vel =
+
+    -1.98272418731921e-008
+          0.36432018041211
+
+
+du =
+
+     1.29892347474042e-008
+
+
+dv =
+
+     2.71864862690671e-010
+
+
+counter =
+
+     5
+
+
+u =
+
+    -1.98272418731921e-008
+
+
+v =
+
+          0.36432018041211
+
+Rbar_nom =
+
+           10.977225573387
+
+
+Rsigma_nom =
+
+     1.06109083378089e-006
+
+Rbar_du =
+
+          10.9772256083219
+
+
+Rsigma_du =
+
+     7.64364616751336e-007
+
+Rbar_dv =
+
+          10.9772256014154
+
+
+Rsigma_dv =
+
+     1.06615373997509e-006
+
+
+M =
+
+          2.68952522824601          103.096760814427
+         -22.8440106595849          18.6228780876583
+
+
+diff =
+
+    -1.66465774498192e-009
+     1.06109083378089e-006
+
+
+corrs =
+
+     4.54950334707458e-008
+    -1.17070004509391e-009
+
+
+vel =
+
+     2.56677915975537e-008
+          0.36432017924141
+
+
+du =
+
+     2.27475167353729e-008
+
+
+dv =
+
+     5.85350022546953e-010
+
+
+counter =
+
+     6
+
+
+u =
+
+     2.56677915975537e-008
+
+
+v =
+
+          0.36432017924141
+
+Rbar_nom =
+
+          10.9772255748184
+
+
+Rsigma_nom =
+
+     7.26508403298528e-007
+
+Rbar_du =
+
+          10.9772256359466
+
+
+Rsigma_du =
+
+     1.27913252328433e-006
+
+Rbar_dv =
+
+          10.9772256352136
+
+
+Rsigma_dv =
+
+     7.33407762555621e-007
+
+
+M =
+
+          2.68724417705675          103.177832638963
+          24.2938218889826          11.7867241673167
+
+
+diff =
+
+    -2.33219665801698e-010
+     7.26508403298528e-007
+
+
+corrs =
+
+    -3.02889029597349e-008
+     7.91128246116711e-010
+
+
+vel =
+
+    -4.62111136218124e-009
+         0.364320180032538
+
+
+du =
+
+     1.51444514798675e-008
+
+
+dv =
+
+     3.95564123058356e-010
+
+
+counter =
+
+     7
+
+
+u =
+
+    -4.62111136218124e-009
+
+
+v =
+
+         0.364320180032538
+
+Rbar_nom =
+
+          10.9772255750695
+
+
+Rsigma_nom =
+
+     7.13951472473995e-007
+
+Rbar_du =
+
+          10.9772256157506
+
+
+Rsigma_du =
+
+     5.66413876820269e-007
+
+Rbar_dv =
+
+          10.9772256158832
+
+
+Rsigma_dv =
+
+     7.22851005957852e-007
+
+
+M =
+
+          2.68620804086322          103.178438209566
+         -9.74202306698647          22.4983333044707
+
+
+diff =
+
+     1.78115300286663e-011
+     7.13951472473995e-007
+
+
+corrs =
+
+     6.91290013287167e-008
+     -1.7999176376257e-009
+
+
+vel =
+
+     6.45078899665355e-008
+          0.36432017823262
+
+
+du =
+
+     3.45645006643584e-008
+
+
+dv =
+
+     8.99958818812848e-010
+
+
+counter =
+
+     8
+
+
+u =
+
+     6.45078899665355e-008
+
+
+v =
+
+          0.36432017823262
+
+Rbar_nom =
+
+          10.9772255751002
+
+
+Rsigma_nom =
+
+     1.72643503513985e-006
+
+Rbar_du =
+
+          10.9772256679568
+
+
+Rsigma_du =
+
+     2.72779970997538e-006
+
+Rbar_dv =
+
+          10.9772256679534
+
+
+Rsigma_dv =
+
+     1.72598251494281e-006
+
+
+M =
+
+          2.68647195145951          103.174951840323
+          28.9708994948134        -0.502823226546013
+
+
+diff =
+
+     4.85584905618452e-011
+     1.72643503513985e-006
+
+
+corrs =
+
+    -5.95651306656209e-008
+     1.55048770534176e-009
+
+
+vel =
+
+     4.94275930091459e-009
+         0.364320179783108
+
+
+du =
+
+     2.97825653328104e-008
+
+
+dv =
+
+     7.75243852670882e-010
+
+
+counter =
+
+     9
+
+
+u =
+
+     4.94275930091459e-009
+
+
+v =
+
+         0.364320179783108
+
+Rbar_nom =
+
+          10.9772255750667
+
+
+Rsigma_nom =
+
+     5.79683693177403e-007
+
+Rbar_du =
+
+          10.9772256550552
+
+
+Rsigma_du =
+
+     9.30656311822847e-007
+
+Rbar_dv =
+
+          10.9772256550282
+
+
+Rsigma_dv =
+
+     5.98857203920997e-007
+
+
+M =
+
+          2.68574920468185          103.143590924758
+          11.7844992438845          24.7322319003714
+
+
+diff =
+
+     1.50581769275959e-011
+     5.79683693177403e-007
+
+
+corrs =
+
+    -5.20335866478269e-008
+      1.3547531603893e-009
+
+
+vel =
+
+    -4.70908273469123e-008
+         0.364320181137861
+
+
+du =
+
+     2.60167933239134e-008
+
+
+dv =
+
+     6.77376580194652e-010
+
+
+ans =
+
+1:38:10.687
+

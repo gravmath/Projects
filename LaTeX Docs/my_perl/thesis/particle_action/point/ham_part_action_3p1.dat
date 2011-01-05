@@ -1,0 +1,31 @@
+#pro
+# ham_part_action_3p1.dat
+# key Pa3
+#end
+
+While the form of the point-particle action $ I_{pp} $ in #ref(Pa1_1) is
+convenient for deriving the particle geodesics, it is not in a form compatible
+with the ADM field action.  
+
+To convert, the action we use the splitting relations in #ref(XXXX).  In 
+addition, we take the path parameter $ #l $ to be coordinate time
+so that $ d #l = d #zpos(0) $.  With these identifications, $ I_{pp} $
+becomes
+#be(Pa3_1)
+  I_{pp} = #lint #lp #uvel(0) + #zdot(i) #uvel(i) - #L #Ham #rp
+#ee
+where the Hamiltonian now takes the form
+#bea(Pa3_2)
+  #Ham #ae #1_2(1) #lb - \frac{ #uvel(0) ^2 }{ #lapse ^2 } 
+                     + \frac{ 2 #uvel(0) #shiftu(i) #uvel(i) }{ #lapse ^2 }
+                     + #lp #3ig(i,j) - \frac{ #shiftu(i) #shiftu(j) }
+                                            { #lapse ^2} #rp 
+                                            #uvel(i) #uvel(j) + 1 #rb #nn \\
+       #ae #1_2(1) #lb #3ig(i,j) #uvel(i) #uvel(j) 
+           -\frac{ #lp #shiftu(i) #uvel(i) - #uvel(0) #rp ^2}{ #lapse ^2 } 
+           + 1 #rb
+#eea
+As before, the individual variations must be taken with respect to
+$ #uvel(0) $, $ #uvel(i) $, $ #zpos(i) $, and $ #L $.
+
+                     

@@ -1,0 +1,18 @@
+#pro
+# var_pp3p1_u0.dat
+# key Pav5
+#end
+
+In this section, we take the variation of $ I_{pp} $ with respect to
+$ #uvel(0) $ to get
+#bea(Pav5_1)
+  #fvar(I_{pp},#uvel(0)) #ae   #lint #lp #var #uvel(0) 
+                             - #L #fvar(#Ham,#uvel(0)) #rp #nn \\
+                         #ae #lint #var #uvel(0) #lp 1 - 
+                             \frac{ #shiftu(i) #uvel(i) - #uvel(0) }
+                                  { #lapse ^2 } #rp
+#eea
+Setting this variation to zero yields the equation
+#be(Pav5_2)
+  #shiftu(i) #uvel(i) - #uvel(0) =  #lapse ^2
+#ee

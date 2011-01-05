@@ -1,0 +1,32 @@
+Field definition file for the Schwarzschild Smoothing Simulations
+
+Input the number of grid points in the x-direction
+110
+Input the number of grid points in the y-direction
+110
+Input the number of grid points in the z-direction
+110
+Input the fields x-direction's spatial extent
+-11
+11
+Input the fields y-direction's spatial extent
+-11
+11
+Input the fields z-direction's spatial extent
+-11
+11
+Smoothing method from particle to grid (not implemented)
+0
+Smoothing kernel from grid to particle (0 - CWM)
+0
+Smoothing radius (0 for one-cell)
+2
+Dependency of the derivatives of the fields (0 - indep; 1 - dep)
+0
+Input the Taylor series order for the basic fields
+0
+Input the Taylor series order for the first derivatives of the basic fields
+0
+
+
+

@@ -1,0 +1,34 @@
+#pro
+# ham_part_action.dat
+# key Pa1
+#end
+
+In this section, I present a Hamiltonian variational principle
+for geodesic motion.  Since our ultimate aim is use 
+this action as a model for the motion of a point-particle, we
+will hereafter refer to any action describing geodesic motion
+as the `point-particle' action and we will denote it 
+as $ I_{pp} $.
+
+The proposed variational principle is 
+given by
+#be(Pa1_1)
+  I_{pp} = #lint m #lp #zdot(#m) #uvel(#m) - #L #Ham #rp #ec
+#ee
+where $ #zpos(#m) #lp #l #rp  $ gives the coordinates of the particle 
+parametrized by the path parameter $ #l $ and 
+$ #zdot(#m) #def \frac{ d {z^ #m } }{ d #l } $.  
+The 4-velocity is given by $ #uvel(#m) $ and the Hamiltonian $ #mc(H) $ 
+takes the form
+#be(Pa1_2)
+  #Ham = #1_2(1) #lp #4ig(#m,#n) #uvel(#m) #uvel(#n) + 1 #rp
+#ee
+The functions to be varied in #ref(Pa1_1) are $ #L $, $ #zpos(#m) $, 
+and $ #uvel(#m) $.
+
+As can be seen in #ref(Pa1_1), $ I_{pp} $ is invariant under changes 
+to the path parameter $ #l $ with $ #L $, which acts as a Lagrange multiplier
+that enforces 4-velocity normalization, adjusting under each 
+re-parametrization.
+
+

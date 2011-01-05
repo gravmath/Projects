@@ -1,0 +1,25 @@
+#pro
+# var_pp3p1_ui.dat
+# key Pav6
+#end
+
+In this section, we take the variation of $ I_{pp} $ with respect to
+$ #uvel(i) $ to get
+#bea(Pav6_1)
+  #fvar(I_{pp},#uvel(i)) #ae   #lint #lp #var #uvel(i) #zdot(i) 
+   			     - #L #fvar(#Ham,#uvel(i)) #rp #nn \\
+   			 #ae   #lint #lb #var #uvel(i) #zdot(i) 
+   			     - #1_2(#L) #lp 
+   			        2 #3ig(i,j) #var #uvel(i) #uvel(j)
+   			        - 2 
+   			        \frac{ #shiftu(k) #uvel(k) - #uvel(0) }
+   			        { #lapse ^2 } #shiftu(i) #var #uvel(i) #rp #rb #nn \\
+   			 #ae #lint #var #uvel(i) #lb #zdot(i) + 
+   			 \frac{ #shiftu(k) #uvel(k) - #uvel(0) }{ #lapse ^2 } #shiftu(i)
+   			 - #3ig(i,j) #uvel(j) #rb
+#eea   
+Setting the variation equal to zero and using #ref(Pav5_2) yields
+#be(Pav6_2)
+  #zdot(i) = #shiftu(i) - #3ig(i,j) #uvel(j)
+#ee
+  

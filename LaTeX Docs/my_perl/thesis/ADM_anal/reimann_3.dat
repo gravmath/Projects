@@ -1,0 +1,92 @@
+%reimann_3.dat
+To complete the study of the spatial hypersurface, the 3-dimensional Riemann
+tensor must be defined in terms of the spatial covariant derivative $D_a$ which
+takes the form
+\[
+   D_a {T^{b_1 \ldots b_k}}_{c_1 \ldots c_m} = {h^{b_1}}_{s_1}
+                                               \ldots {h_{c_m}}^{t_m} {h_a}^{d}
+                                               \nabla_d
+                                               {T^{s_1 \ldots s_k}}_{t_1 \ldots t_m}
+\]
+on the spatial slice.  That this is a good definition of a covariant derivative
+is seen from its application to the 3-metric which yields
+\[
+   D_a h_{bc} = {h_a}^{r} {h_b}^s {h_c}^t \nabla_r
+                \left( g_{st} + n_s n_t \right) = 0
+\]
+since $g_{ab}$ is covariantly constant and since ${h_a}^b n_b = 0$.  The
+3-dimensional Riemann tensor is then defined by
+\begin{equation}\label{eq:3_d_Riemann}
+   {}^{(3)}{R^c}_{dab} V^d = \left( D_{a}D_{b} - D_{b}D_{a} \right) V^c
+\end{equation}
+which is exactly the same form as in 4-dimensional spacetime.  To achieve the
+3+1 decomposition, the spatial Riemann must be related to the spacetime Riemann.
+This process starts with the term
+\begin{eqnarray*}
+D_b V^c & = & {h_b}^a {h^c}_e \nabla _a V^e \\
+        & = & {h_b}^a \left( {\delta ^c}_e + n^c n_e  \right) \nabla _a V^e \\
+        & = & {h_b}^a {\delta ^c}_e \nabla _a V^e + {h_b}^a n^c n_e \nabla _a V^e \\
+        & = & {h_b}^a \nabla _a V^c - {h_b}^a n^c V^e \nabla _a n_e \\
+        & = & {h_b}^a \nabla _a V^c - {h_b}^a n^c V^e
+              \left( -K_{ae} - n_a a_e \right) \\
+        & = & {h_b}^a \nabla _a V^c + K_{be} n^c V^e \.
+\end{eqnarray*}
+The next step involves a repeated application of the 3-dimensional covariant
+derivative which when expanded yields
+\begin{eqnarray*}
+  D_a \left( D_b \, V^c \right) & = &   D_a \left({h_b}^d \nabla _d V^c \right)
+                                   + D_a \left(K_{bd} V^d n^c \right) \\
+                             & = &   {h_b}^d {h_a}^e {h_d}^f {h^c}_g
+                                     \nabla _e \nabla _f V^g
+                                   + D_a \left(K_{bd} V^d n^c \right) \\
+                             & = &   {h_b}^f {h_a}^e {h^c}_g
+                                     \nabla _e \nabla _f V^g
+                                   + D_a \left(K_{bd} V^d n^c \right) \,.
+\end{eqnarray*}
+The last term can be simplified
+\begin{eqnarray*}
+  D_a \left( K_{bd} V^d n^c \right) & = & {h_a}^p {h_b}^q {h^c}_r
+                                          \nabla _p
+                                          \left( K_{qd} V^d n^r \right) \\
+                                    & = & {h_a}^p {h_b}^q {h^c}_r
+                                          K_{qd} V^d \nabla _p n^r \\
+                                    & = & K_{bd} {h_a}^p {h^c}_r V^d
+                                          \left(-{K_p}^r - n_p a^r \right) \\
+                                    & = & -K_{bd}{K_a}^c V^d \, ,
+\end{eqnarray*}
+where ${h^c}_r n^r = 0$ was used to eliminate two terms.
+To complete the evaluation of the 3-dimensional Riemann, the above expressions
+must be anti-symmetrized over $a$ and $b$ giving
+\begin{eqnarray*}
+ \left( D_{a}D_{b} - D_{b}D_{a} \right) V^c & = & {h_b}^f {h_a}^e {h^c}_g
+                                                 \left(   \nabla _e \nabla _f
+                                                        - \nabla _f \nabla _e
+                                                 \right)  V^g \\
+                                            &    &
+                                                 +
+                                                 \left(   K_{ad} {K_b}^c
+                                                        - K_{bd} {K_a}^c
+                                                 \right) V^d \.
+\end{eqnarray*}
+Substituting in the definitions of the 3- and 4-dimensional Riemann tensors
+gives
+\begin{eqnarray*}
+ {}^{(3)} {R^c}_{dab} V^d & = & {h_b}^f {h_a}^e {h^c}_g \, {}^{(4)} {R^g}_{mef} V^m \\
+                                            &    &
+                                                 +
+                                                 \left(   K_{ad} {K_b}^c
+                                                        - K_{bd} {K_a}^c
+                                                 \right) V^d \.
+\end{eqnarray*}
+
+\begin{eqnarray}\label{eq:gauss}
+ {}^{(3)} {R^c}_{dab} & = & {h_b}^f {h_a}^e {h^c}_g {h_d}^m
+                            \, {}^{(4)} {R^g}_{mef} \nonumber \\
+                      &   &
+                            +
+                            \left(   K_{ad} {K_b}^c
+                                   - K_{bd} {K_a}^c
+                            \right) \nonumber \\
+                       & = & \perp {R^c}_{dab} + K_{ad}{K_b}^c - K_{bd}{K_a}^{c} \, .
+\end{eqnarray}
+between the spatial and spacetime Riemann tensors.

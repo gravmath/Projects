@@ -1,0 +1,886 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epic,eepic,graphicx,url,amsmath,amssymb,latexsym,alltt}
+\begin{document}
+\title{Blah}
+\author{Blah}
+\maketitle
+
+\section{Spacetime Slicing}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  constant_t_surface.dat
+  key St1
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Define a one-form $ {\tilde \Omega} $ corresponding to surfaces of constant time $t$ by
+taking the covariant derivative of the time coordinate
+\begin{equation}\label{St1_1}
+{ \Omega } _ { a } = {\nabla}_{a} t \doteq \left( \begin{array}{cccc  } 
+ 1 & 0 & 0 & 0             \end{array} \right)
+\end{equation}
+subject to the condition that $ { \Omega } _ { a } $ be timelike
+\begin{equation}\label{St1_2} \nonumber
+{ \Omega } ^ { a } { \Omega } _ { a } = { g } ^ { 00 } \equiv \frac{-1}{ \alpha ^2}
+\end{equation}
+Introduce the normalized one-form
+\begin{equation}\label{St1_3} \nonumber
+{ \omega } ^ { a } { \omega } _ { a } = -1
+\end{equation}
+via the definition
+\begin{equation}\label{St1_4} \nonumber
+{ \omega } _ { a } = \alpha { \Omega } _ { a }
+\end{equation}
+
+A normalized unit-vector $ {n ^ a} $ orthogonal to a constant-$t$ slice can be
+constructed by
+\begin{equation}\label{St1_4} \nonumber
+{n ^ a} = - {g}^{a b} { \omega } _ { b }
+\end{equation}
+\section{Hamiltonian Formulation for a Single Point Particle}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  ham_part_action.dat
+  key Pa1
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this section, I present a Hamiltonian variational principle
+for geodesic motion. Since our ultimate aim is use
+this action as a model for the motion of a point-particle, we
+will hereafter refer to any action describing geodesic motion
+as the `point-particle' action and we will denote it
+as $ I_{pp} $.
+
+The proposed variational principle is
+given by
+\begin{equation}\label{Pa1_1}
+I_{pp} = \int d \lambda m \left( {\dot z}^{\mu} {u}_{\mu} - \Lambda \mathcal{H} \right) \quad ,
+\end{equation}
+where $ {z ^ \mu} \left( \lambda \right) $ gives the coordinates of the particle
+parametrized by the path parameter $ \lambda $ and
+$ {\dot z}^{\mu} \equiv \frac{ d {z^ \mu } }{ d \lambda } $.
+The 4-velocity is given by $ {u}_{\mu} $ and the Hamiltonian $ \mathcal{ H } $
+takes the form
+\begin{equation}\label{Pa1_2}
+\mathcal{H} = \frac{1}{2} \left( {g}^{\mu \nu} {u}_{\mu} {u}_{\nu} + 1 \right)
+\end{equation}
+The functions to be varied in Eq. (\ref{Pa1_1}) are $ \Lambda $, $ {z ^ \mu} $,
+and $ {u}_{\mu} $.
+
+As can be seen in Eq. (\ref{Pa1_1)}) $ I_{pp} $ is invariant under changes
+to the path parameter $ \lambda $ with $ \Lambda $, which acts as a Lagrange multiplier
+that enforces 4-velocity normalization, adjusting under each
+re-parametrization.
+
+
+\subsection{Variation With Respect To $ \Lambda $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp_L.dat
+  key Pav1
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+To begin, we consider the variation of $ I_{pp} $ with respect to the
+Lagrange multiplier $ \Lambda $
+\begin{equation}\label{Pav1_1}
+{ \delta I_{pp} } |_{\delta \Lambda } = \int d \lambda \mathcal{H} \delta \Lambda
+\end{equation}
+Since $ \delta \Lambda $ is arbitrary this leads immediately to the equation
+\begin{equation}\label{Pav1_2}
+\mathcal{ H } = {g}^{\mu \nu} {u}_{\mu} {u}_{\nu} + 1 = 0
+\end{equation}
+which garuentees the normalization of the 4-velocity.
+
+\subsection{Variation With Respect To $ u_\alpha $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp_u.dat
+  key Pav3
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Next we consider the variation of $ I_{pp} $ with respect to $ {u}_{\alpha} $
+\begin{equation}\label{Pav3_1}
+{ \delta I_{pp} } |_{\delta {u}_{\alpha} } = \int d \lambda \left( {\dot z}^{\alpha}
+- \Lambda {g}^{\alpha \mu} {u}_{\mu} \right) \delta {u}_{\alpha}
+\end{equation}
+Setting the variation equal to zero yields
+\begin{equation}\label{Pav3_2}
+{\dot z}^{\alpha} = \Lambda {g}^{\alpha \mu} {u}_{\mu}
+\end{equation}
+\subsection{Variation With Respect To $ z ^ \mu $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp_z.dat
+  key Pav2
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Finally we consider the variation of $ I_{pp} $ with respect to
+the particle position $ {z ^ \mu} $
+\begin{equation}\label{Pav2_1}
+{ \delta I_{pp} } |_{\delta {z ^ \alpha} } = \int d \lambda \left( {u}_{\alpha} \delta {\dot z}^{\alpha}
+- \frac{\Lambda}{2}
+{ \delta {g}^{\mu \nu} } |_{\delta {z ^ \alpha} } {u}_{\mu} {u}_{\nu} \right)
+\end{equation}
+Since the metric $ {g}^{\mu \nu} $ depends only on the particle position
+$ {z ^ \mu} $ the corresponding variational derivative is equivalent to the
+partial derivative $ \frac{\partial {g}^{\mu \nu}}{\partial {z ^ \alpha}} $.
+
+The next step is to integrate the first term by parts which yields
+\begin{equation}\label{Pav2_2}
+{ \delta I_{pp} } |_{\delta {z ^ \alpha} } = - \int d \lambda \left( \frac{ d }{d \lambda} {u}_{\alpha}
++ \frac{\Lambda}{2}
+\frac{\partial {g}^{\mu \nu}}{\partial {z ^ \alpha}} {u}_{\mu} {u}_{\nu} \right) \delta {z ^ \alpha}
+\end{equation}
+Since the variation $ \delta {z ^ \alpha} $ is arbitrary its coefficient must
+be zero, which results in
+\begin{equation}\label{Pav2_3}
+\frac{ d }{d \lambda} {u}_{\alpha} + \frac{\Lambda}{2} \frac{\partial {g}^{\mu \nu}}{\partial {z ^ \alpha}} {u}_{\mu} {u}_{\nu} = 0
+\end{equation}
+\subsection{Obtaining the Geodesic Equations}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  ham_geodesic_eqs.dat
+  key Pav3_2
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In order for Eq. (\ref{Pav3_2}) to be consistent with the
+interpretation of $ {u}_{\alpha} $ as a 4-velocity, we must
+make the identification
+\begin{equation}\label{Pa2_1}
+\frac{1}{ \Lambda } \frac{ d }{d \lambda} = \frac{ d }{d \tau}
+\end{equation}
+Multiplying Eq. (\ref{Pav3_2}) by $ {g}_{\mu \nu} {\dot z}^{\nu} $ yields
+\begin{equation}\label{Pa2_2}
+{g}_{\mu \nu} {\dot z}^{\mu} {\dot z}^{\nu} = \Lambda ^2 {g}^{\mu \nu} {u}_{\mu} {u}_{\nu}
+\end{equation}
+Using Eq. (\ref{Pav1_2}) , Eq. (\ref{Pa2_2}) becomes
+\begin{equation}\label{Pa2_3}
+\Lambda ^2 = - {g}_{\mu \nu} {\dot z}^{\mu} {\dot z}^{\nu}
+\end{equation}
+or equivalently
+\begin{equation}\label{Pa2_4}
+\Lambda = \sqrt{ - {g}_{\mu \nu} {\dot z}^{\mu} {\dot z}^{\nu} }
+\end{equation}
+where the positive root is picked so that $ \frac{ d }{d \lambda} $ and
+$ \frac{ d }{d \tau} $ are both future-pointing.
+Combining Eq. (\ref{Pa2_1}) with Eq. (\ref{Pav2_3}) yields
+\begin{equation}\label{Pa2_5}
+\frac{ d {u}_{\alpha}}{d \tau} + \frac{1}{2} \frac{\partial {g}^{\mu \nu}}{\partial {z ^ \alpha}} {u}_{\mu} {u}_{\nu} = 0
+\end{equation}
+which is the usual form of the geodesic equation for the
+4-velocity.
+\section{ADM-Like Hamiltonian Formulation for a Single Point Particle}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  ham_part_action_3p1.dat
+  key Pa3
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+While the form of the point-particle action $ I_{pp} $ in Eq. (\ref{Pa1_1}) is
+convenient for deriving the particle geodesics, it is not in a form compatible
+with the ADM field action.
+
+To convert, the action we use the splitting relations in Eq. (\ref{XXXX)}) In
+addition, we take the path parameter $ \lambda $ to be coordinate time
+so that $ d \lambda = d {z ^ 0} $. With these identifications, $ I_{pp} $
+becomes
+\begin{equation}\label{Pa3_1}
+I_{pp} = \int d \lambda \left( {u}_{0} + {\dot z}^{i} {u}_{i} - \Lambda \mathcal{H} \right)
+\end{equation}
+where the Hamiltonian now takes the form
+\begin{eqnarray}\label{Pa3_2}
+\mathcal{H} & = & \frac{1}{2} \left[ - \frac{ {u}_{0} ^2 }{ \alpha ^2 }
++ \frac{ 2 {u}_{0} {\beta}^{i} {u}_{i} }{ \alpha ^2 }
++ \left( {\gamma}^{i j} - \frac{ {\beta}^{i} {\beta}^{j} }
+{ \alpha ^2} \right)
+{u}_{i} {u}_{j} + 1 \right] \nonumber \\
+& = & \frac{1}{2} \left[ {\gamma}^{i j} {u}_{i} {u}_{j}
+-\frac{ \left( {\beta}^{i} {u}_{i} - {u}_{0} \right) ^2}{ \alpha ^2 }
++ 1 \right]
+\end{eqnarray}
+As before, the individual variations must be taken with respect to
+$ {u}_{0} $, $ {u}_{i} $, $ {z ^ i} $, and $ \Lambda $.
+
+
+\subsection{Variation With Respect to $ \Lambda $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp3p1_L.dat
+  key Pav4
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Taking the variation of Eq. (\ref{Pa3_1}) with respect to $ \Lambda $ yields
+\begin{equation}\label{Pav4_1}
+{ \delta I_{pp} } |_{\delta \Lambda } = \int d \lambda \mathcal{H} \delta \Lambda
+\end{equation}
+which, when set equal to zero yields
+\begin{equation}\label{Pav4_2}
+\frac{1}{2} \left[ {\gamma}^{i j} {u}_{i} {u}_{j}
+-\frac{ \left( {\beta}^{i} {u}_{i} - {u}_{0} \right) ^2}{ \alpha ^2 }
++ 1 \right] = 0
+\end{equation}
+Solving Eq. (\ref{Pav4_2}) for $ {u}_{0} $ yields the 3+1 equivalent of
+the normalization condition Eq. (\ref{XXXX})
+\begin{equation}\label{Pav4_3}
+{u}_{0} = - {\beta}^{i} {u}_{i} + \alpha
+\sqrt{ 1 + {\gamma}^{i j} {u}_{i} {u}_{j} }
+\end{equation}
+where the sign on the square-root is chosen so that $ {u}_{0} $ is
+future-pointing.
+
+The radical term is analogous to the Lorentz contraction familar from
+special relativity. It will often be written as
+\begin{equation}\label{Pav4_4}
+\sqrt{ 1 + \| {u}_{} \| ^ 2 }
+\end{equation}
+where the 3-norm of $ {u}_{i} $ with respect to the three-metric
+$ {\gamma}_{i j} $ is defined by $ \| {u}_{} \| ^2 = {\gamma}^{i j}
+{u}_{i} {u}_{j} $.
+\subsection{Variation With Respect to $ u_0 $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp3p1_u0.dat
+  key Pav5
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this section, we take the variation of $ I_{pp} $ with respect to
+$ {u}_{0} $ to get
+\begin{eqnarray}\label{Pav5_1}
+{ \delta I_{pp} } |_{\delta {u}_{0} } & = & \int d \lambda \left( \delta {u}_{0}
+- \Lambda { \delta \mathcal{H} } |_{\delta {u}_{0} } \right) \nonumber \\
+& = & \int d \lambda \delta {u}_{0} \left( 1 -
+\frac{ {\beta}^{i} {u}_{i} - {u}_{0} }
+{ \alpha ^2 } \right)
+\end{eqnarray}
+Setting this variation to zero yields the equation
+\begin{equation}\label{Pav5_2}
+{\beta}^{i} {u}_{i} - {u}_{0} = \alpha ^2
+\end{equation}
+\subsection{Variation With Respect to $ u_i $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp3p1_ui.dat
+  key Pav6
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this section, we take the variation of $ I_{pp} $ with respect to
+$ {u}_{i} $ to get
+\begin{eqnarray}\label{Pav6_1}
+{ \delta I_{pp} } |_{\delta {u}_{i} } & = & \int d \lambda \left( \delta {u}_{i} {\dot z}^{i}
+- \Lambda { \delta \mathcal{H} } |_{\delta {u}_{i} } \right) \nonumber \\
+& = & \int d \lambda \left[ \delta {u}_{i} {\dot z}^{i}
+- \frac{\Lambda}{2} \left(
+2 {\gamma}^{i j} \delta {u}_{i} {u}_{j}
+- 2
+\frac{ {\beta}^{k} {u}_{k} - {u}_{0} }
+{ \alpha ^2 } {\beta}^{i} \delta {u}_{i} \right) \right] \nonumber \\
+& = & \int d \lambda \delta {u}_{i} \left[ {\dot z}^{i} +
+\frac{ {\beta}^{k} {u}_{k} - {u}_{0} }{ \alpha ^2 } {\beta}^{i}
+- {\gamma}^{i j} {u}_{j} \right]
+\end{eqnarray}
+Setting the variation equal to zero and using Eq. (\ref{Pav5_2}) yields
+\begin{equation}\label{Pav6_2}
+{\dot z}^{i} = {\beta}^{i} - {\gamma}^{i j} {u}_{j}
+\end{equation}
+
+\subsection{Variation With Respect to $ z^i $}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_pp3p1_zi.dat
+  key Pav7
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this section, we take the variation of $ I_{pp} $ with
+respect to $ {z ^ i} $ to get
+\begin{equation}\label{Pav7_1}
+{ \delta I_{pp} } |_{\delta {z ^ i} } = \int d \lambda \left( {u}_{i} {\dot z}^{i} - \Lambda { \delta \mathcal{H} } |_{\delta {z ^ i} } \right) \nonumber \\
+\end{equation}
+Integrating the first term by parts and expanding the functional
+variation of $ \mathcal{H} $ yields
+\begin{equation}\label{Pav7_2}
+{ \delta I_{pp} } |_{\delta {z ^ i} } = - \int d \lambda \left( \frac{ d }{d t} {u}_{i}
++ \frac{\Lambda}{2}
+\left[ \partial_{i} {\gamma}^{k l} {u}_{i} {u}_{j}
++ \frac{ \left( {\beta}^{k} {u}_{k} - {u}_{0} \right) ^2 }{ \alpha ^3 } { \alpha }_{ , k }
+- \frac{ \left( {\beta}^{k} {u}_{k} - {u}_{0} \right) }{ \alpha ^2 }
+\partial_{i} {\beta}^{k} {u}_{k} \right] \right)
+\end{equation}
+\section{ADM Variations}
+
+\subsection{Variation With Respect to $ \alpha $}
+
+%var_lapse_vacuum.dat
+%key Avl1
+
+In this section we start with the ADM action and calculate the variation
+with respect to the lapse $ \alpha $.
+The require variation is
+\begin{equation}\label{Avl1_1}
+{ \delta I_{ADM} } |_{\delta \alpha } = \int d^3x dt \left( - R^0 \right) \delta \alpha
+\end{equation}
+Setting the variation equal to zero and susbtituting in
+the definition of $ R^0 $ found in Eq. (\ref{XXXX})
+results in
+\begin{equation}\label{Avl1_2}
+\boxed{
+\sqrt{\gamma} \left( \frac{ Tr( \pi ^2 ) }{ \gamma }
+- \frac{ Tr( \pi ) ^2 }{ 2 \gamma } - R \right) = 0
+}
+\end{equation}
+\subsubsection{Converting from $ \pi ^{ij} $ to $ K_{ij} $ }
+
+%K2Pi_var_lapse.dat
+%key AcK1
+
+In this section we convert the the ADM Hamiltonian constraint
+equation from the set $ \left[ {\gamma}_{i j} , {\pi}^{i j} \right] $ to
+the set $ \left[ {\gamma}_{i j} , {K}_{i j} \right] $.
+
+Using the defining relations Eq. (\ref{XXXX)}) Eq. (\ref{XXXX)}) and Eq. (\ref{XXXX)})
+Eq. (\ref{Avl1_2}) becomes
+
+\begin{eqnarray}\label{AcK1_1}
+\sqrt{\gamma} \left[ \frac{ \gamma \left( Tr( K ) ^2 + Tr( K ^2 ) \right) }{ \gamma }
+- \frac{ 4 \gamma Tr( K ) ^ 2}{2 \gamma } - R \right]
+& = & \sqrt{\gamma} \left[ Tr( K ) ^2 + Tr( K ^2 ) - 2 Tr( K ) ^2 - R \right] \nonumber \\
+& = & \sqrt{\gamma} \left[ Tr( K ^2 ) - Tr( K ) ^2 - R \right]
+\end{eqnarray}
+Dividing out $ \sqrt{\gamma} $ we arrive at the usual `ADM' Hamiltonian
+constraint equation used in numerical relativity \cite{YYYY}
+\begin{equation}\label{AcK1_2}
+\boxed{
+Tr( K ^2 ) - Tr( K ) ^2 - R = 0
+}
+\end{equation}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_hydro_lapse.dat
+  key Ahv1
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+The starting action is
+\begin{equation}\label{Ahv1_1}
+I = \frac{c0}{16 \pi} \int d^3x dt \left[ \partial_{t} {\gamma}_{i j} {\pi}^{i j} - \alpha R^0 - \beta_{k} R^{k} \right]
++ \int d^3a dt { \tilde \rho }_{0} ( 1 + e ) \left[ {u}_{0} + {\dot z}^{i} {u}_{i} - \Lambda \mathcal{H} \right)
+\end{equation}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_tr_pi_1.dat
+  AK1
+  9/21/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Here we look at relating the trace of various combinations of $ {\pi}^{i j} $
+to the corresponding terms involving $ {K}^{i j} $. To begin start with the
+definition Eq. (\ref{XXXX}) $ {\pi}^{i j} = \sqrt{\gamma} \left( Tr( K ) {\gamma}^{i j} - {K}^{i j} \right) $.
+Taking the trace of Eq. (\ref{XXXX}) yields
+\begin{equation}\label{AK1_1}
+Tr( \pi ) = 2 \sqrt{\gamma} Tr( K ) {\epsilon }^{ c0 }
+\end{equation}
+Substituting Eq. (\ref{XXXX}) into the term $ {\pi}^{i j} {\pi}_{j k} $ and taking
+the trace yields
+\begin{equation}\label{AK1_2}
+Tr( \pi ^2 ) = \gamma \left[ Tr( K ^2 ) + Tr( K ) ^2 \right]
+\end{equation}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_tr_pi_2.dat
+  AK2
+  9/21/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+With the previous relations in hand, we can convert the second and
+third terms in the right-hand-side of the evolution equation for $ {\pi}^{i j} $.
+
+Starting with the second term and substituting in relations
+Eq. (\ref{XXXX}) and Eq. (\ref{XXXX}) obtains the formula
+
+\begin{eqnarray}\label{AK2_1}
+{\pi}^{i j} Tr( \pi ) - 2 {\pi^i}_{k} {\pi}^{k j}
+& = &
+\sqrt{\gamma} \left[ Tr( K ) {\gamma}^{i j} - {K}^{i j} \right] 2 \sqrt{\gamma} Tr( K ) \nonumber \\
+&   &
+- 2 \gamma \left[ Tr( K ) {\gamma ^i }_{ k } - {K^i}_{k} \right]
+\left[ Tr( K ) {\gamma}^{k j} - {K}^{k j} \right] \nonumber \\
+& = &
+2 \gamma \left[ Tr( K ) {K}^{i j} - {K^i}_{k} {K}^{k j} \right]
+\end{eqnarray}
+
+Likewise, the third term becomes
+\begin{eqnarray}\label{AK2_2}
+Tr( \pi ^2 ) - \frac{1}{2} Tr( \pi ) ^2 & = & \gamma \left[ Tr( K ^2 ) + Tr( K ) ^2 \right]
+- \frac{1}{2} \left[ 2 \sqrt{\gamma} Tr( K ) \right] ^2 \nonumber \\
+& = & \gamma \left[ Tr( K ^2 ) - Tr( K ) ^2 \right]
+\end{eqnarray}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_tr_pi_3.dat
+  AK3
+  9/21/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this note, we convert the terms involving spatial derivatives
+of $ {\pi}^{i j} $ to the corresponding terms involving $ {K}^{i j} $.
+Again employ Eq. (\ref{XXXX}) to relate the conjugate momentum to the
+extrinsic curvature. Some simplification results by noting that
+the definition of the 3-dimensional covariant derivative is compatible
+with the 3-metric, resulting in $ D^{i} {\gamma}_{k l} = 0 $
+and related expressions.
+
+\begin{eqnarray}\label{AK3_1}
+\frac{1}{ \sqrt{\gamma} } \left[ \pounds_{{\vec \beta}} {\pi}^{i j} - {\beta}^{i} D_{k} {\pi}^{j k}
+- {\beta}^{j} D_{k} {\pi}^{i k} \right]
+& = &
+\frac{1}{ \sqrt{\gamma} } \pounds_{{\vec \beta}} \sqrt{\gamma} \left( Tr( K ) {\gamma}^{i j} - {K}^{i j} \right)
+{\gamma}^{i j} \nonumber \\
+&   &
++ \pounds_{{\vec \beta}} Tr( K ) + Tr( K ) \pounds_{{\vec \beta}} {\gamma}^{i j} \nonumber \\
+&   &
+- \pounds_{{\vec \beta}} {K}^{i j}
+- {\gamma}^{i j} {\beta}^{i} D_{k} Tr( K ) \nonumber \\
+&   &
+- {\beta}^{i} D_{k} {K}^{i j}
+\end{eqnarray}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_tr_dt_pi.dat
+  key TP1
+  10/6/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+The aim of this note is to calculate the term $ {\gamma}_{i j} \partial_{t} {\pi}^{i j} $.
+substituting in the definition Eq. (\ref{XXXX}) and expanding yields
+
+\begin{eqnarray}\label{TP1_1}
+{\gamma}_{i j} \partial_{t} {\pi}^{i j}
+& = & \partial_{t} Tr( \pi ) - {\pi}^{i j} \partial_{t} {\gamma}_{i j} \nonumber \\
+& = & \partial_{t} Tr( \pi ) - {\pi}^{i j} \left[ -2 \alpha {K}_{i j}
++ D_{i} {\beta}_{j} + D_{j} {\beta}_{i} \right] \nonumber \\
+& = & \partial_{t} Tr( \pi ) + 2 \alpha {\pi}^{i j}
+\left( \frac{ Tr( \pi ) }{ 2 \sqrt{\gamma} } {\gamma}_{i j}
+- \frac{ {\pi}^{i j} }{ \sqrt{\gamma} } \right)
+- 2 {\pi}^{i j} D_{i} {\beta}_{j} \nonumber \\
+& = & \partial_{t} Tr( \pi ) + \frac{ \alpha }{ \sqrt{\gamma} }
+\left[ Tr( \pi ^2 ) - \frac{1}{2} Tr( \pi ^2 ) \right]
+- 2 {\pi}^{i j} D_{i} {\beta}_{j}
+\end{eqnarray}
+
+
+
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_tr_dt_3k.dat
+  key TK1
+  10/6/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+The aim of this note is to calculate the term $ {\gamma}_{i j} \partial_{t} {K}^{i j} $.
+Substituting in the definition Eq. (\ref{XXXX}) and simplifying yields
+\begin{eqnarray}\label{TK1_1}
+{\gamma}_{i j} \partial_{t} {K}^{i j}
+& = &
+\partial_{t} Tr( K ) - {K}^{i j} \partial_{t} {\gamma}_{i j} \nonumber \\
+& = &
+\partial_{t} Tr( K ) - {K}^{i j} \left( -2 \alpha {K}_{i j}
++ D_{i} {\beta}_{j} + D_{j} {\beta}_{i} \right) \nonumber \\
+& = &
+\partial_{t} Tr( K ) + 2 \alpha Tr( K ^2 ) - 2 {K}^{i j} D_{i} {\beta}_{j}
+\end{eqnarray}
+
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_dx_pi_1.dat
+  DxP1
+  10/6/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Since the terms in question involve the spatial derivatives of $ {\pi}^{i j} $
+I'll derive the conversion to the corresponding terms $ {K}^{i j} $ here
+and will refer to them afterwards.
+
+First consider the term involving the Lie derivative of $ {\pi}^{i j} $
+\begin{eqnarray}\label{DxP1_1}
+\pounds_{{\vec \beta}} {\pi}^{i }
+& = &
+{\beta}^{k} D_{k} {\pi}^{i j} - {\pi}^{k j} D_{k} {\beta}^{i}
+- {\pi}^{i k} D_{k} {\beta}^{j} + {\pi}^{i j} D_{k} {\beta}^{k} \nonumber \\
+& = &
+{\beta}^{k} D_{k} \left[ \sqrt{\gamma} \left( Tr( K ) {\gamma}^{i j} - {K}^{i j} \right) \right]
+- \left[ \sqrt{\gamma} \left( Tr( K ) {\gamma}^{k j} - {K}^{k j} \right) \right] D_{k} {\beta}^{i} \nonumber \\
+&   &
+\left[ \sqrt{\gamma} \left( Tr( K ) {\gamma}^{i k} - {K}^{i k} \right) \right] D_{k} {\beta}^{j}
++ \left[ \sqrt{\gamma} \left( Tr( K ) {\gamma}^{i j} - {K}^{i j} \right) \right] D_{k} {\beta}^{k} \nonumber \\
+& = &
+\sqrt{\gamma} {\gamma}^{i j} \left( {\beta}^{k} D_{k} Tr( K ) + Tr( K ) D_{k} {\beta}^{k} \right)
+- \sqrt{\gamma} \pounds_{{\vec \beta}} {K}^{i j} \nonumber \\
+&   &
+- \sqrt{\gamma} {K}^{i j} D_{k} {\beta}^{k}
+- \sqrt{\gamma} Tr( K ) \left( D^{i} {\beta}^{j} + D^{j} {\beta}^{i} \right)
+\end{eqnarray}
+
+The terms involving the other spatial derivatives become
+\begin{eqnarray}\label{DxP1_2}
+{\beta}^{i} D_{k} {\pi}^{j k} + {\beta}^{j} D_{k} {\pi}^{i k}
+& = &
+{\beta}^{i} D_{k} \left[ \sqrt{\gamma} \left( Tr( K ) {\gamma}^{j k} - {K}^{j k} \right) \right] \nonumber \\
+&   &
++ {\beta}^{j} D_{k} \left[ \sqrt{\gamma} \left( Tr( K ) {\gamma}^{i k} - {K}^{i k} \right) \right] \nonumber \\
+& = &
+\sqrt{\gamma} \left( {\beta}^{i} D^{j} Tr( K ) + {\beta}^{j} D^{j} Tr( K ) \right. \nonumber \\
+&   &
+- \left. {\beta}^{i} D_{k} {K}^{j k} - {\beta}^{j} D_{k} {K}^{i k} \right)
+\end{eqnarray}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_TrL_P.dat
+  key TrLP
+  10/6/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this note, we calculate the trace of the term $ \pounds_{{\vec \beta}} {K}^{i j} $.
+Taking the trace
+\begin{eqnarray}\label{TrLP_1}
+{\gamma}_{i j} \pounds_{{\vec \beta}} {\pi}^{i j}
+& = &
+{\gamma}_{i j} \left( {\beta}^{k} D_{k} {\pi}^{i j} - {\pi}^{i k} D_{k} {\beta}^{j}
+- {\pi}^{k j} D_{k} {\beta}^{i} + {\pi}^{i j} D_{k} {\vec \beta} \right) \nonumber \\
+& = &
+{\beta}^{k} D_{k} Tr( \pi ) - 2 {\pi}^{i k} D_{k} {\beta}_{i}
++ Tr( \pi ) D_{k} {\beta}^{k}
+\end{eqnarray}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_TrL_K.dat
+  key TrLK
+  10/6/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+The aim of this note is to calculate the trace of $ \pounds_{{\vec \beta}} {K}^{i j} $.
+Using the standard definitions the relation becomes
+\begin{eqnarray}\label{TrLK_1}
+{\gamma}_{i j} \pounds_{{\vec \beta}} {K}^{i j}
+& = &
+{\gamma}_{i j} \left( {\beta}^{k} D_{k} {K}^{i j}
+- {K}^{i k} D_{k} {\beta}^{j}
+- {K}^{k j} D_{k} {\beta}^{i} \right) \nonumber \\
+& = &
+{\beta}^{k} D_{k} Tr( K ) - 2 {K}^{i k} D_{k} {\beta}_{i}
+\end{eqnarray}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_3p1_IF.dat
+  key 3P1IF
+  8/29/02 & 9/15/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this note, we want todecompose the ideal fluid stress-energy tensor
+according to the 3+1 slicing.
+Start with the ideal fluid stress-energy tensor given by:
+\begin{equation}\label{3P1IF_1}
+{ T } _ { ab } = \rho h {u}_{a} {u}_{b} + P {g}_{a b}
+\end{equation}
+where $ \rho $ is the baryon density, $ h = \left( 1 + e + P / \rho \right) $ is the
+specific enthalpy, and $ P $ is the pressure.
+Following Yorke [\cite{YYYY)}] we define the following projections
+of $ { T } _ { ab } $:
+\begin{eqnarray}\label{3P1IF_2}
+{\tilde \rho} & = & { T } _ { {\hat n} } \nonumber \\
+& = & {n ^ a} { a } _ { b } {n ^ b} \nonumber \\
+& = & \rho h \left( {n ^ a} {u}_{a} \right) ^2 - P \nonumber \\
+& = & \rho ( 1 + e ) \left( 1 + || u || ^2 \right) + P || u || ^2 \quad ,
+\end{eqnarray}
+\begin{eqnarray}\label{3P1IF_3}
+{ j } _ { a } & = & - \perp T_{a {\hat n} } \nonumber \\
+& = & - {\perp _ a}^{ b } { T } _ { bc } {n ^ c} \nonumber \\
+& = & \rho h {\perp _ a}^{ b } {u}_{b} {n ^ c} {u}_{c} \quad ,
+\end{eqnarray}
+and
+\begin{eqnarray}\label{3P1IF_4}
+{ S } _ { ab } & = & \perp { T } _ { ab } \nonumber \\
+& = & {\perp _ a}^{ c } { T } _ { cd } {\perp ^ d}_{ b } \nonumber \\
+& = & \rho h {\perp _ a}^{ c } {u}_{c} {\perp _ b}^{ d } {u}_{d} + P {\gamma}_{a b} {\epsilon }^{ c0 }
+\end{eqnarray}
+
+It is trivial to show that, given the above projections, the following
+identity holds
+\begin{eqnarray}\label{3P1IF_5}
+{ T } _ { ab } & = & {\delta ^ a}_{c} { T } _ { cd } {\delta _ d}^{b} \nonumber \\
+& = & \left( {\perp ^ a}_{ c } - {n _ a} {n ^ c} \right)
+{ T } _ { cd }
+\left( {\perp _ d}^{ b } - {n ^ d} {n _ b} \right) \nonumber \\
+& = & \perp { T } _ { ab } + { j } _ { a } {n _ b} + { j } _ { b } {n _ a}
+{ S } _ { ab }
+\end{eqnarray}
+Note that since $ { S } _ { ab } $ is a spatial tensor, its indices can
+be raised or lowered using either $ {\perp } _ { a b } $ or $ {g}_{a b} $. We will
+exploit this freedom as needed to increase the clarity. Also note
+that $ {n ^ a} {u}_{a} = \sqrt{ 1 + || u || ^2 } $.
+The source terms that obtain in the ADM equations are cited by Yorke to be
+\begin{equation}\label{3P1IF_6}
+Tr( S ) = { S } _ { ab } {g}^{a b} = \rho h || u || ^2 + 3 P
+\end{equation}
+and
+\begin{eqnarray}\label{3P1IF_7}
+{ M } ^ { ab } & = & -8 \pi { S } ^ { ab } + 4 \pi {\perp } ^ { a b } \left[ Tr(S) - {\tilde \rho} \right] \nonumber \\
+& = & -8 \pi \rho h { u } ^ { a } { u } ^ { b }
++ 4 \pi {\perp ^ a}_{ b } \left[ 3 P + 2 P || u || ^2 - \rho ( 1 + e ) \right]
+\end{eqnarray}
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_var_rho_3g.dat
+  key VR3G
+  10/21/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+The desire her is to compute $ \frac{\partial \rho}{\partial {\gamma}_{i j}} $.
+The density $ \rho $ has
+a dependence on $ {\gamma}_{i j} $ throught two terms. The first is through
+$ \sqrt{\gamma} $ and the second is through $ || \epsilon || ^2 $.
+
+The variation of $ \sqrt{\gamma} $ easily obtained from the formulae Eq. (\ref{XXXX})
+found in the appendix Eq. (\ref{????)}) Instead, focus on the terms involved
+in $ || \epsilon || ^ 2$
+\begin{eqnarray}\label{VR3G_1}
+\frac{\partial }{\partial {\gamma}_{i j}} || \epsilon || ^2 & = & \frac{\partial }{\partial {\gamma}_{i j}} {\epsilon }^{ k } {\epsilon }^{ l } {\gamma}_{k l} \nonumber \\
+& = & \frac{\partial {\epsilon }^{ k }}{\partial {\gamma}_{i }} {\epsilon }^{ l } {\gamma}_{k l}
++ {\epsilon }^{ k } \frac{\partial {\epsilon }^{ l }}{\partial {\gamma}_{i j}} {\gamma}_{k l}
++ {\epsilon }^{ i } {\epsilon }^{ j } \nonumber \\
+& = & 2 \frac{\partial {\epsilon }^{ k }}{\partial {\gamma}_{i j}} {\epsilon }^{ l } {\gamma}_{k l}
+\end{eqnarray}
+Now expand the term $ \frac{\partial {\epsilon }^{ k }}{\partial {\gamma}_{i j}} $
+\begin{eqnarray}\label{VR3G_2}
+\frac{\partial {\epsilon }^{ k }}{\partial {\gamma}_{i j}} & = & \frac{\partial }{\partial {\gamma}_{i j}} \left( {\dot z}^{k} + {\beta}^{k} \right) \nonumber \\
+& = & \frac{\partial }{\partial {\gamma}_{i j}} {\beta}^{k} \nonumber \\
+& = & \frac{\partial }{\partial {\gamma}_{i j}} {\gamma}^{k m} {\beta}_{m} \nonumber \\
+& = & - {\beta}^{(i} {\gamma}^{j) k}
+\end{eqnarray}
+Substituting back into Eq. (\ref{VR3G_1}) yields
+\begin{equation}\label{VR3G_3}
+\frac{\partial }{\partial {\gamma}_{i j}} || \epsilon || ^2 = {\epsilon }^{ i } {\epsilon }^{ j }
+- 2 {\epsilon }^{ (i } {\beta}^{j)}
+\end{equation}
+With this result in hand, we can move onto the desired computation by
+employing the conservation equation Eq. (\ref{XXXX})
+\begin{equation}\label{VR3G_4}
+\frac{\partial }{\partial {\gamma}_{i j}} \left[ \frac{ \rho \sqrt{\gamma} |J| }{ \sqrt{1 - || \epsilon || ^2 / \alpha ^2 } } \right]
+= \frac{\partial }{\partial {\gamma}_{i j}} { \tilde \rho }_{0} = 0
+\end{equation}
+yields
+\begin{equation}\label{VR3G_5}
+\frac{\partial \rho}{\partial {\gamma}_{i j}} = - \frac{\rho}{2} \left[ {\gamma}^{i j}
++ {u}^{i} {u}^{j}
+- \frac{ 2 {u}^{(i} {\beta}^{j)} }{ \Lambda } \right]
+\end{equation}
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  on_var_Ham_3g.dat
+  key VH3G
+  10/21/02 and 10/22/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+In this computation, we explore the variation of the
+Hamiltonian with respect to the three-metric. Since
+the Hamiltonian depends only on the three-metric and
+not on its derivatives, the variation ammounts to
+taking a partial derivative.
+\begin{eqnarray}\label{VH3G_1}
+\frac{\partial }{\partial {\gamma}_{i j}} \mathcal{H} & = & \frac{\partial }{\partial {\gamma}_{i j}} \frac{1}{2}
+\left[ {\gamma}^{k l} {u}_{k} {u}_{l} -
+\frac{ \left( {\beta}^{k} {u}_{k} - {u}_{0} \right) }
+{ \alpha ^ 2 }
++ 1
+\right] \nonumber \\
+& = &
+- \frac{1}{2} {u}^{i} {u}^{j}
+- \frac{ \left( {\beta}^{k} {u}_{k} - {u}_{0} \right) }
+{ \alpha ^2 }
+\frac{\partial }{\partial {\gamma}_{i j}} {\gamma}^{k l} {\beta}_{l} {u}_{k} \nonumber \\
+& = &
+- \frac{1}{2} {u}^{i} {u}^{j}
++ \frac{ \left( {\beta}^{k} {u}_{k} - {u}_{0} \right) }
+{ \alpha ^2 }
+{\beta}^{(i} {u}^{j)}
+\end{eqnarray}
+Using the standard relation $ \left( {\beta}^{k} {u}_{k} - {u}_{0} \right)
+= \frac{ \alpha ^2 }{ \Lambda } $ the above relation becomes
+\begin{equation}\label{VH3G_2}
+\frac{\partial }{\partial {\gamma}_{i j}} \mathcal{H} = \frac{ {u}^{(i} {\beta}^{j)} }{ \Lambda }
+- \frac{1}{2} {u}^{i} {u}^{j}
+\end{equation}
+
+
+
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  slicing_intro.dat
+  key SL
+  old write-up
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+The initial-value formulation of Arnowitt, Deser, and Misner (ADM) depends on
+being able to break spacetime up into a foliation of constant-$t$ spacelike
+hypersurfaces $\Sigma_t$. In this section, the definition of this foliation
+is presented.
+\clearpage
+\vspace{5mm}
+\hrule
+\begin{alltt}
+  var_ADM_3g.dat
+  key VA3G
+  based on the notes 'A quality check on the 3-metric variation' 10/26/02
+\end{alltt}
+\hrule
+\vspace{5mm}
+
+Start with the ADM action with no matter
+\begin{equation}\label{VA3G_1}
+I_{ADM} = \frac{1}{16 \pi} \int d^3x dt \left[ {\pi}^{i j} \partial_{t} {\gamma}_{i j} - \alpha R^0 - \beta_{k} R^{k} \right]
+\end{equation}
+
+Take the variation
+
+\begin{eqnarray}\label{VA3G_2}
+{ \delta I_{ADM} } |_{\delta {\gamma}_{i j} } & = & \frac{1}{16 \pi} \int d^3x dt \left[
+{\pi}^{i j} \partial_{t} \delta {\gamma}_{i j}
+- \frac{\delta \alpha R^0}{\delta {\gamma}_{i j}} \delta {\gamma}_{i j}
+- \frac{\delta \beta_{k} R^{k}}{\delta {\gamma}_{i j}} \delta {\gamma}_{i j} \right]
+\nonumber \\
+& = & \frac{-1}{16 \pi} \int d^3x dt \left[
+\partial_{t} {\pi}^{i j}
+- \frac{\delta \alpha R^0}{\delta {\gamma}_{i j}}
+- \frac{\delta \beta_{k} R^{k}}{\delta {\gamma}_{i j}} \right] \delta {\gamma}_{i j}
+\end{eqnarray}
+where the last line results from an integration of the first term by parts
+and the throwing away of any boundary terms.
+
+Substituting in the relations determined earlier yields
+\begin{eqnarray}\label{VA3G_3}
+\partial_{t} {\pi}^{i j} & = & - \sqrt{\gamma} { A } ^ { ij }
+- \sqrt{\gamma} B {\gamma}^{i j}
++ \pounds_{{\pi}^{i j}} {\vec \beta}
+- 2 {\beta}^{(i} { {\pi}^{j) k} } _ { |k } \nonumber \\
+& = & - \alpha \sqrt{\gamma} \left( R^{i j} - \frac{1}{2} R \right)
+- \frac{ \alpha }{ \sqrt{\gamma} } \left( 2 {\pi^i}_{m} {\pi}^{m j}
+- {\pi}^{i j} Tr( \pi ) \right) \nonumber \\
+&   & + \sqrt{\gamma} \left( D^{i} D^{j} \alpha
+- {\gamma}^{i j} D^{k} D_{k} \alpha \right) \nonumber \\
+&   & - \frac{ \alpha }{ 2 \sqrt{\gamma} } {\gamma}^{i j}
+\left( \frac{Tr( \pi ^2 )}{2} - Tr( \pi ) ^2 \right) \nonumber \\
+&   & + \pounds_{{\vec \beta}} {\pi}^{i j}
+- 2 {\beta}^{(i} { {\pi}^{j) k} } _ { |k }
+\end{eqnarray}
+
+
+\end{document}

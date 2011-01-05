@@ -1,0 +1,20 @@
+#pro
+# var_pp3p1_zi.dat
+# key Pav7
+#end
+
+In this section, we take the variation of $ I_{pp} $ with
+respect to $ #zpos(i) $ to get
+#be(Pav7_1)
+  #fvar(I_{pp},#zpos(i)) = #lint #lp #uvel(i) #zdot(i) - #L #fvar(#Ham,#zpos(i)) #rp #nn \\
+#ee
+Integrating the first term by parts and expanding the functional
+variation of $ #Ham $ yields
+#be(Pav7_2)
+  #fvar(I_{pp},#zpos(i)) = - #lint #lp #dby(,t) #uvel(i) 
+                              + #1_2(#L) 
+                              #lb #par(i) #3ig(k,l) #uvel(i) #uvel(j) 
+                                  + \frac{ #lp #shiftu(k) #uvel(k) - #uvel(0) #rp ^2 }{ #lapse ^3 } #cby(#lapse,k) 
+                                  - \frac{ #lp #shiftu(k) #uvel(k) - #uvel(0) #rp }{ #lapse ^2 } 
+                                  #par(i) #shiftu(k) #uvel(k) #rb #rp
+#ee                              

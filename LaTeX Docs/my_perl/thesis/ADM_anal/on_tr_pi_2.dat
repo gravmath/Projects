@@ -1,0 +1,29 @@
+#pro
+# on_tr_pi_2.dat
+# AK2
+# 9/21/02
+#end
+
+With the previous relations in hand, we can convert the second and 
+third terms in the #RHS of the evolution equation for $ #pi(i,j) $.
+
+Starting with the second term and substituting in relations 
+#ref(XXXX) and #ref(XXXX) obtains the formula
+
+#bea(AK2_1)
+  #pi(i,j) #TrP - 2 #pim(i,k) #pi(k,j) 
+      #ae
+    #r3g #lb #TrK #3ig(i,j) - #3K(i,j) #rb 2 #r3g #TrK #nn \\
+    #as
+    - 2 #det3g #lb #TrK #3gm(i,k) - #3Km(i,k) #rb
+               #lb #TrK #3ig(k,j) - #3K(k,j) #rb #nn \\
+      #ae 
+    2 #det3g #lb #TrK #3K(i,j) - #3Km(i,k) #3K(k,j) #rb
+#eea
+
+Likewise, the third term becomes
+#bea(AK2_2)
+  #TrP2 - #1_2(1) #TrP ^2 #ae #det3g #lb #TrK2 + #TrK ^2 #rb 
+                              - #1_2(1) #lb 2 #r3g #TrK #rb ^2 #nn \\
+                          #ae #det3g #lb #TrK2 - #TrK ^2 #rb
+#eea                         

@@ -1,0 +1,58 @@
+#pro
+# on_3p1_IF.dat
+# key 3P1IF
+# 8/29/02 & 9/15/02
+#end
+
+In this note, we want todecompose the ideal fluid stress-energy tensor
+according to the #3p1 slicing.
+Start with the ideal fluid stress-energy tensor given by:
+#be(3P1IF_1)
+  #Td(T,ab) = #r h #uvel(a) #uvel(b) + P #4g(a,b)
+#ee
+where $ #r $ is the baryon density, $ h = #lp 1 + e + P / #r #rp $ is the 
+specific enthalpy, and $ P $ is the pressure.
+Following Yorke #cite(YYYY), we define the following projections 
+of $ #Td(T,ab) $:
+#bea(3P1IF_2)
+  #til(#r) #ae #Td(T,#hat(n),#hat(n)) #nn \\
+           #ae #nu(a) #Td(a,b) #nu(b) #nn \\
+           #ae #r h #lp #nu(a) #uvel(a) #rp ^2 - P #nn \\
+           #ae #r #hh #lp 1 + #unorm ^2  #rp + P #unorm ^2  #ec
+#eea
+#bea(3P1IF_3)
+  #Td(j,a) #ae - \perp T_{a #hat(n) } #nn \\
+           #ae - #projt(a,b) #Td(T,bc) #nu(c) #nn \\
+           #ae #r h #projt(a,b) #uvel(b) #nu(c) #uvel(c) #ec
+#eea
+and
+#bea(3P1IF_4)
+  #Td(S,ab) #ae \perp #Td(T,ab) #nn \\
+            #ae #projt(a,c) #Td(T,cd) #proj(d,b) #nn \\
+            #ae #r h #projt(a,c) #uvel(c) #projt(b,d) #uvel(d) + P #3g(a,b) #ep
+#eea            
+
+It is trivial to show that, given the above projections, the following
+identity holds
+#bea(3P1IF_5)
+  #Td(T,ab) #ae #Kd(a,c) #Td(T,cd) #Kdt(d,b) #nn \\
+            #ae #lp #proj(a,c) - #nd(a) #nu(c) #rp
+                #Td(T,cd)
+                #lp #projt(d,b) - #nu(d) #nd(b) #rp #nn \\
+            #ae \perp #Td(T,ab) + #Td(j,a) #nd(b) + #Td(j,b) #nd(a)
+                #Td(S,ab)
+#eea    
+Note that since $ #Td(S,ab) $ is a spatial tensor, its indices can
+be raised or lowered using either $ #projd(a,b) $ or $ #4g(a,b) $.  We will
+exploit this freedom as needed to increase the clarity.  Also note
+that $ #nu(a) #uvel(a) = \sqrt{ 1 + #unorm ^2 } $.
+The source terms that obtain in the ADM equations are cited by Yorke to be
+#be(3P1IF_6)
+  Tr( S ) = #Td(S,ab) #4ig(a,b) = #r h #unorm ^2 + 3 P
+#ee
+and
+#bea(3P1IF_7)
+  #Tu(M,ab) #ae -8 #p #Tu(S,ab) + 4 #p #proju(a,b) #lb Tr(S) - #til(#r) #rb #nn \\
+            #ae -8 #p #r h #Tu(u,a) #Tu(u,b) 
+                + 4 #p #proj(a,b) #lb 3 P + 2 P #unorm ^2 - #r #hh #rb
+#eea                

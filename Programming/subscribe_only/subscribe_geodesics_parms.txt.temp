@@ -1,0 +1,38 @@
+Input the minimum values of the lattice
+17
+-2
+-2
+Input the grid spacing
+0.05
+0.05
+0.05
+Input the lattice size (i.e. number of lattice points)
+91
+91
+91
+Input the Mass
+1.0
+Input the metric choice (1 - Std_SCHW; 2 - PG_SCHW; 3 - ISO_SCHW)
+1
+Input the time step, number of steps, output frequency
+0.100000000000000010
+10000.000000000000000000
+50.000000000000000000
+Input the integration method (1 - RK2; 2 - ICN)
+1
+Input the Smoothing Length
+1.000000000000000000
+Input the initial state of the particle
+20
+0
+0
+0.000001533
+0.242551449
+0
+Input the derivative smoothing condition (0 - use W*df; 1 - use dW*f)
+1
+Kernel choice (2 - W2, 3 - W3, 4 - W4, 999 - Gaussian)
+3
+Run as RHS (0 - no, 1 - yes)
+0
+number of lattice points = 878460 and the number of contained points = 840

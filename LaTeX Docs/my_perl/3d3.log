@@ -1,0 +1,157 @@
+This is e-TeX, Version 3.141592-2.2 (MiKTeX 2.4) (preloaded format=latex 2006.6.11)  14 JUN 2006 14:39
+entering extended mode
+**3d3.tex
+(3d3.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8g> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman, ngerman, french, loaded.
+(e:\miktex\texmf\tex\latex\base\article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(e:\miktex\texmf\tex\latex\base\size12.clo
+File: size12.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(e:\miktex\texmf\tex\latex\pstricks\pstricks.sty
+Package: pstricks 2005/12/19 v0.31 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(e:\miktex\texmf\tex\generic\pstricks\pstricks.tex
+`PSTricks' v1.14a  <2006/02/06> (tvz)
+\pst@dima=\dimen103
+\pst@dimb=\dimen104
+\pst@dimc=\dimen105
+\pst@dimd=\dimen106
+\pst@dimg=\dimen107
+\pst@dimh=\dimen108
+\pst@hbox=\box26
+\pst@boxg=\box27
+\pst@cnta=\count87
+\pst@cntb=\count88
+\pst@cntc=\count89
+\pst@cntd=\count90
+\pst@cntg=\count91
+\pst@cnth=\count92
+\pst@toks=\toks14
+(e:\miktex\texmf\tex\generic\pstricks\pstricks.con)
+\psunit=\dimen109
+\psxunit=\dimen110
+\psyunit=\dimen111
+\pslinewidth=\dimen112
+\pst@customdefs=\toks15
+\pslinearc=\dimen113
+\everypsbox=\toks16
+\psframesep=\dimen114
+\pslabelsep=\dimen115
+\psk@shift=\dimen116
+\pst@shift=\dimen117
+\theoverlaybox=\box28
+)
+File: pstricks.tex 2006/02/06 v1.14a `PSTricks' (tvz)
+
+(e:\miktex\texmf\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2005/12/21 v2.09 LaTeX color extensions (UK)
+
+(e:\miktex\texmf\tex\latex\00miktex\color.cfg
+File: color.cfg 2005/12/29 v1.1 MiKTeX 'color' configuration
+)
+Package xcolor Info: Package option `override' ignored on input line 211.
+Package xcolor Info: Driver file: dvips.def on input line 220.
+
+(e:\miktex\texmf\tex\latex\graphics\dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1328.
+Package xcolor Info: Model `RGB' extended on input line 1344.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1346.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1347.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1348.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1349.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1350.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1351.
+))
+(e:\miktex\texmf\tex\latex\pst-3dplot\pst-3dplot.sty
+Package: pst-3dplot 2006/02/07 package wrapper for pst-3dplot.tex (hv)
+
+(e:\miktex\texmf\tex\generic\pst-3dplot\pst-3dplot.tex
+(e:\miktex\texmf\tex\generic\pst-3d\pst-3d.tex
+(e:\miktex\texmf\tex\generic\xkeyval\pst-xkey.tex
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+(e:\miktex\texmf\tex\latex\xkeyval\xkeyval.sty
+Package: xkeyval 2005/11/25 v2.5e package option processing (HA)
+
+(e:\miktex\texmf\tex\generic\xkeyval\xkeyval.tex
+\XKV@toks=\toks17
+\XKV@depth=\count93
+File: xkeyval.tex 2005/11/25 v2.5e key=value parser (HA)
+
+(e:\miktex\texmf\tex\generic\xkeyval\keyval.tex))))
+`PST-3d' v1.00, 2005/09/03 (tvz))
+(e:\miktex\texmf\tex\generic\pstricks\pst-node.tex  v97 patch 11, 2000/11/09
+\psrow=\count94
+\pscol=\count95
+\psmatrixcnt=\count96
+\psrowsep=\skip43
+\pscolsep=\skip44
+)
+(e:\miktex\texmf\tex\generic\pstricks\pst-plot.tex  v97 patch 2, 1999/12/12
+(e:\miktex\texmf\tex\generic\multido\multido.tex  v1.41, 2004/05/18 <tvz>
+\multido@count=\count97
+\multidocount=\count98
+\multido@stuff=\toks18
+))
+(e:\miktex\texmf\tex\generic\multido\multido.tex  v1.41, 2004/05/18 <tvz>)
+`PST-3dplot' v1.72, 2006/02/07 (HV)
+\pst@dimf=\dimen118
+\pst@cntx=\count99
+\pst@cnty=\count100
+\pst@cntz=\count101
+\pst@dimx=\dimen119
+\pst@dimy=\dimen120
+\pst@dimz=\dimen121
+\pst@dx=\dimen122
+\pst@dy=\dimen123
+)
+File: pst-3dplot.tex 2006/02/07 v1.72 `PST-3dplot' (hv)
+) (3d3.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 8.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 8.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 8.
+ [1
+
+] (3d3.aux) ) 
+Here is how much of TeX's memory you used:
+ 2834 strings out of 95889
+ 32936 string characters out of 1195061
+ 137225 words of memory out of 1139902
+ 5861 multiletter control sequences out of 60000
+ 6676 words of font info for 24 fonts, out of 1000000 for 2000
+ 14 hyphenation exceptions out of 4999
+ 35i,5n,47p,315b,447s stack positions out of 5000i,500n,10000p,200000b,32768s
+
+Output written on 3d3.dvi (1 page, 29752 bytes).

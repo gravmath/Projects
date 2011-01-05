@@ -1,0 +1,41 @@
+\section{Spacetime Slicing}
+\school\my_perl\thesis\slicing\constant_t_surface.dat
+\section{Hamiltonian Formulation for a Single Point Particle}
+\school\my_perl\thesis\particle_action\point\ham_part_action.dat
+\subsection{Variation With Respect To $ \Lambda $}
+\school\my_perl\thesis\particle_action\point\var_pp_L.dat
+\subsection{Variation With Respect To $ u_\alpha $}
+\school\my_perl\thesis\particle_action\point\var_pp_u.dat
+\subsection{Variation With Respect To $ z ^ \mu $}
+\school\my_perl\thesis\particle_action\point\var_pp_z.dat
+\subsection{Obtaining the Geodesic Equations}
+\school\my_perl\thesis\particle_action\point\ham_geodesic_eqs.dat
+\section{ADM-Like Hamiltonian Formulation for a Single Point Particle}
+\school\my_perl\thesis\particle_action\point\ham_part_action_3p1.dat
+\subsection{Variation With Respect to $ \Lambda $}
+\school\my_perl\thesis\particle_action\point\var_pp3p1_L.dat
+\subsection{Variation With Respect to $ u_0 $}
+\school\my_perl\thesis\particle_action\point\var_pp3p1_u0.dat
+\subsection{Variation With Respect to $ u_i $}
+\school\my_perl\thesis\particle_action\point\var_pp3p1_ui.dat
+\subsection{Variation With Respect to $ z^i $}
+\school\my_perl\thesis\particle_action\point\var_pp3p1_zi.dat
+\section{ADM Variations}
+\subsection{Variation With Respect to $ \alpha $}
+\school\my_perl\thesis\ADM_anal\var_lapse_vacuum.dat
+\subsubsection{Converting from $ \pi ^{ij} $ to $ K_{ij} $ }
+\school\my_perl\thesis\ADM_anal\K2Pi_var_lapse.dat
+\school\my_perl\thesis\ADM_anal\var_hydro_lapse.dat
+\school\my_perl\thesis\ADM_anal\on_tr_pi_1.dat
+\school\my_perl\thesis\ADM_anal\on_tr_pi_2.dat
+\school\my_perl\thesis\ADM_anal\on_tr_pi_3.dat
+\school\my_perl\thesis\ADM_anal\on_tr_dt_pi.dat
+\school\my_perl\thesis\ADM_anal\on_tr_dt_3k.dat
+\school\my_perl\thesis\ADM_anal\on_dx_pi_1.dat
+\school\my_perl\thesis\ADM_anal\on_TrL_P.dat
+\school\my_perl\thesis\ADM_anal\on_TrL_K.dat
+\school\my_perl\thesis\particle_action\fluid\on_3p1_IF.dat
+\school\my_perl\thesis\particle_action\fluid\on_var_rho_3g.dat
+\school\my_perl\thesis\particle_action\fluid\on_var_Ham_3g.dat
+\school\my_perl\thesis\ADM_anal\slicing_intro.dat
+\school\my_perl\thesis\ADM_anal\var_ADM_3g.dat

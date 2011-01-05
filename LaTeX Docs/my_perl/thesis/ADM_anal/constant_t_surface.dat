@@ -1,0 +1,69 @@
+%constant_t_surface.dat
+Define a one-form $\Omega_a$ corresponding to surfaces of constant time $t$ by
+taking the covariant derivative of the time coordinate
+\begin{equation}\label{eq:cov_time}
+   \Omega_{a} = \nabla_{a} t
+              \doteq \left( \begin{array}{cccc} 1&0&0&0 \end{array} \right) \_,
+\end{equation}
+subject to the condition that $\Omega_a$ be timelike
+\[
+   \Omega^{a} \Omega_{a} = g^{00} \equiv \frac{-1}{N^2} \.
+\]
+Introduce the normalized one-form
+\begin{equation}\label{eq:norm_form}
+   \omega^{a} \omega_{a} = -1
+\end{equation}
+via the definition
+\[
+   \omega_{a} = N \Omega_{a} \.
+\]
+
+A normalized unit-vector ${n^a}$ orthogonal to a constant-$t$ slice can be
+constructed by
+\begin{equation}\label{eq:unit_norm}
+   n^{a} = - g^{a b} \omega_{b} \_,
+\end{equation}
+with the fundamental inner-products
+\[
+   \langle \tilde n , \bar n \rangle =
+   \langle -\tilde \omega , -\bar \omega \rangle =
+   \omega_{a} \omega^{a} = -1
+\]
+and
+\[
+   \langle \tilde \omega ,  \bar n \rangle =
+   \langle \tilde \omega , -\bar \omega \rangle =
+   \omega_{a} \omega^{a} = 1 \.
+\]
+
+The former relation demonstrates that $n^a$ is a timelike vector and the
+latter guarantees that $n^a$ is future-pointing.
+
+From equations (\ref{eq:cov_time}) and (\ref{eq:unit_norm}), the unit
+one-form $n_a$ is immediately seen to have components
+\[
+   n_a \doteq \left(-N, 0, 0, 0 \right) \.
+\]
+Using the form of the projection tensor
+\begin{eqnarray}\label{eq:proj_tensor}
+   h_{ab} & = & g_{ab} + n_{a}n_{b} \nonumber \\
+   {h^{a}}_{b} & = &  g^{ac} h_{cb} \equiv {P^{a}}_{b} =
+   {\delta^{a}}_{b} + n^{a} n_{b}
+\end{eqnarray}
+several important relations involving the metric can be worked out.  First of
+all, it is clear that the definition of the projection tensor
+(\ref{eq:proj_tensor}) ensures that $n^a$ is orthogonal to the projected
+surface since
+\[
+   n^a {h_a}^b = n^a \left( {\delta_a}^b + n_a n^b \right) = n^b + n^a n_a n^b = 0
+\]
+In what follows, it will often be convenient to refer to arrays of components
+in either column or row form.  Arrays with a tilde will be taken to be arrays
+of covariant components and arrays with a bar will be taken as arrays of contravariant
+components.  Arrays will be represented, by default, as column arrays unless
+they possess a $T$ superscript (standing for transpose) in which case they are
+interpreted as row arrays.
+The spatial portion of the metric follows along the same line.  Thus
+$g_{ij} \equiv h_{ij} = {\tilde{\tilde h}}$ and when needed
+${\tilde {\tilde h}}^{-1} = \left( h_{ij} \right)^{-1} = h^{ij} =
+{\bar {\bar h}}$.

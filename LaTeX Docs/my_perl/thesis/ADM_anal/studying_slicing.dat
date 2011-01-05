@@ -1,0 +1,15 @@
+%studying_slicing.dat
+In this section, the physical attributes of the constant-$t$ spacelike
+hypersurfaces $\Sigma_t$ is presented.  First the foliation developed in the
+preceding section will be interpreted.  The extrinsic curvature is then
+defined and will be shown to be the rate-of-change of the 3-metric along
+the vector field,$n^a$, normal to the set \{ $\Sigma_t$ \} of spacelike hypersurfaces.
+Finally, the 3-dimensional Riemann tensor will be presented in terms of a
+covariant derivative defined within the hypersurface.
+
+%\begin{figure}
+%\begin{center}
+%\epsfig{file=shift_lapse.eps, width = 3.0 in}
+%\end{center}
+%\caption{test}
+%\end{figure}

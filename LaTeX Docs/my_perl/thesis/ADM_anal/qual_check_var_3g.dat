@@ -1,0 +1,49 @@
+%qual_check_var_3g.dat
+%
+%Adapted from the notes 'A quality check on the 3-metric variation' 10/26/02
+
+Start with the ADM action with no matter
+#be(Av3g1_1)
+  I = #1_16p #cint #lb #pi(k,l) #par(t) #3g(k,l) - #lapse R^0 - #shiftd(k) R^k #rb
+#ee
+Take the variation
+#bea(Av3g1_2)
+  #fvar(I,#3g(i,j)) #ae  #1_16p #cint #lb #pi(i,j) #par(t) #var #3g(i,j) - 
+                           #vby(#Qa,#3g(i,j)) #var #3g(i,j) - 
+                           #vby(#Qb(k,k),#3g(i,j)) #var #3g(i,j) #rb #nn \\
+                      #ae  - #1_16p #cint #lb #par(t) #pi(i,j) + 
+                           #vby(#Qa,#3g(i,j) + #vby(#Qb(k,k),#3g(i,j)) 
+                           #rb #var #3g(i,j)
+#eea  
+Setting the integrand term proportial to $ #var #3g(i,j) $ to zero yields 
+#be(Av3g1_3)
+  #box #par(t) #pi(i,j) = - #vby(#Qa,#3g(i,j)) - #vby(#Qb(k,k),#3g(i,j)) #bc
+#ee  
+
+Substituting in the relations determined earlier #ref(Av3g1_1) yields
+#bea(Avg1_4)
+  #par(t) #pi(i,j) #ae - #r3g #Tu(A,ij) - #r3g B #3ig(i,j) 
+                       + #lie(#vec(#b),#pi(i,j)) 
+                       - 2 #shiftu(#symo(i)) #Td(#pi(#symc(j),k),|k) #nn \\
+                   #ae - #r3g #lb #lapse #lp 
+                                \frac{2 #pim(i,m) #pi(m,j) }{ #detg }
+                              - \frac{ #pi(i,j) #TrP }{ #detg } #rp
+                       - #Du(i) #Du(j) #lapse #rb #nn \\
+                   #as - #r3g  #lb #lapse  #lp \frac{ #TrP2 }{ 4 #detg }
+                       - \frac{ #TrP2 }{ 2 #detg } - #1_2 #3R #rp 
+                       + #Du(m) #Dd(m) #lapse #rb #3ig(i,j) #nn \\
+                   #as 
+                       + #lie(#vec(#b),#pi(i,j)) 
+                       - 2 #shiftu(#symo(i)) #Td(#pi(#symc(j),k),|k) #nn \\                   
+#eea
+Re-arranging the terms a bit yields the final form of the evolution equation
+for the conjugate momentum
+#bea(Avg1_5)
+       #par(t) #pi(i,j) #ae - #lapse #r3g #lp #3Ru(i,j) - #1_2 #3R #rp 
+                            - \frac{ #lapse }{ #r3g } #lp 2 #pim(i,m) #pi(m,j) - #pi(i,j) #TrP #rp #nn \\
+                        #as + #r3g #lp #Du(i) #Du(j) #lapse - #3ig(i,j) #Du(m) #Dd(m) #lapse #rp #nn \\
+                        #as - \frac{ #lapse }{ 2 #r3g } #3ig(i,j) #lp \frac{ #TrP ^2 }{2} - { #TrP2 } #rp
+                            + #lie(#vec(#b),#pi(i,j)) 
+                            - 2 #shiftu(#symo(i)) #Td(#pi(#symc(j),k),|k)
+#eea                      
+                            

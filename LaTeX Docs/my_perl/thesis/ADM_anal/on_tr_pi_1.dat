@@ -1,0 +1,18 @@
+#pro
+# on_tr_pi_1.dat
+# AK1
+# 9/21/02
+#end
+
+Here we look at relating the trace of various combinations of $ #pi(i,j) $ 
+to the corresponding terms involving $ #3K(i,j) $.  To begin start with the
+definition #ref(XXXX) $ #pi(i,j) = #r3g #lp #TrK #3ig(i,j) - #3K(i,j) #rp $.
+Taking the trace of #ref(XXXX) yields
+#be(AK1_1)
+  #TrP = 2 #r3g #TrK #ep
+#ee
+Substituting #ref(XXXX) into the term $ #pi(i,j) #pid(j,k) $ and taking
+the trace yields
+#be(AK1_2)
+  #TrP2 = #det3g #lb #TrK2 + #TrK ^2 #rb
+#ee

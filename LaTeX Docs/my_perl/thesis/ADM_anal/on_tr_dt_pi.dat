@@ -1,0 +1,26 @@
+#pro
+# on_tr_dt_pi.dat
+# key TP1
+# 10/6/02
+#end
+
+The aim of this note is to calculate the term $ #3g(i,j) #par(t) #pi(i,j) $.
+substituting in the definition #ref(XXXX) and expanding yields
+
+#bea(TP1_1)
+  #3g(i,j) #par(t) #pi(i,j) 
+     #ae #par(t) #TrP - #pi(i,j) #par(t) #3g(i,j) #nn \\
+     #ae #par(t) #TrP - #pi(i,j) #lb -2 #lapse #3Kd(i,j) 
+         + #Dd(i) #shiftd(j) + #Dd(j) #shiftd(i) #rb #nn \\
+     #ae #par(t) #TrP + 2 #lapse #pi(i,j) 
+         #lp   \frac{ #TrP }{ 2 #r3g } #3g(i,j) 
+             - \frac{ #pi(i,j) }{ #r3g } #rp 
+             - 2 #pi(i,j) #Dd(i) #shiftd(j) #nn \\
+     #ae #par(t) #TrP + \frac{ #lapse }{ #r3g }
+         #lb #TrP2 - #1_2(1) #TrP2 #rb 
+         - 2 #pi(i,j) #Dd(i) #shiftd(j)
+#eea
+
+
+     
+   

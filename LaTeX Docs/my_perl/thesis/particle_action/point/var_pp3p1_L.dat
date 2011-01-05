@@ -1,0 +1,32 @@
+#pro
+# var_pp3p1_L.dat
+# key Pav4
+#end
+
+Taking the variation of #ref(Pa3_1) with respect to $ #L $ yields
+#be(Pav4_1)
+  #fvar(I_{pp},#L) = #lint #Ham #var #L
+#ee
+which, when set equal to zero yields
+#be(Pav4_2)
+#1_2(1) #lb #3ig(i,j) #uvel(i) #uvel(j) 
+-\frac{ #lp #shiftu(i) #uvel(i) - #uvel(0) #rp ^2}{ #lapse ^2 } 
+           + 1 #rb = 0 
+#ee
+Solving #ref(Pav4_2) for $ #uvel(0) $ yields the #3p1 equivalent of
+the normalization condition #ref(XXXX)
+#be(Pav4_3)
+  #uvel(0) = - #shiftu(i) #uvel(i) + #lapse 
+                                     \sqrt{ 1 + #3ig(i,j) #uvel(i) #uvel(j) }
+#ee
+where the sign on the square-root is chosen so that $ #uvel(0) $ is
+future-pointing.
+
+The radical term is analogous to the Lorentz contraction familar from
+special relativity.  It will often be written as
+#be(Pav4_4)
+  \sqrt{ 1 + \| #uvel() \| ^ 2 }
+#ee
+where the 3-norm of $ #uvel(i) $ with respect to the three-metric 
+$ #3g(i,j) $ is defined by $ \| #uvel() \| ^2 = #3ig(i,j) 
+#uvel(i) #uvel(j) $.

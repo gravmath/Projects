@@ -1,0 +1,24 @@
+%K2Pi_var_lapse.dat
+%key AcK1
+
+In this section we convert the the ADM Hamiltonian constraint
+equation from the set $ #lb #3g(i,j) , #pi(i,j) #rb $ to 
+the set $ #lb #3g(i,j) , #3Kd(i,j) #rb $.
+
+Using the defining relations #ref(XXXX), #ref(XXXX), and #ref(XXXX), 
+#ref(Avl1_2) becomes
+
+#bea(AcK1_1)
+  #r3g #lb   \frac{ #det3g #lp #TrK ^2 + #TrK2 #rp }{ #det3g } 
+           - \frac{ 4 #det3g #TrK ^ 2}{2 #det3g } - #3R #rb 
+           #ae #r3g #lb #TrK ^2 + #TrK2 - 2 #TrK ^2 - #3R #rb #nn \\
+           #ae #r3g #lb #TrK2 - #TrK ^2 - #3R #rb
+#eea
+Dividing out $ #r3g $ we arrive at the usual `ADM' Hamiltonian
+constraint equation used in numerical relativity \cite{YYYY}
+#be(AcK1_2)
+#box
+  #TrK2 - #TrK ^2 - #3R = 0
+#bc
+#ee
+

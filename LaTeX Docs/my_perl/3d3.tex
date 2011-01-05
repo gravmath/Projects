@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage{pstricks,pst-3dplot}
+\begin{document}
+
+\begin{pspicture}(-2,-2)(9,5)
+  \uput[0](-2,4.5){Time Derivatives in non-inertial (i.e. rotating) frames}
+  \uput[0](4,2){Basic Rule:}
+  \uput[0](3.5,1.5){$\vec{\dot{\rho}}_{inertial}=\vec{\dot{\rho}}_{body}+\vec{\omega}\times\vec{\rho}$ }
+  \uput[0](-2,-1){\small{Inertial Frame}}
+  \uput[0](3,0){\textcolor{red}{\small{Rotating Body Frame}}}
+  \uput[0](2.5,2.5){\textcolor{red}{\small{Body CM}}}
+  \psset{xMin=0,yMin=0,zMin=0}%
+  \pstThreeDCoor[xMax=1,yMax=1,zMax=1,linewidth=2pt,nameX=$\noexpand\hat{I}$,%
+    nameY=$\noexpand\hat{J}$,nameZ=$\noexpand\hat{K}$,linecolor=blue]%
+%
+  \pstThreeDLine[arrows=->](0,0,0)(1,4,5)
+  \pstThreeDLine[arrows=->](0,0,0)(1,3.5,2)
+  \pstThreeDLine[arrows=->,linecolor=red](1,3.5,2)(1,4,5)
+%
+%  label vectors
+%
+  \pstThreeDNode(.5,2,2.5){RM}
+  \uput[180](RM){$\vec{\mbox{R}}$}
+  \pstThreeDNode(.5,1.75,1){rM}
+  \uput[90](rM){$\vec{\mbox{r}}$}
+  \pstThreeDNode(1,3.75,3.5){rhoM}
+  \uput[0](rhoM){\textcolor{red}{$\vec{\rho}$}}
+%
+% generate CM symbol
+%
+  \pstThreeDNode(1,4,5){cM}
+  \pscircle[linewidth=.5pt](cM){.15}
+  \pswedge[fillstyle=solid,fillcolor=black](cM){.15}{90}{180}
+  \pswedge[fillstyle=solid,fillcolor=black](cM){.15}{270}{360}
+%
+%  second method for axes
+%
+  \pstThreeDPut[origin=lb](1,3.5,2){%
+    \begin{pspicture}(-2,-2)(2,2)
+       \pstThreeDCoor[xMax=1,yMax=1,zMax=1,linecolor=red,linewidth=1pt,%
+          Alpha=115,Beta=70,nameX=$\noexpand\hat{i}$,%
+          nameY=$\noexpand\hat{j}$,nameZ=$\noexpand\hat{k}$]%
+    \end{pspicture}%<---- important
+   }%
+\end{pspicture}
+
+\end{document}

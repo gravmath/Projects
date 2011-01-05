@@ -1,0 +1,18 @@
+#pro
+# on_TrL_P.dat
+# key TrLP
+# 10/6/02
+#end
+
+In this note, we calculate the trace of the term $ #lie(#shift,#3K(i,j)) $.
+Taking the trace
+#bea(TrLP_1)
+  #3g(i,j) #lie(#shift,#pi(i,j)) 
+    #ae 
+        #3g(i,j) #lp #shiftu(k) #Dd(k) #pi(i,j) - #pi(i,k) #Dd(k) #shiftu(j)
+      - #pi(k,j) #Dd(k) #shiftu(i) + #pi(i,j) #Dd(k) #shift(k) #rp #nn \\
+    #ae 
+        #shiftu(k) #Dd(k) #TrP - 2 #pi(i,k) #Dd(k) #shiftd(i) 
+      + #TrP #Dd(k) #shiftu(k) 
+#eea
+                           

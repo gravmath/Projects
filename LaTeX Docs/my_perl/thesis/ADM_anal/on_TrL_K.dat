@@ -1,0 +1,17 @@
+#pro
+# on_TrL_K.dat
+# key TrLK
+# 10/6/02
+#end
+
+The aim of this note is to calculate the trace of $ #lie(#shift,#3K(i,j)) $.
+Using the standard definitions the relation becomes
+#bea(TrLK_1)
+  #3g(i,j) #lie(#shift,#3K(i,j)) 
+    #ae 
+        #3g(i,j) #lp #shiftu(k) #Dd(k) #3K(i,j) 
+      - #3K(i,k) #Dd(k) #shiftu(j)
+      - #3K(k,j) #Dd(k) #shiftu(i) #rp #nn \\
+    #ae
+        #shiftu(k) #Dd(k) #TrK - 2 #3K(i,k) #Dd(k) #shiftd(i)
+#eea      

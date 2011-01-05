@@ -1,0 +1,27 @@
+#pro
+# var_pp_z.dat
+# key Pav2
+#end
+
+Finally we consider the variation of $ I_{pp} $ with respect to 
+the particle position $ #zpos(#m) $
+#be(Pav2_1)
+  #fvar(I_{pp},#zpos(#a)) = #lint #lp #uvel(#a) #var #zdot(#a) 
+                                 - #1_2(#L)
+                                 #fvar(#4ig(#m,#n),#zpos(#a)) #uvel(#m) #uvel(#n) #rp
+#ee                                 
+Since the metric $ #4ig(#m,#n) $ depends only on the particle position 
+$ #zpos(#m) $ the corresponding variational derivative is equivalent to the
+partial derivative $ #pby(#4ig(#m,#n),#zpos(#a)) $.
+
+The next step is to integrate the first term by parts which yields
+#be(Pav2_2)
+  #fvar(I_{pp},#zpos(#a)) = - #lint #lp #dby(,#l) #uvel(#a) 
+                                 + #1_2(#L)
+                                 #pby(#4ig(#m,#n),#zpos(#a)) #uvel(#m) #uvel(#n) #rp #var #zpos(#a)
+#ee                                 
+Since the variation $ #var #zpos(#a) $ is arbitrary its coefficient must 
+be zero, which results in
+#be(Pav2_3)
+  #dby(,#l) #uvel(#a) + #1_2(#L) #pby(#4ig(#m,#n),#zpos(#a)) #uvel(#m) #uvel(#n) = 0
+#ee

@@ -1,0 +1,17 @@
+%universal_notation.dat
+The following notation is used in this thesis
+\\
+\\
+\begin{description}
+\item vectors - $ #vec(v)       $, $ #vec(w)   $, etc.
+\item basis vectors - $ #bv(e,a)      $, $ #bv(e,#n) $, etc.
+\item forms         - $ #form(#w)     $, $ #form(#a) $, etc.
+\item basis forms   - $ #bf(#w,#m)    $, $ #bf(#W,a) $, etc.
+\item tensors       - $ #Tud(M,ab,cd) $, $ #Tu(T,a)  $, etc.
+\end{description}
+
+On those occasions when a vector or a form is to represented by
+a one-dimensional array it will be understood as a column-array.
+The array will be named by a 
+
+

@@ -1,0 +1,68 @@
+%many_faces_of_K.dat
+As discussed above, once the spacetime foliation is determined the metric can
+be split into the shift, the lapse, and the 3-metric.  The central idea for
+performing this foliation was to define a one-form that is a differential
+$\Omega_a = dt$ of the coordinate time $t$.  This definition corresponds to
+surfaces of constant coordinate time and implies
+\[
+  \begin{array}{ccc}
+    d \Omega = 0 & \leftrightarrow & \nabla_{[a} \Omega_{b]} = 0
+  \end{array}
+\]
+which is a consequence of the Poincar\'{e} lemma.  Defining the normalized
+one-form as in (\ref{eq:norm_form}) yields the corresponding relation
+\[
+  \begin{array}{ccc}
+    \omega \wedge d \omega = 0 & \leftrightarrow & \omega_{[a}
+    \nabla_{b} \omega_{c]} = 0
+  \end{array}
+\]
+which is an instance of the Froebinius theorem.  The one-form dual to the
+normal vector to a constant-$t$ surface, allows the Froebinius relation
+to be rewritten as
+\begin{equation}\label{eq:norm_Froeb}
+  n_{[a} \nabla_{b} n_{c]} = 0
+\end{equation}
+which is the crucial relationship that reveals the many faces of the
+extrinsic curvature.  By contracting (\ref{eq:norm_Froeb}) with $n^c$ the
+relationship
+\begin{equation}\label{eq:norm_Fr_con}
+ \begin{array}{ccccc}
+  n^c n_{[a} \nabla_{b} n_{c]} & = & 0 & = & n_{[a} a_{b]} + \nabla_{[a} n_{b]}
+ \end{array}
+\end{equation}
+is obtained.  With this in hand, the general definition of the extrinsic
+curvature
+\[
+   K_{ab} = -\nabla_{a} n_{b} - n_{a} a_{b}
+\]
+is seen to be entirely symmetric in its two indices.  This follows from
+\[
+   K_{ab} = -\nabla_{(a} n_{b)} - n_{(a} a_{b)} -\nabla_{[a} n_{b]} - n_{[a} a_{b]}
+\]
+and (\ref{eq:norm_Fr_con}).  Thus the extrinsic curvature can also be written as
+\[
+   K_{ab}  =  -\nabla_{(a} n_{b)} - n_{(a}a_{b)} \.
+\]
+Define $\perp$ as shorthand for applying the projection tensor to all free
+indices.  By applying $\perp$ to $K_{ab}$ and repeatedly using the identities
+$n^a \nabla_b n_a = 0$ and $n^a {h_a}^b = 0$gives
+\begin{eqnarray*}
+   \perp K_{ab} & = & {h_a}^c {h_b}^d K_{cd} \\
+%                & = & -\nabla_{(a} n_{b)} - n_{a} n^c \nabla_c n_{b} \\
+%                &   & -n_b n^d \nabla_d n_a \\
+                & = & -\nabla_{(a} n_{b)} - n_{(a} a_{b)} \\
+                & = & K_{ab}
+\end{eqnarray*}
+which demonstrates that $K_{ab}$ is entirely a spatial tensor.
+
+Finally, the extrinsic curvature can be related to the Lie derivative of the
+three metric along the normal vector field giving
+\[
+   {\mathcal L}_{\mathbf{n}} h_{ab} = 2 \left[ \nabla_{(a} n_{b)} + n_{(a}a_{b)} \right]
+\]
+which when compared with (\ref{eq:norm_Froeb}) yields the desired connection
+\begin{equation}\label{eq:Lie_K}
+   K_{ab} = - \frac{1}{2} {\mathcal L}_{\mathbf{n}} h_{ab}
+\end{equation}
+between the extrinsic curvature and the 3-metric.

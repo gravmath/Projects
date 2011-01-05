@@ -1,0 +1,41 @@
+A.Set(i*i,i)
+A[0] = 0
+A[1] = 1
+A[2] = 4
+A[3] = 9
+A[4] = 16
+A[5] = 25
+A[6] = 36
+A[7] = 49
+A[8] = 64
+A[9] = 81
+A.max() = 81
+
+Contents of B
+B[0,0] = -99
+B[0,1] = -99
+B[1,0] = -99
+B[1,1] = -99
+
+
+Contents of C and D
+C[0,0] = -99
+C[0,1] = -99
+C[1,0] = -99
+C[1,1] = -99
+D[0] = 0
+D[1] = 1
+D[2] = 4
+D[3] = 9
+D[4] = 16
+D[5] = 25
+D[6] = 36
+D[7] = 49
+D[8] = 64
+D[9] = 81
+Contents of C after Resize
+C-resized[0] = 0
+C-resized[1] = 0
+C-resized[2] = 0
+C-resized[3] = 0
+C-resized[4] = 0

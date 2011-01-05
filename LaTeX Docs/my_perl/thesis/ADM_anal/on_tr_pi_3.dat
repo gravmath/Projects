@@ -1,0 +1,28 @@
+#pro
+# on_tr_pi_3.dat
+# AK3
+# 9/21/02
+#end
+
+In this note, we convert the terms involving spatial derivatives
+of $ #pi(i,j) $ to the corresponding terms involving $ #3K(i,j) $.
+Again employ #ref(XXXX) to relate the conjugate momentum to the
+extrinsic curvature.  Some simplification results by noting that
+the definition of the 3-dimensional covariant derivative is compatible
+with the 3-metric, resulting in $ #Du(i) #3g(k,l) = 0 $ 
+and related expressions.
+
+#bea(AK3_1)
+  \frac{1}{ #r3g } #lb #lie(#shift,#pi(i,j)) - #shiftu(i) #Dd(k) #pi(j,k) 
+    - #shiftu(j) #Dd(k) #pi(i,k) #rb
+ #ae 
+   \frac{1}{ #r3g } #lie(#shift,#r3g) #lp #TrK #3ig(i,j) - #3K(i,j) #rp 
+    #3ig(i,j) #nn \\
+ #as 
+    + #lie(#shift,#TrK) + #TrK #lie(#shift,#3ig(i,j)) #nn \\
+ #as
+    - #lie(#shift,#3K(i,j))
+    - #3ig(i,j) #shiftu(i) #Dd(k) #TrK #nn \\
+ #as
+    - #shiftu(i) #Dd(k) #3K(i,j)
+#eea

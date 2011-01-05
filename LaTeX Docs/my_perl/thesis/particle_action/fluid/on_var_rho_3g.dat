@@ -1,0 +1,46 @@
+#pro
+# on_var_rho_3g.dat
+# key VR3G
+# 10/21/02
+#end
+
+The desire her is to compute $ #pby(#r,#3g(i,j)) $.  
+The density $ #r $ has
+a dependence on $ #3g(i,j) $ throught two terms.  The first is through 
+$ #r3g $ and the second is through $ #enorm ^2 $.
+
+The variation of $ #r3g $ easily obtained from the formulae #ref(XXXX) 
+found in the appendix #ref(????).  Instead, focus on the terms involved
+in $ #enorm ^ 2$ 
+#bea(VR3G_1)
+  #pby(,#3g(i,j)) #enorm ^2 #ae #pby(,#3g(i,j)) #ep(k) #ep(l) #3g(k,l) #nn \\
+                            #ae   #pby(#ep(k),#3g(i,j) #ep(l) #3g(k,l) 
+                                + #ep(k) #pby(#ep(l),#3g(i,j)) #3g(k,l)
+                                + #ep(i) #ep(j) #nn \\
+                            #ae 2 #pby(#ep(k),#3g(i,j)) #ep(l) #3g(k,l)
+#eea
+Now expand the term $ #pby(#ep(k),#3g(i,j)) $
+#bea(VR3G_2)
+  #pby(#ep(k),#3g(i,j)) #ae #pby(,#3g(i,j)) #lp #zdot(k) + #shiftu(k) #rp #nn \\
+                        #ae #pby(,#3g(i,j)) #shiftu(k) #nn \\
+                        #ae #pby(,#3g(i,j)) #3ig(k,m) #shiftd(m) #nn \\
+                        #ae - #shiftu(#symo(i)) #3ig(#symc(j),k)
+#eea                        
+Substituting back into #ref(VR3G_1) yields
+#be(VR3G_3)
+  #pby(,#3g(i,j)) #enorm ^2 =     #ep(i) #ep(j) 
+                              - 2 #ep(#symo(i)) #shiftu(#symc(j))
+#ee
+With this result in hand, we can move onto the desired computation by 
+employing the conservation equation #ref(XXXX) 
+#be(VR3G_4)
+  #pby(,#3g(i,j)) #lb \frac{ #r #r3g #detJ }{ #mue } #rb 
+  = #pby(,#3g(i,j)) #rho0 = 0
+#ee
+yields
+#be(VR3G_5)
+  #pby(#r,#3g(i,j)) = - #1_2(#r) #lb #3ig(i,j) 
+                      + #uvelu(i) #uvelu(j) 
+                      - \frac{ 2 #uvelu(#symo(i)) #shiftu(#symc(j)) }{ #L } #rb
+#ee                      
+

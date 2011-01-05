@@ -1,0 +1,28 @@
+#pro
+# constant_t_surface.dat
+# key St1
+#end
+
+Define a one-form $ #form(#W) $ corresponding to surfaces of constant time $t$ by
+taking the covariant derivative of the time coordinate
+#be(St1_1)
+  #Td(#W,a) = #Cd(a) t \doteq #ra4(1,0,0,0) 
+#ee
+subject to the condition that $ #Td(#W,a) $ be timelike
+#be(St1_2) #nn
+  #Tu(#W,a) #Td(#W,a) = #Tu(g,00) \equiv \frac{-1}{ #lapse ^2}
+#ee
+Introduce the normalized one-form
+#be(St1_3) #nn
+   #Tu(#w,a) #Td(#w,a) = -1 
+#ee   
+via the definition
+#be(St1_4) #nn
+   #Td(#w,a) = #lapse #Td(#W,a)
+#ee
+
+A normalized unit-vector $ #nu(a) $ orthogonal to a constant-$t$ slice can be
+constructed by
+#be(St1_4) #nn
+  #nu(a) = - #4ig(a,b) #Td(#w,b)
+#ee

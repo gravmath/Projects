@@ -1,0 +1,42 @@
+#pro
+# on_dx_pi_1.dat
+# DxP1
+# 10/6/02
+#end
+
+Since the terms in question involve the spatial derivatives of $ #pi(i,j) $
+I'll derive the conversion to the corresponding terms $ #3K(i,j) $ here 
+and will refer to them afterwards.
+
+First consider the term involving the Lie derivative of $ #pi(i,j) $
+#bea(DxP1_1)
+  #lie(#shift,#pi(i,j) 
+    #ae 
+        #shiftu(k) #Dd(k) #pi(i,j) - #pi(k,j) #Dd(k) #shiftu(i)
+      - #pi(i,k) #Dd(k) #shiftu(j) + #pi(i,j) #Dd(k) #shiftu(k) #nn \\
+    #ae
+       #shiftu(k) #Dd(k) #lb #r3g #lp #TrK #3ig(i,j) - #3K(i,j) #rp #rb 
+     - #lb #r3g #lp #TrK #3ig(k,j) - #3K(k,j) #rp #rb #Dd(k) #shiftu(i) #nn \\
+    #as 
+       #lb #r3g #lp #TrK #3ig(i,k) - #3K(i,k) #rp #rb #Dd(k) #shiftu(j)
+     + #lb #r3g #lp #TrK #3ig(i,j) - #3K(i,j) #rp #rb #Dd(k) #shiftu(k) #nn \\
+    #ae
+       #r3g #3ig(i,j) #lp #shiftu(k) #Dd(k) #TrK + #TrK #Dd(k) #shiftu(k) #rp
+     - #r3g #lie(#shift,#3K(i,j))  #nn \\
+    #as
+     - #r3g #3K(i,j) #Dd(k) #shiftu(k) 
+     - #r3g #TrK #lp #Du(i) #shiftu(j) + #Du(j) #shiftu(i) #rp
+#eea
+
+The terms involving the other spatial derivatives become
+#bea(DxP1_2)
+  #shiftu(i) #Dd(k) #pi(j,k) + #shiftu(j) #Dd(k) #pi(i,k) 
+    #ae
+        #shiftu(i) #Dd(k) #lb #r3g #lp #TrK #3ig(j,k) - #3K(j,k) #rp #rb #nn \\
+    #as
+      + #shiftu(j) #Dd(k) #lb #r3g #lp #TrK #3ig(i,k) - #3K(i,k) #rp #rb #nn \\
+    #ae
+        #r3g #lp #shiftu(i) #Du(j) #TrK + #shiftu(j) #Du(j) #TrK #rd #nn \\
+    #as
+      - #ld #shiftu(i) #Dd(k) #3K(j,k) - #shiftu(j) #Dd(k) #3K(i,k) #rp
+#eea

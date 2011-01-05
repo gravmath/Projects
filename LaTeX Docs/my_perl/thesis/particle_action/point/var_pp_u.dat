@@ -1,0 +1,14 @@
+#pro
+# var_pp_u.dat
+# key Pav3
+#end
+
+Next we consider the variation of $ I_{pp} $ with respect to $ #uvel(#a) $
+#be(Pav3_1)
+  #fvar(I_{pp},#uvel(#a)) =   #lint #lp #zdot(#a) 
+                            - #L #4ig(#a,#m) #uvel(#m) #rp #var #uvel(#a)
+#ee
+Setting the variation equal to zero yields
+#be(Pav3_2)
+  #zdot(#a) = #L #4ig(#a,#m) #uvel(#m)
+#ee

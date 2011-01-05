@@ -1,0 +1,10 @@
+#pro
+# var_hydro_lapse.dat
+# key        Ahv1
+#end
+
+The starting action is 
+#be(Ahv1_1)
+  I = #1_16p #cint #lb #par(t) #3g(i,j) #pi(i,j) - #Qa - #Qb(k,k) #rb 
+     + #aint #rho0 #hh #lb #uvel(0) + #zdot(i) #uvel(i) - #L #Ham #rp
+#ee

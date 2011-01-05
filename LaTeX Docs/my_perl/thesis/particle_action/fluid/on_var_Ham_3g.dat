@@ -1,0 +1,38 @@
+#pro
+# on_var_Ham_3g.dat
+# key VH3G
+# 10/21/02 and 10/22/02
+#end
+
+In this computation, we explore the variation of the 
+Hamiltonian with respect to the three-metric.  Since 
+the Hamiltonian depends only on the three-metric and
+not on its derivatives, the variation ammounts to
+taking a partial derivative.
+#bea(VH3G_1)
+  #pby(,#3g(i,j)) #Ham #ae #pby(,#3g(i,j))  #1_2(1) 
+                           #lb #3ig(k,l) #uvel(k) #uvel(l) - 
+                            \frac{ #lp #shiftu(k) #uvel(k) - #uvel(0) #rp }
+                                { #a ^ 2 } 
+                            + 1
+                           #rb #nn \\
+                       #ae 
+                         - #1_2(1) #uvelu(i) #uvelu(j) 
+                         - \frac{ #lp #shiftu(k) #uvel(k) - #uvel(0) #rp }
+                                  { #a ^2 }
+                           #pby(,#3g(i,j)) #3ig(k,l) #shiftd(l) #uvel(k) #nn \\
+                       #ae
+                         - #1_2(1) #uvelu(i) #uvelu(j)
+                         + \frac{ #lp #shiftu(k) #uvel(k) - #uvel(0) #rp }
+                                  { #a ^2 }
+                           #shiftu(#symo(i)) #uvelu(#symc(j))
+#eea                           
+Using the standard relation $ #lp #shiftu(k) #uvel(k) - #uvel(0) #rp 
+= \frac{ #a ^2 }{ #L } $ the above relation becomes
+#be(VH3G_2)
+  #pby(,#3g(i,j)) #Ham =   \frac{ #uvelu(#symo(i)) #shiftu(#symc(j)) }{ #L }
+                         - #1_2(1) #uvelu(i) #uvelu(j) 
+#ee                         
+                           
+                                  
+                         

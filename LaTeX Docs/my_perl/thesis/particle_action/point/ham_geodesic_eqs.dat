@@ -1,0 +1,31 @@
+#pro
+# ham_geodesic_eqs.dat
+# key Pav3_2
+#end
+
+In order for #ref(Pav3_2) to be consistent with the
+interpretation of $ #uvel(#a) $ as a 4-velocity, we must 
+make the identification
+#be(Pa2_1)
+ \frac{1}{ #L } #dby(,#l) = #dby(,#t)
+#ee
+Multiplying #ref(Pav3_2) by $ #4g(#m,#n) #zdot(#n) $ yields
+#be(Pa2_2)
+  #4g(#m,#n) #zdot(#m) #zdot(#n) = #L ^2 #4ig(#m,#n) #uvel(#m) #uvel(#n)
+#ee
+Using #ref(Pav1_2) , #ref(Pa2_2) becomes
+#be(Pa2_3)
+  #L ^2 = - #4g(#m,#n) #zdot(#m) #zdot(#n)
+#ee
+or equivalently 
+#be(Pa2_4)
+  #L = \sqrt{ - #4g(#m,#n) #zdot(#m) #zdot(#n)  }
+#ee
+where the positive root is picked so that $ #dby(,#l) $ and 
+$ #dby(,#t) $ are both future-pointing.
+Combining #ref(Pa2_1) with #ref(Pav2_3) yields
+#be(Pa2_5)
+  #dby(#uvel(#a),#t) + #1_2(1) #pby(#4ig(#m,#n),#zpos(#a)) #uvel(#m) #uvel(#n) = 0
+#ee
+which is the usual form of the geodesic equation for the 
+4-velocity.

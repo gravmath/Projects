@@ -1,0 +1,20 @@
+#pro
+# on_tr_dt_3k.dat
+# key TK1
+# 10/6/02
+#end
+
+The aim of this note is to calculate the term  $ #3g(i,j) #par(t) #3K(i,j) $.
+Substituting in the definition #ref(XXXX) and simplifying yields
+#bea(TK1_1)
+  #3g(i,j) #par(t) #3K(i,j) 
+    #ae 
+       #par(t) #TrK - #3K(i,j) #par(t) #3g(i,j) #nn \\
+    #ae
+       #par(t) #TrK - #3K(i,j) #lp -2 #lapse #3Kd(i,j) 
+       + #Dd(i) #shiftd(j) + #Dd(j) #shiftd(i) #rp #nn \\
+    #ae
+       #par(t) #TrK + 2 #lapse #TrK2 - 2 #3K(i,j) #Dd(i) #shiftd(j)
+#eea
+      
+  

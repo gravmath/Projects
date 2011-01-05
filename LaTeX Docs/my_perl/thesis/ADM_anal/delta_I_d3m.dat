@@ -1,0 +1,7 @@
+%a computation of the variation of the ADM action
+%wrt to the 3-metric
+%
+%based on the notes 'A quality check on the 3-metric variation'
+Start with the ADM action with no matter
+#be(AA_1)
+  I = \frac{1}{16 #p} 

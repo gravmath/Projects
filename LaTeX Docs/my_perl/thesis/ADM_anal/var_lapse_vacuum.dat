@@ -1,0 +1,18 @@
+%var_lapse_vacuum.dat
+%key Avl1
+
+In this section we start with the ADM action and calculate the variation 
+with respect to the lapse $ #lapse $.
+The require variation is
+#be(Avl1_1)
+  #fvar(I_{ADM},#lapse) = #cint #lp - #R0 #rp #var #lapse
+#ee
+Setting the variation equal to zero and susbtituting in
+the definition of $ #R0 $ found in #ref(XXXX)
+results in
+#be(Avl1_2)
+#box 
+  #r3g #lp   \frac{ #TrP2 }{ #det3g } 
+           - \frac{ #TrP ^2 }{ 2 #det3g } - #3R #rp = 0
+#bc           
+#ee        

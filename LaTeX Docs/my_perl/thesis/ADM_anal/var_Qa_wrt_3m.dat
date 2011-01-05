@@ -1,0 +1,18 @@
+%var_Qa_wrt_3m.dat
+%
+%Adapted from the notes 'On the variation of \alpha R^0 wrt the 3-metric'
+%dated 10/25/02
+
+To make the regular variational work more palatable, it is good 
+to treat each piece in #ref(xxxx) separately.  This section considers
+the variation of the term $ #Qa $ as the 3-metric is varied.
+#be(Av3g2_1)
+  #var #lp #cint #Qa #rp |_{ #var #3g(i,j) } = #cint #vby(#Qa,#3g(i,j)) 
+                                             #var #3g(i,j)
+#ee
+Begin by expanding the integrand on the right-hand-side using the
+standard definitions of $ #R0 $ to get
+                  
+
+
+

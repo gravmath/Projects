@@ -1,0 +1,173 @@
+%determining_g3p1.dat
+Assume that the metric and the inverse metric are given by
+\[
+   g_{ab} \doteq
+   \left(
+     \begin{array}{c c}
+       g_{00}     & {\tilde N}^{T} \\
+       {\tilde N} & {\tilde {\tilde h}}
+     \end{array}
+   \right)
+\]
+and
+\[
+   g^{ab} \doteq
+   \left(
+     \begin{array}{c c}
+       -N^{-2}        & {\bar \delta}^{T} \\
+       {\bar \delta}  & {\bar {\bar \sigma}}
+     \end{array}
+   \right)
+\]
+respectively.
+
+In this notation, the unit-normal to the constant-$t$ slice is given by
+\begin{eqnarray*}
+   n^a & = &  g^{ab} n_{b} \\
+       & \doteq &
+   \left(
+     \begin{array}{c c}
+        -N^{-2}       & {\bar \delta}^{T} \\
+       {\bar \delta}  & {\bar {\bar \sigma}}
+     \end{array}
+   \right)
+%
+   \left(
+     \begin{array}{c}
+       -N \\
+       0
+     \end{array}
+   \right) \\
+%
+   & = &
+   \left(
+     \begin{array}{c}
+       N^{-1} \\
+       -N \bar \delta
+     \end{array}
+   \right) \.
+\end{eqnarray*}
+Now $h_{ab}$ can be constructed via two routes.  First ${h^{a}}_{b}$ can be
+determined
+\begin{eqnarray*}
+   {h^{a}}_{b} & = &  {\delta^{a}}_{b} + n^{a} n_{b} \\
+             & = & \left(
+                      \begin{array}{cc}
+                         1 & 0 \\
+                         0 & 1
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{c}
+                          N^{-1} \\ -N \bar \delta
+                      \end{array}
+                   \right)
+                   \left(
+                      \begin{array}{cc}
+                         -N & 0
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         1 & 0 \\
+                         0 & 1
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{cc}
+                         -1             & 0 \\
+                         N^2 \bar \delta & 0
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         0               & 0 \\
+                         N^2 \bar \delta & 1
+                      \end{array}
+                   \right)
+\end{eqnarray*}
+and its index lowered to yield
+\begin{eqnarray*}
+   h_{ab} & = &  g_{a c} {h^{c}}_{b}  \\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00}   & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right)
+                   \left(
+                      \begin{array}{cc}
+                         0               & 0 \\
+                         N^2 \bar \delta & 1
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         N^2 {\tilde N}^T \bar \delta & {\tilde N}^T \\
+                         N^2 {\tilde {\tilde h}} \bar \delta & {\tilde {\tilde h}}
+                      \end{array}
+                   \right)
+\end{eqnarray*}
+Finally $h_{ab}$ can be constructed directly by
+\begin{eqnarray*}
+   h_{ab} & = &  g_{ab} + n_{a}n_{b}  \\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00}   & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{c}
+                         -N \\
+                          0
+                      \end{array}
+                   \right)
+                   \left(
+                      \begin{array}{c c}
+                         -N & 0
+                      \end{array}
+                   \right)\\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00}   & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{cc}
+                         N^2 & 0 \\
+                         0   & 0
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00} + N^2  & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right) \.
+\end{eqnarray*}
+Equating the two forms for $h_{a b}$ give the relations
+\begin{eqnarray*}
+   \bar \delta & = & \frac{1}{N^2} {\tilde {\tilde h}}^{-1} {\tilde N} \\
+               & = & \frac{h^{ij} N_j}{N^2} \\
+               & \equiv & \frac{N^i}{N^2}
+\end{eqnarray*}
+and
+\begin{eqnarray*}
+   g_{00} & = &  -N^2 + {\tilde N}^T {\tilde {\tilde h}}^{-1} \tilde N \\
+          & = &  -N^2 + N^{i} N_{i} \.
+\end{eqnarray*}
+The relation for ${\bar {\bar \sigma}}$ can be determined from the requirement
+that ${\tilde {\tilde g}} {\bar {\bar g}} = 1$ and yields
+\[
+   {\bar {\bar \sigma}} = {\tilde {\tilde h}}^{-1}
+                          - \frac{ \bar N {\bar N}^T }{N^2} \.
+\]
+Combining these relations arrives at the ADM form of the metric
+\begin{eqnarray}\label{eq:g_ADM}
+   g_{ab} & = & \left( -N^2 + N^i N_i \right) dt^2 \nonumber \\
+          &   &  + 2 N_i dt dx^i + h_{ij} dx^i dx^j \nonumber \\
+          & = & -N^2 dt^2 \nonumber \\
+          &   & + h_{ij}\left(dx^i + N^i dt\right) \left(dx^j + N^j dt\right)
+\end{eqnarray}

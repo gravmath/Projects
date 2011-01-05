@@ -1,0 +1,11 @@
+******R3G Subscibe Only Geodesics Run**********
+
+The run started on 10/27/2004 at  6:13:58
+The spatial extent of the grid is -16.1833x16.1833, -16.1833x16.1833, -1.24487x1.24487
+The number of grid points is [248,248,20]
+The deltas are      0.131038986      0.131038986,      0.131038986
+The smoothing length is 1
+Ready to allocate space for the tensors
+Grid allocated at  6:14:01 - preparing to load
+Grid loaded at  6:14:02
+Run finished at  8:47:27

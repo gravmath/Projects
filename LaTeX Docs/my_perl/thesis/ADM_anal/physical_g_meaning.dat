@@ -1,0 +1,55 @@
+%physical_g_meaning.dat
+
+Physical meaning can be attached to ${\tilde {\tilde h}}$ (the spatial portion
+of $h_{ab}$ ) by noting that from the first expression for the ADM metric
+(\ref{eq:g_ADM}) $h_{ij}$ acts as a metric on the spatial constant-$t$ slice.
+The spatial vector $N^i$, which is called the shift vector, can be
+physically interpreted in terms of the movement of time.  Defining a vector
+corresponding to positive time movement as
+\begin{eqnarray*}
+  t^a & \doteq & \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \end{array} \right) \\
+      &   =    &  N \left( \begin{array}{cc}
+                             \frac{1}{N} & \frac{-\bar N}{N}
+                           \end{array}
+                    \right) +
+                    \left( \begin{array}{cc}
+                             0 & \bar N
+                           \end{array}
+                    \right) \\
+      &   =    & N n^a + N^a
+\end{eqnarray*}
+gives an immediate relation between the time vector and the normal vector, in
+terms of the shift.
+Geometrically, the time vector `stretches' between points with the same spatial
+coordinates on the two slices.
+A particle at rest on the lower surface will have a worldline whose tangent
+is $t^a$.
+By considering two adjacent spatial hypersurfaces defined
+as times $t$ and $t+dt$ respectively, allows a fairly simple physical
+interpretation.
+The separation, in proper time, between the two slices, given by the projection
+of $\bar t$ along the normal $\bar n$, is
+\[
+  \langle \tilde \omega , \bar t \rangle = N
+\]
+This result motivates the name of `lapse' for the function $N$.
+The normal $n^a$, which is perpendicular to the lower surface, connects a
+point on the lower surface, with coordinates $x^i(lower)$, to a point on
+the upper surface, with coordinates $x^i(upper)$.
+The two coordinates are related by
+\[
+   x^i(upper) = x^i(lower) - N^i dt \.
+\]
+
+It is important to realize that the hypersurface normal field does not satisfy
+the geodesic equation even though the timelike vector field $t^a$ does.  The
+amount that the hypersurface normal field fails the geodesic equation is given
+by its four-acceleration
+\[
+   a^{b} = n^a {n^b}_{;a} \.
+\]
+In addition, since $n^a$ is normalized, it is always orthogonal to its four-
+acceleration
+\[
+   n^b a_b = n^b n^c \nabla_c n_b= n^c \left( n^b \nabla_c n_b \right) = 0 \.
+\]

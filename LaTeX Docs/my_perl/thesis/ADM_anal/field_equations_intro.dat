@@ -1,0 +1,6 @@
+%field_equations_intro.dat
+Finally we arrive at the field equations for the ADM system.  The equations are
+obtain by first recasting the Hilbert-Einstein action in terms of the shift, the
+lapse, the 3-metric, and the extrinsic curvature.  Once done, a conjugate
+momentum to the 3-metric is defined and the action is put into full Hamiltonian
+form.

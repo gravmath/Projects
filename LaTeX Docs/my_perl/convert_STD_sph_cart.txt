@@ -1,0 +1,9 @@
+%converting STD_SCHW from spherical to cartesian
+
+The metric for the Schwarzschild solution in standard
+coordinates $ #lp t , r, #q , #f #rp $ is given by
+#be(mc_1)
+  ds^2 = - #Schw_f dt^2 + \frac{dr^2}{ #Schw_f } + r^2 d #W ^2 #ep
+#ee
+
+To convert this metric to cartesian coordinates, start by reducing the

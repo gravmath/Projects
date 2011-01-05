@@ -1,0 +1,16 @@
+#pro
+# var_pp_L.dat
+# key Pav1
+#end
+
+To begin, we consider the variation of $ I_{pp} $ with respect to the
+Lagrange multiplier $ #L $
+#be(Pav1_1)
+  #fvar(I_{pp},#L) = #lint #Ham #var #L 
+#ee
+Since $ #var #L $ is arbitrary this leads immediately to the equation
+#be(Pav1_2)
+  #mc(H) = #4ig(#m,#n) #uvel(#m) #uvel(#n) + 1 = 0
+#ee
+which garuentees the normalization of the 4-velocity.
+

@@ -1,0 +1,10 @@
+#pro
+# slicing_intro.dat
+# key SL
+# old write-up
+#end
+
+The initial-value formulation of Arnowitt, Deser, and Misner (ADM) depends on
+being able to break spacetime up into a foliation of constant-$t$ spacelike
+hypersurfaces $\Sigma_t$.  In this section, the definition of this foliation
+is presented.
