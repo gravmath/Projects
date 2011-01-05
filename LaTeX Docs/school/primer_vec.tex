@@ -1,0 +1,195 @@
+\documentclass{article}
+\include{my_commands}
+%constraint equations
+\newcommand{\scpos}{\ensuremath{\idx{\cv{x}}{(t)}} }
+\newcommand{\scvel}{\ensuremath{\idx{\cv{v}}{(t)}} }
+\newcommand{\tvec} {\ensuremath{\cuv{\idx{u}{\dn{\gG}}}} }
+\newcommand{\tvect}{\ensuremath{\ruv{\idx{u}{\dn{\gG}}}} }
+%Lagrange multipliers
+\newcommand{\lx} {\idx{\cv{\gl}}{\dn{x}} }
+\newcommand{\lxt}{\idx{\cv{\gl}}{\dn{x}\up{T}} }
+\newcommand{\lv} {\idx{\cv{\gl}}{\dn{v}} }
+\newcommand{\lvt}{\idx{\cv{\gl}}{\dn{v}\up{T}} }
+\newcommand{\lm} {\idx{\gl}{\dn{m}} }
+\newcommand{\dlx} {\idx{\dt{\cv{\gl}}}{\dn{x}} }
+\newcommand{\dlxt}{\idx{\dt{\cv{\gl}}}{\dn{x}\up{T}} }
+\newcommand{\dlv} {\idx{\dt{\cv{\gl}}}{\dn{v}} }
+\newcommand{\dlvt}{\idx{\dt{\cv{\gl}}}{\dn{v}\up{T}} }
+\newcommand{\dlm} {\idx{\dt{\gl}}{\dn{m}}}
+%equations
+\newcommand{\poseq}{\ensuremath{\dt{\cv{x}} - \cv{v}} }
+\newcommand{\veleq}{\ensuremath{\dt{\cv{v}} - \cv{g} -
+                                       \frac{\gG}{m}\cuv{\idx{u}{\dn{\gG}}}} }
+\newcommand{\meq}{\ensuremath{\dt{m} - \frac{\gG}{c}} }
+\newcommand{\veceq}{\ensuremath{\ipd{\tvect}{\tvec} - 1} }
+\newcommand{\teq}  {\ensuremath{\gG \surb{\idx{\gG}{\dn{max}} - \gG} - \idx{q}{\up{2}}} }
+\newcommand{\gravjac}{\frac{\partial \cv{g}}{\partial \cv{x}}}
+\newcommand{\peq}  {\ensuremath{\dlx  + \ipd{\gravjac}{\lv}}}
+\newcommand{\peqt} {\ensuremath{\dlxt + \ipd{\lvt}{\gravjac}}}
+
+
+
+\begin{document}
+
+\title{A Primer Vector Cookbook \thanks{Work performed under NASA Contract ?????} }
+\author{Conrad Schiff \thanks{Chief Scientist} \\
+        a.i. solutions, Inc.\\
+      \texttt{schiff@ai-solutions.com}}
+\date{11/12/01}
+\maketitle
+
+%%
+%%Abstract
+%%
+%\begin{abstract}
+%
+%\end{abstract}
+
+\section{Introduction}
+
+
+In this document, we detail the derivation and application of the
+primer vector equations in obtaining fuel optimal trajectories. We
+have undertaken this work for three reasons.  First of all, while
+there are numerous works available in the literature, none of them
+were developed solely as a tutorial to start the mission designer
+working with the system. Secondly, many of them leave the details
+of the derivation to Lawden's text, which while a classic is
+difficult to read.  Finally, by directly exploiting the
+Hamiltonian formulation of the problem, these works ignore the
+possible contribution of boundary terms to the formulation.  We
+attempt to remedy these points by focusing on a more `tutotial'
+approach.  This document is to read in tandem with the
+accompanying document \cite{leonardo}.
+
+\section{Deriving the Primer Equations}\label{derive_primer}
+
+There are numerous ways to derive the primer vector equations.  We
+start with the Lagrangian approach in which a functional is built
+that minimizes the fuel used subject to a set of system
+constraints.  The constraints are included in the formulation by
+the use of Lagrange multipliers.  Variations of the functional
+with respect to the system variables yields the full set of primer
+vector equations.  This set is then reduced to a fundamental few
+equations which can then be applied to the desired spacecraft
+trajectory.
+
+To begin, we consider what our system variables are.  They are the
+position and velocity of the spacecraft, \scpos  and \scvel, the
+mass of the spacecraft $m$, and the thrust magnitude and
+direction, \gG and \tvec. (We avoid using the symbol $T$ to denote
+thrust since it will be used exclusively to denote the matrix
+transpose.)
+
+Now that we have identified our system variables, we have next to
+identify the constraints that they must obey.  The constraints
+are:
+\begin{itemize}
+  \item Spacecraft position and velocity must obey the correct equations of motion
+  (position and velocity)
+  \item Thrust direction must be specified as a unit vector
+  \item Thrust magnitude must be bounded between 0 and
+  \idx{\gG}{\dn{max}}
+  \item Mass flow rate must be given by the standard relation
+\end{itemize}
+To each of the items above, we can associate a constraint equation
+that mathematical enforces the constraints.  For the spacecraft
+position the proper equation is
+\be
+  \poseq = 0 \eqc
+\ee
+where \dt{\cv{x}} is the first derivative of \scpos.  Likewise
+the proper equation for the spacecraft velocity is \be
+  \veleq = 0 \eqc
+\ee where \dt{\cv{v}} is the first derivative of \scvel, \cv{g} is
+the acceleration due to gravity, and $\frac{\gG}{m} \tvec$ is the
+acceleration due to the thrust.
+
+For the thrust direction given by \tvec the constraint equation is
+\be
+  \veceq = 0 \eqp
+\ee
+The thrust magnitude presents a challenge.  Unlike the other
+constraint equations, the one for the thrust is an inequality
+constraint
+\[
+0 \leq \gG \leq \idx{\gG}{\dn{max}} \eqp
+\]
+Using the standard method of introducing a slack variable to
+eliminate the inequality \cite{in}, the thrust magnitude
+constraint equation can now be written as
+\be
+  \teq = 0 \eqc
+\ee
+where $q$ is the slack variable ensuring the inequality.
+
+
+
+\subsection{Building the Lagrangian}
+Once the constraints equations have been identified, the next step
+is to build a Lagrangian functional that can be varied to subject
+to those constraints.  This is straightforwardly obtained by
+forming a sum of each constraint equation multiplied by a Lagrange
+multiplier.  The resulting form is
+\bea\label{eq:def_L}
+  L & = &   \ipd{\lxt}{\surp{\poseq}} + \ipd{\lvt}{\surp{\veleq}} + \lm \surp{\meq} \nonumber \\
+    &   & + \gs_1 \surp{\veceq} + \gs_2 \surp{\teq} \eqp
+\eea The Lagrange multipliers, \lx, \lv, and \lm are distinguished
+from the multipliers \idx{\gs}{\dn{1}} and \idx{\gs}{\dn{2}} since
+they are actually adjoined to dynamical constraints (\textit{i.e.}
+the differential equations of motion).
+
+\subsection{The Variations}
+
+The next step is to take the variation of the action functional
+defined as $S = \int dt L$ (where L is defined in
+\sure{\ref{eq:def_L}}) \wrt following variables: \lx, \lv, \lm,
+\idx{\gs}{\dn{1}}, \idx{\gs}{\dn{2}}, \scpos, \scvel, \gG, $m$,
+$q$, and \tvec (11 in all). Fortunately, the variations of $S$
+\wrt the first five variables (\lx, \lv, \lm, \idx{\gs}{\dn{1}},
+and \idx{\gs}{\dn{2}}) yield nothing more than the constraint
+equations we started with.  Let's illustrate this point.  The
+variation of $S$ \wrt to \lx is given by
+\be
+  \vwrt{S}{\lx} = \int dt \push \ipd{\var{\lxt}}{\surp{\poseq}} \eqp
+\ee
+Since \var{\lxt} is arbitrary, setting the variation
+\vwrt{S}{\lx} = 0 implies that the term it multiplies,
+\surp{\poseq}, must be identically zero. Thus we recover the
+dynamical constraint equation \poseq that we started with.
+
+Less trivial are the equations that result from the other
+variations (\textit{i.e.} \scpos, \scvel, \gG, $m$, $q$, and
+\tvec). Of these, the variations of \scpos, \scvel, and $m$ are
+most interesting since the enter the functional in terms of their
+time derivatives.  This causes their corresponding Lagrange
+multipliers, \lx, \lv, and \lm to acquire a time evolution.  To
+see this consider the variation of $S$ \wrt \scpos.
+
+\be \vwrt{S}{\scpos} = \int dt \push \surp{
+  \ipd{\lxt}{\var{\dt{\cv{x}}}} - \ipd{\lvt}{\gravjac} \cdot \push \var{\scpos} } \ee
+
+An \ibp is used to take the time derivative off of the
+\var{\dt{\cv{x}}} and to place it on the term \lxt at the expense
+of a minus sign and \bdyterms.
+
+\be \vwrt{S}{\scpos} = \int dt \push
+\ipd{\surp{\peqt}}{\var{\scpos}} + \bdyterms  \ee
+
+\[
+\idx{\dt{\cv{\gl}}}{\dn{x}\up{T}}
+\]
+Setting the variation of the
+
+
+
+
+
+\subsection{Reducing the Equation Set}
+
+\section{The Optimization Algorithm}
+
+\section{References}
+\bibliography{primer}
+
+\end{document}

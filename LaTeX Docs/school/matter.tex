@@ -1,0 +1,103 @@
+\documentclass{article}
+\begin{document}
+\title{Some Questions on Variational Relativistic Smoothed Particle Hydrodynamics}
+\author{C Schiff}
+\date{Aug. 31, 1997}
+\maketitle
+
+Dear Charlie,
+
+I thought that this format might be a little easier on your eyes than my usual handwritten pages and also would give me an opportunity to compare side-by-side the equations I'm working on and the questions I have about our approach.
+
+As you know, I'm using the following action:
+
+\begin{eqnarray}
+I &  = &  \int \! {d^4}x  \left[  \frac{R(x){\sqrt{-g(x)}}}{16\pi} - \int \! {d^4}a \ \delta(x^0 - z^0) W({\vec x} - {\vec z}) \right. \nonumber \\
+& &
+  \left. \left( \sqrt{-g_{\mu\nu}(x){\dot z}^{\mu}{\dot z}^{\nu}} {\hat \rho}_{0} V(x) -\alpha(x)\sqrt{-g(x)} \rho(x) J(z) \right) \right] 
+\end{eqnarray}
+
+where:
+
+\begin{eqnarray}
+{\dot z}^{\mu} & = & \frac{d z^{\mu}}{d a^{0}}  \\
+V(x) & = & \left[1 + e(\rho(x),s(x)) + \alpha(x) - \beta(x) (s(x) - s_{0}) \right]  \\
+{\hat \rho}_{0} & = & \rho(0;a^k) \ \sqrt{ \frac{\bar g(0;a^k)}{g_{\bar 0 \bar 0}(0;a^k)}}
+\end{eqnarray}
+
+which is an extension of the work in your Sakharov paper.  I'm having a difficult time conceptualizing the role of $a^k$ in regards to the coordinates $x$ and $z$.  The best way I think I can convey my confusion is by talking about a familar textbook exercise from MTW.
+
+In exercise 7.1 (MTW p178-186), an action for the scalar gravitational field $\Phi$ is presented which has the form:
+\begin{equation}
+I = -m \int e^{\Phi(z)} \left( -\eta_{\alpha \beta}\frac{dz^{\alpha}}{d\lambda}\frac{dz^{\beta}}{d\lambda}\right)^{1/2} d\lambda
+\end{equation}
+The field equations are obtained by using the the action
+\begin{eqnarray}
+I &  = & \int d^4x {\cal L} \\
+{\cal L} & = & -\frac{1}{8 \pi G} \eta^{\alpha \beta} \frac{\partial \Phi}{\partial x^{\alpha}}\frac{\partial \Phi}{\partial x^{\beta}} - \nonumber \\
+& & \int \! m e^{\Phi(x)} \delta^4 \left[ x - z(\lambda) \right] \left( -\eta_{\alpha \beta}\frac{dz^{\alpha}}{d\lambda}\frac{dz^{\beta}}{d\lambda}\right)^{1/2}\! d\lambda
+\end{eqnarray}
+where I have explicitly kept the path parameter, $\lambda$, arbitrary.
+
+In the discussion following part B., MTW states 'If many particles are present, one includes in ${\cal L}$ a term $-\int m e^{\Phi(x)}\delta^4 \left[x - z(\tau)\right] d\tau$ for each particle.'  This leads to a form of
+\begin{eqnarray}
+I &  = & \int d^4x {\cal L} \\
+{\cal L} & = & -\frac{1}{8 \pi G} \eta^{\alpha \beta} \frac{\partial \Phi}{\partial x^{\alpha}}\frac{\partial \Phi}{\partial x^{\beta}} - \nonumber \\ & & \sum_{A=1}^{N} \int \! m_{A} e^{\Phi(x)} \delta^4 \left[ x - z_{A}(\lambda) \right] \left( -\eta_{\alpha \beta}\frac{dz_{A}^{\alpha}}{d\lambda_{A}}\frac{dz_{A}^{\beta}}{d\lambda_{A}}\right)^{1/2}\! d\lambda_{A}
+\end{eqnarray}
+In this approach, it is clear that the index $A$ is simply a place holder and that the worldline for the A-th particle $z_{A}(\lambda_{A})$ is the 'trajectory' that is embedded in $x$.  As you point out in your Sakharov paper, a form like equation 9 is still a particle approach and you then move to an approach founded on the review by Mittag, Stephen, and Yourgrau.
+
+In their work, they introduce the $a$-coordinates, in the conventional classical-mechanics of continua approach, as continuous indices for the fluid elements in question.  Where your work seems to differ from theirs is that they treat the $a$-coordinates as initial conditions.  The trajectories of the fluid elements are given by:
+\begin{equation}
+{\vec x}  =  {\vec X}(t,{\vec a})
+\end{equation}
+subject to the initial conditions
+\begin{equation}
+{\vec X}(0,{\vec a}) = {\vec a}
+\end{equation}
+The Jacobian $J = \frac{\partial(x_{1},x_{2},x_{3})}{\partial(a_{1},a_{2},a_{3})}$ then allows the mass-conservation law $\rho(t,{\vec x}) \ d^3x = \rho(0,{\vec a}) \ d^3a$ to be written as $\rho(t,{\vec x}) \ J = \rho(0,{\vec a})$.
+
+An analogous equation, in our formalism, can be derived by varying $\alpha(x)$ in equation 1.  The variation leads to
+\begin{eqnarray}
+\delta I \vert_{\delta\alpha}& = & -\int \! d^4x \ da^0 \ d^3a \ \delta \left(x^0 - z^0(a^0;a^k)\right) W({\vec x} - {\vec z}) \nonumber \\
+& & \times \left[ \sqrt{-g_{\mu \nu}(x){\dot z}^{\mu}(a^0;a^k) {\dot z}^{\nu}(a^0;a^k)} {\hat \rho}_0 - \sqrt{-g(x)} \rho(x) J \right]
+\delta \alpha(x)
+\end{eqnarray}
+which in turn implies
+\begin{eqnarray}
+\int \! da^0 \ d^3a \ \delta \left(x^0 - z^0(a^0;a^k)\right) W({\vec x} - {\vec z}) & & \nonumber \\
+\times  \left[ \sqrt{-g_{\mu \nu}(x){\dot z}^{\mu}(a^0;a^k) {\dot z}^{\nu}(a^0;a^k)} {\hat \rho}_0 - \sqrt{-g(x)} \rho(x) J \right] & = & 0.
+\end{eqnarray}
+At this point, I applied the coordinate condition $\frac{dz^0}{da^0} = 1$ to get
+\begin{eqnarray}
+\int \! d^3a W({\vec x} - {\vec z}) \sqrt{-g_{\mu \nu}(x){\dot z}^{\mu}(a^0;a^k) {\dot z}^{\nu}(a^0;a^k)}\rho(0;a^k) \sqrt{\frac{{\bar g}(0;a^k)}{g_{\bar 0 \bar 0}(0;a^k)}} & & \nonumber \\
+= \int \! d^3a \rho(z^0,{\vec x}) W({\vec x} - {\vec z}) \sqrt{-g(z^0,{\vec x})}\, {}^{(3)} \! \!J
+\end{eqnarray}
+If the above coordinate condition is further extended to
+\begin{eqnarray}
+z^{\mu} & = & \left( a^0, {\vec a} \right)
+\frac{
+\end{eqnarray}
+and $W({\vec x} - {\vec z}) = \delta({\vec x} - {\vec z})$ then equation 14 becomes
+\begin{eqnarray}
+\int \! d^3a \delta({\vec x} - {\vec z}) \sqrt{-g_{\mu \nu}(x){\dot z}^{\mu}(a^0;a^k) {\dot z}^{\nu}(a^0;a^k)}\rho(0;a^k) \sqrt{\frac{{\bar g}(0;a^k)}{g_{\bar 0 \bar 0}(0;a^k)}} & & \nonumber \\
+= \int \! d^3a \rho(z^0,{\vec x}) \delta({\vec x} - {\vec z}) \sqrt{-g(z^0,{\vec x})}\, {}^{(3)} \! \!J
+\end{eqnarray}
+
+It is here that I'm stuck.  I don't seem to be able to interpret equation 14 to get an expression that looks like either $\rho(t,{\vec x}) \ d^3x = \rho(0,{\vec a}) \ d^3a$ or $\rho(t,{\vec x}) \ J = \rho(0,{\vec a})$ (I'm not even sure equation 14 is valid).  Unlike the MTW exercises, where the $A$ index just kept track of the particular particle, our formalism seems to have much more structure (i.e. the $a$-coordinates form a manifold).  This structure is clear in the classical continuum mechanics context where the $a$-coordinates served as initial conditions for the $x$-coordinates.  The trajectories of the individual fluid elements then filled out $\vec x$ as time evolved but $\vec a$ was defined only at time $t=0$.  In this case, movement from the continuum to the discrete SPH case is done by letting 
+\begin{equation}
+\rho(0,{\vec a}) = \sum_{i=1}^{N} m_{i} \delta({\vec a} - {\vec r}_{i}).
+\end{equation}
+In our approach, we seem to be merging concepts from the MTW exercises with those from Mittag \emph{et al} and I not following what role the $a$-coordinates are playing.  In particular, how do we move from the continuum to the discrete in this case?
+
+I hope that this hasn't been to vague but I've been struggling with both understanding this point and with communicating where I'm finding problems so I thought this may serve.
+\
+
+
+Thanks,
+
+Conrad
+
+
+
+\end{document}
+

@@ -1,0 +1,59 @@
+\documentclass{letter}
+\include{my_commands}
+\begin{document}
+
+\begin{tabular}{|c|c|c|}\hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+     \idx{}{}
+   & Schwarzschild
+   & Isotropic \\ \hline
+     &  & \\
+     $ds^2$
+   & $-e^{2 \gF}dt^2 + e^{2 \gL} dr^2 + r^2 d\gW^2$
+   & $-e^{2 \gF} dt^2 + e^{2 \gm} \surp{ dr^2 + r^2 d\gW^2 }$\\ \hline
+   &  & \\
+     $U^{0} = 1/\sqrt{-g^{00}}$
+   & $e^{\gF}$
+   & $e^{\gF}$ \\
+   &  & \\
+     $U^{\gm} U_{\gm} = -1$
+   & $U_{0} = e^{-\gF}$
+   & $U_{0} = e^{-\gF}$ \\
+   &  & \\ \hline
+     $T_{00}$
+   & $\gr \surp{ 1 + e } e^{2 \gF}$
+   & $\gr \surp{ 1 + e } e^{2 \gF}$ \\
+   &  & \\
+     $T_{rr}$
+   & $p \nudge e^{2\gL}$
+   & $p \nudge e^{2\gm}$ \\
+   &  & \\
+     $T_{\gq\gq}$
+   & $p \nudge r^2$
+   & $p \nudge r^2 e^{2\gm} $ \\
+   &  & \\
+     $T_{\gf\gf}$
+   & $p \nudge r^2 \sin^2(\gq)$
+   & $p \nudge r^2 \sin^2(\gq) e^{2\gm}$ \\ \hline
+   &  & \\
+     $G_{00}$
+   & $r^{-2} e^{2\gF} \dby{r}\surb{r\surp{1-e^{-2\gL}}}$
+   & $-e^{2\surp{\gF-\gm}}\surb{\frac{4}{r} \gm' + 2 \gm'' + \surp{\gm'}^2}$\\
+   &  & \\
+     $G_{rr}$
+   & $-r^{-2} e^{2\gL} \surp{1-e^{-2\gL}} + \frac{2}{r} \gF'$
+   & $2 \gF' \gm' + \frac{2}{r} \surp{\gm' + \gF'} + \surp{\gm'}^2$ \\
+   &  & \\
+     $G_{\gq\gq}$
+   & $r^2 e^{-2\gL} \surb{\gF'' + \surp{\gF'}^2 + \gF'/r - \gL'/r - \gF' \gL'}$
+   & $r^2 \surb{ \frac{1}{r} \surp{\gF' + \gm'} + \gm'' + \gF'' + \surp{\gF'}^2}$ \\
+   &  & \\
+     $G_{\gf\gf}$
+   & $\sin^2(\gq) G_{\gq\gq}$
+   & $\sin^2(\gq) G_{\gq\gq}$ \\ \hline
+   &  & \\
+     \idx{T}{\up{\gm\gn}\dn{;\gn}} = 0
+   & $\surb{\gr\surp{1+e} + p} \gF' = -p'$
+   & $\surb{\gr\surp{1+e} + p} \gF' = -p'$ \\ \hline
+\end{tabular}
+\end{document}

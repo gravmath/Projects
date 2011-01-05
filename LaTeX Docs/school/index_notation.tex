@@ -1,0 +1,181 @@
+%Simple document on the usefulness of index and matrix notations
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Usefulness of Index and Matrix Notation}
+\maketitle
+
+
+The purpose of this short note is to give a feel as to when index notation
+is useful in comparison to matrix notation.  The basis of the comparison
+will be the homework problem 3.30 in the book `A first course in general
+relativity' by B. F. Schutz.  The advantages of matrix notation are that
+the novice is familiar with it from linear algebra class and that is well
+suited (for two indices at least) for those COTSs that have built in matrix
+manipulations.  The drawbacks of course are that hand work is often obstructed
+by the large object size and that there is no obvious generalization
+for more than two indices.  In this regime, index notation is superior but it
+can be daunting for the beginner.  We explore both here an show some points of
+each.
+
+To begin Schutz asks the student to consider the following two vector fields and the
+following scalar field given by
+\bea
+  \cv{U} & = & \surp{1+t^2, t^2, \sqrt{2} t, 0} \nonumber \\
+  \cv{D} & = & \surp{x, 5 t x, \sqrt{2} t, 0}   \nonumber \\
+  \gr    & = & x^2 - y^2 + t^2 \eqp
+\eea
+The context is special relativity, in which the metric tensor is given by
+\be
+  \get_{\gm\gn} = \surp{ \begin{array}{cccc}
+                        -1&0&0&0 \\ 0&1&0&0 \\ 0&0&1&0 \\ 0&0&0&1 \end{array} } \eqp
+\ee
+Here we find our first example of matrix notation.  In order to determine if the
+vector fields \cv{U} and \cv{D} are four-velocities, the norm of each must be
+taken with respect to \idx{\get}{\dn{\gm\gn}}.  In matrix notation, the norm
+of \cv{U} is given by
+\be
+  \vert \cv{U} \vert ^2 = \surp{1+t^2, t^2, \sqrt{2} t, 0}
+                          \surp{\begin{array}{cccc} -1&0&0&0 \\ 0&1&0&0 \\ 0&0&1&0 \\ 0&0&0&1
+                                \end{array} }
+                          \surp{\begin{array}{cccc} 1+t^2\\t^2\\ \sqrt{2} t\\0 \end{array}}
+                        = -1 \eqp
+\ee
+Likewise $\vert \cv{D} \vert^2 = -x^2 + 25 t^2 x^ + 2t^2$.  In both cases, it is easier,
+to use index notation due to the diagonal nature of the metric.
+In another computation, the student is asked to compute \idx{U}{\up{\ga}\dn{,\gb}}.  In
+matric notation this is rendered as
+\be
+  \idx{U}{\up{\ga}\dn{,\gb}} = \surp{
+                                   \begin{array}{cccc}
+                                   2t&0&0&0 \\ 2t&0&0&0 \\ \sqrt{2}&0&0&0 \\ 0&0&0&0 \end{array}}
+\ee
+with the \ga index as the row and the \gb index as the column.
+The inner product \idx{U}{\dn{\ga}} \idx{U}{\up{\ga}\dn{,\gb}} is then computed as
+\be
+\idx{U}{\dn{\ga}} \idx{U}{\up{\ga}\dn{,\gb}} =
+  \surp{-1-t^2,t^2,\sqrt{2} t, 0 }
+  \surp{ \begin{array}{cccc}
+         2t&0&0&0 \\ 2t&0&0&0 \\ \sqrt{2}&0&0&0 \\ 0&0&0&0 \end{array}}
+ = \surp{0,0,0,0} \eqp
+\ee
+Again this result is much more easily obtained using index notation in which the
+fact that \idx{U}{\dn{\ga}} \idx{U}{\up{\ga}} = -1, automatically yields
+\idx{U}{\dn{\ga}} \idx{U}{\up{\ga}\dn{,\gb}} = 0.
+
+So when is matrix notation useful?  Its main use comes when the two-dimensional form is
+complicated.  For example, the student is asked to compute
+$\surp{\idx{U}{\up{\ga}} \idx{D}{\up{\gb}}}_{,\gb}$.  The intermediate result
+of \idx{U}{\up{\ga}}\idx{D}{\up{\gb}} is most easily computed in matrix notation as
+\bea
+  U^{\ga} D^{\gb} & = & \surp{ \begin{array}{c} 1+t^2\\ t^2\\ \sqrt{2} t\\ 0 \end{array}}
+                        \surp{x,5tx, \sqrt{2}t, 0} \nonumber \\
+                  & = & \surp{ \begin{array}{cccc}
+                               x \surp{1+t^2} & 5 t x \surp{1+t^2} & \sqrt{2} t \surp{1+t^2} & 0 \\
+                               x t^2 & 5 t^3 x & \sqrt{2} t^3 & 0 \\
+                               \sqrt{2} x t & \sqrt{50} t^2 x& 2 t^2 & 0 \\
+                               0 & 0 & 0 & 0
+                               \end{array} } \eqp
+\eea
+The above format is the most efficient for presenting the components.  Furthermore, the
+divergence of the tensor is easily computed in matrix notation as
+\bea
+  \surp{ U^{\ga} D^{\gb}}_{,\gb} & = & \surb{U^\ga D^\gb }
+                                       \overleftarrow{\surp{
+                                         \begin{array}{c} \partial_t \\
+                                                          \partial_x \\
+                                                          \partial_y \\
+                                                          \partial_z \end{array}
+                                              }}
+                                   = \surp{\partial_t, \partial_x, \partial_y, \partial_z}
+                                     \trps{\surb{U^\ga D^\gb }} \nonumber \\
+       & = &
+\surp{\partial_t, \partial_x, \partial_y, \partial_z}
+\surp{ \begin{array}{cccc}
+                               x \surp{1+t^2} & x t^2 & \sqrt{2} x t & 0 \\
+                               5 t x \surp{1+t^2} & 5 t^3 x & \sqrt{50} t^2 x & 0 \\
+                               \sqrt{2} t \surp{1+t^2}& \sqrt{2} t^3& 2 t^2 & 0 \\
+                               0 & 0 & 0 & 0
+                               \end{array}} \nonumber \\
+       & = & \surp{ \begin{array}{c}
+                       2tx + 5t\surp{1+t^2} \\
+                       2tx + 5 t^3 \\
+                       \sqrt{2} x + \sqrt{50} t^2 \\
+                       0
+                    \end{array} }\eqp
+\eea
+Again, no more efficient way of computing these components exists.  However, once this
+result is to contracted with \idx{U}{\dn{\ga}} the situation changes.  Carrying
+through the matrix notation one finds after several lines that
+\be
+  U_{\ga} \surp{U^{\ga} D^{\gb}}_{,\gb} = - 5t \eqp
+\ee
+The result comes more simply in index notation where one first computes
+$\idx{D}{\up{\gb}\dn{,\gb}} = 5t$ and then one exploits $U_\ga U^{\ga}_{\gb} = 0$
+to determine that
+\be
+  U_{\ga} \surp{U^{\ga} D^{\gb}}_{,\gb} = U_{\ga} U^{\ga} \idx{D}{\up{\gb}\dn{,\gb}}
+                                        = -1 5 t  = -5t \eqp
+\ee
+The general lesson here, is that for calculations with a great deal of symmetry
+(i.e. many terms are zero) then index notation is superior.  It also allows
+for direct transcription when writing computer code.  However, when
+performing hand computations for components with no obvious cancellations, matrix
+notation is best.
+
+As a concrete example of this last statement, consider problem 4.25 in Schutz.  In this
+problem the student is to show that the electromagnetic field strength tensor
+\idx{F}{\up{\gm\gn}} when acted upon by the rotation portion of the Lorentz group results in
+electric and magnetic fields that look as if they where directly transformed under the
+rotation.  To do this by hand in terms on components obscures the basic result.
+Instead, the result is more straightforwardly obtained using matrix notation.
+First \idx{F}{\up{\gm\gn}} is represented as a matrix
+\be
+  \op{F} \doteq \surp{ \begin{array}{cccc} 0    & E_x  &  E_y &  E_z \\
+                                           -E_x & 0    &  B_z & -B_y \\
+                                           -E_y & -B_z &  0   &  B_x  \\
+                                           -E_z &  B_y & -B_x &  0 \end{array}} \eqp
+\ee
+Then the transformation of coordinates is also represented as a matrix as
+\be
+  \op{\mR} \doteq \surp{ \begin{array}{cccc} 1    &   0        &  0        & 0 \\
+                                            0    &  \cos{\gq} & \sin{\gq} & 0 \\
+                                            0    & -\sin{\gq} & \cos{\gq} & 0 \\
+                                            0    &   0        &  0        & 1
+                        \end{array}} \eqp
+\ee
+Expansion of the relation $F^{\gba\gbb} = \Jac{\gba}{\gm} F^{\gm\gn} \jac{\gn}{\gbb}$
+yields
+\be
+  \op{F'} \doteq  \surp{ \begin{array}{cccc}  0 &
+                                              E_x c\gq + E_y s\gq &
+                                             -E_x s\gq + E_y c\gq &
+                                              E_z \\
+                                             -E_x c\gq - E_y s\gq &
+                                              0 &
+                                              B_z &
+                                              B_x s\gq - B_y c\gq   \\
+                                              E_x s\gq - E_y c\gq &
+                                             -B_z &
+                                              0   &
+                                              B_x c\gq + B_y s\gq \\
+                                             -E_z &
+                                             -B_x s\gq - B_y c\gq &
+                                             -B_x c\gq - B_y s\gq &
+                                              0
+                        \end{array}}
+\ee
+where $c\gq \equiv \cos{\gq}$ and $s\gq \equiv \sin{\gq}$ for convenience.
+The components in the new systems are then read off as
+\bea
+  E_x' & = &  E_x \cos{\gq} + E_y \sin{\gq} \nonumber \\
+  E_y' & = & -E_x \sin{\gq} + E_y \cos{\gq} \nonumber \\
+  E_z' & = &  E_z \nonumber \\
+  B_x' & = &  B_x \cos{\gq} + B_y \sin{\gq} \nonumber \\
+  B_y' & = & -B_x \sin{\gq} + B_y \cos{\gq} \nonumber \\
+  B_z' & = &  B_z
+\eea
+which is just what one would expect from rotating the electric and magnetic fields
+separately.  This result would not have been nearly as clean if it had been
+done in index notation.
+\end{document}

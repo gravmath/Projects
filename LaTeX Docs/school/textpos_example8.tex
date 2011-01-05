@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage[absolute,showboxes]{textpos}
+%\usepackage{geometry}
+%\geometry{hmargin={1in,1in}}
+%\geometry{vmargin={1in,1in}}
+%\pagestyle{empty}
+\usepackage{color}
+%\usepackage{amssymb}
+\textblockorigin{0.5in}{0.5in}
+
+\setlength{\parindent}{0pt}
+\definecolor{LightGreen}{rgb}{0.9,1,0.8}
+
+
+\begin{document}
+
+\textblockcolor{LightGreen}
+\begin{textblock*}{7.5in}(0in,0in)
+       \center{\bf Orbital Mechanics\\}.
+\end{textblock*}
+
+\textblockcolor{red}
+\begin{textblock*}{5in}(0in,1in)
+  $x = \int_{0}^{a} dx \exp^{\left( -\frac{x^2}{\sigma^2} \right)}$
+\end{textblock*}
+
+\begin{textblock}{5}(2,2)
+  Here is another figure.
+  \begin{figure}
+  More text
+  \caption{\label{figb}This is the second figure}
+  \end{figure}
+\end{textblock}
+
+\begin{textblock}{5}(3,3)
+  We can still refer to figures~\ref{figb} and~\ref{figa}.
+\end{textblock}
+
+
+\begin{eqnarray}
+  \nabla \cdot  \mathbf{B} & = &  0 \\
+  \nabla \cdot  \mathbf{D} & = & \rho \\
+  \nabla \times \mathbf{E} & = & -\frac{ \partial \mathbf{B} }{\partial t} \\
+  \nabla \times \mathbf{H} & = & \mathbf{J}  + \frac{\partial \mathbf{D}}{\partial t}
+\end{eqnarray}
+
+
+\end{document}
+

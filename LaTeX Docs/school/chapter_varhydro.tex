@@ -1,0 +1,536 @@
+
+\section{Introduction}\label{sec:intro_level1}
+
+This note proposes a variational principle for relativistic
+hydrodynamics (for an ideal fluid) which is a variant of that
+given in \cite{A:CWM96}.  The difference is that the present
+variational principle is based on one for geodesics in the form
+\be
+     I_p = \int \left( \frac{d z^{\mu}}{d \lambda} u_{\mu} -
+                  \Lambda {\mathcal H} \right) d \lambda
+\ee
+where
+\be
+ {\mathcal H} = \frac{1}{2} \left[ g^{\mu\nu}(z) u_{\mu} u_{\nu}
+                                    + 1 \right]
+\ee
+while the Sakharov conference paper\cite{A:CWM96} started from
+\be
+   I_p =  -m \int\!\! \sqrt{ -g_{\mu\nu}(z) \dot{z}^\mu \dot{z}^\nu}
+\,d\lambda
+\ee
+in which $\dot{z}^\mu = dz^\mu/d\lambda$.
+Here $\lambda$ is an arbitrary path parameter which is
+unrestricted by these simple variational principles.
+
+
+%******************************************************************
+%******************************************************************
+%    Lagrangian Hydrodynamics
+%******************************************************************
+%******************************************************************
+\section{Lagrangian Hydrodynamics}\label{sec:1_part_level1}
+
+The aim of the variational principle is to determine a coordinate
+transformation
+\be
+   x^\mu = z^\mu(a^{\bar{\nu}})
+\ee
+where the $x^\mu$ coordinate system is arbitrarily chosen as one
+in which the metric components $g^{\mu\nu}(x)$ can be provided.
+The $a^{\bar{\mu}}$ coordinates are comoving with the fluid. That
+is, $a^{\bar{k}}$ for $k=1,2,3$ are labels that identify
+particular fluid particles.
+We expect them to be chosen so that $z^k(0,a^k) = a^k$.
+The path parameter $a^{\bar{0}} \equiv \lambda$ along the world
+lines $a^{\bar{k}} = \mbox{const}$ is left arbitrary in this
+variation principle.
+In anticipated applications it would be chosen to be coordinate
+time $x^0$, but it could also be set to proper time along the
+fluid world lines.
+
+The properties of the ideal fluid are given apriori by a
+fundamental thermodynamical function $e(\rho,s)$ specifying the
+(specific) internal energy per particle (or per unit rest mass,
+or per mole of baryons) as a function of the rest mass density
+$\rho$ and the specific entropy $s$.
+From this and the relationship
+\be\label{eq:vh_first_law}
+     de = T\,ds - P\,dv = T\,ds + (P/\rho^2)d\rho
+\ee
+one obtains the temperature and pressure.
+For an ideal fluid the specific entropy $s$ will be constant
+along each fluid world line so that $s(a^{\bar{\mu}},a^{\bar{k}})
+= s(0,a^{\bar{k}}) = s_0(a^{\bar{k}})$ is independent of
+$a^{\bar{0}}$.
+We therefore omit any explicit mention of $s$ in the variational
+principle.
+
+The rest mass density $\rho$ can be specified arbitrarily at some
+initial time; thereafter it is fixed by a conservation law.
+This will cause its distribution to vary as the fluid flow
+description $z^\mu(a^{\bar{\mu}})$ and/or the metric $g^{\mu\nu}$
+are varied.
+(Unlike the earlier paper\cite{A:CWM96}, we here do not use
+Lagrange multipliers to enforce these constraints on $\rho$, but
+follow Schiff\cite{A:CS00} in assuming that $\rho$ is always
+defined by a particular form of this conservation law.)
+The conservation law is the usual $(\rho u^\mu)_{;\mu} = 0$
+written as
+\be\label{eq:vh_cons'n-x}
+      \frac{\partial}{\partial x^\mu }
+\left(\sqrt{-g}\rho \frac{dx^\mu}{d\tau}\right) = 0
+\ee
+but in the $a^{\bar{\mu}}$ coordinate system.
+Here $d/d\tau$ is an abbreviation for the proper time
+derivative along the fluid world line:
+\be
+   \frac{d}{d\tau}
+  = \frac{1}{ \sqrt{-g_{\alpha\beta}\dot{x}^\alpha\dot{x}^\beta} }
+      \left( \frac{\partial }{\partial a^{\bar{0}}}  \right)
+\ee
+where
+\be
+    \dot{x^\mu} \equiv \frac{dx^\mu}{d\lambda} \equiv
+   \left( \frac{\partial z^\mu}{\partial a^{\bar{0}}}  \right)
+\ee
+and the partial derivatives are taken at constant $a^{\bar{k}}$.
+In $a^{\bar{\mu}}$ coordinates where $\dot{a}^{\bar{0}} = 1$ and
+$\dot{a}^{\bar{k}} = 0$
+equation (\ref{eq:vh_cons'n-x}) reads
+\be
+      \frac{\partial}{\partial a^{\bar{0}} }
+\left(\sqrt{ -\bar{g} }\rho
+   \frac{1}{ \sqrt{-{g}_{\bar{0}\bar{0}} } }
+\right) = 0
+\ee
+Thus $\rho$ at an arbitrary point $a^{\bar{\mu}}$ is defined by
+\be\label{eq:vh_cons'n-def}
+\sqrt{ -\bar{g}(a^{\bar{\mu}}) }\rho(a^{\bar{\mu}})
+   \frac{1}{ \sqrt{-{g}_{\bar{0}\bar{0}}(a^{\bar{\mu}}) } }
+ =
+\sqrt{ -\bar{g}(0,a^{\bar{k}}) }\rho(0,a^{\bar{k}})
+   \frac{1}{ \sqrt{-{g}_{\bar{0}\bar{0}}(0,a^{\bar{k}}) } }
+\ee
+
+
+
+
+
+
+%******************************************************************
+%******************************************************************
+%    Variational Principle
+%******************************************************************
+%******************************************************************
+\section{Variational Principle}
+
+We now have all the tools needed to state our variational
+principle.
+The action to be varied is the integral of a Lagrangian $L$ along
+the world lines, $I = \int L\,d\lambda$.
+The Lagrangian in turn is a sum over the fluid particles, $L =
+\int {\mathcal L}\,d^3 a$, giving the total action as a four
+dimensional integral $I = \int {\mathcal L}\,d^4 a$.
+The functions $z^\mu(a^{\bar{\nu}})$ are the central quantities
+to be constrained by the variational principle, but some
+auxiliary variables $\Lambda$ and $u_\mu$ are introduced.
+Thus the quantities to be varied as functions of the four
+independent variables $a^{\bar{\mu}}$ are
+\be
+   z^\mu(a^{\bar{\nu}}) \quad , \quad u_\mu(a^{\bar{\nu}})
+      \quad \mbox{and} \quad \Lambda(a^{\bar{\nu}}) \quad .
+\ee
+The full action is
+\be\label{eq:vh_action}
+  I = \int \!d^4a\,
+\rho(0,a^{\bar{k}})
+   \frac{\sqrt{ -\bar{g}(0,a^{\bar{k}}) }}{
+\sqrt{-{g}_{\bar{0}\bar{0}}(0,a^{\bar{k}}) } }\,
+ (1 + e) \left( \frac{dz^\mu}{d\lambda} u_\mu - \Lambda {\mathcal H}
+  \right)
+\ee
+with
+\be
+ {\mathcal H} = \frac{1}{2} \left[ g^{\mu\nu}(z) u_{\mu} u_{\nu}
+                                    + 1 \right]
+     \quad .
+\ee
+
+The first consequence of this variation principle is obtained by
+varying the Lagrange multiplier $\Lambda$ to find ${\mathcal H} =
+0$ or
+\be\label{eq:vh_unit-u}
+     g^{\mu\nu}(z) u_{\mu} u_{\nu} = -1
+\ee
+so that $u_{\mu}$ is a timelike unit vector.
+The next consequence comes by varying $u_{\mu} (a)$ while holding
+$\Lambda (a)$ and $z^\mu (a)$ fixed.
+This variation does not cause any change in the internal energy
+$e$ which, through its dependence on $\rho$, changes only if
+$z^\mu (a)$ (or $g^{\mu\nu}(z(a))$) changes.
+The result is to identify $u_{\mu}$ as the fluid 4-velocity:
+\be\label{eq:vh_zdot}
+   \dot{z}^\mu \equiv \frac{dz^\mu}{d\lambda}
+     = \Lambda g^{\mu\nu}(z) u_{\nu}
+     \quad .
+\ee
+This identification is only complete after this equation is
+solved for $u_\mu$ and substituted into the
+constraint~(\ref{eq:vh_unit-u}) to find
+\be\label{eq:vh_Lambda}
+     \Lambda\,d\lambda = d\tau \equiv
+     \sqrt{ -g_{\mu\nu}(z)\,dz^{\mu}\,dz^{\nu} }
+     \quad .
+\ee
+
+
+The variation of $z^\mu(a)$ is more difficult, and we precede it
+by a computation of the stress-energy tensor of the fluid.
+This we calculate by the definition $-2 \delta I = \int \sqrt{-g}
+\,T_{\mu\nu}\delta g^{\mu\nu}\,d^4x$, performing a variation of
+$g^{\mu\nu}(x)$ in which none of $z^\mu, u_\mu, \Lambda$ is
+being varied.
+Note also that since $g^{\mu\nu}(x)$ is assumed to be nonzero
+only at interior points of the integration, the functions at
+$a^{\bar{0}} = 0$ are not being varied.
+Since $g^{\mu\nu}$ only appears in $\mathcal H$ and in $\rho$, we
+can in the first step write
+\be
+  \delta I = \int \!d^4a\,
+\rho(0,a^{\bar{k}})
+   \frac{\sqrt{ -\bar{g}(0,a^{\bar{k}}) }}{
+\sqrt{-{g}_{\bar{0}\bar{0}}(0,a^{\bar{k}}) } }\,\left[
+ \left( \frac{\partial e}{\partial \rho}\,\delta\rho \right)
+      ( \dot{z}^\mu u_\mu - \Lambda {\mathcal H} )
+   - (1+e)\Lambda\delta {\mathcal H}
+     \right]  \quad .
+\ee
+Next one introduces several simplifications.
+The variations can be made more explicit:  $\delta {\mathcal H} =
+\half u_\mu u_\nu \delta g^{\mu\nu}$ and $\delta \rho = (\partial
+\rho / \partial g^{\mu\nu}) \delta g^{\mu\nu}$.
+But also in other factors, now that the variation has been
+carried out, the other equations of motion can be used such as
+${\mathcal H} = 0$ and equation~(\ref{eq:vh_zdot}), to give
+\be
+  -2\delta I = \int \!d^4a\,
+\rho(0,a^{\bar{k}})
+   \frac{\sqrt{ -\bar{g}(0,a^{\bar{k}}) }}{
+\sqrt{-{g}_{\bar{0}\bar{0}}(0,a^{\bar{k}}) } }\,\Lambda\left[-2
+  \frac{\partial e}{\partial \rho}\,
+  \frac{\partial\rho}{ \partial g^{\mu\nu} }
+      ( u^\mu u_\mu  )
+   +(1+e)u_\mu u_\nu
+     \right]\delta g^{\mu\nu}  \quad .
+\ee
+We now convert the integration from $a^\mu$ coordinates to $z^\mu$
+coordinates.
+By using equations~(\ref{eq:vh_cons'n-def}) and (\ref{eq:vh_unit-u})
+the preceding equation becomes
+\be
+  -2\delta I = \int \!d^4a\,
+\rho(a)
+   \frac{\sqrt{ -\bar{g}(a) }}{
+\sqrt{-{g}_{\bar{0}\bar{0}}(a) } }\,\Lambda\left[
+  2 \frac{\partial e}{\partial \rho}\,
+  \frac{\partial\rho}{ \partial g^{\mu\nu} }
+   +(1+e)u_\mu u_\nu
+     \right]\delta g^{\mu\nu}  \quad .
+\ee
+in which the coordinate transformation $z(a)$  will give
+$d^4a\,\sqrt{ -\bar{g}(a) } \rho(a) = d^4x\,\sqrt{-g(x)}
+\rho(x)$.
+Also one can recognize from $a^{\bar{\mu}} = (1,0,0,0)$ that
+$\sqrt{-g_{\bar{0}\bar{0}}(a) } =
+\sqrt{-g_{\bar{\mu}\bar{\nu}} \dot{a}^{\bar{\mu}} \dot{a}^{\bar{\nu}} }
+= \sqrt{-g_{\mu\nu} \dot{z}^\mu \dot{z}^\nu } = d\tau/d\lambda =
+\Lambda$ using the invariance of the inner product and
+equation~(\ref{eq:vh_Lambda}).
+So, using also $\partial e/\partial \rho = P/\rho^2$,
+this variation gives
+\be
+  -2\delta I = \int \!d^4x\,
+\rho
+   \sqrt{ -g }\,\left[
+  2 \frac{P}{\rho^2}\,
+  \frac{\partial\rho}{ \partial g^{\mu\nu} }
+   +(1+e)u_\mu u_\nu
+     \right]\delta g^{\mu\nu}  \quad .
+\ee
+or
+\be
+  T_{\mu\nu} = \rho (1+e)u_\mu u_\nu
+                 +2 \frac{P}{\rho}\,
+                \frac{\partial\rho}{ \partial g^{\mu\nu} }
+                         \quad .
+\ee
+There remains only to calculate $\partial\rho / \partial
+g^{\mu\nu}$.
+
+In the definition (\ref{eq:vh_cons'n-def}) of $\rho$ let us convert
+the left hand side to $x$-coordinates using the fixed
+transformation $x = z(a)$ in which the metric does not enter.
+Here $\sqrt{ -\bar{g}(a) } = \sqrt{ -g(x) } J$ where
+$J$ is the jacobean determinant
+    \be\label{eq:vh_J}
+        J =  \frac{\partial (z^0, z^1, z^2, z^3)}{\partial
+            (a^0, a^1, a^2, a^2)} \equiv
+            \frac{\partial(z^\mu)}{\partial(a^{\bar{\nu}})}
+    \ee
+handles one factor, and of course $\rho(a) = \rho(x)$.
+For the third factor, as noted above, $\sqrt{-g_{\bar{0}\bar{0}}(a) }
+= \sqrt{-g_{\mu\nu} \dot{z}^\mu \dot{z}^\nu }$.
+Thus we have from equation~(\ref{eq:vh_cons'n-def}) that
+\be\label{eq:vh_density_cons}
+\sqrt{ -g(x) } J \rho(x)
+   \frac{1}{ \sqrt{-g_{\mu\nu} \dot{z}^\mu \dot{z}^\nu } }
+ =
+    [ \mbox{data at } a^{\bar{0}} = 0 ] \quad .
+\ee
+Now, as we vary $g^{\mu\nu}(x)$ at an interior point of the action
+integration, the right hand side remains constant, as does $J$
+since $z(a)$ is not being varied.
+The variation of the left hand side (done for its logarithm) then
+gives
+\be
+   \frac{\delta\rho}{\rho} + \frac{1}{2}\frac{\delta g}{g}
+  - \frac{\delta \sqrt{-g_{\mu\nu} \dot{z}^\mu \dot{z}^\nu }
+     }{\sqrt{-g_{\alpha\beta} \dot{z}^\alpha \dot{z}^\beta }}
+   = 0  \quad .
+\ee
+In this we use $\delta g = -g\,g_{\mu\nu}\delta g^{\mu\nu}$ and
+$\delta \sqrt{-g_{\mu\nu} \dot{z}^\mu \dot{z}^\nu } = - \half
+\dot{z}^\mu \dot{z}^\nu \delta g^{\mu\nu}/ \sqrt{-g_{\alpha\beta}
+\dot{z}^\alpha \dot{z}^\beta } = - \half u^\mu \dot{z}^\nu
+\delta g^{\mu\nu}$ or
+\be
+    \frac{\delta \sqrt{-g_{\mu\nu} \dot{z}^\mu \dot{z}^\nu }
+     }{\sqrt{-g_{\alpha\beta} \dot{z}^\alpha \dot{z}^\beta } }
+    = -\half u^\mu u^\nu \delta g_{\mu\nu}
+    = + \half u_\mu u_\nu \delta g^{\mu\nu}
+\ee
+to find
+\be
+   2 \frac{\delta \rho}{\rho}
+       = (g_{\mu\nu}+ u_\mu u_\nu) \delta g^{\mu\nu}
+      \quad .
+\ee
+Thus we finally find that the desired form of the stress-energy
+tensor does arise from this variational principle:
+\be
+  T_{\mu\nu} = \rho (1+e)u_\mu u_\nu
+                 + P (g_{\mu\nu}+ u_\mu u_\nu)
+                         \quad .
+\ee
+
+Our final task to demonstrate that the variation of
+the trajectory function $z^{\mu}(a^{\bar \nu})$ leads to
+the relativistic form of Euler's equations.
+Taking this variation yields
+
+\be\label{eq:vh_tot_var_z}
+ \delta I = \int \!d^4a\, \po
+            \left\{
+                    \frac{\partial e}{\partial \rho}
+                    \frac{\partial \rho}{\partial z^\alpha} \delta z^\alpha
+                    {\dot z^\mu} u_\mu
+                    +
+                    \frac{\partial e}{\partial \rho}
+                    \frac{\partial \rho}{\partial {z^\alpha}_{,\lambda}} \delta {z^\alpha}_{,\lambda}
+                    {\dot z^\mu} u_\mu +
+                      (1 + e)u_\mu \delta{\dot z}^\mu
+                    - (1 + e)\frac{\Lambda}{2}
+                      \frac{\partial g^{\mu\nu}}{\partial z^\alpha}u_\mu u_\nu \delta z^\alpha
+            \right\} \,
+\ee
+where the parameter $\po = \rho(a) \frac{ \sqrt{-\bar{g}(a)} }{ \sqrt{-{g}_{\bar{0}\bar{0}}(a)} }$
+has been defined for convenience.  In equation (\ref{eq:vh_tot_var_z}), ${z^\alpha}_{,\lambda}
+= \frac{\partial z^\alpha}{\partial a^\lambda}$ and
+${\dot z}^{\alpha} = \frac{\partial z^\alpha}{\partial a^0}$.
+Owing two the conservation of baryon number density
+(\ref{eq:vh_density_cons}) can be used to identify
+\be\label{eq:vh_po_def}
+  \po = \sqrt{-g(z)}J\rho(z)\frac{ 1 } { \sqrt{-g_{\mu\nu}{\dot z^\mu}{\dot z^\nu}} }
+\ee
+a relation that proves useful below.
+
+
+
+Handling each term in (\ref{eq:vh_tot_var_z}) separately make for easier management
+of the algebra.
+Using equations (\ref{eq:vh_first_law}), (\ref{eq:vh_zdot}), (\ref{eq:vh_Lambda}), and (\ref{eq:vh_po_def})
+the first term can be written as
+\be\label{eq:vh_term1}
+ term_1 = \int \!d^4a\, \po \frac{\partial e}{\partial \rho}
+                   \frac{\partial \rho}{\partial z^\alpha} \delta z^\alpha
+                    {\dot z^\mu} u_\mu
+=
+ \int \!d^4a\, \frac{P}{\rho} \sqrt{-g} J u^{\mu} u_{\mu}
+               \frac{\partial \rho}{\partial z^\alpha} \delta z^\alpha \eqp
+\ee
+The normalization of the 4-velocity can be used to eliminate the $u^\mu u_\mu$
+at the expense of introducing a minus sign and the jacobean determinant
+is used to put the integration over the variables $z^\alpha$.
+The first term now becomes
+\be\label{eq:vh_term1_1}
+term_1 = \int \!d^4z\, \frac{P}{\rho}\sqrt{-g} \frac{\partial \rho}{\partial z^\alpha} \delta z^\alpha \eqp
+\ee
+Now equation (\ref{eq:vh_density_cons}) can be used to determine $\frac{\partial \rho}{\partial z^\alpha}$
+as
+\be
+ \frac{\partial \rho}{\partial z^\alpha} = \frac{-\rho}{2}
+                                           \left(
+                                             g_{\mu\nu,\alpha} u^\mu u^\nu  + g^{\mu\nu} g_{\mu\nu,\alpha}
+                                           \right) \eqc
+\ee
+which when combined with (\ref{eq:vh_term1_1})  gives
+\be\label{eq:vh_term1_2}
+  term_1 = \int \!d^4z\, \frac{P}{2} \sqrt{-g}
+                                           \left(
+                                             g_{\mu\nu,\alpha} u^\mu u^\nu  + g^{\mu\nu} g_{\mu\nu,\alpha}
+                                           \right) \delta z^\alpha\eqp
+\ee
+
+We now move onto the second term
+\be\label{term2}
+term_2 =  \int \!d^4a\, \frac{P}{\rho} \sqrt{-g} J u^{\mu} u_{\mu}
+               \frac{\partial \rho}{\partial {z^\alpha}_{,\lambda}} \delta{z^\alpha}_{,\lambda} \eqp
+\ee
+Again the same process used for $term_1$ can be used here to obtain
+\be\label{eq:vh_term2_1}
+  term_2 = \int \!d^4a\, \frac{-P}{\rho}\sqrt{-g} J
+  \frac{\partial \rho}{\partial {z^\alpha}_{,\lambda}} \delta{z^\alpha}_{,\lambda} \eqp
+\ee
+Equation (\ref{eq:vh_density_cons}) is used to obtain $\frac{\partial \rho}{\partial {z^\alpha}_{,\lambda}}$
+given by
+\be\label{eq:vh_diff_rho_vel}
+\frac{\partial \rho}{\partial {z^\alpha}_{,\lambda}} = \frac{-\po}{\sqrt{-g}J}
+                                                       \left(
+                                                         g_{\alpha\nu} u^\nu {\delta^\lambda}_0
+                                                         + \frac{\Lambda}{J} {J^\lambda}_{\alpha}
+                                                       \right) \eqc
+\ee
+where the first term arises from the variation of $\Lambda = \sqrt{-g_{\mu\nu} {\dot z}^\nu {\dot z}^\nu}$
+The second term arises from the variation of the jacobean determinant.
+The jacobean determinant is given by
+\be\label{eq:vh_J_def}
+  J = \frac{1}{4!} [\alpha \beta \gamma \delta][\lambda \tau \mu \nu] {z^\alpha}_{,\lambda}
+      {z^\beta}_{,\tau} {z^\gamma}_{,\mu} {z^\delta}_{,\nu}
+\ee
+where the permutation symbol $[\alpha \beta \gamma \delta]$ is equal to $+1$ if the sequence
+$\alpha \beta \gamma \delta$ is a even permutation of $1 2 3 4$, is equal to $-1$ if the
+sequence $\alpha \beta \gamma \delta$ is an odd permutation of $1 2 3 4$, and is zero if
+any two of the indices are equal to each other.
+Variation of (\ref{eq:vh_J_def}) yields
+\be\label{eq:vh_J_minor}
+  \delta J = \left( \frac{1}{3!}[\alpha \beta \gamma \delta][\lambda \tau \mu \nu]
+             {z^\beta}_{,\tau} {z^\gamma}_{,\mu} {z^\delta}_{,\nu} \right)
+             {\delta z^\alpha}_{,\lambda}
+           \equiv {J^\lambda}_{\alpha} {\delta z^\alpha}_{,\lambda} \eqp
+\ee
+which serves to define the $\alpha,\lambda$-minor of the jacobean determinant,
+which appears in (\ref{eq:vh_diff_rho_vel}).
+From this definition, it is immediately seen that
+\be\label{eq:vh_diff_J_minor}
+  \frac{\partial}{\partial a^\lambda} {J^\lambda}_{\alpha} = 0 \eqp
+\ee
+After performing the appropriate integration-by-parts on (\ref{eq:vh_term2_1}),
+we arrive at two terms
+\be\label{eq:vh_term2_2}
+  term_2 = -\int \!d^4a\, \po \frac{\partial}{\partial a^0}
+                              \left(
+                                \frac{P}{\rho} g_{\alpha\nu} u^\nu
+                              \right) \delta z^\alpha
+           - \int \!d^4a\, \frac{\partial}{\partial a^\lambda}
+                           \left(
+                            \sqrt{-g} P {J^\lambda}_{\alpha}
+                           \right) \eqp
+\ee
+Using (\ref{eq:vh_diff_J_minor}), (\ref{eq:vh_term2_2}) becomes
+\be\label{eq:vh_term2_3}
+  term_2 = -\int \!d^4a\, \po \frac{\partial}{\partial a^0}
+                              \left(
+                                \frac{P}{\rho} g_{\alpha\nu} u^\nu
+                              \right) \delta z^\alpha
+           - \int \!d^4a\, \frac{\partial}{\partial z^\sigma}
+                           \left(
+                            \sqrt{-g} P
+                           \right)
+                           \frac{\partial z^\sigma}{\partial a^\lambda} {J^\lambda}_{\alpha} \eqp
+\ee
+From the definition of the jacobean determinant (\ref{eq:vh_J_def}) and the properties
+of the minor, one arrives at the relation $\frac{\partial z^\sigma}{\partial a^\lambda} {J^\lambda}_{\alpha}
+= {\delta^\sigma}_\lambda J$, and thus (\ref{eq:vh_term2_3}) becomes
+\be\label{eq:vh_vh_term2_4}
+  term_2 = -\int \!d^4a\, \po \frac{\partial}{\partial a^0}
+                              \left(
+                                \frac{P}{\rho} g_{\alpha\nu} u^\nu
+                              \right) \delta z^\alpha
+           - \int \!d^4z\, \frac{\partial}{\partial z^\sigma}
+                           \left(
+                            \sqrt{-g} P
+                           \right)\eqp
+\ee
+Expanding the first term of $term_2$ and using the relations
+$\frac{1}{\Lambda}\frac{\partial z^\beta}{\partial a^0} = u^\beta$
+and
+$\frac{1}{\Lambda}\frac{\partial u_\beta}{\partial a^0} =
+\frac{\partial u_\beta}{\partial z^\sigma}u^\sigma$
+we arrive at
+\be\label{eq:vh_term2_4}
+  term_2 = \int \!d^4a\, \po \frac{P}{\rho^2}\frac{\partial \rho}{\partial a^0} u_\alpha \delta z^\alpha
+           - \int \!d^4z\, \sqrt{-g}\left(
+                                        \frac{\partial P}{\partial z^\alpha}
+                                      + \frac{P}{2} g^{\mu\nu} g_{\mu\nu,\alpha}
+                                      + \frac{\partial P}{\partial z^\beta} u^\beta u_\alpha
+                                      + P \frac{\partial u_\alpha}{\partial z^\beta}u^\beta
+                                    \right) \delta z^\alpha
+\ee
+
+We next move onto the third term in (\ref{eq:vh_tot_var_z}).
+Manipulations of the kind used above allows us to arrive at
+\be\label{eq:vh_term3}
+  term_3 = - \int \!d^4a\, \po \frac{P}{\rho^2}\frac{\partial \rho}{\partial a^0} u_\alpha \delta z^\alpha
+           - \int \!d^4z\, \sqrt{-g} \rho (1 + e) \frac{\partial u_\alpha}{\partial z^\beta} u^\beta \delta z^\alpha
+\ee
+
+Finally, we arrive at the fourth term in (\ref{eq:vh_tot_var_z}), which when expanded as
+above yields
+\be\label{eq:vh_term4}
+  term_4 = - \int \!d^4z\, \sqrt{-g} (1 + e)\frac{\rho}{2} \frac{\partial g^{\mu\nu}}{\partial z^\alpha} u_\mu u_\nu
+             \delta z^\alpha \eqp
+\ee
+Using the relation $\frac{\partial g^{\mu\nu}}{\partial z^\alpha}
+= -g^{\mu\beta} \frac{\partial g_{\beta\sigma}}{\partial z^\alpha}g^{\sigma\nu}$
+(\ref{eq:vh_term4}) can be put into the more convenient form
+\be\label{eq:vh_term4_1}
+  term_4 = - \int \!d^4z\, \sqrt{-g} (1 + e)\frac{\rho}{2} \frac{\partial g_{\beta\sigma}}{\partial z^\alpha}
+             u^\beta u_\sigma \delta z^\alpha \eqp
+\ee
+
+Combining equations (\ref{eq:vh_term1_2}), (\ref{eq:vh_vh_term2_4}), (\ref{eq:vh_term3}), and (\ref{eq:vh_term4_1})
+we arrive at
+\be
+ \delta I = \int \!d^4z\, \sqrt{-g} \delta z^\alpha
+            \left\{
+              -\rho\left(1 + e + \frac{P}{\rho}\right) \frac{\partial u_\alpha}{\partial z^\beta} u^\beta
+              +\rho\left(1 + e + \frac{P}{\rho}\right) \frac{1}{2}\frac{\partial g_{\mu\nu}}{\partial z^\alpha}
+                 u^\mu u^\nu
+              - \frac{\partial P}{\partial z^\beta}g_{\alpha\mu} u^\mu u^\beta
+              - \frac{\partial P}{\partial z^\alpha}
+            \right\} \eqp
+\ee
+Requiring that the variation equal zero means that the expression within the braces must
+be zero.
+Organizing this expression and using $\Gamma_{\mu\nu\alpha}u^\mu u^\nu = \frac{1}{2}
+\frac{\partial g_{\mu\nu}}{\partial z^\alpha} u^\mu u^\nu$ yields
+\be
+ \rho \left( 1 + e + \frac{P}{\rho} \right)u_{\alpha ; \beta} u^\beta
+      = -\left( {\delta_\alpha}^\beta + u_{\alpha} u^\beta \right) \frac{\partial P}{\partial z^\beta}
+      \equiv -{\perp_\alpha}^\beta   \frac{\partial P}{\partial z^\beta}
+\ee
+which is precisely relation (22.13) in MTW (when identifying $\rho_{MTW} = \rho(1+e)$).
+
+\be
+\ee

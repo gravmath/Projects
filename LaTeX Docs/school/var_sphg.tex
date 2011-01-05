@@ -1,0 +1,388 @@
+\documentstyle[fleqn]{article}
+
+\begin{document}
+
+\title{Variational Smoothed Particle Hydrodynamics\\
+	II. Relativistic Fluids}
+%
+\author{   \sc
+            Conrad Schiff\\
+           \em
+            Department of Physics, University of Maryland%,
+           \\ \em
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt cmschiff@erols.com
+        }
+\date{4 Dec., 1997}
+% 
+\maketitle
+
+\section{Introduction}
+
+This document is the second in a series that details my work on combining smoothed particle hydrodynamics (SPH) to Charlie's work on relativistic Lagrangian hydrodynamics  from a variational principle.  In Section \ref{cfm}, I summarize the basic results of Charlie's Sakharov paper and show that the Euler equations obtained from the variational calculation are consistent with the Bianchi indentity $T^{\mu \nu}_{;\nu} = 0$.  In Section \ref{cfmsph}, I rederive these equations in the SPH formalism I discussed in the first of these papers.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relativistic Lagrangian Fluid Mechanics}\label{cfm}
+The starting point for the discussion is an action whose form is very similar to the one used by Mittag, Stephen, and Yourgrau (MSY)
+\begin{eqnarray}
+I & = &  I_{H} + I_{m} \nonumber \\
+& = &  \frac{1}{16 \pi} \int \! d^4x \sqrt{-g(x)} R(x) - \int \! d^4a \left \{K 
+	{\hat \rho}_{0}	V - \alpha(z) \rho(z) \sqrt{-g(z)} J \right\}
+\end{eqnarray}
+where:
+
+\begin{eqnarray}
+K & = & \sqrt{ -g_{\mu \nu}(z) {\dot z}^{\mu} {\dot z}^{\nu} } \\
+{\dot z}^{\mu} & = & \frac{d z^{\mu}}{d a^{0}}  \\
+V(z) & = & \left[\frac{}{} \! 1 + e(\rho(z),s(z)) + \alpha(z) - \beta(z) (s(z) - s_{0}) \right]  \\
+{\hat \rho}_{0} & = & \rho(0;a^k) \ \sqrt{ \frac{\bar g(0;a^k)}{g_{\bar 0 \bar 0}(0;a^k)}}
+\end{eqnarray}
+As in the classical case, each fluid element follows the trajectory $x^{\mu} = z^{\mu}(a^{0};a^{k})$.  The quantities to be varied are the two Lagrange multipliers $\alpha$ and $\beta$, the density $\rho$, the entropy $s$, the metric components $g_{\mu \nu}$ and the path $z^{\mu}(a)$.  The first four of these variations are straightforward and can be carried out with little effort.  They yield:
+\begin{eqnarray}
+\delta I \vert_{\delta \alpha} & = & - \int \! d^4a 
+	\left\{ 
+		K {\hat \rho}_{0} - \rho \sqrt{-g} J 
+	\right\} \delta \alpha(a) \\
+\delta I \vert_{\delta \alpha} & = & - \int \! d^4a 
+	\left\{ 
+		-K {\hat \rho}_{0} \left( s - s_{0} \right)  
+	\right\} \delta \beta(a) \\
+\delta I \vert_{\delta \alpha} & = & - \int \! d^4a 
+	\left\{ 
+		K {\hat \rho}_{0} \left( \frac{\partial e}{\partial \rho}  \right)
+		- \alpha \sqrt{-g} J
+	\right\} \delta \rho(a) \\
+\delta I \vert_{\delta \alpha} & = & - \int \! d^4a 
+	\left\{ 
+		K {\hat \rho}_{0} \left( \frac{\partial e}{\partial s} - 
+		\beta \right)
+	\right\} \delta s(a)
+\end{eqnarray}
+The relations that result by setting the variations to zero can be simplified by using the thermodynamic relations for the derivatives of the internal energy.  Carrying this out for the variation with respect to $\alpha$ gives 
+\begin{eqnarray}\label{continuity}
+\rho(0;a^{k}) \sqrt{ \frac{ {\bar g}(0;a^{k})}{g_{\bar 0 \bar 0}(0;a^{k})}} 
+	& = & 
+		\rho(z) \sqrt{ \frac{-g(z)}{-g_{\mu \nu} {\dot z}^{\mu} 
+		{\dot z}^{\nu} } } J \nonumber \\
+	& = &
+		\rho(a^{0};a^{k}) \sqrt{ \frac{ \bar g(a^{0};a^{k})}{g_{\bar 0
+		\bar 0}(a^{0};a^{k})}}
+\end{eqnarray}
+Setting the remaining variations to zero and using the continuity relation (\ref{continuity}) gives the simple equations of $s = s_{0}$, $\beta = T$, and $\alpha = P / \rho$.  
+
+With these relations in hand, the variation with respect to the metric components $g_{\mu \nu}$ is the next to perform.  For simplicity, the variations of the Hilbert and the matter actions will be considered separately.  The variation of the Hilbert action is
+\begin{equation}\label{var_g_H}
+\delta I_{H} \vert_{\delta g_{\alpha \beta}} = \frac{-1}{16 \pi} \int \! d^4x \sqrt{-g} G^{\alpha \beta} \delta g_{\alpha \beta}(z).
+\end{equation}
+The same variation of the matter action is
+\begin{equation}\label{var_g_m}
+\delta I_{m} \vert_{\delta g_{\alpha \beta}} = \int \! d^4a
+	\left\{
+		\delta K {\hat \rho}_{0} V 
+		- \alpha \rho \delta \sqrt{-g} J
+	\right\}
+\end{equation}
+where
+\begin{eqnarray}
+\delta K 
+	& = &
+		\frac{1}{2} \frac{ - \dot z^{\mu} 
+		\dot z^{\nu}}{\sqrt{ -g_{\mu \nu} \dot z^{\mu} \dot z^{\nu}}} 
+		\frac{\partial g_{\mu \nu}}{\partial g_{\alpha \beta}} \delta 
+		g_{\alpha \beta} \nonumber \\
+	& = &	
+		\frac{1}{2} \frac{ - \dot z^{\alpha} 
+		\dot z^{\beta}}{\sqrt{ -g_{\mu \nu} \dot z^{\mu} \dot z^{\nu}}} 
+		\delta g_{\alpha \beta}
+\end{eqnarray}
+and
+\begin{eqnarray}
+\delta \sqrt{-g}
+	& = &
+		\frac{1}{2} \frac{-1}{\sqrt{-g}} \delta g \nonumber \\
+	& = &
+		\frac{1}{2} \frac{-g}{\sqrt{-g}} g^{\beta \alpha} \delta g_{\alpha 
+		\beta} \nonumber \\
+	& = &
+		\frac{1}{2} \sqrt{-g} g^{\alpha \beta} \delta g_{\alpha 
+		\beta}.
+\end{eqnarray}
+Substituting back into (\ref{var_g_m}) and combining with (\ref{var_g_H}) gives
+\begin{eqnarray}
+\delta I \vert_{\delta g_{\alpha \beta}} 
+	& = & 
+		\frac{-1}{2} 
+		\left\{
+			 \int d^4z \sqrt{-g} \frac{G^{\alpha \beta}}
+			{8 \pi} \delta g_{\alpha \beta} 
+		\right. \nonumber \\
+	& = & 
+		- \int d^4a \delta g_{\alpha \beta}
+		\left.
+ 		\left[
+			 \frac{ - \dot z^{\alpha} \dot z^{\beta}               }
+			      { \sqrt{ -g_{\mu \nu} \dot z^{\mu} \dot z^{\nu}} } 
+			 {\hat \rho}_{0} V - \alpha \sqrt{-g} \rho J g^{\alpha \beta}
+ 		\right]
+		\right\}.
+\end{eqnarray}
+Substituting in
+\begin{equation}
+{\hat \rho}_{0} = \frac{\rho J \sqrt{-g}}{K}
+\end{equation}
+and factoring gives
+\begin{eqnarray}
+\delta I \vert_{\delta g_{\alpha \beta}} 
+	& = & 
+		\frac{-1}{2} 
+		\int d^4z \sqrt{-g} \ \delta g_{\alpha \beta} \nonumber \\
+	& & 	\left\{
+			\frac{G^{\alpha \beta}}{8 \pi} - \frac{\dot z^{\alpha} 
+			\dot z^{\beta}}{\left(\sqrt{ -g_{\mu \nu} \dot z^{\mu} \dot
+			z^{\nu}}\right)^{2}} \rho V - P g^{\alpha \beta}
+		\right\}.
+\end{eqnarray}
+With the identification of the four-velocity $u^{\alpha}$ as 
+\begin{equation}
+u^{\alpha} = \frac{\dot z^{\alpha}}{\sqrt{ -g_{\mu \nu} \dot z^{\mu} \dot z^{\nu}}}
+\end{equation}
+this variation yields the Einstein equations
+\begin{equation}
+G^{\alpha \beta} = 8 \pi
+		\left( 
+			u^{\alpha} u^{\beta}\rho V + P g^{\alpha \beta}
+		\right).
+\end{equation}
+The stress-energy tensor is immediately seen to be 
+\begin{equation}\label{s_e_t}
+T^{\alpha \beta} = u^{\alpha} u^{\beta}\rho \left(1 + e + P/\rho - T(s-s_{0})\right) + P g^{\alpha \beta}.
+\end{equation}
+
+The final variation with respect to the path parameter 
+\begin{eqnarray}
+\delta I_{m} \vert_{\delta z^{\alpha}} 
+	& = & 
+	- \int d^4a \! 
+	\left\{ 
+		\delta K {\hat \rho}_{0} V + K {\hat \rho}_{0} \delta V 
+		- (\delta \alpha) \rho \sqrt{-g} J 
+	\right. \nonumber \\
+	& &
+	\left.
+		- \alpha (\delta \rho) \sqrt{-g} J 
+		- \alpha \rho (\delta \sqrt{-g}) J 
+		- \alpha \rho \sqrt{-g} (\delta J) 
+	\right\}
+\end{eqnarray}
+
+is quite involved and is most conveniently handled term by term.  To this end, I will quote the results for the variations of terms 2, 3, and 4.  They are:
+\begin{eqnarray}
+K {\hat \rho}_{0} \delta V & = & \left( \frac{P}{\rho^2} \rho_{,\lambda} + \alpha_{,\lambda} \right) K {\hat \rho}_{0} \delta z^{\lambda} \\
+(\delta \alpha) \rho \sqrt{-g} & = & \alpha_{,\lambda} K {\hat \rho}_{0} \delta z^{\lambda} \\
+\alpha (\delta \rho) \sqrt{-g} J &= & K {\hat \rho}_{0} \frac{P}{\rho^2} \rho_{,\lambda} \delta z^{\lambda}
+\end{eqnarray}
+(with $f_{,\lambda} = {\partial f}/{\partial z^{\lambda}}$) which cancel when combined in the total variation.
+This leaves
+\begin{eqnarray}
+\delta I_{m} \vert_{\delta z^{\alpha}} 
+	& = & 
+	- \int d^4a \! 
+	\left\{ 
+		\delta K {\hat \rho}_{0} V 
+		- \alpha \rho (\delta \sqrt{-g}) J 
+		- \alpha \rho \sqrt{-g} (\delta J) 
+	\right\}
+\end{eqnarray}
+The variations of the second and third terms are:
+\begin{eqnarray}
+\alpha \rho (\delta \sqrt{-g}) J & = &  \frac{\alpha}{2} g^{\mu \nu} g_{\mu \nu,\lambda} K {\hat \rho}_{0} \delta z^{\lambda} \\
+\alpha \rho \sqrt{-g} (\delta J) & = & \alpha \rho \sqrt{-g} J_{\lambda}^{\gamma} \delta \frac{\partial z^{\lambda}}{\partial a^{\gamma}}
+\end{eqnarray}
+where $J_{\lambda}^{\gamma}$ is the (${\lambda}^{\gamma}$) minor of the Jacobian.  Integrating the third term by parts
+\begin{eqnarray}
+\delta I_{m} \vert_{\delta z^{\alpha}} 
+	& = & 
+	- \int d^4a \! 
+	\left\{ 
+		\delta K {\hat \rho}_{0} V 
+		- K {\hat \rho}_{0} \frac{\alpha}{2} g^{\mu \nu} 
+		g_{\mu \nu,\lambda} \delta z^{\lambda} 
+	\right. \nonumber \\
+	& & 	
+	\left.
+		+ \frac{\partial}{\partial a^{\gamma}} \left( \alpha \rho \sqrt{-g}
+		 J_{\lambda}^{\gamma} \right) \delta z^{\lambda}
+	\right\},
+\end{eqnarray}
+and expanding the last term
+\begin{eqnarray}
+\frac{\partial}{\partial a^{\gamma}} \left( \alpha \rho \sqrt{-g}
+		 J_{\lambda}^{\gamma} \right) \delta z^{\lambda} & = & \frac{P_{,\lambda}}{\rho} K {\hat \rho}_{0} + \frac{1}{2}\frac{P}{\rho}g^{\mu \nu} g_{\mu \nu,\lambda} K {\hat \rho}_{0} 
+\end{eqnarray}
+leads to 
+\begin{eqnarray}
+\delta I_{m} \vert_{\delta z^{\alpha}} 
+	& = & 
+	- \int d^4a \! 
+	\left\{ 
+		\delta K {\hat \rho}_{0} V 
+		+ \frac{P_{,\lambda}}{\rho} K {\hat \rho}_{0} \delta z^{\lambda} 
+	\right\}.
+\end{eqnarray}
+Finally the $\delta K$ term can be expanded.  An integration by parts of the term multiplying $\delta(\dot z^{\lambda})$ leads to
+\begin{eqnarray}
+\delta I_{m} \vert_{\delta z^{\alpha}} 
+	& = & 
+	- \int d^4a \! 
+	\left\{ 
+		\frac{\partial}{\partial a^{0}} \left( \frac{g_{\alpha \mu} 
+		{\dot z}^{\mu}}{K} {\hat \rho}_{0} V \right) - 
+	\right. \nonumber \\
+	& & 
+	\left.
+		\frac{g_{\mu \nu,\alpha} {\dot z}^{\mu} {\dot z^{\nu}} }{2K}
+		{\hat \rho}_{0} V 
+		+ \frac{P_{,\alpha}}{\rho} K {\hat \rho}_{0}
+	\right\} 
+	\delta z^{\alpha}.
+\end{eqnarray}
+Setting this variation equal to zero and using the standard relation between the metric components and the affine connections gives the Euler equations
+\begin{equation}
+\left(1 + e + \frac{P}{\rho} \right) \left[ {\dot u}_{\alpha} + \Gamma_{\alpha \mu \beta} u^{\mu} u^{\beta} \right] = - \left( \delta_{\alpha}^{\beta} + g_{\alpha \mu} u^{\mu} u^{\beta} \right) \frac{P_{,\beta}}{\rho}.
+\end{equation}
+For a consistency check, the Bianchi identity, $T^{\mu \nu}_{;\nu} = 0$, can be applied to the stress-energy tensor (\ref{s_e_t}) to verify that it yields the same Euler equations.  The well known identity $(\rho u^{\nu})_{;\nu} = 0$ is particulary useful and the Euler equations that result in a few steps are identical to those obtained from the more lengthy variational calculation.  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Combining CWM and SPH}\label{cfmsph}
+As in the classical case, connection with SPH is begun by smoothing a portion of the Lagrangian density, in this case only the matter Lagrangian.  This results in a smoothed action integral with the form
+\begin{eqnarray}
+\langle I \rangle &  = &  \int \! {d^4}x  \left[  \frac{R(x){\sqrt{-g(x)}}}{16\pi} - \int \! {d^4}a \ \delta(x^0 - z^0) W({\vec x} - {\vec z}) \right. \nonumber \\
+& &
+  \left. \left( \sqrt{-g_{\mu\nu}(x){\dot z}^{\mu}{\dot z}^{\nu}} {\hat \rho}_{0} V(x) -\alpha(x)\sqrt{-g(x)} \rho(x) J(z) \right) \right] 
+\end{eqnarray}
+
+where:
+
+\begin{eqnarray}
+{\dot z}^{\mu} & = & \frac{d z^{\mu}}{d a^{0}}  \\
+V(x) & = & \left[ \frac{}{} 1 + e(\rho(x),s(x)) + \alpha(x) - \beta(x) (s(x) - s_{0}) \right]  \\
+{\hat \rho}_{0} & = & \rho(0;a^k) \ \sqrt{ \frac{\bar g(0;a^k)}{g_{\bar 0 \bar 0}(0;a^k)}}
+\end{eqnarray}
+Some abbreviations make things more tractable.  Thus I define $D = \delta(x^0 - z^0)$, $W = W({\vec x} - {\vec z})$ and ${\tilde K} = \sqrt{ -g_{\mu \nu}(x) \dot z^{\mu} \dot z^{\nu}}$.
+The variations with respect to $\alpha$, $\beta$, $\rho$, and $s$ are  
+\begin{eqnarray}
+\delta \langle I \rangle \vert_{\delta \alpha} & = & -\int d^4x d^4a D W 
+		\left\{
+			{\tilde K} {\hat \rho}_{0} - \sqrt{-g} \rho J
+		\right\} \delta \alpha(x) \\
+\delta \langle I \rangle \vert_{\delta \beta} & = & \int d^4x d^4a D W
+		\left\{
+			s - s_{0}
+		\right\} \delta \beta(x) \\
+\delta \langle I \rangle \vert_{\delta \rho} & = & -\int d^4x d^4a D W
+		\left\{
+			{\tilde K} {\hat \rho}_{0} \frac{\partial e}{\partial \rho}
+			- \alpha \sqrt{-g} J
+		\right\} \delta \rho(x)\\
+\delta \langle I \rangle \vert_{\delta s} & = & -\int d^4x d^4a D W {\tilde K}
+		{\hat \rho}_{0} 
+		\left\{
+			\frac{\partial e}{\partial s} - \beta
+		\right\} \delta s(x)
+\end{eqnarray}
+respectively.  These equations are the equivalent to equations (6)-(9) and result in similar relations when set to zero.  The variations with respect to the entropy $s$ and the corresponding Lagrange multiplier $\beta$ give the trivial indentities $s = s_{0}$ and $\beta = \ T$.  The variations with respect to $\rho$ and $\alpha$ give 
+\begin{eqnarray}
+\int d^4a D W {\tilde K} {\hat \rho_{0}} & = & \sqrt{-g}\rho \int d^4a D W J \nonumber \\
+					 & = & \sqrt{-g} \rho \int d^4z D W \nonumber \\
+					 & = & \sqrt{-g} \rho
+\end{eqnarray}
+and
+\begin{eqnarray}
+\frac{P}{\rho^2} \int d^4a D W {\tilde K} {\hat \rho}_{0} & = & \sqrt{-g} \alpha \int d^4a D W J \nonumber \\
+					 & = & \sqrt{-g} \alpha \int d^4z D W \nonumber \\
+					 & = & \sqrt{-g} \alpha. 
+\end{eqnarray}
+Taking the ratio of the two above relations gives the familar result $\alpha = P/\rho$.
+The variation of the metric components yields
+\begin{eqnarray}
+\delta \langle I \rangle \vert_{\delta g_{\alpha \beta}} &  = &  \int \! {d^4}x  
+	\left[  \frac{-G^{\alpha \beta}\sqrt{-g(x)}}{16\pi} \delta g_{\alpha \beta}
+	\right. \nonumber \\
+		  & & \left.
+	       - \int \! {d^4}a \ D W 
+		\left\{
+			\delta {\tilde K} {\hat \rho}_{0} V -
+			\alpha \delta \left( \sqrt{-g} \right) \rho J
+		\right\}
+	\right]
+\end{eqnarray}
+which is simplified by using
+\begin{equation}
+\delta {\tilde K} = \frac{1}{2} \frac{- \dot z^{\alpha} \dot z^{\beta}}{{\tilde K}} \delta g_{\alpha \beta}
+\end{equation}
+and (14).  Carrying out this simplification gives the corresponding equation to (19) with the 'smoothed' stress-energy tensor
+\begin{equation}
+T^{\alpha \beta} = \left[
+			P g^{\alpha \beta} +
+			\int d^4a D W 
+			\left\{
+				\frac{\dot z^{\alpha} \dot z^{\beta}}{\tilde K}
+				\frac{{\hat \rho}_{0}}{\sqrt{-g}} V
+			\right\}
+		   \right].
+\end{equation}
+The final variation is with respect to the world lines $z^{\alpha}(a^{0};a^{k})$.  The scheme is basically the same as discussed in the preceeding paper.  The symmetry in the smoothing functions allow differentiation with respect to $z$ to be switched to $x$ differenti hpath variation.  This manipulation combined with appropriate integration by parts can be used to express the variation as
+\begin{eqnarray}
+\delta \langle I \rangle \vert_{\delta z_{\alpha}} & = & 0 \nonumber \\
+ & \Rightarrow & 
+		\int \! {d^4}x D W 
+		\left\{
+			\frac{\partial}{\partial x^{\alpha}}
+			\left(
+				{\tilde K} {\hat \rho}_{0} V 
+			\right)
+			+
+			\frac{\partial}{\partial a^{0}}
+			\left(
+				\frac{{\hat \rho}_{0} V}{{\tilde K}}
+				g_{\alpha \mu} {\dot z^{\mu}}
+			\right)
+		\right.	\nonumber \\ 
+& & 		
+		\left.
+			+
+			\frac{\partial}{\partial x^{0}}
+			\left(
+				\frac{{\hat \rho}_{0} V}{{\tilde K}}
+				g_{\alpha \mu} {\dot z^{\mu}}
+			\right)
+		\right\} = 0
+\end{eqnarray}
+
+%At this point, I applied the coordinate condition $\frac{dz^0}{da^0} = 1$ to get
+%\begin{eqnarray}
+%\int \! d^3a W({\vec x} - {\vec z}) \sqrt{-g_{\mu \nu}(x){\dot z}^{\mu}(a^0;a^k) %{\dot z}^{\nu}(a^0;a^k)}\rho(0;a^k) \sqrt{\frac{{\bar g}(0;a^k)}{g_{\bar 0 \bar %0}(0;a^k)}} & & \nonumber \\
+%= \int \! d^3a \rho(z^0,{\vec x}) W({\vec x} - {\vec z}) \sqrt{-g(z^0,{\vec x})}\, %{}^{(3)} \! \!J
+%\end{eqnarray}
+%If the above coordinate condition is further extended to
+%\begin{eqnarray}
+%z^{\mu} & = & \left( a^0, {\vec a} \right)
+%\frac{}{}
+%\end{eqnarray}
+%and $W({\vec x} - {\vec z}) = \delta({\vec x} - {\vec z})$ then equation 14 becomes
+%\begin{eqnarray}
+%\int \! d^3a \delta({\vec x} - {\vec z}) \sqrt{-g_{\mu \nu}(x){\dot %z}^{\mu}(a^0;a^k) {\dot z}^{\nu}(a^0;a^k)}\rho(0;a^k) \sqrt{\frac{{\bar %g}(0;a^k)}{g_{\bar 0 \bar 0}(0;a^k)}} & & \nonumber \\
+%= \int \! d^3a \rho(z^0,{\vec x}) \delta({\vec x} - {\vec z}) \sqrt{-g(z^0,{\vec %x})}\, {}^{(3)} \! \!J
+%\end{eqnarray}
+
+
+
+
+\end{document}
+

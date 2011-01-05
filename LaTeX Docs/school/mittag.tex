@@ -1,0 +1,56 @@
+\documentclass{article}
+\begin{document}
+\title{Current Apporach on Variational Smoothed Particle Hydrodynamics}
+\author{C Schiff}
+\date{Sept. 4, 1997}
+\maketitle
+Hi Charlie,
+
+{}\,
+
+I think I'm beginning to understand how to add the matter terms to the ADM code in a way that mimics the traditional SPH approaches.  I start from the Mittag \emph{et al} variational equation
+\begin{eqnarray}
+I = \int_{t_0}^t \! dt \int \! d^3a \left[ \frac{1}{2} \rho_0 \left( \frac{\partial x^i}{\partial t} \right)^2 - \rho_0 (e + U) + \alpha (\rho J - \rho_0) \right]
+\end{eqnarray}
+where I've suppressed the $\beta (s - s_{0})$ term (and all further references to entropy) for simplicity, where there is an implied summation of the $i$-index and the Jacobian is $J = \frac{\partial \left( x^1, x^2, x^3 \right)} {\partial \left( a^1, a^2, a^3 \right)}$.  In this formalism, the evolution of the initial system is contained within the 'trajectory' function ${\vec x}({\vec a},t)$ subject to the initial condition ${\vec x}({\vec a},0) = {\vec a}$ and the density $\rho$, the internal energy, $e = e(\rho)$ and the potential energy $U$ are considered to be functions of ${\vec a}$ and $t$ through their dependence on the trajectory function ${\vec x}$.
+
+Now suppose that these hydrodynamic functions depend on a generic field point ${\vec r}$ and that the flow trajectory is accounted for by the condition
+\begin{equation}
+{\vec r}(t) = {\vec x}({\vec a},t)
+\end{equation}
+which is enforced by the inclusion of a $\delta$-function in the action.  With the idea of eventually going to smoothing functions common in SPH, I will denote the $\delta$-function as $W({\vec r} - {\vec x})$.  The action then becomes
+\begin{eqnarray}
+I & = & \int_{t_0}^t \! dt \int \! d^3a \, d^3r W({\vec r} - {\vec x})\left[ \frac{1}{2} \rho_0 \left( \frac{\partial x^i}{\partial t} \right)^2 - \rho_0 (e + U) + \alpha (\rho J - \rho_0) \right] \\
+\rho & = & \rho(\vec r) \nonumber \\
+e & =  & e \left( \rho(\vec r) \right) \nonumber \\
+U & = & U(\vec r) \nonumber \\
+\alpha & = & \alpha(\vec r) \nonumber
+\end{eqnarray}
+Taking the $\alpha(\vec r)$ variation of equation 4, gives
+\begin{eqnarray}
+\delta I \vert_{\delta \alpha} = \int_{t_0}^t \! dt \int \! d^3a \, d^3r W({\vec r} - {\vec x}) \left[ \rho J - \rho_0 \right] \delta \alpha(\vec r).
+\end{eqnarray}
+Setting the first variation to zero yields
+\begin{eqnarray}
+\int \! d^3a \, W(\vec r - \vec x) \rho(\vec r) J = \int \! d^3a \, \rho_{0}(\vec a) W(\vec r - \vec x).
+\end{eqnarray}
+At this point, setting only the weighting function on the LHS to be an actual $\delta$-function leads to an approximate formula for the density at an arbitrary point $\vec r$
+\begin{equation}
+\rho (\vec r) = \int \! d^3a \, \rho_0(\vec a) W(\vec r - \vec x). 
+\end{equation}
+Connection with the SPH interpretation is made by assuming
+\begin{equation}
+\rho_{0} = \sum_{A} \, m_{A} \delta(\vec a - \vec r_A)
+\end{equation}
+where the $\vec r_{A}$ are the initial positions of the mass elements $m_A$.
+Inserting this relation into equation 6, yields
+\begin{equation}
+\rho(\vec r(t)) = \sum_{A} \, m_{A} \, W \left(\vec r(t) - \vec x \left(\vec r_A, t \right) \right)
+\end{equation}
+where the trajectory function $\vec x \left(\vec r_A , t \right)$ gives the position of of each mass element $m_A$ at each time $t$ based on the mass element's initial position $\vec r_A$.
+
+I believe that from this point, the jump to the fully general relativistic case is fairly short.  The trajectory function $\vec x \left(\vec r_A, t \right)$ is replaced by the geodesic function $z^\mu \left( a^k; a^0 \right)$ in the 3+1 form discussed in detail in \textbf{Wide Relativistic Binaries} and the classical continuum action of Mittag \emph{et al} is replaced by the generalization of the action from your Sakharov paper.
+
+Conrad
+
+\end{document}

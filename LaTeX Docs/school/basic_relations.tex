@@ -1,0 +1,193 @@
+%Simple document on the basic relations in tensor analysis
+%basis and some formulas in each
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Basic Relations of Tensor Analysis}
+\maketitle
+
+
+The purpose of this short note is summarize the basic relations
+and formulas of tensor analysis for both coordinate and
+non-coordinate bases.
+
+To start, consider the test case study of basis vectors in both cartesian
+and cylindrical coordinates.  Of course, by their very definition,
+cartesian coordinates suppose the space flat.  So there will be
+no chance to obtain curvature.  However, this simple situation will
+allow us to see some of the basic relations amongst the connection coefficients
+in a simple context where the mathematics are easy.  In addition, the
+concept of scaffolding will become apparent.
+
+To begin, consider the simple case of the position of a point
+\be
+  \cv{r} = r \cos(\gf) \partial_x + r \sin(\gf) \partial_y
+\ee
+specified in terms of the cartesian basis vectors $\partial_x$ and
+$\partial_y$.
+The coordinate basis vectors are given by partial derivative of the
+above expression with respect to each coordinate.  Thus
+$\partial \cv{r} / \partial r$ and $\partial \cv{r} / \partial \gf$
+give the r- and \gf-coordinate basis vectors
+vector
+\bea
+ \bv{r}   & = &    \cos(\gf) \partial_x +   \sin(\gf) \partial_y \nonumber \\
+ \bv{\gf} & = & -r \sin(\gf) \partial_x + r \cos(\gf) \partial_y \eqp
+\eea
+These vectors can be normalized so that they have unit length
+(assuming for the time begin the standard cartesian form for
+determining length - an idea we'll return to later.)
+\bea
+  \bv{\hat r}   & = &   \cos(\gf) \partial_x + \sin(\gf) \partial_y \nonumber \\
+  \bv{\hat \gf} & = & - \sin(\gf) \partial_x + \cos(\gf) \partial_y \eqp
+\eea
+Now since each basis vector depends on the coordinates themselves (\textit{i.e.} they
+change their direction and possibly size from place to place), we must
+consider the partial derivatives of each vector.  Since the basis vectors form a vector
+space, changes in these vectors must be able to be expressed in terms of the vectors
+themselves.  In other words, the basis vectors form a closed space.  Proceeding to
+calculate these partial derivatives, we obtain
+\bea
+  \pdxby{\bv{r}}{r}     = 0                    & \rightarrow &
+      \nabla_r     \bv{r}   =  0 \nonumber \\
+  \pdxby{\bv{r}}{\gf}   = \frac{1}{r} \bv{\gf} & \rightarrow &
+      \nabla_{\gf} \bv{r}   =  \frac{1}{r} \bv{\gf} \nonumber \\
+  \pdxby{\bv{\gf}}{r}   = \frac{1}{r} \bv{\gf} & \rightarrow &
+      \nabla_r     \bv{\gf} =  \frac{1}{r} \bv{\gf} \nonumber \\
+  \pdxby{\bv{\gf}}{\gf} = -r \bv{r}            & \rightarrow &
+      \nabla_{\gf} \bv{\gf} =  -r \bv{r}
+\eea
+for the coordinate basis and
+\bea
+  \pdxby{\bv{\hat r}}{r}   = 0               & \rightarrow &
+     \nabla_{\hat r} \bv{\hat r} \nonumber \\
+  \pdxby{\bv{\hat r}}{\gf} = \bv{\hat \gf}   & \rightarrow &
+     \nabla_{\hat \gf} \bv{\hat r} = \frac{1}{r} \bv{\hat \gf} \nonumber \\
+  \pdxby{\bv{\hat \gf}}{r} = 0               & \rightarrow &
+     \nabla_{\hat r} \bv{\hat \gf} = 0 \nonumber \\
+  \pdxby{\bv{\hat \gf}}{\gf} = - \bv{\hat r} & \rightarrow &
+     \nabla_{\hat \gf} \bv{\hat \gf} = -\frac{1}{r} \bv{\hat r}
+\eea
+for the non-coordinate basis.  The functions multiplying the basis vectors
+are called the connection coefficients and the non-zero ones are summarized as
+\bea
+  \Cnx{\gf}{r \gf} & = & \frac{1}{r} \nonumber \\
+  \Cnx{\gf}{\gf r} & = & \frac{1}{r} \nonumber \\
+  \Cnx{r}{\gf \gf} & = & -r
+\eea
+and
+\bea
+  \Cnx{\ghf}{\hat r \ghf} & = & \frac{1}{r} \nonumber \\
+  \Cnx{\hat r}{\ghf \ghf} & = & -\frac{1}{r} \eqp
+\eea
+The metric is defined in terms of the basis vectors as
+\be
+  \met{a}{b} = \ipd{\bv{a}}{\bv{b}}
+\ee
+and contains all of the information that is contained in the basis vectors.
+
+Now one question no doubt springs to mind.  Why ever use the metric when one
+can obtain the connection coefficients in the same way one did above?  The answer
+is that one cannot tell, in general, how to find the cartesian vectors which are
+connection-free, or even if they exist.  Without them as a scaffold, there is no way
+to be sure how to take partial derivatives of the basis vectors, since expressions like
+$\partial_r$ or $\partial_{\hat r}$ may have coordinate dependence that is
+not explicit in their form.  Thus in general, one must either know something about
+them with respect to how they change from place to place or one must impose a metric.
+The latter is usually easier and is the path which we now follow.
+Taking partial derivatives of the metric and using the standard definition of
+the connection
+\be
+  \gG_{abc} = \bv{a} \cdot \pdxby{\bv{b}}{x^c}
+\ee
+yields
+\bea
+  \met{a}{b}_{,c} & = & \ipd{\bv{a,c}}{\bv{b}} + \ipd{\bv{a}}{\bv{b,c}} \nonumber \\
+                  & = & \ipd{\Cnx{s}{ac} \bv{s}}{\bv{b}} + \ipd{\bv{a}}{\Cnx{s}{bc} \bv{s}} \nonumber \\
+                  & = & \met{s}{b} \Cnx{s}{ac} + \met{a}{s} \Cnx{s}{bc} \nonumber \\
+                  & = & \idx{\gG}{\dn{bac}} + \idx{\gG}{\dn{abc}} \eqp
+\eea
+Taking the usual three-fold combination yields
+\bea
+  \met{ab}{,c} + \met{ac}{,b} - \met{bc}{,a} & = &
+    2 \gG_{\surp{ab}c} + 2 \gG_{\surp{ac}b} - 2 \gG_{\surp{bc}a} \nonumber \\
+        & = & \gG_{abc} + \gG_{bac} + \gG_{acb} + \gG_{cab} - \gG_{bca} - \gG_{cba} \nonumber \\
+        & = & \gG_{abc} + \gG_{acb} + 2 \gG_{b\surb{ac}} + 2 \gG_{c\surb{ab}} \nonumber \\
+        & = & 2 \gG_{abc} - \gG_{abc} + \gG_{acb} + 2 \gG_{b\surb{ac}} + 2 \gG_{c\surb{ab}} \nonumber \\
+        & = & 2 \gG_{abc} - 2 \gG_{a\surb{bc}} + 2 \gG_{b\surb{ac}} + 2 \gG_{c\surb{ab}} \eqp
+\eea
+Now employing the definition of the commutation coefficients
+\be
+  \bv{a} \bv{b} - \bv{b} \bv{a} = \nabla_{a} \bv{b} - \nabla_{b} \bv{a}
+    = \idx{C}{\dn{ab}\up{c}} \bv{c} \nonumber \\ \eqc
+\ee
+which, ironically, can be defined without the scaffold of cartesian vectors, yields
+the relation
+\be
+   \surp{\Cnx{c}{ba} - \Cnx{c}{ab}} \bv{c} = - 2 \Cnx{c}{\surb{ab}} \bv{c}
+     = \idx{C}{\dn{ab}\up{c}} \bv{c} \eqp
+\ee
+Substituting this into the usual three-fold metric combination gives
+\bea
+ \gG_{abc} & = & \frac{1}{2} \surp{   \met{ab}{,c}     + \met{ac}{,b}     - \met{bc}{,a}
+                                    - \gG_{c\surb{ab}} - \gG_{b\surb{ac}} + \gG_{a\surb{bc}}  } \nonumber \\
+           & = & \frac{1}{2} \surp{   \met{ab}{,c}     + \met{ac}{,b}     - \met{bc}{,a}
+                                    + C_{abc}          + C_{acb}          - C_{bca} } \eqp
+\eea
+All the pieces are now in place to define the covariant derivative.  Begin by taking
+the partial derivative of an arbitrary vector
+\bea
+  \pdby{x^b} \surp{\cv{V}} & = & \pdby{x^b} \surp{ V^a \bv{a}} \nonumber \\
+                           & = & \idx{V}{\up{a}\dn{,b}} \bv{a} + V^a \pdxby{\bv{a}}{x^b} \nonumber \\
+                           & = & \idx{V}{\up{a}\dn{,b}} \bv{a} + V^a \Cnx{c}{ab} \bv{c} \nonumber \\
+                           & = & \surp{\idx{V}{\up{a}\dn{,b}} + \Cnx{a}{cb} V^c} \bv{a} \eqp
+\eea
+Again expressing this vector in terms of the basis vectors
+\be
+  \nabla_b \cv{V} \equiv \pdby{x^b}\cv{V} \equiv \idx{V}{\up{a}\dn{;b}} \bv{a}
+\ee
+leads naturally to a shorthand notation for the components
+\be
+  \idx{V}{\up{a}\dn{;b}} = \idx{V}{\up{a}\dn{,b}} + \Cnx{a}{bc} V^c \eqc
+\ee
+called the covariant derivative.
+Now we can determine what the partial derivatives of the basis forms are by simply
+taking the partial derivative of the standard contraction or duality formula
+\bea
+ \pdby{x^c} \sura{ \bd{a},\bv{b} } & = &  0 \nonumber \\
+ \sura{ \pdxby{\bd{a}}{x^c},\bv{b}} + \sura{\bd{a},\pdxby{\bv{b}}{x^c}} & = & 0 \nonumber \\
+ \sura{ \idx{\gY}{\up{a}\dn{sc}} \bd{s}, \bv{b}} + \sura{ \bd{a}, \Cnx{s}{bc} \bv{s}} & = & 0 \nonumber \\
+ \idx{\gY}{\up{a}\dn{bc}} + \Cnx{a}{bc} & = & 0 \nonumber \\
+ \idx{\gY}{\up{a}\dn{bc}} & = & - \Cnx{a}{bc} \eqp
+\eea
+Once obtained, the same manipulation
+\bea
+  \pdby{x^c} \surp{ \gs_a \bd{a}} & = & \gs_{a,c} \bd{a} + \gs_a \pdxby{\bd{a}}{x^c} \nonumber \\
+                                  & = & \gs_{a,c} \bd{a} - \gs_{a} \Cnx{a}{sc} \bd{s} \nonumber \\
+                                  & = & \surp{ \gs_{a,c} - \Cnx{s}{ac} \gs_s } \bd{a} \nonumber \\
+                                  & \equiv & \gs_{a;c} \bd{a}
+\eea
+leads to the form of the covariant derivative of a form.
+
+Finally, taking the anti-symmetrized second partial derivative of an arbitrary vector yields
+\bea
+  \pdxby{^2 \cv{V}}{x^c \partial x^d} - \pdxby{^2 \cv{V}}{x^d \partial x^c} & = &
+    \surp{ \Cnx{a}{bd,c} - \Cnx{a}{bc,d} + \Cnx{a}{sc} \Cnx{s}{bd} - \Cnx{a}{sd} \Cnx{s}{bc}}
+    V^c \bv{a} \nonumber \\
+    & = & \idx{R}{\up{a}\dn{bcd}} V^b \bv{a}
+\eea
+while the anti-symmetrized second partial derivative of an arbitrary form yields
+\bea
+  \pdxby{^2 \cf{\gs}}{x^c \partial x^d} - \pdxby{^2 \cf{\gs}}{x^d \partial x^c} & = &
+   \surp{ \Cnx{a}{bc,d} - \Cnx{a}{bd,c} + \Cnx{a}{sd}\Cnx{s}{bc} - \Cnx{a}{sc}\Cnx{s}{bd} } \gs_a \bd{b} \nonumber \\
+   & = & - \idx{R}{\up{a}\dn{bcd}} \gs_a \bd{b} \eqp
+\eea
+Both of these can be written solely in terms of the components as
+\be
+  \surp{\nabla_c \nabla_d - \nabla_d \nabla_c} V^a = \idx{R}{\up{a}\dn{bcd}} V^b
+\ee
+and
+\be
+  \surp{\nabla_c \nabla_d - \nabla_d \nabla_c} \gs_b = -\idx{R}{\up{a}\dn{bcd}} \gs_a \eqp
+\ee
+\end{document}

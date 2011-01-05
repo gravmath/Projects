@@ -1,0 +1,405 @@
+\documentstyle[fleqn]{article}
+
+\def\a{{\vec a}}
+\def\x{{\vec x}}
+\def\z{{\vec z}}
+
+\begin{document}
+
+\title{Variational Smooth Particle Hydrodynamics}
+%
+\author{   \sc
+             Conrad Schiff {\rm and} Charles W. Misner\\
+           \em
+            Department of Physics, University of Maryland,
+           \\
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt  cmschiff@erols.com\\
+                     misner@umail.umd.edu
+        }
+\date{13 December 1997}
+% 
+\maketitle
+
+\section{Introduction}
+
+The aim here is to provide a summary of smooth particle hydrodynamics
+(SPH) for use in our BNS work. 
+    The presentation is most easily followed, we hope, by starting
+with classical fluid mechanics and only after covering that rather
+thoroughly moving to the analogous formalism in general relativity. 
+    Section~\ref{cfm} covers the variational approach of Mittag,
+Stephen, and Yourgrau (MSY) to classical fluid mechanics.  
+    Section~\ref{sph} reviews the some of the SPH basics and touches
+upon some of the existing work in which variational methods play a
+role, written here to emphasize the MSY style variational principles
+that we use.
+    Section~\ref{Newton} introduces self-gravitation of the fluid
+while treating the gravitational potential as a field satisfying
+partial differential equations on a discrete grid.
+    This is intended as preparation for the relativistic case where
+gravity cannot be treated as a particle-particle interaction.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Classical Fluid Mechanics}\label{cfm}
+    Start with a fluid and label each fluid element by its postion 
+${\vec a}$ at $t=0$.  
+    MSY then introduce what we call the trajectory function ${\vec
+z}({\vec a},t)$ which gives any fluid element's position at some
+later time $t$ by 
+    \begin{equation} 
+    {\vec x} = {\vec z}({\vec a},t) .
+    \end{equation} 
+    In discrete approximations later there will only be a finite
+number of particle trajectories $\z$ computed, and fields such as the
+gravitational potential $\Phi(\x)$ will be computed only on a finite
+set of grid locations $\x$.
+    The goal of making and combining these two discretization
+approximations makes it important that a clear distinction be kept in
+mind between the particle trajectories $\z$ and the field points
+$\x$, even though the equation $\x = \z(t)$ imbeds a particle
+trajectory within the grid where field values will be known.
+    The trajectory function has the obvious boundary condition ${\vec
+z}({\vec a},0) = {\vec a}$.  
+    Assuming the fluid to be ideal, its motion is subject to two
+constraints.  
+    The first is the conservation of mass which takes the form 
+    \begin{equation} 
+    \rho({\vec z},t)\,d^3 z = \rho({\vec a},0)\,d^3 a. 
+    \end{equation} 
+    Introducing the Jacobian $J =
+{\partial(z_1,z_2,z_3)}/{\partial(a_1,a_2,a_3)}$ allows the
+conservation of mass equation to be given by 
+    \begin{equation}\label{eq:rho}
+    \rho J({\vec z}(\a,t)) = \rho_0(\a) .  
+    \end{equation} 
+    Thus $\rho$ depends on the family of trajectories $\z(\a,t)$
+under consideration, and is entirely determined by it.
+    The second constraint is the conservation of entropy which takes
+on the form
+    \begin{equation} 
+    s(\a,t) = s({\vec a},0) = s_0(\vec a) . 
+    \end{equation}
+
+Although MSY incorporate these constraints in a variational principle
+by the use of the Lagrange multipliers, we find the equations shorter
+and easier to read if one takes $\rho$ to be defined by
+Eqn.~(\ref{eq:rho}). 
+    The MSY Lagrangian then is :
+    \begin{equation}\label{eq:MSY}
+    I  =  \int\!\! dt \int\!\! d^3a \left[\frac{\rho_0}{2} \left(
+\frac{\partial z_i}{\partial t}\right)^2 - \rho_0(e+\Phi) \right]
+    \end{equation} 
+    where $e(\rho,s)$ is the specific internal energy and
+$\Phi(\z(\a,t),t)$ is the gravitational potential energy per unit
+mass at the position of particle $\a$.  
+    In this formalism, ${\vec z}(\a,t)$ are the dynamical variables
+that are varied to produce the equations of motion.
+
+The variation of the action with respect to the trajectory function
+${\vec z}$ requires the various properties of the Jacobian that MSY
+employ in their formulation.
+    We must remember that since $\rho$ is defined by Eqn.~(\ref{eq:rho})
+both $\rho$ and $e(\rho,s)$ will vary when $\z$ is varied.
+    Thus we find
+    \begin{equation}
+    \delta I = \int\!\! dt \int\!\! d^3a \left[ \rho_0
+    \left(\frac{\partial z_i}{\partial t}\right)\delta
+    \left(\frac{\partial z_i}{\partial t} \right) 
+    - \rho_0 \frac{P}{\rho^2} \delta \rho
+    - \rho_0 \frac{\partial \Phi}{\partial z_i} \delta {z_i} 
+    \right].
+    \end{equation}
+    Here we have used the thermodynamic relationship $de = T\,ds -
+P\,d(1/\rho)$ in the form $(\partial e/\partial \rho)_s = P/\rho^2$
+in evaluating how the internal energy $e$ changes when the trajectory
+variations cause changes in $\rho$ but not in $s$ at a particular
+fluid element $\a$.
+    The problematic term here is that containing $\delta \rho$.
+    But from $\rho J = \rho_0(\a)$ where the right hand side is
+independent of $\z$ one has $J \delta \rho + \rho \delta J = 0$.
+    Thus the term $-(\rho_0 {P}/{\rho^2}) \delta \rho$  becomes 
+$-(P/\rho) J \delta \rho = + P \delta J$.
+    Using $\delta J = ({\partial J}/{\partial z_{i,j}}) \delta
+z_{i,j} = J_{ij} \delta z_{i,j}$, where $z_{i,j} = {\partial
+z_i}/{\partial a_j}$ and $J_{ij}$ is the (i,j) minor of the Jacobian,
+the second ($P$) term can be simplified.  
+    Exchanging the order of the variation and the partial
+differention in the first and second terms and integrating these terms
+by parts gives
+    \begin{equation}
+    \delta I = -\int\!\! dt \int\!\! d^3a \left[ \rho_0
+    \left(\frac{\partial^2 z_i}{\partial t^2}\right) 
+    + \frac{\partial}{\partial
+    a_j}\left(P J_{ij}\right) 
+    + \rho_0 \frac{\partial \Phi}{\partial z_i} 
+    \right] \delta z_i.
+    \end{equation}
+    Setting this variation to zero leads to the partial differential
+equation
+    \begin{equation}\label{EL}
+    \rho_0 \left(\frac{\partial^2 z_i}{\partial t^2}\right) + \rho_0
+    \frac{\partial \Phi}{\partial z_i} + \frac{\partial}{\partial
+    a_j}\left(P J_{ij}\right) = 0.
+    \end{equation}
+    From the relations ${\partial J_{ij}}/{\partial a_j} = 0$,
+the last term becomes
+    \begin{equation}
+    \frac{\partial}{\partial a_j}\left(P  J_{ij} \right) =
+    \frac{\partial P}{\partial a_j} J_{ij} = \frac{\partial P}{\partial
+    z_k}\frac{\partial z_k}{\partial a_j} J_{ij}.
+    \end{equation}
+    Finally by using $({\partial z_k}/{\partial a_j}) J_{ij} = J
+\delta_{ik}$ and $J = \rho_0 / \rho$ we put Eq.~(\ref{EL}) into the
+familar form
+    \begin{equation}\label{eq:Euler}
+    \left(\frac{\partial^2 z_i}{\partial t^2}\right) + \frac{\partial
+    \Phi}{\partial z_i} + \frac{1}{\rho} \frac{\partial P}{\partial z_i} =
+    0.
+    \end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Smooth Particle Hydrodynamics}\label{sph}
+In this section, we produce some of the standard SPH equations
+by making approximations in the variational principle.
+
+The single most important relation that should be stated is the idea of
+approximating the equation
+    \begin{equation}
+    f({\vec z}) = \int\!\! d^3z'\,\delta({\vec z} - \vec{ z'}) f(\vec{z'})
+    \end{equation}
+by the relation
+    \begin{equation}\label{sph_fun}
+    \langle f({\vec z}) \rangle \simeq \int\!\! d^3z'\,W({\vec z} 
+    - \vec{z'}; h) f(\vec{z'}).
+    \end{equation} The essential properties of the smoothing kernel
+$W$ are that it is normalized
+    \begin{equation}\label{norm}
+    \int\!\! d^3z\,W({\vec z};h) = 1
+    \end{equation}
+and that it has a delta function limit
+    \begin{equation}
+    \lim_{h \rightarrow 0} W({\vec z} - \vec{z'};h) = \delta({\vec z}
+    - \vec{z'})
+    \end{equation} In addition, we assume that we are always using a
+symmetric, even, non-negative kernel so that the smoothing
+approximation is $O(h^2)$.  In other words,
+    \begin{equation}
+    \langle f({\vec z}) \rangle = f({\vec z}) + c\nabla f({\vec z}) h^2
+    \end{equation}
+where $c$ is a constant independent of $h$.  
+
+Gingold and Monaghan motivate a derivation of SPH starting from the
+Lagrangian for a nondissipative, isentropic gas which in our notation
+reads
+    \begin{equation}
+    L = \int\!\! d^3a\,\rho_0 \left[ \frac{1}{2} {\dot {\vec z}\,}^2 -
+        e(\rho) - \Phi(z,t)\right] 
+    \end{equation}
+where ${\partial e}/{\partial \rho} = {P}/{\rho^2}$ and where $z$
+means $z(\a,t)$.  Then they write the integral in discrete form
+    \begin{equation}
+    L \simeq \sum_{a=1}^{N} m_a \left( \frac{1}{2} {\dot {\vec z_a}}^2 -
+    e(\rho_a)  - \Phi(\vec z_a, t) \right) .
+    \end{equation}
+Calculating the terms in the Euler-Lagrange equations gives the SPH
+momentum equation
+    \begin{equation}
+    m_a \ddot {\vec z_a}  + m_a \left( \frac{\partial \Phi}{\partial
+                                    \x} \right)_{\x = \z_a}
+    + \sum_{b=1}^{N} \frac{P_b}{\rho_b^2}
+    \frac{\partial \rho_b}{\partial {\vec z_a}} m_b 
+    = 0
+    \end{equation}
+Connection with SPH can be made by identifying 
+    \begin{equation}\label{eq:smoothed_rho}
+    \rho_b = \sum_{c=1}^{N} m_c W ( {\vec z_b} - {\vec z_c}; h )
+    \end{equation}
+which leads to the symmetric momentum equation
+    \begin{equation}
+    {\ddot {\vec z_a}}  + \left( \frac{\partial \Phi}{\partial
+                                    \x} \right)_{\x = \z_a}
+    + \sum_{b=1}^{N} \left( \frac{P_b}{\rho_b^2} +
+    \frac{P_a}{\rho_a^2} \right) m_b \nabla_a W ( {\vec z_a} - {\vec
+    r_b}; h )
+    \end{equation} 
+that Monaghan advocates for its ability to conserve linear and angular
+momentum.
+
+Note that two approximation steps are invoked here.  One is the
+replacement of $\int\!\! d^3a\,\rho_0$ by $\sum_{a=1}^N m_a$ which is a
+Monte Carlo sampling of the continuum of fluid elements by a finite
+subset.  The second step is the estimate (\ref{eq:smoothed_rho}) of
+the continuum density from this finite sample.  The normalization
+condition (\ref{norm}) provides a consistency between these two
+steps, but we do not see that one can be derived from the other.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Newtonian Gravity}\label{Newton}
+    In the preceding sections Newtonian gravity was included as a
+potential $\Phi$ due to external masses.  When the self-gravitation
+of the fluid is to be included more care is needed.  Unlike usual
+Newtonian SPH, we do not want to think of gravitation as a mutual
+interaction of the smoothed particles---this viewpoint, effective
+in Newtonian problems, will not provide guidance for the relativistic
+problems we aim to formulate.  Instead we write a field theory.  A
+variational principle which gives rise to the Poisson equation is 
+$\delta I_G = 0$ with
+    \begin{equation}\label{eq:I-G}
+    I_G = -\int\!\!dt\!\int\!\!d^3x \left[  
+            (1/8\pi G)(\nabla \Phi)^2 + \rho(\x,t) \Phi(\x,t) \right] .
+    \end{equation}
+    Varying $\Phi$ here gives
+    \begin{equation}\label{eq:Poisson}
+    \nabla^2 \Phi = 4 \pi G \rho 
+    \end{equation}
+    with solutions such as $\Phi = -GM/r$.
+
+    A continuum variational principle extending that of
+Sec.~\ref{cfm} to include the field dynamics is $\delta I = 0$ with 
+$I = \int\!L\,dt$ and
+    \begin{eqnarray}\label{eq:full-L}
+    L = \int\!\! d^3a \left[\frac{\rho_0}{2} \left(
+\frac{\partial z_i}{\partial t}\right)^2 
+- \rho_0\, e(\rho,s_0) - \rho_0\, \Phi(\z(\a,t),t) \right] 
+             \nonumber \\
+      - (1/8\pi G)\int\!\!d^3x\,\nabla \Phi(\x,t)^2  .
+    \end{eqnarray}
+    The terms here containing $\z(\a,t)$ are exactly those considered
+in Sec.~\ref{cfm}, so the fluid equations are just (\ref{eq:Euler}).
+    But to see that Eq.~(\ref{eq:Poisson}) also results we need to
+rewrite the $\rho\Phi$ term to see that it is the same as in
+Eq.~(\ref{eq:I-G}).
+    This we do by invoking the definition of $\rho$ in a change of
+variables $\rho_0\,d^3a = \rho\,d^3z$ in the integral
+    \begin{equation}\label{eq:rhoPhi}
+    \int\!\! d^3a\, \rho_0(\a)\, \Phi(\z(\a,t),t) =
+    \int\!\! d^3z\, \rho(\z,t)\, \Phi(\z,t) =
+    \int\!\! d^3x\, \rho(\x,t)\, \Phi(\x,t)
+    \end{equation}
+    where the last step is a notational change of the dummy variable
+of integration.    
+    Thus Eq.~(\ref{eq:Poisson}) also results by varying $\Phi(\x)$ in
+this combined Lagrangian (\ref{eq:full-L}).
+
+    It is important to note that only the first form of the
+interaction term (\ref{eq:rhoPhi}) as given in Eq.~(\ref{eq:full-L})
+is acceptable in the fundamental Lagrangian.
+    For in making the change of variables from $\a$ to $\z$ in
+equation (\ref{eq:rhoPhi}) one has assumed a definite fluid motion
+$\z(\a,t)$.
+    Since reference to this particular motion disappears in the 
+$\int\!\! d^3x\, \rho(\x,t)\, \Phi(\x,t)$ form of this term, it would
+not be possible to carry out the $\delta \z$ variations were this
+form to be stated as part of the basic Lagrangian.
+    We have used it here only to carry out a variation of $\Phi$
+while holding the fluid motion $\z(\a,t)$ unchanged.
+
+    When we now approximate this Lagrangian through discretization,
+the $\rho\Phi$ interaction term can be treated in (at least) two
+different ways.  
+
+    The first is based on the basic $\int\!\!d^3a\,\rho_0 \Phi$ form;
+it begins by replacing $\int\!\!d^3a\,\rho_0 \Phi$ by $\sum_1^N m_a
+\Phi(\vec z_a)$.  
+    Were we to simply make no further approximation and solve the
+resulting Poisson equation for $\Phi$ analytically, the Newtonian
+$1/r^2$ attraction between point particles $\vec z_a$ would result. 
+    But we want to follow the field theory line and therefore assume
+that the field Lagrangian $\int\!\!d^3x\,(\nabla \Phi)^2$ is put into
+finite difference form with $\Phi$ defined only on a discrete grid of
+points $\vec x_\ell$ where $\ell$ is a triplet of integers labelling
+the three dimensional grid vertices.  
+    Then the factor $\Phi(\vec z_a)$ in the interaction term will be
+undefined since $\vec z_a$ will not normally coincide with one of the
+lattice points $\vec x_\ell$.  
+    Thus some interpolation is required, and we can set
+    \begin{equation}\label{eq:interpolate}
+    \Phi(\vec z_a) = \sum_\ell h^3 \Phi(\vec x_\ell) I(\vec z_a - \vec x_\ell)
+    \end{equation}
+    where $h$ is the grid spacing and
+    where $I(\vec x)$ is an interpolation kernel normalized so that 
+    \begin{equation}\label{eq:normalize}
+            \sum_\ell h^3 I(\vec z -\vec x_\ell) = 1 . 
+    \end{equation}
+    The kernel $I$ chooses a linear combination of nearby grid values
+$\Phi_\ell$ to estimate $\Phi$ at any desired point and provides an
+approximation to the delta function in 
+    \begin{equation}\label{eq:approxDelta}
+    \Phi(\z,t)) = \int\!\!d^3x\,\Phi(\x,t) \delta^3(\z-\x) .
+    \end{equation}
+    With this discretization the source term in the Poisson equation
+(\ref{eq:Poisson}) becomes
+    \begin{equation}\label{eq:gravSource1}
+    4 \pi G \rho(\vec x_\ell) =
+          4 \pi G \sum_{a=1}^{N} m_a I({\vec z_a} - {\vec x_\ell}).
+    \end{equation}
+    Note that the normalization condition (\ref{eq:normalize}) leads
+to a conserved gravitational mass
+    \begin{equation}\label{eq:gravMass}
+    \sum_\ell h^3 G \rho(\vec x_\ell) =
+           \sum_{a=1}^{N} G m_a 
+    \end{equation}
+    which is important since simple discretizations of the Laplacian
+satisfy Gauss's theorem and show that this gravitational mass will be
+reflected in a discrete surface integral of the gravitational field at
+an outer boundary outside the mass distribution.
+
+
+    The second way to treat the interaction term $L_{\rm int}$ of
+Eq.~\ref{eq:rhoPhi} is to begin from its $\int\!d^3x\,\rho \Phi$ form
+and introduce first the grid of field points $x_\ell$.  
+    This yields $\sum_\ell h^3 \rho(\x_\ell,t) \Phi(\x_\ell, t)$.   
+    Now we need a definition for $\rho(\x_\ell,t)$ and can choose the
+same smoothing (\ref{eq:smoothed_rho}) considered in the definition
+of the pressure gradient forces:
+    \begin{equation}\label{eq:rhogrid}
+    \rho(\x_\ell,t) = \sum_{c=1}^{N} m_c 
+                    W( {\vec x_\ell} - {\vec z_c}; h).
+    \end{equation}
+    From this definition it follows that 
+    \begin{equation}\label{eq:dicreteLint}
+    L_{\rm int} = -\sum_\ell h^3  \Phi(\x_\ell, t)
+                  \sum_{c=1}^{N} m_c W({\vec x_\ell} - {\vec z_c}; h).
+    \end{equation}
+    This differs from the interaction term found by the first method
+only in the replacement of an interpolation kernel $I$ by a smoothing
+kernel $W$.
+    
+    What we learn by comparing these two approaches to discretization
+is that a consistent Lagrangian formulation (with anticipated
+benefits from conservation of energy and momentum) is possible using
+a different smoothing $I$ for the gravitational interaction than the
+one $W$ used for the hydrodynamic interaction.
+    From a physical viewpoint is would seem likely that the
+appropriate choice is to use the same $W$ smoothing kernel in both
+places.
+    The right hand side of the Poisson equation
+(\ref{eq:Poisson}) then becomes
+    \begin{equation}\label{eq:gravSource2}
+    4 \pi G \rho(\vec x_\ell) =
+          4 \pi G \sum_{c=1}^{N} m_c W({\vec x_\ell} - {\vec z_c}; h).
+    \end{equation}
+    However this will conserve the gravitational mass only if the
+normalization condition for $W$ in Eq.~(\ref{norm}) is discretized to
+agree with Eq.~(\ref{eq:normalize}), which we therefore assume.
+    The gravitational term in the hydrodynamic equations becomes
+    \begin{equation}\label{eq:gravForce}
+    \left( \frac{\partial \Phi}{\partial \x} \right)_{\x = \z_a}
+    \mapsto
+    \sum_\ell h^3  \Phi(\x_\ell, t)
+         \frac{\partial W({\vec x_\ell} - {\vec z_a},h)}{\partial \z_a}.
+    \end{equation}
+    
+\end{document}
+
+

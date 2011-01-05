@@ -1,0 +1,177 @@
+%
+%
+%	This is a file to make C W Misner's letter to
+%	   Kim New
+%
+%   re Gowdy analytic test case
+%
+%	It is designed to be processed by LaTeX and to be emailed 31 Aug'97 
+%
+%
+\documentstyle{letter}
+\signature{Charlie
+}
+
+\def\half{\mbox{$\frac{1}{2}$}}     % small built-up `one-half'
+\def\ref#1{}
+
+%\addtolength{\textheight}{1.0in}
+%\addtolength{\topmargin}{-0.5in}
+
+\begin{document}
+
+\begin{letter}{%
+Dr.\ Kimberly New\\
+Drexel U
+}
+
+
+\opening{Dear Kim}
+
+    I hope you find that setting the lapse makes Gowdy run, but since
+I revved up Maple to check the initial conditions, I've gone on to
+look at the analytic solutions and will suggest some test cases here.
+    The principal change is that I've now put an amplitude factor $A$
+on the waves and have run some numerical examples so see what the
+solution actually looks like.  
+    In testing the ADM code on Gowdy models, you should first run the
+case $A=0$ to see that Kasner can be reproduced in this form, before
+facing the problems of real Gowdy with waves.
+
+    An interesting case is the lowest mode $n=1$ with a modest
+amplitude $A = 0.2$.  
+    I'll include with this note some plots of metric values. 
+    The the wave energy is initially ($t=1$)  so low that the
+solution behaves essentially as Kasner for quite a while.  
+    But in this Kasner the 3-direction is contracting while the
+volume expands, so the gravitational waves propagating in the
+3-direction are getting blue shifted and eventually (near $t=12$ in
+the example) the wave energy density makes the Kasner empty space
+metric no longer a valid approximation.  
+    The collapse of the 3-direction then reverses, joining the
+expansion of the other directions, and a more conventional expanding
+universe ensues which asymptotically is probably the Kasner case
+which is Minkowski spacetime.
+    Keith has nearly completed a homogeneous analytic solution that
+models this behavior.
+
+    Thus even this analytically solvable case has a lot of physics in
+it, and it looks rather hard to reproduce numerically.
+    But I think it is not harder than the binary system we aim to do,
+so we had better find a way to get it right, as perhaps Joan has
+already done when using 1D code some time back.
+    The physics is the propagation of gravitational waves in a
+dynamic background, plus the back reaction of the waves on the
+background which here reverses the Kasner collapse in one direction.
+    The numerical difficulty is that when described in terms of the
+metric components $g_{ij}$ many of the effects look small but have
+big consequences.
+    The wave oscillations are only a few percent in the metric
+components, yet after a dozen cycles they are sufficient to cause the
+collapsing background to bounce.
+    During the bounce different parts of the space are showing only a
+few parts in a thousand differences in their behavior, yet without
+these the bounce might not occur.
+    But such things will happen in the binary system also.
+    Radiation reaction that may take many cycles to have a major
+effect should eventually lead to coalescence.
+    This is asking a lot from a second order scheme---let's hope it
+can be made to work.
+
+     The plots from the $A = 0.2$, $n=1$ case show that a measure of
+wave tidal effects $g_{11}/g_{22}$ has an amplitude of about 10\%
+initially ($t=1$) descreasing to about 2\% at $t=20$.
+    This occurs at the antinode $z=0$; there is no change in this
+quantity at the node $z=1/4$.
+    The expansion in the $xy$-plane is controlled by the factor of
+$t$ in each $g_{11}$ and $g_{22}$, thus these directions have lengths
+expanding like $\sqrt{t}$.
+    In the $z$-direction lengths initially contract with a factor
+$t^{-1/4}$ and then near $t=12$ this contraction stops and an
+expansion in this direction begins as the $t^2$ terms in $\lambda$
+from equation~(5\ref{eq-L}) below begin to dominate.
+    From the plot of $g_{33}$ in the critical bounce range near
+$t=12$ one sees that this behavior is essentially the same at both
+the nodes and the antinodes of the waves.
+    Superimposed on the collapse and bounce behavior of $g_{33}$
+there is a small 0.6\% oscillation which has opposite phase at the
+wave nodes and antinodes, but is otherwise similar.
+
+    When there are no gravitational waves in our Gowdy test cases
+($A=0$) the solution becomes a Kasner case in nonstandard
+coordinates:
+    \begin{equation}\label{eq-Kasner}
+        ds^2 = t^{-1/2} (- dt^2 + dz^2) + t\,(dx^2 + dy^2)
+        \quad .
+    \end{equation}
+    In general, for polarized analytic Gowdy solutions, we take the
+metric to be
+        \begin{equation}\label{eq-gdyt}
+    ds^2 = t^{-1/2} e^{\lambda/2}(- dt^2 + dz^2)
+           +t\, ( e^P\,dx^2 + e^{-P}\,dy^2 )
+    \end{equation}
+    with 
+    \begin{equation} P(t,z) \equiv A\, 
+    {\rm BesselJ}(0, 2 \pi n t)\cos(2 \pi n z)
+    \quad .
+    \end{equation}
+    For brevity we shall write this as
+    \begin{equation}\label{eq-P}
+    P \equiv A\,J_0 \cos(2\pi n z)
+    \end{equation}
+    with the understanding that $J_0$ always means ${\rm BesselJ}(0,
+2 \pi n t)$ and that $J_1$ likewise means ${\rm BesselJ}(1, 2 \pi n
+t)$.  
+    It is here, in constrast to my previous message, that the
+amplitude parameter $A$ is introduced.
+    From this definition it follows from the constraint equations
+that
+    \begin{equation}\label{eq-L}
+    \lambda(t,z) \equiv  - 2 \pi n t A^2 J_0 J_1 \cos^2 (2 \pi n z)
+    + 2 \pi^2 n^2 t^2 A^2 
+    \left( {J_0}^{2} + {J_1}^2 \right)
+    \quad .
+    \end{equation}
+    This has an asymptotic form for large $t$ of
+    \begin{equation}\label{eq-Linf}
+    \lambda(t,z) \approx  + 2 A^2 n t 
+                          + (A^2/\pi) \cos(4\pi n t) \cos^2(2\pi n z)
+    \quad .
+    \end{equation}
+    Then for initial conditions you need the lapse
+    \begin{equation}\label{eq-N}
+    N \equiv \alpha \equiv t^{-1/4}\exp{(\lambda/4)}
+    \end{equation}
+    and the metric components
+    \begin{eqnarray}
+    g_{11} & = & t \exp{(+P)}\\
+    g_{22} & = & t \exp{(-P)}\\
+    g_{33} & = & - g_{00} = N^2
+    \end{eqnarray}
+    as well as the second fundamental form components
+    \begin{eqnarray}
+    K_{11} & = & N^{-1}\exp(+P)  (-\half + \pi n t A J_1 
+                    \cos(2 \pi n z) )\\
+    K_{22} & = & N^{-1}\exp(-P) (-\half - \pi n t A J_1 
+                    \cos(2 \pi n z) )\\
+    K_{33} & = & N\,\left(\frac{1}{4 t} -
+               t (\pi n A)^2 
+                      \left[ {J_1}^2\cos^2(2 \pi n z)
+                           + {J_0}^2\sin^2(2 \pi n z) \right] \right)
+                      \quad .
+    \end{eqnarray}
+
+    In addition to the gzipped postscipt plots, I'm also attaching a
+Maple LaTeX listing of my calculations in case you want any more
+details, and a Maple session file in case you use Maple and want to
+produce plots of some other variables or other cases.
+
+    \closing{%
+Cheers,
+    }
+
+\end{letter}
+
+\end{document}
+
+

@@ -1,0 +1,177 @@
+% \iffalse meta-comment
+%
+% Copyright 1993 1994 1995 The LaTeX3 Project and any individual
+% authors listed elsewhere in this file. 
+% 
+% For further copyright information, and conditions for modification
+% and distribution, see the file legal.txt, and any other copyright
+% notices in this file.
+% 
+% This file is part of the LaTeX2e system.
+% ----------------------------------------
+%   This system is distributed in the hope that it will be useful,
+%   but WITHOUT ANY WARRANTY; without even the implied warranty of
+%   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+% 
+%   For error reports concerning UNCHANGED versions of this file no
+%   more than one year old, see bugs.txt.
+% 
+%   Please do not request updates from us directly.  Primary
+%   distribution is through the CTAN archives.
+% 
+% 
+% IMPORTANT COPYRIGHT NOTICE:
+% 
+% You are NOT ALLOWED to distribute this file alone.
+% 
+% You are allowed to distribute this file under the condition that it
+% is distributed together with all the files listed in manifest.txt.
+% 
+% If you receive only some of these files from someone, complain!
+% 
+% 
+% Permission is granted to copy this file to another file with a
+% clearly different name and to customize the declarations in that
+% copy to serve the needs of your installation, provided that you
+% comply with the conditions in the file legal.txt.
+% 
+% However, NO PERMISSION is granted to produce or to distribute a
+% modified version of this file under its original name.
+%  
+% You are NOT ALLOWED to change this file.
+% 
+% 
+% 
+% \fi
+% LABLST.TEX -- A LaTeX input file for printing label definitions.
+% Copyright (c) 1985, 1994 by Leslie Lamport, Chris Rowley
+% This file created on 5 November 1994
+%
+% Modified December 1994 (DPC) to allow _ ^ etc in label keys and to
+%                              input packages used by the main file.
+% 
+% Modified June 1995 (CAR)
+% 
+% This version puts all bibilographic entries at the end of the
+% output.  It inputs the .aux file twice.
+
+% Initial interactions:
+% 
+\typeout{}
+\typeout{LABLST version of 10 June 1995}
+\typeout{}
+\typeout{*********************************}
+\typeout{* Enter input file name without }
+\typeout{* \space\space without the .tex extension: }
+\typein[\lablstfile]{*********************************}
+
+
+\def\spaces{\space\space\space\space\space}
+\typeout{}
+\typeout{********************************************************}
+\typeout{* Enter document class used in file \lablstfile.tex }
+\typeout{* \space\space with no options or extension: }
+\typein[\lablstclass]%
+        {********************************************************}
+
+\documentclass{\lablstclass}
+
+% Now ask for packages. The answer should be a comma separated list.
+% In fact only packages that define commands that are used in
+% section titles etc need be loaded. 
+% \def\spaces{\space\space\space\space\space}
+\typeout{}
+\typeout{**************************************************}
+\typeout{* Enter packages used in file \lablstfile.tex }
+\typeout{* \space\space with no options or extensions: }
+\typein[\lablstpackages]%
+        {**************************************************}
+
+\usepackage{\lablstpackages}
+
+\nofiles
+\parindent 0pt
+
+\begin{document}
+
+\mbox{}
+
+\vspace{-3cm}
+
+{\LARGE  File \textbf{\lablstfile.tex} --- lablst output}
+{\Large (\today)
+\\[0.5\baselineskip]
+Using document class:\quad \lablstclass\\
+  \mbox{\phantom{Using }and packages:\quad \lablstpackages}
+ }  
+
+\vspace{2\baselineskip}
+
+\makeatletter
+
+% This is always disabled:
+% 
+\let \@mlabel \@gobbletwo
+
+% No protection needed:
+% 
+\let \protect \relax
+
+% Better formatting?:
+% 
+\let \raggedright  \relax
+
+% Only write out toc entries:
+% 
+\def \@writefile #1#2{%
+  \def\lablst@tempa{#1}%
+  \def\lablst@tempb{toc}%
+  \ifx \lablst@tempa\lablst@tempb
+    \par{#2}\par\nobreak
+    \vspace{3pt}%
+  \fi
+}
+
+% Allow characters like ^ _ to be printed `verbatim'.
+%
+\def\@lablstverb#1{%
+  \def\lablst@tempa{#1}%
+  {\ttfamily\expandafter\strip@prefix\meaning\lablst@tempa}}%
+
+
+% For first run:
+% 
+\def \newlabel #1#2{%
+  \par
+  \hbox to \textwidth{%
+    \hfill\makebox[10em][r]{\@lablstverb{#1}}%
+    \hspace{1em}\makebox[4.5em][l]{\@firstoftwo #2}%
+    Page:
+    \makebox[2.5em][r]{\@secondoftwo #2}%
+    \hspace{4em}}\par
+}
+
+\let \bibcite \@gobbletwo
+
+{\Large \sl Logical labels within sections}
+
+\input \lablstfile.aux
+
+
+% For second run:
+% 
+\def \bibcite #1#2{\par
+  \hbox to \textwidth{%
+  \hfill\makebox[2in][r]{\@lablstverb{#1}}\hspace{1em}[#2]\hspace{4em}}}
+
+\let \newlabel \@gobbletwo
+\let \@writefile \@gobbletwo
+
+\par
+\vspace{2\baselineskip}
+
+{\Large \sl Bibliography logical labels} 
+
+\input \lablstfile.aux
+
+\end{document}

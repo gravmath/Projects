@@ -1,0 +1,837 @@
+\documentclass[twocolumn]{article}
+\usepackage{amsmath,latexsym}
+%\usepackage[dvipdfm]{graphicx}
+%\usepackage[dvipdfm]{color}
+%\usepackage[dvipdfm]{hyperref}
+\pagenumbering{arabic}
+\bibliographystyle{plain}
+\def\.{{\quad .}}  
+\def\_,{{\quad ,}}
+\newenvironment{defit}[1]
+  {\noindent{$\bullet$}\underline{\textbf{#1}}\\}
+  {\\} 
+\newcounter{bean}
+
+\begin{document}
+
+%**************************************************************
+%
+%  Front matter
+%
+%**************************************************************
+\title{Notes on the Foundation of Differential Geometry}
+\author{Conrad Schiff \thanks{Physics Graduate Student} \\
+        University of Maryland\\
+	  \texttt{cmschiff@erols.com}}
+\date{\today}
+\maketitle
+
+
+%**************************************************************
+%
+%  Abstract
+%
+%**************************************************************
+%\widetext
+\begin{abstract}
+In this notes I present a synthesis of my work on manifold theory.  
+They are a compilation of a simple reorganization and union of ideas 
+from a variety of sources combined with my own reflections on the 
+various subjects.  As a result of both my personnel interests and my 
+own style another reader most assuredly will find them overly pedantic 
+in some areas and terse in others.  To this I make no attempt at 
+rectification.
+
+Update history: initial work August 13, 1999
+\end{abstract}
+
+%\narrowtext
+%\vskip2pc]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Elementary Topology 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Elementary Topology}\label{S:elem_top}
+
+The notion of topology gives us a sense of how to talk about 
+continuity and how to say when one point is in a neighborhood of 
+another.  A \textbf{topological space} $\mathcal{T}$ $= (M, T)$ is 
+defined to be a set $M$ with a distinguished collection of open 
+subsets $T$ that satisfy 
+\cite{bryant,frankel,lipschutz,love_rund,munkres,schutz80,wald}.
+
+\begin{list}
+   {$\bullet$}{\usecounter{bean}
+    \setlength{\rightmargin}{\leftmargin}}
+	\item Both $M$ and the empty set $\emptyset$ are open
+ 	\item The intersection of any finite collection of open sets               
+          is open
+	\item The arbitrary union of open sets is open
+\end{list}
+
+
+These notations can easily exist without a prescription for 
+determining the distance between points (\emph{i.e.} without a 
+metric).  However, for everything that is discussed below a metric 
+will be assumed.  Our topological space $M$ will hereafter be referred 
+to as a metric space.
+\\\\
+\begin{defit}{Metric}
+Given a set $X$, a metric on $X$ is a function $d: X \times X 
+\rightarrow \mathbf{R}$ such that (i) $d( \mathbf{x}, \mathbf{y} ) =  
+d( \mathbf{y}, \mathbf{x} )$ (ii) $d( \mathbf{x}, \mathbf{y} ) \geq 0$ 
+with the equality satisfied only when $ x= y$, and (iii) 
+$d( \mathbf{x}, \mathbf{z} ) \leq d( \mathbf{x}, \mathbf{y} ) + 
+d( \mathbf{y}, \mathbf{z} )$.  
+Notice that we have used the metric 
+$d(\mathbf{x},\mathbf{y})$ to define neighborhoods and thereby open 
+sets and thus we say that $d(\mathbf{x},\mathbf{y})$ has induced a 
+topology on $\mathbf{R}^{n}$ \cite{schutz80}.
+\end{defit}
+
+\begin{defit}{Neighborhood}
+ An open set $A$ is a neighborhood of $p$ if $p 
+\in A$ and $A$ is open \cite{love_rund}.  If the $M$ is a metric space 
+with the metric $d$ then given $x_0 \in M$ and given $\epsilon > 0$, 
+then the set $U(x_0;\epsilon) = \{ x | d(x,x_0) < \epsilon \}$ is 
+called the $\epsilon$-neighborhood of $x_0$ \cite{munkres}.
+\end{defit}  
+
+\begin{defit}{Discrete Topology}
+A set of points is discrete if each point has a neighborhood
+which contains no other points of the set \cite{schutz80}.  The 
+discrete topology can be made by taking $\mathcal{T} = (M,\emptyset)$ 
+\cite{wald}.
+\end{defit}
+
+\begin{defit}{Closed Ball}
+${\bar B}_{a}(\epsilon) = \{ x \in \mathbf{R}^n | \, 
+   \left\| {\bar x} - {\bar a} \right\| \leq \epsilon \}$ 
+\cite{frankel}
+\end{defit}   
+
+\begin{defit}{Open Ball}
+${B}_{a}(\epsilon) = \{ x \in \mathbf{R}^n | \,
+   \left\| {\bar x} - {\bar a} \right\| < \epsilon \}$ \cite{frankel}
+\end{defit}
+
+\begin{defit}{Interior}
+$A^{\circ}$ of a subset $A \subset M$ is the union 
+of all open sets contained in A and from the item 3 above $A^{\circ}$ 
+is open \cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Closure}
+${\bar A}$ of $A$ is the intersection of all closed 
+sets that contain $A$ and clearly ${\bar A}$ is closed 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Open set}
+A set is open if it coincides with an interior 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Closed set}
+A set is closed if it coincides with a closure 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Boundary}
+A boundary of $A$ is the set $\partial A = {\bar A} 
+- {A}^{\circ}$\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Connected space}
+A topological space is connected if the only 
+sets that are both open and closed are $\emptyset$ and $M$ 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Dense Subset}
+A subset $A$ of $M$ is said to be dense in $M$ if 
+$\bar A = M$ \cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Separable Space}
+A topological space $M$ is separable if it contains 
+a countable dense subset \cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Hausdorff space}
+A topological space $M$ is a Hausdorff space if, 
+for every pair of distinct points $p \in M$ and $q \in M$, there exist 
+open subsets $A$, $B$ such that $p \in A$ and $q \in B$ and 
+$A \cap B = \emptyset$ 
+\cite{love_rund}.  Any two points of $\mathbf{R}^{n}$ have 
+neighborhoods which do not intersect \cite{schutz80}.
+\end{defit}
+
+\begin{defit}{Cover}
+A cover $\mathcal{A}$ is a class of subsets of $M$ if 
+$M$ coincides with the union of all $A \in \mathcal{A}$ 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Open cover}
+A cover made up of open sets \cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Subcover}
+A subclass of a cover that is itself a cover 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Compact}
+A topological space $M$ is said to be compact if every open
+cover has a finite subcover \cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Heine-Borel Theorem}
+Every closed and bounded subset of $\mathbf{R}^{n}$ is compact 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Refinement}
+A cover $\mathcal{B}$ of $M$ is a refinement of a cover 
+$\mathcal{A}$ of $M$ if for every set $B \in \mathcal{B}$ there exists 
+at least one set $A \in mathcal{A}$ such that $B \subset A$ 
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Locally finite cover}
+The cover $\mathcal{A}$ is said to be locally 
+finite if for each $p \in M$ there exists an open set $W_p$ such that 
+the set $\{ A \in \mathcal{A} | A \cap W_{p} \neq \emptyset \}$ is 
+finite.  That is the neighborhood $W_p$ of $p$ has a nonempty 
+intersection with only a finite number of sets of the cover  
+\cite{love_rund}.
+\end{defit}
+
+\begin{defit}{Paracompact}
+A Hausdorff topological space $M$ is paracompact 
+if every open cover of $M$ has a locally finite refinement 
+\cite{love_rund}. 
+Paracompactness is a property which manifolds are required to satisfy 
+in order to prevent them from being ``too large''.  Indeed, it is not 
+easy to construct examples of topological spaces which satisfy the 
+requirements for a manifold but are not paracompact.  For a manifold, 
+paracompactness implies that the manifold admits a Riemannian metric 
+and it is second countable meaning that manifold can be covered 
+locally by a finite number of charts \cite{wald}.  
+\end{defit}
+
+\begin{defit}{Partition of unity}
+The most important consequence of paracompactness 
+is that provides for the existence of a partition of unity.  A 
+partition of unity subordinate to the finite open cover 
+$\{O_{\alpha}\}$ is a collection of smooth functions 
+$\{ f_{\alpha} \}$ such that (i) the support of $f_{\alpha}$
+is contained in $\{O_{\alpha}\}$ (ii) $0 \leq f_{\alpha} \leq 1$, 
+and (iii) $\sum_{\alpha} f_{\alpha} = 1$ \cite{wald}.
+\end{defit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Manifold basics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Manifold Basics}\label{S:mani_bas}
+
+A differentiable manifold may be roughly described as a topological 
+space of a certain kind that can be covered by appropriate coordinate 
+neighborhoods 
+\cite{love_rund}.
+
+A set $M$ is defined to be a manifold if each point of $M$ has an open 
+neighborhood which has a continuous $1-1$ map onto an open set of 
+$\mathbf{R}^n$ for some $n$.  It is important that the definition 
+involves only open sets and not the whole of $M$ and $\mathbf{R}^n$, 
+because we do not want to restrict the global topology of $M$.  All we 
+want from this elementary geometric picture is that we are able to 
+ensure that the local topology of our space is the same as that of 
+$\mathbf{R}^n$ \cite{schutz}.  
+
+\subsection{Functions and Curves}\label{SS:F_and_C}
+
+By definition, the $1-1$ map from a point $P \in M$ to $\mathbf{R}^n$
+associates with the point $P$ an $n$-tuple $\left(x^1(P), \ldots, 
+x^n(P) 
+\right)$.  These numbers $x^1(P), \ldots, x^n(P)$ are called the 
+coordinates of $P$ under this map.  Symbolically this is denoted
+\[
+  \phi:M \rightarrow \mathbf{R}^n \, \phi^i:P \rightarrow x^i
+\]  
+
+Given the sets $U \subset \mathbf{R}^{m}$ and $V \subset 
+\mathbf{R}^{n}$
+and a map between them $\phi : U \rightarrow V$
+
+
+\subsection{Two Theorems}\label{SS:two_theorems}
+
+\noindent\underline{Inverse Function Theorem} \\
+The inverse function theorem gives conditions under which a 
+differentiable function from $\mathbf{R}^{n}$ to $\mathbf{R}^{n}$ has 
+a differentiable inverse \cite{munkres}.   
+\\\\
+\noindent\underline{Implicit Function Theorem} \\
+Let $A$ be open in $\mathbf{R}^{k+n}$; let $f:A \rightarrow 
+\mathbf{R}^{n}$ be of class $C^{r}$.  Write $f$ in the form 
+$f(\bar x, \bar y)$, for $\bar x \in \mathbf{R}^{k}$ and $\bar y \in 
+\mathbf{R}^{n}$.  Suppose that $(\bar a, \bar b)$ is a part of $A$ 
+such that $f(\bar a, \bar b) = 0$ and 
+$det \left[ \frac{\partial f}{\partial \bar y}(\bar a, \bar b)\right]
+\neq 0$.  Then there is a neighborhood $B$ of $\bar a$ in 
+$\mathbf{R}^{k}$ and a unique continuous function $g:B \rightarrow 
+\mathbf{R}^{n}$ such that $g(\bar a) = \bar b$ and $f\left(\bar x, 
+g(\bar x)\right) = 0$ for all $x \in B$.  The function $g$ is in fact 
+of class $C^{r}$ \cite{munkres}.
+
+\subsection{Sub-Manifolds}
+Suppose there are $r$ function of $n+r$ variables, $F^{j}(x^1, \cdot, 
+x^{n+r}) j = 1, \cdots, r$.  If $F^j = c^j$, where $c^j$ are 
+constants, and for each ${\bar x}_0$ which satisfies this condition 
+the Jacobian matrix $\left( \frac{\partial F^j}{\partial x^i} \right) 
+j = 1, \cdots, r; i = 1, \cdots, n+r$ has rank $r$, then $F^j = c^j$ 
+define an $n$-dimensional submanifold of $\mathbf{R}^{n+r}$ 
+\cite{frankel}.
+
+\subsection{Basis Objects and Transformations}\label{SS:basis_obj}
+
+In this section, I outline how the simple objects defined on a 
+manifold change under a redefinition of the underlying coordinates.  
+The notation I use for basis vectors
+\begin{equation}
+   {\bar b}_i = \frac{\partial}{\partial x^i}
+\end{equation}
+and basis forms 
+\begin{equation}
+   {\bar \beta}^i = d x^i
+\end{equation}
+is derived from \cite{gock_schuck}.
+
+From a straightforward application of the chain-rule, the basis 
+vectors transform as 
+\begin{equation}
+   \frac{\partial}{\partial x^{j'}} = 
+          \frac{\partial x^i}{\partial x^{j'}}                           
+          \frac{\partial}{\partial x^i}
+\end{equation}
+while the basis forms transform in the dual fashion
+\begin{equation}
+   d x^{j'} = \frac{\partial x^{j'}}{\partial x^{i}} d x^i \.
+\end{equation}
+
+From their definition, the basis vectors must transform as
+\begin{eqnarray}
+   {\bar b}_{j'} = {\Lambda^i}_{j'} {\bar b}_{i} \\
+   {\bar \beta}^{j'} = {\Lambda^{j'}}_{i} {\bar \beta}^{i}
+\end{eqnarray}
+where 
+
+
+
+\subsection{Pullbacks and Pushforwards}\label{SS:pull_push}
+
+\subsection{Vector Fields}\label{SS:vec_fields}
+
+\subsection{Integral Curves}\label{SS:int_curves}
+
+\subsection{Connections and the Metric}\label{SS:conx_g}
+
+\subsection{Fiber Bundles}\label{SS:fib_bun}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Defining Derivatives
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Defining Derivatives}\label{S:def_deriv}
+
+The five conditions required of a derivative operator are \cite{wald}:
+
+\begin{list}
+   {$\bullet$}{\usecounter{bean}
+    \setlength{\rightmargin}{\leftmargin}}
+	\item linearity
+ 	\item Leibnitz rule
+	\item commutes with contraction
+	\item consistent with directional derivatives
+	\item torsion free $\nabla_a \nabla_b f = \nabla_b \nabla_a f$
+\end{list}
+
+
+\subsection{Partial derivative}\label{SS:par_dervi}
+The partial derivative of a function of $r$ variables $f(\bar x)$
+with respect to $x^i$ will be denoted by $f_{,i} \equiv 
+\frac{\partial f}{\partial x^i}$
+
+\subsection{Directional derivative}\label{SS:dir_deriv}
+
+Let $A \subset \mathbf{R}^{m}$; let $f: A \rightarrow \mathbf{R}^{n}$.
+In addition, let $A$ contain a neighborhodd of $\bar a$.  Given
+$\bar u \neq 0 \in \mathbf{R}^{m}$ then the directional derivative is 
+defined as
+\[
+  f'(\bar a; \bar u) = \lim_{t \rightarrow 0} 
+  \frac{f(\bar a + t \bar u) - f(\bar a)}{t}
+\]
+This definition lacks in that it does not follow that 
+differentiability implies continuity and that composites of 
+differentiable functions are differentiable \cite{munkres}. 
+
+\subsection{Lie derivative}\label{SS:Lie_deriv}
+
+\subsection{Exterior derivative}\label{SS:ext_deriv}
+
+\subsubsection{Hodge Star Operator}\label{SSS:hodge}
+
+The Hodge operator (or duality transformation) takes $p$-forms in an
+$n$-dimensional to $(n-p)$-forms via
+\begin{eqnarray*}
+  {}^{\ast} \left( dx^{i_1} \wedge dx^{i_2} \wedge \cdots 
+                            \wedge dx^{i_p} \right)  = 
+					   \frac{1}{(n-p)!} 
+					   \epsilon_{i_1 i_2 \ldots i_p i_{p+1} i_n} 
+\\ 
+  dx^{i_{p+1}} \wedge dx^{i_{p+2}} \wedge \cdots \wedge dx^{i_n} \.
+\end{eqnarray*}
+
+Repeated application of the Hodge star operator gives \cite{ryder}:
+\[
+  {}^{\ast} {}^{\ast} \omega_p = (-1)^{p(n-p)} \omega_p \. 
+\]
+
+\subsubsection{Co-derivative}\label{SSS:co_deriv}
+
+The co-derivative (or adjoint exterior derivative \cite{ryder})
+is defined by 
+\[
+  \delta = (-1)^{np+n+1} {}^{\ast} d {}^{\ast}
+\]
+where $p$ is the degree of the form $\omega_p$ on which $\delta$ is 
+applied and $n$ is the dimension of the space \cite{ryder}.
+
+In addition, the co-derivative satisfies the relation 
+$\delta^2 = 0$\cite{ryder}.
+ 
+\subsubsection{Laplacian}\label{SSS:laplace}
+
+The Laplacian is defined as
+\[
+  \Delta = (d + \delta)^2 = d \delta + \delta d
+\]
+\cite{ryder}.
+
+\subsubsection{Classical Vector Calculus}
+
+Connection can be made between the exterior derivative and classical 
+vector calculus by using the Hodge star operator.  The resulting 
+approach is so easy and compact that it obviates the need for look-up 
+tables for the components of the gradient, divergence, curl, and 
+laplacian in curvilinear coordinates (see \cite{frankl} for such a 
+table).
+
+Take for instance the expression for the curl in cylindrical 
+coordinates given by
+\begin{eqnarray*}
+	\nabla \times {\vec A} & = & 
+	                        \left(
+	                         \frac{1}{r} 
+							 \frac{\partial A_{z}}
+							      {\partial \theta}
+							 -
+							 \frac{\partial A_{\theta}}
+							      {\partial z}
+	                        \right) {\hat e}_{r} \\
+							& + & 
+							\left(
+							 \frac{\partial A_{r}}
+							      {\partial z}
+						     -
+							 \frac{\partial A_{z}}
+							      {\partial r}
+							\right) {\hat e}_{\theta} \\
+							& + & 
+							\frac{1}{r}
+							\left(
+							 \frac{\partial 
+							        \left(r A_{\theta}\right)}
+							      {\partial r}
+							-
+							 \frac{\partial A_{r}}
+							      {\partial \theta}
+							\right) {\hat e}_{z}
+\end{eqnarray*}
+this formidable expression can be derived easily as follows.
+
+The first step is to recognize that the presence of the unit-vectors 
+in the above expression means that we are operating in a 
+non-coordinate basis.  The fundamental correspondence in this 
+non-coordinate basis is given by
+\begin{eqnarray*}
+	{\hat e}_{r} = \frac{\partial}{\partial r} 
+	               & \Leftrightarrow &
+				   dr = {\tilde r} \\
+	{\hat e}_{\theta} = \frac{1}{r} \frac{\partial}
+	                                     {\partial \theta}
+					& \Leftrightarrow &
+				   r d \theta = {\tilde \theta} \\
+	{\hat e}_{z} = \frac{\partial}{\partial z}
+					& \Leftrightarrow &
+        		   dz = {\tilde z} \.
+\end{eqnarray*}
+To calculate the curl, start with the desired vector field
+\[
+	{\vec A} =  A_{r} {\hat e}_{r} + A_{\theta} {\hat e}_{\theta}
+	          + A_{z} {\hat e}_{z}
+\]
+and to use the fundamental correspondence to express it in terms of 
+the unit basis forms as
+\[
+	{\tilde A} =  A_{r} {\tilde r} + A_{\theta} {\tilde \theta}
+	            + A_{z} {\tilde z} \.
+\]
+The curl is obtained by taking the exterior derivative of the $\tilde 
+A$ followed by the application of the Hodge star operator.  The only 
+point that isn't mechanical, is that the Hodge star operator must be 
+applied to the unit basis forms $\tilde r, \tilde \theta, \tilde z$ 
+and not the coordinate forms $dr, d\theta, dz$.  The application of
+these two operation yields
+\begin{eqnarray*}
+	\ast d {\tilde A} & = & \ast \left[
+	                           \left( 
+							    \frac{\partial A_z}
+								     {\partial \theta}
+							    -
+								r \frac{\partial A_{\theta}}
+								       {\partial z}
+							   \right) d\theta \wedge dz 
+							   \right. \\
+							  & &
+							 \left(
+							  \frac{\partial A_r}
+							       {\partial z}
+							 -
+							  \frac{\partial A_z}
+							       {\partial r}
+							 \right) dz \wedge dr \\
+							 & &
+							 \left.
+							 \left(
+							  \frac{\partial \left( 
+							        r A_{\theta}\right)}
+									{\partial r}
+							 -
+							  \frac{\partial A_r}
+							       {\partial \theta} 
+							 \right) dr \wedge d \theta
+							 \right] 
+\end{eqnarray*}
+which when expressed in terms of the unit basis forms gives
+\begin{eqnarray*}
+	\ast d {\tilde A} & = & \ast \left[
+							   \frac{1}{r}
+	                           \left(
+							    \frac{\partial A_z}
+								     {\partial \theta}
+							    -
+								r \frac{\partial A_{\theta}}
+								       {\partial z}
+							   \right) 
+							   \tilde \theta \wedge \tilde z 
+							   \right. \\
+							  & &
+							 \left(
+							  \frac{\partial A_r}
+							       {\partial z}
+							 -
+							  \frac{\partial A_z}
+							       {\partial r}
+							 \right) 
+							 \tilde z \wedge \tilde r \\
+							 & &
+							 \left.
+							 \frac{1}{r}
+							 \left(
+							  \frac{\partial \left( 
+							        r A_{\theta}\right)}
+									{\partial r}
+							 -
+							  \frac{\partial A_r}
+							       {\partial \theta} 
+							 \right) 
+							 \tilde r \wedge \tilde \theta
+							 \right] \. 
+\end{eqnarray*}
+Carrying out the Hodge star operation finally yields
+\begin{eqnarray*}
+	\ast d {\tilde A} & = & \ast \left[
+							   \frac{1}{r}
+	                           \left(
+							    \frac{\partial A_z}
+								     {\partial \theta}
+							    -
+								r \frac{\partial A_{\theta}}
+								       {\partial z}
+							   \right) 
+							   \tilde r 
+							   \right. \\
+							  & &
+							 \left(
+							  \frac{\partial A_r}
+							       {\partial z}
+							 -
+							  \frac{\partial A_z}
+							       {\partial r}
+							 \right) 
+							 \tilde \theta \\
+							 & &
+							 \left.
+							 \frac{1}{r}
+							 \left(
+							  \frac{\partial \left( 
+							        r A_{\theta}\right)}
+									{\partial r}
+							 -
+							  \frac{\partial A_r}
+							       {\partial \theta} 
+							 \right) 
+							 \tilde z
+							 \right] \. 
+\end{eqnarray*}
+which, through the fundamental correspondence can be immediately
+written in vector form
+\begin{eqnarray*}
+	\nabla \times {\vec A} & = & 
+	                        \left(
+	                         \frac{1}{r} 
+							 \frac{\partial A_{z}}
+							      {\partial \theta}
+							 -
+							 \frac{\partial A_{\theta}}
+							      {\partial z}
+	                        \right) {\hat e}_{r} \\
+							& + & 
+							\left(
+							 \frac{\partial A_{r}}
+							      {\partial z}
+						     -
+							 \frac{\partial A_{z}}
+							      {\partial r}
+							\right) {\hat e}_{\theta} \\
+							& + & 
+							\frac{1}{r}
+							\left(
+							 \frac{\partial 
+							        \left(r A_{\theta}\right)}
+							      {\partial r}
+							-
+							 \frac{\partial A_{r}}
+							      {\partial \theta}
+							\right) {\hat e}_{z} \.
+\end{eqnarray*}
+The gradient, divergence, and the laplacian all follow the same
+way and will be briefly presented here for completeness.  First start 
+from a scalar function $f(r,\theta,z)$.  Its gradient in cylindrical 
+coordinates is obtained by taking the exterior derivative
+\begin{eqnarray*}
+	df & = & 
+	     \frac{\partial f}{\partial r} dr +
+	     \frac{\partial f}{\partial \theta} d \theta +
+		 \frac{\partial f}{\partial z} dz \\
+	   & = & 
+	     \frac{\partial f}{\partial r} \tilde r +
+		 \frac{1}{r}
+	     \frac{\partial f}{\partial \theta} \tilde \theta +
+    	 \frac{\partial f}{\partial z} \tilde z
+\end{eqnarray*}
+and again using the fundamental correspondence to get
+\[
+	\nabla f =
+         \frac{\partial f}{\partial r} {\hat e}_r +
+		 \frac{1}{r}
+	     \frac{\partial f}{\partial \theta} {\hat e}_{\theta} +
+    	 \frac{\partial f}{\partial z} {\hat e}_z \.
+\] 
+The divergence is obtained like the curl except this time the order
+of application of the exterior derivative and the Hodge star operator
+is reversed.  Thus
+\begin{eqnarray*}
+	d \left( \ast {\tilde A} \right) 
+	                  & = & d \left[
+	                      A_r \tilde \theta \wedge \tilde z +
+						  A_{\theta} \tilde z \wedge \tilde r +
+						  A_z \tilde r \wedge \tilde \theta
+						  \right] \\
+					  & = &
+						  \left[
+	                      r A_r d\theta \wedge dz +
+						  A_{\theta} dz \wedge dr + 
+						  \right.\\
+				      &   &
+						  \left.
+						  r A_z dr \wedge d\theta
+                          \right] \\
+				      & = &
+					      \left[
+						    \frac{1}{r}
+							\frac{\partial}
+							     {\partial r}
+								 \left(r A_r \right) 
+							+
+							\frac{1}{r}
+							\frac{\partial A_{\theta}}
+							     {\partial \theta}
+							+
+							\frac{\partial A_z}
+							     {\partial z}
+						  \right]
+						  \tilde r \wedge 
+						  \tilde \theta \wedge
+						  \tilde z \.
+\end{eqnarray*}
+Operating a final time with the Hodge star operator yields the desired
+result of
+\[
+	\nabla \cdot \vec A =
+					      \left[
+						    \frac{1}{r}
+							\frac{\partial}
+							     {\partial r}
+								 \left(r A_r \right) 
+							+
+							\frac{1}{r}
+							\frac{\partial A_{\theta}}
+							     {\partial \theta}
+							+
+							\frac{\partial A_z}
+							     {\partial z}
+						  \right] \.
+\]
+Finally the laplacian is obtained by taking the divergence of the 
+gradient leading to the identification of
+\[
+	\nabla^2 = \ast d \ast d
+\] 
+which is a special case of the laplacian defined above.
+
+
+\subsection{Covariant derivative}\label{SS:cov_deriv}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Defining Integrals
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Defining Integrals}\label{S:def_int}
+
+\subsection{Proper Measure}\label{SS:prop_meas}
+
+\subsection{Relative Tensors}\label{SS:rel_ten}
+
+\subsection{Chains, Boundaries and Forms}\label{SS:chns_bndrs}
+\noindent{$\bullet$}\underline{\textbf{Chains and Forms}}
+Start by considering the meaning of the ordinary line and surface 
+integrals
+\begin{eqnarray*}
+  I_1 & = & \int_{C} \left\{F_x dx + F_y dy + F_z dz \right\} \\ 
+      & = & \int_{C} {\vec F} \cdot d{\vec r} \\
+  I_2 & = & \int_{S} \left\{G_x dy \wedge dz + G_y dz \wedge dx + 
+                       G_z dx \wedge dy \right\} \\
+	  & = & \int_{S} {\vec G} \cdot d{\vec S}													    
+\end{eqnarray*}
+Since $I_1$ and $I_2$ are numbers, then the `thing' over which the 
+forms are being integrated over must in some sense be dual to the 
+forms.  Define the notion of a chain where a generic chain in $n$ 
+dimensions is denoted $C_n$.  Thus a point is a 0-chain $C_0$, a line 
+a 1-chain $C_1$, \emph{etc.}.
+
+Now the boundary of an $n$-chain is an $(n-1)$-chain.  The boundary 
+operator $\partial$ can be defined which maps $C_n$ into $C_{n-1}$
+\[
+  C_n \stackrel{\partial}{\rightarrow} C_{n-1}  
+\]
+or 
+\[
+  \partial C_n = C_{n-1} \.
+\]
+\noindent{$\bullet$}\underline{\textbf{Closed Chain}} A closed chain, 
+is one which has no boundary and satisfy $\partial Z_n = 0$ 
+\cite{ryder}. 
+\\\\
+\noindent{$\bullet$}\underline{\textbf{Cycle}} A cycle, denoted by 
+$Z_n$, is 
+a closed chain \cite{ryder}. 
+\\\\
+\noindent{$\bullet$}\underline{\textbf{Boundary}} A boundary, denoted 
+by $B_n$, is a chain which serves as the boundary of a higher 
+dimensional chain $C_{n+1}$ and satisfies $B_n = \partial C_{n+1}$ 
+\cite{ryder}. 
+\\\\
+Since the boundaries $B_n$s have no boundaries (i.e. they are closed) 
+it can be immediately be deduced that $\partial^2 = 0$.  
+
+\subsection{Stokes Theorem}\label{SS:stokes}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Variational Principles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Variational Principles}\label{S:var_prin}
+
+\subsection{Cross Section Variations}\label{SS:xsec_var}
+
+\subsection{Base-Space Variations}\label{SS:base_var}
+
+\subsection{Equations of Motion}\label{SS:eqn_mot}
+
+\subsection{N\"{o}ether's Theorem}\label{SS:noether}
+
+\subsubsection{Particle Mechanics}
+
+\underline{The theorem:}
+
+
+
+\subsubsection{Field Theories}
+
+\noindent \underline{The theorem:}\\ \\
+Suppose that the action S is invariant under a group of 
+transformations on 
+$x^{\mu}$ and the field $\phi$, which for infinitesimal 
+transformations take on the form
+\[
+  \Delta x^{\mu}= {X^{\mu}}_{\nu} \delta \omega^{\nu}, 
+  \Delta \phi = {\Phi}_{\mu} \delta \omega^{\mu}
+\]
+characterized by the infinitesimal parameter $\delta \omega^{\mu}$.  
+Then the current defined by
+\[
+  {J^{\mu}}_{\nu} = \frac{\partial \mathcal{L}}
+                        {\partial ( \partial_{\mu} \phi)}
+                   \Phi_{\nu} - 
+				        {T^{\mu}}_{\kappa} {X^{\kappa}}_{\nu}
+\]   
+where the stress-energy tensor ${T^{\mu}_{\nu}}$ is given by
+\[
+  {T^{\mu}}_{\nu} = \frac{\partial \mathcal{L}}
+                          {\partial ( \partial_{\mu} \phi)}
+						  \partial_{\nu} \phi -
+						  {\delta^{\mu}}_{\nu} \mathcal{L}
+\]
+is divergenceless (\emph{i.e.} conserved).  This in turn yields a 
+conserved charge 
+\[
+  Q_{\nu} = \int_{V} {J^{0}}_{\nu} d^3 \,x 
+\]   
+\cite{ryder}.
+
+%\begin{figure}
+%  \begin{center}
+%    \includegraphics{eva04l.jpg}
+%  \end{center}
+%
+%  \caption{A photograph of the author.}
+%  \label{fig:author}
+%\end{figure}
+
+
+\bibliography{diff_geo,gr}
+\end{document}

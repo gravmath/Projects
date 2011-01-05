@@ -1,0 +1,129 @@
+%Paper:  A General Relativistic Hamiltonian Approach to Smoothed Particle Hydrodynamics
+%
+%Version:  1.0
+%
+%Date: 4/14/98
+\documentstyle[fleqn]{article}
+
+\begin{document}
+
+\title{A General Relativistic Hamiltonian Approach to Smoothed Particle Hydrodynamics}
+%
+\author{   \sc
+            Conrad Schiff\\
+           \em
+            Department of Physics, University of Maryland%,
+           \\ \em
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt cmschiff@erols.com
+        }
+\date{14 Apr., 1998}
+%
+\maketitle
+
+\section{Introduction}
+
+TBS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relativistic Lagrangian Fluid Mechanics}\label{sec:starting_action}
+We begin with a modified form of the general relativisitc hydrodynamic action we have used before,
+which takes the form:
+\begin{eqnarray}\label{eq:start_I}
+I & = & I_{Hilbert} + I_{particle} \nonumber \\
+  & = & \frac{1}{16 \pi} \int \! d^4x \sqrt{-g(x)} R(x) \nonumber \\
+       - \sum_{A} m_A \int \! d\lambda ( 1 + e_A ) \sqrt{ -g_{\mu\nu}(z_A) {\dot z_A}^{\mu} {\dot z_A}^{\nu} }
+\end{eqnarray}
+where $e_A = e(\rho_A)$, $\rho_A = \rho(z_A)$, ${\dot z_A}^{\mu} = \frac{d {z_A}^{\mu}}{d\lambda}$,
+and $\lambda$ is an arbitrary path parameter (later chosen to be coordinate time, {\it i.e.}
+$\lambda = x^{0}$).
+
+Adjoined to this action is the basic notion of mass conservation given by
+\begin{equation}\label{eq:mass_con}
+\left( \rho u^{\mu} \right)_{;\mu} = 0.
+\end{equation}
+Using standard relations this can be transformed to
+\begin{equation}\label{eq:mass_con_int}
+\int \! d^3x \rho(x) \sqrt{-g(x)} u^{0}(x) = \sum_{A} m_{A} = M_{tot}
+\end{equation}
+where $m_A$ is the rest mass of the discrete particle labled by the index $A$.  Since we
+ultimately want our particles to represent fluid elements, a definition of $\rho(x)$, in the
+spirit of SPH is
+\begin{equation}\label{eq:smoothed_rho}
+\rho({\vec x}, x^{0}) = \frac{1}{\sqrt{-g({\vec x},x^{0})}} \sum_{A} m_A W(\vec x - \vec r_A)
+                        \frac{1}{u^{0}(\vec r_A, x^0)}.
+\end{equation}
+Note that the continuum limit in $A$ combined with the weighting kernel taken to the Dirac
+$\delta$-function leads to (\ref{eq:mass_con_int}) being satisified identically.
+
+At this point, the particle action can be expressed in Hamiltonian form by using the operator
+$H = \left( {\dot z_A}^{\mu} \frac{\partial}{\partial {\dot z_A}^{\mu}} - 1 \right)$.  Since
+$L_{particle}$ is homogeneous function of order 1 in ${\dot z_A}^{\mu}$, the Hamiltonian is
+identically zero.
+
+The canonical momenta are defined via
+\begin{eqnarray}\label{eq:can_mo}
+{p_A}_{\mu} & = & \frac{\partial L}{\partial {\dot z_A}^{\mu}} \nonumber \\
+            & = &  m_A(1+e_A) \frac{ g_{\mu\beta}(z_A) {\dot z_A}^{\beta} }{ \sqrt{-g_{\alpha\beta}(z_A) {\dot z_A}^{\alpha} {\dot z_A}^{\beta}} }
+\end{eqnarray}
+with the normalization
+\begin{equation}\label{eq:mo_norm}
+{p_A}_{\mu} {p_A}_{\nu} g^{\mu \nu}(z_A) = -{m_A}^2 (1 + e_A)^2
+\end{equation}
+Using the normalization yields a form for the Hamiltonian of
+\begin{equation}\label{eq:Ham}
+H_A = \frac{1}{2 m_A (1 + e_A)} {p_A}_{\mu}{p_A}_{\nu}g^{\mu\nu}(z_A) + \frac{m_A}{2} ( 1 + e_A).
+\end{equation}
+The particle action, $I_{particle}$, now becomes
+\begin{equation}\label{eq:I_part_Ham}
+I_{particle} = \sum_A \int \! d\lambda \left[ {p_A}_{\mu} {\dot z_A}^{\mu} - \Lambda_A(\lambda) H_A \right]
+\end{equation}
+where the Lagrange multiplier $\Lambda_A(\lambda)$ is used to enforce (\ref{eq:mo_norm}).
+
+Following our earlier work detailed in {\it Wide Relativistic Binaries}, we calculate the
+equations of motion by varying ${z_A}^{\mu}$ and ${p_A}_{\mu}$ giving
+\begin{eqnarray}\label{eq:eqs_of_motion}
+\frac{1}{\Lambda_A}\frac{d {z_A}^{\mu}}{d\lambda} & = & \frac{1}{m_A(1+e_A)} g^{\mu\alpha}(z_A){p_A}_{\alpha} \nonumber \\
+                    & = & \frac{ {p_A}^{\mu} }{ m_A (1+e_A)} \\
+\frac{1}{\Lambda_A}\frac{d {p_A}_{\mu}}{d\lambda} & = & m_A \frac{P_A}{{\rho_A}^2} \frac{\partial \rho_A}{\partial {z_A}^{\mu}}
+                    + \frac{g^{\mu\alpha}({z_A})_{,\beta}{p_A}_{\alpha}{p_A}_{\beta}}{m_A (1+e_A)}
+\end{eqnarray}
+The thermodynamic relation $\frac{\partial e_A}{\partial \rho_A} = \frac{P_A}{ {\rho_A}^2 }$ and
+the relation $\frac{\partial H_A}{\partial e_A} = m_A$ were used.
+Solving these equations for ${p_A}^{0}$ gives
+\begin{equation}\label{eq:p_0_up}
+{p_A}^{0} = m_A (1+e_A) \frac{1}{\Lambda} \frac{d {z_A}^{0} }{d \lambda}.
+\end{equation}
+This equation can be solved for
+This equation can be substituted into (\ref{eq:Ham}) subject to the condition $H_A = 0$ (enforced
+by $\Lambda$) and the ADM decomposition
+\begin{equation}\label{eq:ADM_metric}
+ds^2 = -\alpha^2 dt^2 + g_{ij}(dx^i + \beta^i dt) (dx^j + \beta^j dt)
+\end{equation}
+
+\begin{equation}\label{eq:ADM_H}
+H_A = -{\beta_A}^k {p_A}_k + {\alpha_A} \sqrt{ {m_A}^2 (1+e_A)^2 + g^{kl}(z_A){p_A}_k {p_A}_l }
+\end{equation}
+The
+\begin{equation}
+\rho({\vec x};t) = \frac{1}{\sqrt{h({\vec x},t)}} \sum_{A} \frac{m_{A} \left( 1 + e_{A} \right)}{\mu_{A}} W( {\vec x} - {\vec r}_{A}) M_tot
+\end{equation}
+
+\begin{eqnarray}
+I = \frac{1}{16\pi} \int \!d^3x dt \left( {\dot h}_{ij} \pi^{ij} - N R^0 - N_i R^i \right) \nonumber \\ - \sum_{A} \int \! dt \left( p(A)_k {\dot z(A)}^k - H_A \right)
+\end{eqnarray}
+
+\begin{equation}
+R^0 = - \sqrt{h} \left[ {}^3R + h^{-1} \left( \frac{1}{2} \left({\pi_{i}}^{i}\right)^{2} - {\pi^{i}}_{j} {\pi_{i}}^{j} \right) \right]
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Combining CWM and SPH}\label{cfmsph}
+
+
+
+\end{document}

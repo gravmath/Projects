@@ -1,0 +1,623 @@
+%section classical var_sph
+
+\section{Introduction}
+This chapter concerns itself with the development of the particle-grid method
+for a classical ideal fluid.  The aim is to show the framework of theory within the
+simpler context of the classical hydrodynamics of an ideal fluid.  The first section
+briefly reviews the derivation of the equations of motion for an ideal fluid within
+the Lagrangian picture.  The second section presents a Lagrangian variational principle
+based on the work of Mittag, Stephen, and Yourgrau \refs{MSY79}.  This variational principle or
+its relativistic analog form the base upon which the particle method is built in classical
+mechanics or general relativity, respectively.
+The Smoothed Particle Hydrodynamics (SPH) formalism is presented in
+the third section and the SPH equations for an ideal fluid are derived.  The final section
+synthesizes these various ideas to obtain the particle-grid method for a classical ideal fluid.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equations of Motion for an Ideal Fluid}\label{cfm}
+
+In this section, the equations of motion for an ideal fluid are
+derived from elementary considerations of the basic physics.
+
+As is usually done in fluid dynamics, the continuum approximation is the starting point.
+The basic concept involved in this approximation is that of a fluid element.  A fluid element
+is any volume in the fluid that is small enough to be idealized as a
+single point (\textit{i.e.} small compared to the physical dimensions of the problem)
+and yet large enough that is still contains a very large number of the
+molecules \refs{HB67,LL59}.
+
+Fluid dynamics is then classified according to whether the equations of motion are
+expressed as integral relations or differential equations.  Within the latter category,
+the further distinction is made between Eulerian and Lagrangian pictures
+\refs{liggett94,granger95,HB67}.  The Eulerian picture concerns itself with what is
+happening within a fixed volume located at specified point in space.
+It naturally leads to a field theory in which the functions describing
+the fluid flow depend on both the position of the observation point and the time of the
+observation.  Thus the velocity of the fluid would be given by a functional relationship
+$\cv{v} = \cv{v}(x,y,z,t)$.  The Eulerian approach leads directly to the finite-difference
+methods traditionally used in numerical solutions.  In the Lagrangian picture,
+individual fluid elements are followed as they evolve along their trajectories.
+The position and velocity of each element depends only on their initial conditions and on
+the elapsed time.
+Since the Smoothed Particle Hydrodynamics (SPH) method is based on the Lagrangian picture,
+it is this picture which will be used throughout the chapter.
+
+Consider a given fluid and divide it up into elements, with element labelled by its
+initial position ${\vec a}$.  Subsequently, introduce the trajectory function
+$\cv{z}(\cv{a},t)$ which gives any fluid element's position at some
+later time $t$ by
+\begin{equation}
+    \cv{x} = \cv{z}(\cv{a},t) \eqp
+\end{equation}
+The trajectory function has the obvious boundary condition
+${\vec z}({\vec a},0) = {\vec a}$.
+The action of the trajectory function is shown schematically in \refp{fig:fluid_elements}.
+
+\begin{figure}
+\centerline{
+   \includegraphics[height=2in,width=3in,keepaspectratio]{chap2_fluid_elements.eps}}
+   \caption{Sketch of the action of the trajectory function \cv{z}(\cv{a},t).  Each of
+   the fluid elements move along their respective trajectories as time evolves.  Each
+   trajectory is labelled by its initial position \cv{a}.  The two fluid elements shown
+   start at \cv{a} = \surp{a,b,c} and \cv{a} = \surp{a',b',c'} and move to positions
+   \cv{z} = \surp{x,y,z} and \cv{z} = \surp{x',y',z'}, respectively.}\label{fig:fluid_elements}
+\end{figure}
+
+Assume that the mass of the fluid element $m$, is constant along its flow.
+This conservation equation can be expressed in terms of the fluid element's density \gr
+and volume $dV$ as
+\be\label{eq:mass_con}
+  \dby{t} m = \dby{t} \surp{\gr dV} = \dby{t} \surp{\gr \push d^3x} = 0 \eqp
+\ee
+
+This equation is one of the two constraints to which the fluid flow is subject.
+Both the density and the volume will generally change as the fluid element moves.
+The time derivative of the volume $dV$ can be determined once the velocity of
+the fluid element is known.
+Consider the unit volume $dV = \gd x \push \gd y \push \gd z$, shown in
+Figure \refp{fig:volume_evolution}, that is moving with velocity \cv{V}.
+\begin{figure}
+\centerline{
+   \includegraphics[height=2in,width=3in,keepaspectratio]{volume_evolution_b.eps}}
+   \caption{A moving fluid element with velocity \cv{V}.  The action of the
+   trajectory function on two of the vertices $A$ and $B$ are also shown.
+   During its movement, the volume of the fluid element translates, rotates and shears and
+   the vertices move from their positions $A_t$ and $B_t$ to their new
+   positions $A_{t+dt}$ and $B_{t+dt}$.
+   }\label{fig:volume_evolution}
+\end{figure}
+The change in the volume can be determined by looking at how the vertices of the
+volume element change under the action of the fluid flow (i.e. how they are
+mapped downstream by the trajectory function).
+To begin, consider the vertices $A$ and $B$.  At time $t$, the distance
+between them is given by $dx_t = B_t - A_t$.  After the element has moved, the distance
+is now $dx_{t+dt} = B_{t+dt} - A_{t+dt}$.  However, in the elapsed time $dt$, the difference
+in position of the vertex $A$ is $A_{t+dt} - A_t = V_x(x,y,z)$, where
+$V_x(x,y,z)$ is the $x$-component of the fluid's velocity at position $(x,y,z)$.
+Likewise, the analogous relation for the vertex $B$ is $B_{t+dt} - B_t = V_x(x+dx,y,z)$,
+where now the $x$-component of the velocity is evaluated at the position $(x+dx,y,z)$.
+Putting these relationships together, gives the change in the spacing between the vertices
+caused by the fluid flow as
+$ \gD \surp{dx} \equiv dx_{t+dt} - dx_{t} = \partial V_x / \partial x  \push dx$.
+Repeating the same procedure for both the $y$- and $z$-directions and substituting
+the resulting relations into the expression for the volume gives the change in the
+volume in the time $dt$ as
+\bea
+  \dby{t} dV & = &  \surp{ \pdxby{V_x}{x} + \pdxby{V_y}{y} + \pdxby{V_z}{z} } dV \nonumber \\
+             & = &  \surp{ \ipd{\cv{\nabla}}{\cv{V}} } dV \eqp
+\eea
+
+the conservation of mass can also be written as either
+\be
+    \gr(\cv{z},t) \push d^3z = \gr(\cv{a},0) \push d^3 a
+\ee
+or by introducing the Jacobian determinant
+$J ={\partial(z_1,z_2,z_3)}/{\partial(a_1,a_2,a_3)}$ as
+\begin{equation}\label{eq:rho}
+    \rho J({\vec z}(\a,t)) = \rho_0(\a) \eqp
+\end{equation}
+
+The density \gr depends on the family of trajectories $\cv{z}(\cv{a},t)$ under
+consideration and is entirely determined by it.
+
+The conservation of mass is a general law that applies to all classical fluids.  However, a full
+description of the fluid requires knowledge of five basic variables; three velocity components
+and two thermodynamic properties \refs{HB67}.  Knowledge of any two thermodynamic quantities
+along with an equation of state fully specifies the remaining parameters.  For the current
+purposes, the fluid density and the entropy are the thermodynamic functions of choice and
+the fluid is assumed to be ideal.  An ideal fluid is a model of fluid motion for those
+fluids in which thermal conductivity and viscosity are unimportant \refs{LL59}.
+The absence of viscosity means that an ideal fluid suffers no shearing stress, even
+when the fluid is in motion, and the sole stress is due to the pressure \refs{symon71}.
+In addition, an ideal fluid does not take into account heat transfer between elements
+and the motion throughout the fluid is adiabatic \refs{LL59}.
+
+Applying this condition yields the second and final constraint of ideal fluid motion.
+From thermodynamics, the adiabatic assumption is expressed as $\gD q = T ds = 0$, where
+$\gD q$ is the heat flow per unit mass and $s$ is the specific entropy \refs{callen85}.
+Thus the requirement of adiabatic flow means that the entropy is conserved.
+For simplicity, the composition ideal fluid will be modelled as only one chemical constituent
+with a fixed number of particles.
+Under this assumption, the first law of thermodynamics can be written as \refs{callen85}
+\bes
+  de = T ds - P d \surp{\frac{1}{\gr}} \eqp
+\ees
+In this form of the first law, $e$ is the specific internal energy (internal energy
+per unit mass) and the quantities $T$ and $P$ are temperature and pressure, respectively.
+Substituting in the adiabatic requirement simplifies the first law
+\be
+  d e =   \frac{P}{\gr^2} d \gr = \surp{ \pdxby{e}{\gr} }_{s} d \gr \eqp
+\ee
+
+The work done by the fluid as it expands is
+
+
+The final consideration is to determine the equation of motion for the ideal fluid.
+Consider Figure \refp{fig:pressure_forces}, which shows the pressures on the faces of
+a fluid element located at the point $\mP = (x,y,z)$.
+The net pressure force in the x-direction, \idx{\cv{F}}{\dn{P_x}} is given by the difference between
+the pressure forces on the left and right faces.
+This difference is given by
+\beas
+\idx{\cv{F}}{\dn{P_x}} & = &  \idx{\cv{F}}{\dn{\idx{P}{\dn{L.F.}}}} -
+                            \idx{\cv{F}}{\dn{\idx{P}{\dn{R.F.}}}}  \\
+                     & = &   P(x,y,z) \nudge \gd y \nudge \gd z \nudge \cuv{\imath}
+                           - P(x+\gd x,y,z) \nudge \gd y  \nudge \gd z \nudge \cuv{\imath} \\
+                     & = & - \pdxby{P(x,y,z)}{x} \gd x \nudge \gd y
+                             \nudge \gd z \nudge \cuv{\imath} \eqp
+\eeas
+Repetition of the computation in the y- and z-directions gives the pressure force on
+the ideal fluid element, \idx{\cv{F}}{\dn{P}}
+\bes
+  \idx{\cv{F}}{\dn{P}} = - \cv{\nabla} P(x,y,z) \nudge \gd x \nudge \gd y \nudge \gd z
+                       = - \cv{\nabla} P(x,y,z) \nudge \gd V \eqp
+\ees
+Newton's second law for the constant mass fluid element is now written as
+\bes
+  m \dxby{\cv{v}}{t} = - \cv{\nabla} P \nudge \gd V \eqp
+\ees
+Using the relation $m = \gr \nudge \gd \nudge V$, the equation can be simplified and
+the expression
+\bes
+  \dxby{\cv{v}}{t} = - \frac{\cv{\nabla P}}{\gr}
+\ees
+obtains.
+If a body force, \cv{f}, such as the gravitational attraction of the fluid element
+by an external body, is present the equation is modified to read
+\be\label{eq:Euler_eq}
+  \dxby{\cv{v}}{t} = -\frac{\cv{\nabla} P}{\gr} + \cv{f} \eqp
+\ee
+Equation \refq{eq:Euler_eq} is known as Euler's equation for an ideal fluid in the
+Lagrangian picture.  Note that the velocity of the fluid element in \refq{eq:Euler_eq}
+is labelled by the coordinates $(x,y,z)$.
+
+Finally,
+
+\begin{equation}
+    s(\a,t) = s({\vec a},0) = s_0(\vec a) \eqp
+\end{equation}
+
+
+\begin{figure}
+\centerline{
+   \includegraphics[height=2in,width=3in,keepaspectratio]{pressure_force.eps}}
+   \caption{The pressure forces on a test element located at the point $\mP = (x,y,z)$
+   in an ideal fluid.  Gradients of the pressure lead to an imbalance of contact
+   forces on the test element which cause the fluid to accelerate.}\label{fig:pressure_forces}
+\end{figure}
+
+
+Although MSY incorporate these constraints in a variational principle by the
+use of the Lagrange multipliers, we find the equations shorter and easier to
+read if one takes $\rho$ to be defined by Eqn.~(\ref{eq:rho}).
+The MSY Lagrangian then is:
+
+\begin{equation}\label{eq:MSY}
+    I  =  \int\!\! dt \int\!\! d^3a \left[\frac{\rho_0}{2} \left(
+          \frac{\partial z_i}{\partial t}\right)^2 - \rho_0(e+\Phi) \right] \eqc
+\end{equation}
+%
+where $e(\rho,s)$ is the specific internal energy and $\Phi(\z(\a,t),t)$ is the
+gravitational potential energy per unit mass at the position of particle $\a$.
+In this formalism, ${\vec z}(\a,t)$ are the dynamical variables that are varied
+to produce the equations of motion.
+
+The variation of the action with respect to the trajectory function ${\vec z}$
+requires the various properties of the Jacobian that MSY employ in their
+formulation. We must remember that since $\rho$ is defined by
+Eqn.~(\ref{eq:rho}) both $\rho$ and $e(\rho,s)$ will vary when $\z$ is varied.
+Thus we find
+
+\begin{equation}
+    \delta I = \int\!\! dt \int\!\! d^3a \left[ \rho_0
+    \left(\frac{\partial z_i}{\partial t}\right)\delta
+    \left(\frac{\partial z_i}{\partial t} \right)
+    - \rho_0 \frac{P}{\rho^2} \delta \rho
+    - \rho_0 \frac{\partial \Phi}{\partial z_i} \delta {z_i}
+    \right] \eqp
+\end{equation}
+%
+Here we have used the thermodynamic relationship $de = T\,ds -P\,d(1/\rho)$ in
+the form $(\partial e/\partial \rho)_s = P/\rho^2$ in evaluating how the
+internal energy $e$ changes when the trajectory variations cause changes in
+$\rho$ but not in $s$ at a particular fluid element $\a$.  The problematic
+term here is that containing $\delta \rho$.  But from $\rho J = \rho_0(\a)$
+where the right hand side is independent of $\z$ one has
+$J \delta \rho + \rho \delta J = 0$.  Thus the term
+$-(\rho_0 {P}/{\rho^2}) \delta \rho$ becomes
+$-(P/\rho) J \delta \rho = + P \delta J$.  Using $\delta J = ({\partial J}/
+{\partial z_{i,j}}) \delta z_{i,j} = J_{ij} \delta z_{i,j}$,
+where $z_{i,j} = {\partial z_i}/{\partial a_j}$ and $J_{ij}$ is the (i,j)
+minor of the Jacobian, the second ($P$) term can be simplified.  Exchanging
+the order of the variation and the partial differentiation in the first and
+second terms and integrating these terms by parts gives
+
+\begin{equation}
+    \delta I = -\int\!\! dt \int\!\! d^3a \left[ \rho_0
+    \left(\frac{\partial^2 z_i}{\partial t^2}\right)
+    + \frac{\partial}{\partial
+    a_j}\left(P J_{ij}\right)
+    + \rho_0 \frac{\partial \Phi}{\partial z_i}
+    \right] \delta z_i \eqp
+\end{equation}
+
+Setting this variation to zero leads to the partial differential equation
+
+\begin{equation}\label{EL}
+    \rho_0 \left(\frac{\partial^2 z_i}{\partial t^2}\right) + \rho_0
+    \frac{\partial \Phi}{\partial z_i} + \frac{\partial}{\partial
+    a_j}\left(P J_{ij}\right) = 0 \eqp
+\end{equation}
+%
+From the relations ${\partial J_{ij}}/{\partial a_j} = 0$, the last term becomes
+
+\begin{equation}
+    \frac{\partial}{\partial a_j}\left(P  J_{ij} \right) =
+    \frac{\partial P}{\partial a_j} J_{ij} = \frac{\partial P}{\partial
+    z_k}\frac{\partial z_k}{\partial a_j} J_{ij} \eqp
+\end{equation}
+%
+Finally by using $({\partial z_k}/{\partial a_j}) J_{ij} = J \delta_{ik}$ and
+$J = \rho_0 / \rho$ we put Eq.~(\ref{EL}) into the familar form
+
+\begin{equation}\label{eq:Euler}
+    \left(\frac{\partial^2 z_i}{\partial t^2}\right) + \frac{\partial
+    \Phi}{\partial z_i} + \frac{1}{\rho} \frac{\partial P}{\partial z_i} =
+    0 \eqp
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In discrete approximations later there will only be a finite number of particle
+trajectories $\z$ computed, and fields such as the gravitational potential
+$\Phi(\x)$ will be computed only on a finite set of grid locations $\x$.
+
+The goal of making and combining these two discretization approximations makes
+it important that a clear distinction be kept in mind between the particle
+trajectories $\z$ and the field points $\x$, even though the equation
+$\x = \z(t)$ imbeds a particle trajectory within the grid where field values
+will be known.
+
+\section{Smooth Particle Hydrodynamics}\label{sph}
+
+In this section, we review some of the standard SPH equations
+\cite{A:NP94,A:JJM92,A:WB89,A:GM82,A:PJM91} that we used in approximating the
+continuum variational principle in discrete form.
+
+The single most important relation that should be stated is the idea of
+approximating the equation
+
+\begin{equation}
+    f({\vec z}) = \int\!\! d^3z'\,\delta({\vec z} - \vec{ z'}) f(\vec{z'})
+\end{equation}
+%
+by the relation
+\begin{equation}\label{sph_fun}
+    \langle f({\vec z}) \rangle \simeq \int\!\! d^3z'\,W({\vec z}
+    - \vec{z'}; h) f(\vec{z'}) \eqp
+\end{equation}
+
+The essential properties of the smoothing kernel $W$ are that it is normalized
+\begin{equation}\label{norm}
+    \int\!\! d^3z\,W({\vec z};h) = 1 \eqc
+\end{equation}
+%
+and that it has a delta function limit
+
+\begin{equation}
+    \lim_{h \rightarrow 0} W({\vec z} - \vec{z'};h) = \delta({\vec z}
+    - \vec{z'}) \eqp
+\end{equation}
+
+In addition, we assume that we are always using a symmetric, even,
+non-negative kernel so that the smoothing approximation is $O(h^2)$.
+In other words,
+
+\begin{equation}
+    \langle f({\vec z}) \rangle = f({\vec z}) + c \left( \nabla^2 f({\vec z}) \right) h^2 \eqc
+\end{equation}
+%
+where $c$ is a constant independent of $h$.
+
+Gingold and Monaghan \cite{A:GM82} motivate a derivation of SPH starting from
+the Lagrangian for a nondissipative, isentropic gas which in our notation reads
+
+\begin{equation}
+    L = \int\!\! d^3a\,\rho_0 \left[ \frac{1}{2} {\dot {\vec z}\,}^2 -
+        e(\rho) - \Phi(z,t)\right] \eqc
+\end{equation}
+%
+where ${\partial e}/{\partial \rho} = {P}/{\rho^2}$ and where $z$ means
+$z(\a,t)$.  Then they write the integral in discrete form
+
+\begin{equation}
+    L \simeq \sum_{a=1}^{N} m_a \left( \frac{1}{2} {\dot {\vec z_a}}^2 -
+    e(\rho_a)  - \Phi(\vec z_a, t) \right) \eqp
+\end{equation}
+%
+Calculating the terms in the Euler-Lagrange equations gives the SPH
+momentum equation
+
+\begin{equation}
+    m_a \ddot {\vec z_a}  + m_a \left( \frac{\partial \Phi}{\partial
+                                    \x} \right)_{\x = \z_a}
+    + \sum_{b=1}^{N} \frac{P_b}{\rho_b^2}
+    \frac{\partial \rho_b}{\partial {\vec z_a}} m_b
+    = 0 \eqp
+\end{equation}
+
+
+Connection with SPH can be made by identifying
+
+\begin{equation}\label{eq:smoothed_rho}
+    \rho_b = \sum_{c=1}^{N} m_c W ( {\vec z_b} - {\vec z_c}; h ) \eqc
+\end{equation}
+%
+which leads to the symmetric momentum equation
+
+\begin{equation}\label{eq:sym_sph}
+    {\ddot {\vec z_a}}  + \left( \frac{\partial \Phi}{\partial
+                                    \x} \right)_{\x = \z_a}
+    + \sum_{b=1}^{N} \left( \frac{P_b}{\rho_b^2} +
+    \frac{P_a}{\rho_a^2} \right) m_b \nabla_a W ( {\vec z_a} - {\vec
+    r_b}; h ) \eqc
+\end{equation}
+%
+that Monaghan \cite{A:JJM92,A:GM82,A:PJM91} advocates for its ability to
+conserve linear and angular momentum.
+
+Note that two approximation steps are invoked here.  One is the replacement of
+$\int\!\! d^3a\,\rho_0$ by $\sum_{a=1}^N m_a$ which is a Monte Carlo sampling
+of the continuum of fluid elements by a finite subset.  The second step is the
+estimate (\ref{eq:smoothed_rho}) of the continuum density from this finite
+sample.  The normalization condition (\ref{norm}) provides a consistency
+between these two steps, but we do not see that one can be derived from
+the other.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Newtonian Gravity}\label{Newton}
+
+In the preceding sections Newtonian gravity was included as a potential $\Phi$
+due to external masses.  When the self-gravitation of the fluid is to be
+included more care is needed.  Unlike usual Newtonian SPH, we do not want to
+think of gravitation as a mutual interaction of the smoothed particles---
+this viewpoint, effective in Newtonian problems, will not provide guidance
+for the relativistic problems we aim to formulate.  Instead we write a
+field theory.\\
+
+A variational principle which gives rise to the Poisson equation is
+$\delta I_G = 0$ with
+
+\begin{equation}\label{eq:I-G}
+    I_G = -\int\!\!dt\!\int\!\!d^3x \left[
+            (1/8\pi G)(\nabla \Phi)^2 + \rho(\x,t) \Phi(\x,t) \right] \eqp
+\end{equation}
+%
+Varying $\Phi$ here gives
+
+\begin{equation}\label{eq:Poisson}
+    \nabla^2 \Phi = 4 \pi G \rho  \eqc
+\end{equation}
+%
+with solutions such as $\Phi = -GM/r$.
+
+A continuum variational principle extending that of Sec.~\ref{cfm} to include
+the field dynamics is $\delta I = 0$ with $I = \int\!L\,dt$ and
+
+\begin{eqnarray}\label{eq:full-L}
+    L & = & \int\!\! d^3a \left[\frac{\rho_0}{2} \left(
+        \frac{\partial z_i}{\partial t}\right)^2
+      - \rho_0\, e(\rho,s_0) - \rho_0\, \Phi(\z(\a,t),t) \right]
+       \nonumber \\
+      & & - (1/8\pi G)\int\!\!d^3x\,\nabla \Phi(\x,t)^2  \eqp
+\end{eqnarray}
+
+The terms here containing $\z(\a,t)$ are exactly those considered in
+Sec.~\ref{cfm}, so the fluid equations are just (\ref{eq:Euler}).  But to see
+that Eq.~(\ref{eq:Poisson}) also results we need to rewrite the $\rho_0\Phi$
+term to see that it is the same as in Eq.~(\ref{eq:I-G}).  This we do by
+invoking the definition of $\rho$ in a change of variables $\rho_0\,d^3a
+= \rho\,d^3z$ in the integral
+
+\begin{equation}\label{eq:rhoPhi}
+    \int\!\! d^3a\, \rho_0(\a)\, \Phi(\z(\a,t),t) =
+    \int\!\! d^3z\, \rho(\z,t)\, \Phi(\z,t) =
+    \int\!\! d^3x\, \rho(\x,t)\, \Phi(\x,t) \eqc
+\end{equation}
+%
+where the last step is a notational change of the dummy variable
+of integration.  Thus Eq.~(\ref{eq:Poisson}) also results by varying
+$\Phi(\x)$ in this combined Lagrangian (\ref{eq:full-L}).
+
+It is important to note that only the first form of the interaction term
+(\ref{eq:rhoPhi}) as given in Eq.~(\ref{eq:full-L}) is acceptable in the
+fundamental Lagrangian.  For in making the change of variables from $\a$ to
+$\z$ in equation (\ref{eq:rhoPhi}) one has assumed a definite fluid motion
+$\z(\a,t)$. Since reference to this particular motion disappears in the
+$\int\!\! d^3x\, \rho(\x,t)\, \Phi(\x,t)$ form of this term, it would not be
+possible to carry out the $\delta \z$ variations were this form to be stated
+as part of the basic Lagrangian.  We have used it here only to carry out a
+variation of $\Phi$ while holding the fluid motion $\z(\a,t)$ unchanged.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discretization and Numerical Formulation}\label{Disc.}
+
+At this point, the basic pieces are in place and all that remains is to combine
+and interpret them.  Start from the complete action integral, which is written
+as
+\begin{eqnarray}
+I  & = & - \int\!\! dt \int\!\! d^3x
+           \frac{\left[\nabla \Phi(\x,t)\right]^2}{8 \pi G}
+         + \int\!\! dt \int\!\! d^3a \rho_0 \left[ \left(\frac{\partial \z}
+          {\partial t}\right)^2 - e \right] \nonumber \\
+   &   & - \int\!\! dt \int\!\! d^3 a \rho_0 \Phi(\z,t) \eqc
+\end{eqnarray}
+%
+subject to the constraint of $\rho J = \rho_0$ and $s = s_0$.  Assume, as
+discussed above, that the fields will be numerically determined on a
+computational grid and that the particles will be labeled and their individual
+motion followed.  The discretization of the field becomes
+$\Phi(\x,t) \rightarrow \Phi_\l(t)$ where $\l$ represents the triple integer
+set $\left\{\l_x, \l_y, \l_z\right\}$.  Likewise the particle discretization
+becomes $ \int d^3 \rho_0 \rightarrow \sum_{a} m_a$.
+
+Under these definitions, the action becomes
+\begin{eqnarray}
+I & = & - \int\!\! dt \sum_{l} \frac{1}{8 \pi G}
+        \left\{
+         \left[ \D_x \Pl - \Pl \right]^2 +
+         \left[ \D_y \Pl - \Pl \right]^2 +
+         \left[ \D_z \Pl - \Pl \right]^2
+        \right\} \nonumber \\
+  &   &
+      + \int\!\! dt \sum_{a} m_a \left[ \left(\frac{\partial \z_a}
+         {\partial t}\right)^2 - e(\rho_a) \right]
+      - \int\!\! dt \sum_{a} m_a \Phi(\z_a,t) \eqc
+\end{eqnarray}
+where the $\Delta$ operator changes the corresponding '$l$'-label on any object
+possessing it by one ({\it e.g.} $\Delta_x \Pl - \Pl = \Phi_{\l_x+1,\l_y,\l_z} -
+\Phi_{\l_x,\l_y,\l_z}$).
+
+The factor $\Phi(\vec z_a)$ in the interaction term is undefined since
+$\vec z_a$ will not normally coincide with one of the lattice points
+$\vec x_\ell$.  Thus some interpolation is required, and we can set
+\begin{equation}\label{eq:interpolate}
+      \Phi(\z_a) = \frac{\sum_\l h^3 \Phi_\l I(\z_a - \x_\l)}
+                  {\sum_n h^3 I(\z_a -\x_n)} \eqc
+\end{equation}
+%
+where the denominator ensures that interpolation of a constant function yields
+that constant value.  The kernel $I$ chooses a linear combination of nearby
+grid values $\Pl$ to estimate $\Phi$ at any desired point and provides an
+approximation to the delta function in
+
+\begin{equation}\label{eq:approxDelta}
+    \Phi(\z,t) = \int\!\!d^3x\,\Phi(\x,t) \delta^3(\z-\x) \eqp
+\end{equation}
+
+Setting the variation of this discrete action with respect to $\Pl(t)$ gives
+
+\begin{eqnarray}\label{eq:dis_Poi}
+  \left( 2 \P_m - \D_{-x} \P_m - \D_x \P_m \right) +
+  \left( 2 \P_m - \D_{-y} \P_m - \D_x \P_m \right) \nonumber & & \\
++ \left( 2 \P_m - \D_{-z} \P_m - \D_x \P_m \right) & = & 4 \pi G \sum_{a} m_a
+  \frac{ h^3 I(\z_a - \x_m)}{\sum_n h^3 I(\z_a -\x_n)} \eqc
+\end{eqnarray}
+%
+which is the expected discrete form of the Poisson equation with the central
+differencing approximation to the second derivative.  The source term then
+gives an effective definition of the density
+
+\begin{equation}\label{eq:dis_den}
+   \rho(\x_l) = \sum_{a} m_a \frac{ h^3 I(\z_a - \x_\l)}{\sum_n h^3 I(\z_a -\x_n)} \eqc
+\end{equation}
+which is analogous to the one invoked in (\ref{eq:smoothed_rho}).  We will take
+this as our definition of an interpolated density.
+
+It is instructive to note that summing (\ref{eq:dis_Poi}) over $m$ gives
+
+\begin{equation}
+  \sum_{\partial m} \P_m = 4 \pi G \sum_{a} m_{a} \eqc
+\end{equation}
+
+where the $\sum_{\partial m}$ represents a summation over the boundary grid
+points.  This is just a discrete form of Gauss's law.
+
+Finally, the variation with respect to the trajectory function $\z_b(t)$ must
+be performed.  Setting the functional derivative of the discrete action with
+respect to $\z_b(t)$ equal to zero yields:
+
+\begin{eqnarray}\label{eq:dis_particle}
+  m_b {\ddot \z}_b + \sum_a \left[ m_a \frac{P(\z_a)}{\rho^2(\z_a)}
+                                       \frac{\partial \rho(\z_a)}{\partial \z_b}
+                                 + m_a \frac{\partial \P(\z_a)}{\partial \z_b}
+                            \right] = 0
+\end{eqnarray}
+
+After some straightforward but lengthy calculations one arrives at
+
+\begin{eqnarray}\label{eq:dis_drho}
+  \sum_a m_a \frac{P(\z_a)}{\rho^2(\z_a)}
+             \frac{\partial \rho(\z_a)}{\partial \z_b} & = &
+    m_b \sum_a m_a
+      \left(
+        \frac{P(\z_a)}{\rho^2(\z_a)} + \frac{P(\z_b)}{\rho^2(\z_b)}
+      \right)
+      \frac{ \nabla_b I(\z_b - \z_a) h^3}{\sum_\l h^3 I(\z_b - \x_\l)}
+    \nonumber \\
+  & &   -
+    m_b \sum_a m_a
+      \frac{P(\z_a)}{\rho^2(\z_a)} h^3 I(\z_b - \z_a)
+      \frac{\sum_m h^3 \nabla_b I(\z_b - \x_m)}
+        {\left[ \sum_\l h^3 I( \z_b - \x_\l) \right] ^2}
+\end{eqnarray}
+%
+and
+%
+\begin{eqnarray}\label{eq:dis_dphi}
+  \sum_a m_a \frac{\partial \P(\z_a)}{\partial \z_b}
+       = m_b \frac{ \sum_\l h^3 \nabla_b I (\z_b - \x_\l) \Pl
+             \sum_n h^3 I(\z_b - \x_n)}{\left[
+             \sum_m h^3 I( \z_b - \x_m) \right] ^2} \nonumber \\
+           - \frac{\sum_\l h^3 \nabla_b I(\z_b - \x_\l)
+             \sum_n h^3 I(\z_b - \x_n) \P_n}
+            {\left[ \sum_m h^3 I( \z_b - \x_m) \right] ^2}
+\end{eqnarray}
+for the second and third terms respectively.  Despite their initial appearance,
+there is much that is familiar.  Equation (\ref{eq:dis_drho}) is essentially
+the symmetric momentum equation (\ref{eq:sym_sph}) discussed in Section
+\ref{sph}.  Equation (\ref{eq:dis_dphi}) contains the derivatives of the
+gravitational potential one expects from interpolating from the grid
+
+\begin{equation}\label{eq:gravForce}
+    \left( \frac{\partial \Phi}{\partial \x} \right)_{\x = \z_a}
+    \mapsto
+    \sum_\l h^3  \Pl(t)
+         \frac{\partial I({\x_\l} - {\z_a})}{\partial \z_a} \eqp
+\end{equation}
+Both terms are complicated by the presence of derivatives with respect to the
+kernel normalization but these extra terms are analogous to those terms arising
+when $\nabla h$ terms are accounted for in conventional SPH \cite{A:NP94}.
+
+The implementation scheme is now clear (if not concise).  Specify an initial
+distribution of matter ({\it i.e.} $m_a$ and $\z_a(t=0)$).  Use
+(\ref{eq:dis_Poi}) to determine the gravitational potential at the grid
+locations.  Use (\ref{eq:dis_drho}) and (\ref{eq:dis_dphi}) in conjunction with
+(\ref{eq:dis_particle}) to calculate the accelerations of the particles in
+terms of known quantities.  Integrate the particles equations of motion on time
+step and repeat the process.  Note that the causality inherent in this scheme
+is Galilean; absolute time has meaning, the gravitational force is essentially
+instantaneous, and there is no mechanism to propagate a solution that satisfies
+the initial-value problem forward (or backward) in time.  It is for this reason
+that the Poisson equation must be solved at each integration step.

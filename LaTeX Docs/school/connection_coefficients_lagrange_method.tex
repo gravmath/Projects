@@ -1,0 +1,101 @@
+%Appendix on Determinants
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Lagrangian Method of Calculating the Connection Coefficients}
+\maketitle
+
+\section{Lagrange Method}
+
+This brief note shows explicitly the Lagrangian method of calculating the
+connection coefficients \Cnx{\gm}{\ga\gb} \back for the simple metric
+\bes
+  ds^2 = -dt^2 + dr^2 + r^2 d\gq^2 + r^2 \sin^2(\gq) d\gf^2
+\ees
+Begin with the action
+\bes
+  I = \myint{d\gl} \surp{-\dt{t}^2 + \dt{r}^2 + r^2 \dt{\gq}^2 + r^2 \sin^2(\gq) \dt{\gf}^2  }
+\ees
+where $\dt{q} \equiv \frac{d q}{d \gl}$ and take variations of the action with respect
+to $t(\gl), r(\gl), \gq(\gl), \mbox{and } \gf(\gl)$.
+
+\subsection{\vwrt{I}{t}}
+
+The first variation of the action is with respect to \var{t(\gl)} which yields
+\bes
+  \vwrt{I}{t} = \myint{d\gl} \surp{-2\dt{t} \var{\dt{t}}} \IBP \myint{d\gl} \var{t} 2 \ddt{t} \eqp
+\ees
+Setting this variation equal to zero yields
+\bes
+  \idx{\op{\gG}}{\up{t}} = 0
+\ees
+where \idx{\op{\gG}}{\up{t}} corresponds to the 12 terms \Cnx{t}{\gm\gn}.
+
+\subsection{\vwrt{I}{r}}
+
+The next, and most complicated variation, is of the action with respect to \var{r(\gl)} which
+yields
+\bea
+  \vwrt{I}{r} & =    & \myint{d\gl} \surp{  2 \dt{r} \var{\dt{r}}
+                                          + 2 r \dt{\gq}^2 \var{r}
+                                          + 2 r \sin^2(\gq) \dt{\gf}^2 \var{r} } \nonumber \\
+              & \IBP & 2 \myint{d\gl} \var{r}  \surp{-\ddt{r}
+                                                    + r \dt{\gq}^2
+                                                    + r \sin^2(\gq) \dt{\gf}^2 } \eqp
+\eea
+Setting this variation to zero yields
+\bea
+  \Cnx{r}{\gq\gq} & = & -r \nonumber \\
+  \Cnx{r}{\gf\gf} & = & -r \sin^2(\gq) \eqp
+\eea
+
+\subsection{\vwrt{I}{\gq}}
+
+\bea
+  \vwrt{I}{\gq} & =    & \myint{d\gl} \surp{  2 r^2 \dt{\gq} \var{\dt{\gq}}
+                                            + 2 r^2 \sin(\gq) \cos(\gq) \dt{\gf}^2 \var{\gq} } \nonumber \\
+                & \IBP &  2 \myint{d\gl} \var{\gq} \surb{ -\dby{\gl}\surp{r^2 \dt{\gq}}
+                                                          + r^2 \sin(\gq) \cos(\gq) \dt{\gf}^2 } \nonumber \\
+                &   =  &  2 \myint{d\gl} \var{\gq} \surb{ - 2 r \dt{r} \dt{\gq}
+                                                          - r^2 \ddt{\gq}
+                                                          + r^2 \sin(\gq) \cos(\gq) \dt{\gf}^2 } \nonumber \\
+                &   =  & -2 \myint{d\gl} \surp{\frac{\var{\gq}}{r^2}}
+                                       \surb{   \ddt{\gq} + \frac{2}{r} \dt{r} \dt{\gq}
+                                             - \sin(\gq) \cos(\gq) \dt{\gf}^2 } \eqp
+\eea
+Setting this variation equal to zero yields
+\bea
+  \Cnx{\gq}{r\gq}   & = & \frac{1}{r} \nonumber \\
+  \Cnx{\gq}{\gf\gf} & = & - \sin(\gq) \cos(\gq) \eqp
+\eea
+
+\subsection{\vwrt{I}{\gf}}
+
+The final variation of the action is with respect to \gf.
+Taking this variation yields
+\bea
+  \vwrt{I}{\gf} &   =  &  \myint{d\gl} \surp{ 2 r^2 \sin^2(\gq) \dt{\gf} \var{\dt{\gf}} } \nonumber \\
+                & \IBP & -2\myint{d\gl} \var{\gf} \dby{\gl} \surp{ r^2 \sin^2(\gq) \dt{\gf} } \nonumber \\
+                &   =  & -2\myint{d\gl} \var{\gf} \surb{   2 r \dt{r} \sin^2(\gq) \dt{\gf}
+                                                          + 2 r^2 \sin(\gq) \cos(\gq) \dt{\gq} \dt{\gf}
+                                                          + r^2 \sin^2(\gq) \ddt{\gf} } \nonumber \\
+                &   =  & -2\myint{d\gl} \frac{\var{\gf}}{r^2 \sin^2(\gq)}
+                                       \surb{ \ddt{\gf} + \frac{2}{r} \dt{r} \dt{\gf}
+                                             + 2 \frac{\cos(\gq)}{\sin(\gq)} \dt{\gq} \dt{\gf} } \eqp
+\eea
+Setting this variation to zero yields
+\bea
+  \Cnx{\gf}{r\gf}   & = & \frac{1}{r} \nonumber \\
+  \Cnx{\gf}{\gq\gf} & = & \frac{\cos(\gq)}{\sin(\gq)} \eqp
+\eea
+
+\section{Comparing with GRTensorII}
+
+Finally we consider the comparison the MTW convention, which was used throughout,
+with the convention employed by GRTensorII.  Looking at the document entitled
+`flat\_spherical\_space.PDF' we see that
+\bes
+  \idx{\surp{\Cnx{\ga}{\gb\ggm}}}{\dn{MTW}} =
+  \idx{\surp{\idx{\gG}{\dn{\gb\ggm}\up{\ga}}}}{\dn{GRTensorII}} \eqp
+\ees
+\end{document}

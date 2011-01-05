@@ -1,0 +1,161 @@
+\documentstyle[twocolumn]{article}
+\bibliographystyle{plain}
+\def\.{{\quad .}}  
+\def\_,{{\quad ,}} 
+\newcounter{bean}
+
+\begin{document}
+
+%**************************************************************
+%
+%  Front matter
+%
+%**************************************************************
+\title{Notes on Fluid Dynamics}
+\author{Conrad Schiff \thanks{Physics Graduate Student} \\
+        University of Maryland\\
+	  \texttt{cmschiff@erols.com}}
+\date{\today}
+\maketitle
+
+
+%**************************************************************
+%
+%  Abstract
+%
+%**************************************************************
+%\widetext
+\begin{abstract}
+In this notes I present a synthesis of my work on fluid dynamics.  They are a 
+compilation of a simple reorganization and union of ideas from a variety of 
+sources combined with my own reflections on the various subjects.  As a result
+of both my personnel interests and my own style another reader most assuredly will
+find them overly pedantic in some areas and terse in others.  To this I make
+no attempt at rectification.
+
+Update history: initial work August 19, 1999
+\end{abstract}
+
+%\narrowtext
+%\vskip2pc]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%What is a Fluid 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What is a Fluid}\label{S:fluid_def}
+In simple terms a fluid is a substance which cannot resist 
+a shear force or stress without moving as can a solid.  A liquid
+has intermolecular forces which hold it together so that is possesses
+volume but no definite shape \cite{hughes}.
+
+A mathematical model of a fluid is based on the idea of a continuum.
+In the continuum, we don't have to keep track of individual particles.
+Rather, it is convenient to ask the question: at some point in space what
+are the fluid's velocity, acceleration, and thermodynamic properties.
+This description of a fluid is known as an Euler description \cite{hughes}.
+
+The number of basic variables in fluid mechanics is five: three velocity
+components and two thermodynamic properties.  Any two of the thermodynamic
+properties, such as pressure, temperature, density, enthalpy, entropy, etc.,
+suffice to determine the state and hence all the other properties.  Hence we
+need five independent equations.  these are usually the three components 
+of the equation of motion, a continuity equation, and an energy equation.
+Often an equation of state is introduced in order to allow the writing
+of the energy equation in terms of three variables (temperature, density,
+and pressure) instead of just two.  In this case we have six equations
+and six unknowns.  In an incompressible fluid the energy equation is not
+needed since density is taken as known and only the pressure along with the
+velocity need be found in order to completely describe the fluid flow \cite{hughes}.
+\\\\
+\noindent $\bullet$ \textbf{Pressure} \\
+The pressure in a static fluid is defined as the normal compressive force per
+unit area (normal stress) acting on a surface immersed in the fluid.  The
+pressure at a point is isotropic in a fluid at rest and is called 
+hydrostatic pressure.  Hydrostatic pressure is the pressure used in 
+thermodynamics as a fundamental property.  If the pressure varies from
+place to place in the fluid a net pressure force would exist on any 
+fixed volume of fluid and must be balanced by a body force, such as 
+gravity, or else the fluid will move since the pressure force will
+generate an acceleration.  In a dynamical situation there may exist not 
+only pressure forces but shear forces and stresses as well.  However, the
+pressure is still isotropic as defined above but must be measured as the
+normal stress on an area which moves along locally with the fluid 
+\cite{hughes}.
+\\\\
+\noindent $\bullet$ \textbf{Viscosity} \\
+All fluids have viscosity which causes friction.  If the friction is 
+negligible, we say the flow is ideal and can be describe by potential 
+flow theory.  Viscosity is a measure of the fluid's resistance to shear 
+when a fluid is in motion.  The defining equation for the viscosity 
+$\mu$ for a Newtonian fluid is
+\[
+  \tau = \mu \nabla {\vec u}
+\]
+where $\tau$ is the shear stress and $\nabla {\vec u}$ the velocity
+gradient.  In general, this hold over a large class of fluids, however
+nonlinear relationships can also exist.  The two most notable are the 
+plastic flows, in which the fluid behaves like a solid until it yields
+and begins to flow like a viscous fluid, and the dilatant flows, where
+the fluid exhibits little viscosity for small stresses but become much
+more like solids for larger stresses.  The flow of air over objects
+is considered ideal flow except in a thin layer, called the boundary
+layer just next to the surface \cite{hughes}.
+\\\\
+\noindent $\bullet$ \textbf{Laminar and Turbulent Flow} \\
+The terms laminar flow and purely viscous flow are used synonymously to 
+mean a fluid which flows in layers. A turbulent flow in one in which the 
+velocity components have random fluctuations imposed upon their mean 
+values.  For a given fluid the velocity and channel configuration 
+determines whether the flow will be laminar or turbulent \cite{hughes}.      
+\\\\
+\noindent $\bullet$ \textbf{Surface Tension} \\
+Surface tension is used to loosely to identify the apparent stress in the
+surface layer of a liquid.  This layer behaves like s stretched membrane
+and can give rise to a pressure difference across a curved liquid surface.
+Actually the surface tension is an energy associated with any fluid-fluid
+interface \cite{hughes}.
+\\\\
+\noindent $\bullet$ \textbf{Compressible and Incompressible Flow} \\
+It is customary to divide fluids into two groups - gases and liquids.
+Gases are compressible and their density and changes readily with 
+temperature and pressure.  Liquids are rather difficult to compress and
+for most problems one might consider them incompressible \cite{hughes}.
+\\\\  
+\noindent $\bullet$ \textbf{Subsonic and Supersonic Flow} \\
+In compressible flows there is a great distinction between flow involving
+velocities less than (subsonic) or more than (supersonic) the speed of
+sound.  Shock waves can only occur in flows which are supersonic 
+\cite{hughes}.   
+\\\\
+\noindent $\bullet$ \textbf{Steady Flow} \\
+A steady flow is one in which the physical properties of the fluid, the
+velocity and the thermodynamic terms, at a given point in space, do not
+change as a function of time \cite{hughes}
+\\\\
+\noindent $\bullet$ \textbf{Internal Flow} \\
+By internal flow we mean pipe and channel flow, where the fluid flows
+within a confining structure.  Such flow in the main part of the channel
+may be considered as approximately ideal for gases, but even so a 
+boundary layer (usually turbulent) develops on the walls.  In both
+viscous and turbulent flow the boundary layer thickens downstream so
+that it eventually extends all the way across the channel \cite{hughes}.
+\\\\ 
+\noindent $\bullet$ \textbf{External Flow} \\
+External flow is the flow of a fluid over an object such as in 
+aerodynamics.  The flow region around an object may be divided into 
+three regions.  Far from the body the flow is essentially ideal, with
+friction unimportant.  Near the body the fluid develops a shear layer 
+(since the velocity must be zero relative to the body at the surface)
+where viscosity and turbulence is important.  This frictional layer is
+called a boundary layer, and may be laminar or turbulent.  the third 
+layer, which is behind the body is known as the wake.  The wake is 
+region of high turbulence and low pressure (hence the drag due to 
+the wake) and is due to the separation of the boundary layer from 
+the body surface \cite{hughes}.    
+
+
+
+
+
+
+\bibliography{fluids}
+\end{document}

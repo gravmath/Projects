@@ -1,0 +1,44 @@
+%Appendix on Determinants
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Transformation Properties of Connection Coefficients}
+\maketitle
+
+The transformation of the connection coefficients \Cnx{\gm}{\ga\gb} \back is desired.
+To derive the relevant equations consider first the definition of the connection
+coefficients
+\bes
+d \bV{e}{\gm} = \Cnx{\gs}{\gm\gn} \bV{e}{\ga} \bF{\gw}{\gn} \eqp
+\ees
+This equation must hold in all coordinate systems.
+By writing the relation in the `barred' coordinate frame
+and then expressing all of the objects in terms of the `un-barred' frame
+the desired relation is obtained.
+Thus start with the relation
+\bes
+d \bV{e}{\gba}  = \Cnx{\gbgm}{\gba\gbb} \bV{e}{\gbgm} \bF{\gw}{\gbb} \eqp
+\ees
+Now consider the exterior derivative of the transformation equation
+\beas
+d \bV{e}{\gba} & = & d \surp{ \Jac{\gm}{\gba} \bV{e}{\gm}} \\
+               & = & \pdxby{\Jac{\gm}{\gba}}{x^{\gbb}} \bV{e}{\gm} \bF{\gw}{\gbb} +
+                     \Jac{\gm}{\gba} d \bV{e}{\gm} \\
+               & = & \pdxby{\Jac{\gm}{\gba}}{x^{\gbb}} \bV{e}{\gm} \bF{\gw}{\gbb} +
+                     \Jac{\gm}{\gba} \Cnx{\gs}{\gm\gn} \bV{e}{\gs} \bF{\gw}{\gn} \eqp
+\eeas
+Equating the two expressions leads to
+\bes
+  \Cnx{\gbgm}{\gba\gbb} \bV{e}{\gbgm} \bF{\gw}{\gbb} =
+  \pdxby{\Jac{\gm}{\gba}}{x^{\gbb}} \bV{e}{\gm} \bF{\gw}{\gbb} +
+                     \Jac{\gm}{\gba} \Cnx{\gs}{\gm\gn} \bV{e}{\gs} \bF{\gw}{\gn} \eqp
+\ees
+Contracting the above expression with \bF{\gw}{\gbr} \back $\!$ and \bV{e}{\gbt} \back and using the
+standard relation \sura{ \bF{\gw}{\gba},\bV{e}{\gbb} } = \idx{\gd}{\up{\gba}\dn{\gbb}}
+results in
+\bes
+\Cnx{\gbr}{\gba\gbt} = \Jac{\gm}{\gba} \Jac{\gn}{\gbt} \Jac{\gbr}{\gs} \Cnx{\gs}{\gm\gn}
+                         + \pdxby{\Jac{\gn}{\gba}}{x^{\gbt}} \Jac{\gbr}{\gn} \eqc
+\ees
+which compares exactly with equation 10.26, page 262 of MTW.
+\end{document}

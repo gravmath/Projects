@@ -1,0 +1,347 @@
+\documentclass[10pt]{article}
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+%\usepackage{geometry}
+%\geometry{hmargin={1in,1in}}
+%\geometry{vmargin={1in,1in}}
+%\pagestyle{empty}
+\usepackage{color}
+\usepackage{amssymb}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen} {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}{rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+
+
+\usepackage[absolute]{textpos}
+\begin{document}
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightGreen}
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \tiny ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf Classical Electrodynamics} \\
+       \tiny~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+\scriptsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Maxwell's Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightYellow}
+\begin{textblock*}{45mm}(0mm,12.75mm)
+\begin{tabular*}{45mm}{|l @{\extracolsep{\fill}} l|}\hline
+   ~ & ~\\
+  \multicolumn{2}{|c|}{\small \bf Basic Equations} \scriptsize \\
+   ~ & ~\\
+   ~ & ~\\   
+  \multicolumn{2}{|l|}{\bf Maxwell's Equations}\\
+  \multicolumn{2}{|l|}{$\nabla 
+                        \cdot  {\mathbf D} = 4 \pi \epsilon_0 \rho$}\\
+  \multicolumn{2}{|l|}{$\nabla \cdot  {\mathbf B} = 0$}\\
+  \multicolumn{2}{|l|}{$\nabla \times {\mathbf E} 
+                       = - \frac{1}{c} \partial_t {\mathbf B}$}\\
+  \multicolumn{2}{|l|}{$\nabla \times {\mathbf H} = {\mathbf J} 
+                       + \frac{1}{c} \partial_t {\mathbf E}$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{\bf Constitutive Equations} \\
+  \multicolumn{2}{|l|}{${\mathbf D} = \epsilon {\mathbf E} 
+                       = \epsilon_0 {\mathbf E} + {\mathbf P}$}\\
+  \multicolumn{2}{|l|}{(for isotropic materials)}\\
+  \multicolumn{2}{|l|}{${\mathbf P} = \chi_E \epsilon_0 {\mathbf E}$}\\
+  \multicolumn{2}{|l|}{${\mathbf D} = \epsilon_0 
+                       \left(1 + \chi_E \right) {\mathbf E} 
+                       = \epsilon_0 \epsilon_r {\mathbf E}$}\\
+  \multicolumn{2}{|l|}{${\mathbf J} = \sigma   {\mathbf E}$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{\bf Charge Continuity Equation} \\
+  \multicolumn{2}{|l|}{$\nabla \times {\mathbf J} + \partial_t \rho$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{\bf Lorenz Force Law} \\
+  \multicolumn{2}{|l|}{${\mathbf F} 
+                       = q \left( {\mathbf E} 
+                       + {\mathbf v} \times {\mathbf B} \right)$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{\bf Flux Relationships} \\
+  \multicolumn{2}{|l|}{${\mathbf D} 
+                       = \frac{d \Psi_E}{d S} \hat {\mathbf n}_{S}$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{\bf Definitions} \\
+  ${\mathbf D}  - $ & Electric Field Density  \\
+  ${\mathbf E}  - $ & Electric Field Intensity\\
+  ${\mathbf H}  - $ & Magnetic Field Intensity\\
+  ${\mathbf B}  - $ & Magnetic Field Density\\
+  ${\epsilon}   - $ & Dielectric Permitivity\\
+  $\rho         - $ & Charge Density\\
+  ${\mathbf J}  - $ & Current Density\\
+  ${\Psi}_E     - $ & Electric Flux\\
+  ${\Psi}_B     - $ & Magnetic Flux\\
+  ${\chi}_E     - $ & Electric Susceptibility\\
+  ${\epsilon}_r - $ & Relative Permitivity\\
+   ~ & ~\\
+\hline
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Integral Theorems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightYellow}
+\begin{textblock*}{45mm}(45mm,12.75mm)
+\begin{tabular*}{68mm}{|l @{\extracolsep{\fill}} l|}\hline
+   ~ & ~\\
+  \multicolumn{2}{|c|}{\small \bf Integral Theorems} \scriptsize \\
+   ~ & ~\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{V} \nabla \cdot {\mathbf V} dV
+                       = \oint_{\partial V} {\mathbf V} 
+                            \cdot {\mathbf n} dA$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{S} \nabla \times {\mathbf F} 
+                          \cdot {\mathbf n} dA
+                       = \oint_{\partial S} {\mathbf F} \cdot d {\mathbf l}$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{C} \nabla \phi \cdot d {\mathbf l} 
+                       = \phi \left( C_b \right) - \phi \left( C_a \right)$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{S} {\mathbf n} \times \nabla \phi dA 
+                       = \oint_{\partial S} \phi d {\mathbf l}$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{S} {\mathbf n} \times \nabla \phi dA 
+                       = \oint_{\partial S} \phi d {\mathbf l}$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{V} \nabla \phi dV 
+                       = \oint_{\partial V} \phi {\mathbf n} dA$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{V} \nabla \times {\mathbf F} dV 
+                       = \oint_{\partial V} {\mathbf n} 
+                            \times {\mathbf F} dA$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$\int_{V} \left( \nabla \cdot {\mathbf G} 
+                       + {\mathbf G} \cdot \nabla \right) {\mathbf F} dV 
+                       = \oint_{\partial S} {\mathbf F} 
+                         \left( {\mathbf G} \cdot {\mathbf n} \right)$}\\
+  ~ & ~\\
+  \multicolumn{2}{|l|}{$ \int_V \left( \psi \nabla^2 \phi 
+                       - \phi \nabla^2 \psi \right) dV  
+                       = \oint_{\partial V} \left( \psi \nabla \phi 
+                       - \phi \nabla \psi \right) \cdot {\mathbf n} dA$}\\
+  ~ & ~\\
+\hline
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Vector Derivatives
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightYellow}
+\begin{textblock*}{85mm}(45mm,76mm)
+\begin{tabular*}{85mm}{|l @{\extracolsep{\fill}} l|}\hline
+   ~ & ~\\
+  \multicolumn{2}{|c|}{\small \bf Derivative Theorems} \scriptsize \\
+   ~ & ~\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{$\nabla \cdot \nabla \phi = \nabla^2 \phi$}\\
+  \multicolumn{2}{|l|}{$\nabla \cdot \nabla \times {\mathbf F} = 0$}\\
+  \multicolumn{2}{|l|}{$\nabla \times \nabla \phi = 0$}\\
+  \multicolumn{2}{|l|}{$\nabla \times \left( \nabla \times {\mathbf F} \right) 
+                       = \nabla \left( \nabla \cdot {\mathbf F} \right) 
+                       - \nabla^2 {\mathbf F}$}\\
+  \multicolumn{2}{|l|}{$\nabla \left( \phi \psi \right) 
+                       = \left( \nabla \phi \right) \psi 
+                       + \phi \left( \nabla \psi \right)$}\\
+  \multicolumn{2}{|l|}{$\nabla \left( {\mathbf F} \cdot {\mathbf G} \right) = 
+                       \left( {\mathbf F} \cdot \nabla \right) {\mathbf G} 
+                       + {\mathbf F} \times \left( \nabla 
+                       \times {\mathbf G} \right)
+                       + \left( {\mathbf G} \cdot \nabla \right) {\mathbf F}
+                       + {\mathbf G} \times \left( \nabla 
+                       \times {\mathbf F} \right)$}\\
+  \multicolumn{2}{|l|}{$\nabla \cdot \left( {\mathbf F} 
+                        \times {\mathbf G} \right) =
+                        \left( \nabla \times {\mathbf F} \right) 
+                        \cdot {\mathbf G}
+                        - \left( \nabla \times {\mathbf G} \right) 
+                        \cdot {\mathbf F}$}\\
+  \multicolumn{2}{|l|}{$\nabla \times \left( \phi {\mathbf F} \right) 
+                       = \left( \nabla \phi \right) 
+                       \times {\mathbf F} + \phi \nabla \times {mathbf F}$}\\
+  \multicolumn{2}{|l|}{$\nabla \times \left( {\mathbf F} 
+                       \times {\mathbf G} \right) 
+                       = \left( \nabla \cdot {\mathbf G} \right) {\mathbf F}
+                       - \left( \nabla \cdot {\mathbf F} \right) {\mathbf G} 
+                       + \left( {\mathbf G} \cdot \nabla \right) {\mathbf F}
+                       - \left( {\mathbf F} \cdot \nabla \right) {\mathbf G}$}\\
+   ~ & ~\\
+  \multicolumn{2}{|l|}{$\nabla \cdot  {\mathbf r} = 3$}\\
+  \multicolumn{2}{|l|}{$\nabla \times {\mathbf r} = 0$}\\
+  \multicolumn{2}{|l|}{$\left( {\mathbf G} \cdot \nabla \right) {\mathbf r} 
+                       = {\mathbf G}$}\\
+  \multicolumn{2}{|l|}{$\nabla^2 {\mathbf r} = 0 $}\\
+  \multicolumn{2}{|l|}{$\phi(r)$ or ${\mathbf F}(r): \nabla  
+                       = \frac{ {\mathbf r} }{r} \frac{d}{d r}$}\\
+  \multicolumn{2}{|l|}{$\nabla \left( {\mathbf A} \cdot {\mathbf r} \right) 
+                       = {\mathbf A}$}\\                      
+  \multicolumn{2}{|l|}{$\phi \left( \mathbf{A} \cdot \mathbf{r} \right)$ 
+                       or 
+                       ${\mathbf F} \left( \mathbf{A} \cdot \mathbf{r} \right): 
+                       \nabla = {\mathbf A} \frac{d}{d \left( \mathbf{A} 
+                       \cdot \mathbf{r} \right) }$ }\\
+\hline
+\end{tabular*}
+\end{textblock*}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Lie Derivative
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+${\mathcal L}_{\vec V} {\vec U} = [\vec V, \vec U] = -[\vec U, \vec V] = -{\mathcal L}_{\vec U} \vec V$\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Permutation Symbol
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Work Energy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Work Energy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Work Energy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Work Energy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{45mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\small \bf Work Energy} \scriptsize \\
+   ~ & ~\\
+  \multicolumn{2}{|c|}{$dW_E = -q {\mathbf E} \cdot d {\mathbf l}$}\\
+  \multicolumn{2}{|c|}{$W_E = \frac{1}{2} \int {\mathbf D} \cdot {\mathbf E}$}\\
+  \multicolumn{2}{|c|}{$W_E = \frac{1}{2} C \phi^2$}\\
+\hline
+\end{tabular*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Potential Relations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{45mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\small \bf Potential Relations} \scriptsize \\
+   ~ & ~\\
+  \multicolumn{2}{|c|}{${\mathbf E} = -\nabla \phi$}\\
+\hline
+\end{tabular*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Poisson Equation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{45mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\small \bf Poisson Equation} \scriptsize \\
+   ~ & ~\\
+  \multicolumn{2}{|c|}{$\nabla^2 \phi = 4 \pi \epsilon_0 \rho$}\\
+\hline
+\end{tabular*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Multipole Expansion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{45mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\small \bf Multipole Expansion\bf } \scriptsize \\
+   ~ & ~\\
+  \multicolumn{2}{|c|}{$1/| {\mathbf r - \mathbf r'} | = r^{-1} \left[ 1 + \left( \frac{r'}{r} \right)^2 
+                       - 2 {\hat \mathbf r} \cdot \frac{\mathbf r'}{r} \right]^{-1/2}$} \\
+  \multicolumn{2}{|l|}{$~~~~~=g$}\\
+\hline
+\end{tabular*}
+
+\begin{eqnarray*} a & = & b \end{eqnarray*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Coulomb's Law
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{55mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\small \bf Coulomb's Law } \scriptsize \\
+  \multicolumn{2}{|c|}{$$}\\
+  \multicolumn{2}{|l|}{The force exerted on a charge, $q_1$ located}\\
+  \multicolumn{2}{|l|}{at ${\mathbf r}_1$ by a charge $q_2$ located at ${\mathbf r}_2$ is}\\
+  \multicolumn{2}{|c|}{${\mathbf F_{e}} = \frac{q_1 q_2}{4 \pi \epsilon _0}
+                                          \frac{\left( {\mathbf r}_1 - {\mathbf r}_2 \right)}
+                                               {\left| {\mathbf r}_1 - {\mathbf r}_2 \right|^3}$}\\
+   ~ & ~\\
+  \multicolumn{2}{|c|}{$$}\\
+\hline
+\end{tabular*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Common Electric Field Configurations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular*}{58mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\small \bf Common ${\mathbf E}$-field Configurations} \scriptsize \\
+  \multicolumn{2}{|c|}{$$}\\
+  Point Charge:          & ${\mathbf E} = \frac{q}{4 \pi \epsilon _0 r^2}{\hat {\mathbf r}}$       \\
+  Infinite Line Charge:  & ${\mathbf E} = \frac{\lambda}{2 \pi \epsilon_0 r}{\hat {\mathbf \rho}}$ \\
+  Infinite Plane Charge: & ${\mathbf E} = \frac{\sigma}{2 \epsilon_0} \hat {\mathbf n}$            \\
+   ~ & ~\\
+  \multicolumn{2}{|c|}{$$}\\
+\hline
+\end{tabular*}
+
+
+$d {\mathbf H} = \frac{ I d {\mathbf l} \times {\mathbf a}_r}{4 \pi r^2}$\\
+$\int {\mathbf H} \cdot d {\mathbf l}  = I_{enc}$\\
+${\mathbf B} = \mu {\mathbf H}$\\
+$\nabla \times {\mathbf A} = {\mathbf B}$\\
+${\mathbf \tau} = {\mathbf \mu} \times {\mathbf B}$\\
+$L = \frac{N \Psi_B}{I}$\\
+toroid, square cross section: $L = \frac{ \mu_0 N^2 a}{2 \pi} \ln \left( \frac{r_2}{r_1} \right)$ where $a$ is the extent of the
+toroid along its axis and $r_1$ and $r_2$ are the inner and outer radii respectively.\par
+toroid, general cross section $S$: $ L = \frac{\mu_0 N^2 S}{2 \pi r}$ where $r$ is the radius at the midpoint of the cross section\par
+parallel conductors of radius $a$, separated by a distance $d$:  $\frac{L}{\ell}= \frac{\mu_0}{\pi} \cosh^{-1} \left( \frac{d}{2 a} \right)$\par
+Cylindrical conductor parallel to a ground plane: $\frac{L}{\ell} = \frac{\mu_0}{2 \pi} \cosh^{-1} \left( \frac{d}{2a} \right)$\par
+Long solenoid of small cross sectional area $S$: $L = \frac{ \mu_0 N^2 S}{\ell}$\\
+${\mathcal E} = - \frac{d \Psi_B }{d t}$\\
+
+
+
+
+
+$\nabla \psi \left( q_1,q_2,q_3 \right) = \sum_{i} {\mathbf e}_i \frac{1}{h_i} \frac{\partial \psi}{\partial q_i}$\\
+$\nabla \cdot {\mathbf V} = \frac{1}{h_1 h_2 h_3} \left[ 
+                   \frac{\partial}{\partial q_1} \left(V_1 h_2 h_3\right) + 
+                   \frac{\partial}{\partial q_2} \left(V_2 h_3 h_1\right) + 
+                   \frac{\partial}{\partial q_3} \left(V_3 h_1 h_2\right) \right]$\\
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightGreen}
+\normalsize
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \tiny ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf Classical Electrodynamics} \\
+       \tiny~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+\scriptsize
+
+\end{document}
+

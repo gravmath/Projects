@@ -1,0 +1,899 @@
+%appendix ADM
+
+\section{Introduction}
+
+Computer solutions of the dynamics of particles and fields in General Relativity
+require that general covariance be abandoned in favor of a scheme
+in which all of the physical quantities are expressed in terms of a common coordinate
+time.
+In a very real way then, all computer programs slice spacetime into spacelike slices, each one
+labelled by a unique value of coordinate time (page 486 of \refs{MTW}.)
+Data for the 3-geometry and its rate of change along with the initial configurations
+and rates of change for the relevant physical fields, all expressed on one slice, form the
+initial value data.
+The integration of the Einstein equations then proceeds by evolving these data
+from one slice to another, subject to a range of choices for the how
+the slices are connected using the lapse and shift.
+
+In this chapter, the steps required to formulate the Einstein field equations for modelling
+via computer are presented.
+Section \refp{S:3p1split} deals with how spacetime is foliated or sliced by surfaces of
+constant coordinate time and how the metric tensor is subsequently decomposed.
+Section \refp{S:spatial_geo} studies the spatial geometry induced on each slice.
+The spacetime Riemann tensor is related to the Riemann tensor associated with the 3-geometry
+of the slice and a measure of how the curvature changes from one slice to another,
+called the extrinsic curvature.
+Both of these sections are heavily influenced by the review article of York \refs{york78} and
+the style and notation reflect this.
+With these results in hand, the next three sections deal with some of the various schemes
+used to solve the Einstein equations.  Section \refp{S:ADM_gp} presents a derivation of the
+Arnowitt-Deser-Misner (ADM) field equations in their original form with the
+spatial metric and associated conjugate momentum as the dynamic variables.  The approach is
+based on Appendix E of Wald's book \refs{wald84}.
+Section \refp{S:ADM_gk} presents the variant ADM field equations in which the 3-metric
+and the extrinsic curvature are chosen as the dynamic variables.
+This form seems to be almost always favored over the original ADM equations and the near-universally accepted choice for either numerical work
+forming eitherwriting the as with the in The next three
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spacetime Foliation}\label{S:3p1split}
+
+The initial-value formulation of Arnowitt, Deser, and Misner (ADM) depends on
+being able to break spacetime up into a foliation of constant-$t$ spacelike
+hypersurfaces $\Sigma_t$.  In this section, the definition of this foliation
+is presented.
+
+
+\subsection{Surfaces of Constant Time}\label{SS:const_t}
+
+Define a one-form $\Omega_a$ corresponding to surfaces of constant time $t$ by
+taking the covariant derivative of the time coordinate
+\begin{equation}\label{eq:cov_time}
+   \Omega_{a} = \nabla_{a} t
+              \doteq \left( \begin{array}{cccc} 1&0&0&0 \end{array} \right) \eqc
+\end{equation}
+subject to the condition that $\Omega_a$ be timelike
+\[
+   \Omega^{a} \Omega_{a} = g^{00} \equiv \frac{-1}{N^2} \eqp
+\]
+Introduce the normalized one-form
+\begin{equation}\label{eq:norm_form}
+   \omega^{a} \omega_{a} = -1
+\end{equation}
+via the definition
+\[
+   \omega_{a} = N \Omega_{a} \eqp
+\]
+
+A normalized unit-vector ${n^a}$ orthogonal to a constant-$t$ slice can be
+constructed by
+\begin{equation}\label{eq:unit_norm}
+   n^{a} = - g^{a b} \omega_{b} \eqc
+\end{equation}
+with the fundamental inner-products
+\[
+   \langle \tilde n , \bar n \rangle =
+   \langle -\tilde \omega , -\bar \omega \rangle =
+   \omega_{a} \omega^{a} = -1
+\]
+and
+\[
+   \langle \tilde \omega ,  \bar n \rangle =
+   \langle \tilde \omega , -\bar \omega \rangle =
+   \omega_{a} \omega^{a} = 1 \eqp
+\]
+
+The former relation demonstrates that $n^a$ is a timelike vector and the
+latter guarantees that $n^a$ is future-pointing.
+
+From equations (\ref{eq:cov_time}) and (\ref{eq:unit_norm}), the unit
+one-form $n_a$ is immediately seen to have components
+\[
+   n_a \doteq \left(-N, 0, 0, 0 \right) \eqp
+\]
+Using the form of the projection tensor
+\begin{eqnarray}\label{eq:proj_tensor}
+   h_{ab} & = & g_{ab} + n_{a}n_{b} \nonumber \\
+   {h^{a}}_{b} & = &  g^{ac} h_{cb} \equiv {P^{a}}_{b} =
+   {\delta^{a}}_{b} + n^{a} n_{b}
+\end{eqnarray}
+several important relations involving the metric can be worked out.  First of
+all, it is clear that the definition of the projection tensor
+(\ref{eq:proj_tensor}) ensures that $n^a$ is orthogonal to the projected
+surface since
+\[
+   n^a {h_a}^b = n^a \left( {\delta_a}^b + n_a n^b \right) = n^b + n^a n_a n^b = 0
+\]
+In what follows, it will often be convenient to refer to arrays of components
+in either column or row form.  Arrays with a tilde will be taken to be arrays
+of covariant components and arrays with a bar will be taken as arrays of contravariant
+components.  Arrays will be represented, by default, as column arrays unless
+they possess a $T$ superscript (standing for transpose) in which case they are
+interpreted as row arrays.
+The spatial portion of the metric follows along the same line.  Thus
+$g_{ij} \equiv h_{ij} = {\tilde{\tilde h}}$ and when needed
+${\tilde {\tilde h}}^{-1} = \left( h_{ij} \right)^{-1} = h^{ij} =
+{\bar {\bar h}}$.
+
+
+\subsection{Determining the Metric Components}\label{SS:g_comps}
+
+Assume that the metric and the inverse metric are given by
+\[
+   g_{ab} \doteq
+   \left(
+     \begin{array}{c c}
+       g_{00}     & {\tilde N}^{T} \\
+       {\tilde N} & {\tilde {\tilde h}}
+     \end{array}
+   \right)
+\]
+and
+\[
+   g^{ab} \doteq
+   \left(
+     \begin{array}{c c}
+       -N^{-2}        & {\bar \delta}^{T} \\
+       {\bar \delta}  & {\bar {\bar \sigma}}
+     \end{array}
+   \right)
+\]
+respectively.
+
+In this notation, the unit-normal to the constant-$t$ slice is given by
+\begin{eqnarray*}
+   n^a & = &  g^{ab} n_{b} \\
+       & \doteq &
+   \left(
+     \begin{array}{c c}
+        -N^{-2}       & {\bar \delta}^{T} \\
+       {\bar \delta}  & {\bar {\bar \sigma}}
+     \end{array}
+   \right)
+%
+   \left(
+     \begin{array}{c}
+       -N \\
+       0
+     \end{array}
+   \right) \\
+%
+   & = &
+   \left(
+     \begin{array}{c}
+       N^{-1} \\
+       -N \bar \delta
+     \end{array}
+   \right) \eqp
+\end{eqnarray*}
+Now $h_{ab}$ can be constructed via two routes.  First ${h^{a}}_{b}$ can be
+determined
+\begin{eqnarray*}
+   {h^{a}}_{b} & = &  {\delta^{a}}_{b} + n^{a} n_{b} \\
+             & = & \left(
+                      \begin{array}{cc}
+                         1 & 0 \\
+                         0 & 1
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{c}
+                          N^{-1} \\ -N \bar \delta
+                      \end{array}
+                   \right)
+                   \left(
+                      \begin{array}{cc}
+                         -N & 0
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         1 & 0 \\
+                         0 & 1
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{cc}
+                         -1             & 0 \\
+                         N^2 \bar \delta & 0
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         0               & 0 \\
+                         N^2 \bar \delta & 1
+                      \end{array}
+                   \right)
+\end{eqnarray*}
+and its index lowered to yield
+\begin{eqnarray*}
+   h_{ab} & = &  g_{a c} {h^{c}}_{b}  \\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00}   & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right)
+                   \left(
+                      \begin{array}{cc}
+                         0               & 0 \\
+                         N^2 \bar \delta & 1
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         N^2 {\tilde N}^T \bar \delta & {\tilde N}^T \\
+                         N^2 {\tilde {\tilde h}} \bar \delta & {\tilde {\tilde h}}
+                      \end{array}
+                   \right)
+\end{eqnarray*}
+Finally $h_{ab}$ can be constructed directly by
+\begin{eqnarray*}
+   h_{ab} & = &  g_{ab} + n_{a}n_{b}  \\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00}   & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{c}
+                         -N \\
+                          0
+                      \end{array}
+                   \right)
+                   \left(
+                      \begin{array}{c c}
+                         -N & 0
+                      \end{array}
+                   \right)\\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00}   & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right) +
+                   \left(
+                      \begin{array}{cc}
+                         N^2 & 0 \\
+                         0   & 0
+                      \end{array}
+                   \right) \\
+             & = & \left(
+                      \begin{array}{cc}
+                         g_{00} + N^2  & {\tilde N}^T \\
+                         \tilde N & {\tilde {\tilde h}}
+                      \end{array}
+                   \right) \eqp
+\end{eqnarray*}
+Equating the two forms for $h_{a b}$ give the relations
+\begin{eqnarray*}
+   \bar \delta & = & \frac{1}{N^2} {\tilde {\tilde h}}^{-1} {\tilde N} \\
+               & = & \frac{h^{ij} N_j}{N^2} \\
+               & \equiv & \frac{N^i}{N^2}
+\end{eqnarray*}
+and
+\begin{eqnarray*}
+   g_{00} & = &  -N^2 + {\tilde N}^T {\tilde {\tilde h}}^{-1} \tilde N \\
+          & = &  -N^2 + N^{i} N_{i} \eqp
+\end{eqnarray*}
+The relation for ${\bar {\bar \sigma}}$ can be determined from the requirement
+that ${\tilde {\tilde g}} {\bar {\bar g}} = 1$ and yields
+\[
+   {\bar {\bar \sigma}} = {\tilde {\tilde h}}^{-1}
+                          - \frac{ \bar N {\bar N}^T }{N^2} \eqp
+\]
+Combining these relations arrives at the ADM form of the metric
+\begin{eqnarray}\label{eq:g_ADM}
+   g_{ab} & = & \left( -N^2 + N^i N_i \right) dt^2 \nonumber \\
+          &   &  + 2 N_i dt dx^i + h_{ij} dx^i dx^j \nonumber \\
+          & = & -N^2 dt^2 \nonumber \\
+          &   & + h_{ij}\left(dx^i + N^i dt\right) \left(dx^j + N^j dt\right)
+\end{eqnarray}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Studying the Spatial Geometry}\label{S:spatial_geo}
+
+In this section, the physical attributes of the constant-$t$ spacelike
+hypersurfaces $\Sigma_t$ is presented.  First the foliation developed in the
+preceding section will be interpreted.  The extrinsic curvature is then
+defined and will be shown to be the rate-of-change of the 3-metric along
+the vector field,$n^a$, normal to the set \{ $\Sigma_t$ \} of spacelike hypersurfaces.
+Finally, the 3-dimensional Riemann tensor will be presented in terms of a
+covariant derivative defined within the hypersurface.
+
+%\begin{figure}
+%\begin{center}
+%\epsfig{file=shift_lapse.eps, width = 3.0 in}
+%\end{center}
+%\caption{test}
+%\end{figure}
+
+
+\subsection{Physical Interpretation of the Foliation}
+
+Physical meaning can be attached to ${\tilde {\tilde h}}$ (the spatial portion
+of $h_{ab}$ ) by noting that from the first expression for the ADM metric
+(\ref{eq:g_ADM}) $h_{ij}$ acts as a metric on the spatial constant-$t$ slice.
+The spatial vector $N^i$, which is called the shift vector, can be
+physically interpreted in terms of the movement of time.  Defining a vector
+corresponding to positive time movement as
+\begin{eqnarray*}
+  t^a & \doteq & \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \end{array} \right) \\
+      &   =    &  N \left( \begin{array}{cc}
+                             \frac{1}{N} & \frac{-\bar N}{N}
+                           \end{array}
+                    \right) +
+                    \left( \begin{array}{cc}
+                             0 & \bar N
+                           \end{array}
+                    \right) \\
+      &   =    & N n^a + N^a
+\end{eqnarray*}
+gives an immediate relation between the time vector and the normal vector, in
+terms of the shift.
+Geometrically, the time vector `stretches' between points with the same spatial
+coordinates on the two slices.
+A particle at rest on the lower surface will have a worldline whose tangent
+is $t^a$.
+By considering two adjacent spatial hypersurfaces defined
+as times $t$ and $t+dt$ respectively, allows a fairly simple physical
+interpretation.
+The separation, in proper time, between the two slices, given by the projection
+of $\bar t$ along the normal $\bar n$, is
+\[
+  \langle \tilde \omega , \bar t \rangle = N
+\]
+This result motivates the name of `lapse' for the function $N$.
+The normal $n^a$, which is perpendicular to the lower surface, connects a
+point on the lower surface, with coordinates $x^i(lower)$, to a point on
+the upper surface, with coordinates $x^i(upper)$.
+The two coordinates are related by
+\[
+   x^i(upper) = x^i(lower) - N^i dt \eqp
+\]
+
+It is important to realize that the hypersurface normal field does not satisfy
+the geodesic equation even though the timelike vector field $t^a$ does.  The
+amount that the hypersurface normal field fails the geodesic equation is given
+by its four-acceleration
+\[
+   a^{b} = n^a {n^b}_{;a} \eqp
+\]
+In addition, since $n^a$ is normalized, it is always orthogonal to its four-
+acceleration
+\[
+   n^b a_b = n^b n^c \nabla_c n_b= n^c \left( n^b \nabla_c n_b \right) = 0 \eqp
+\]
+
+
+\subsection{The Many Faces of the Extrinsic Curvature $K_{ab}$}\label{S:K_faces}
+
+As discussed above, once the spacetime foliation is determined the metric can
+be split into the shift, the lapse, and the 3-metric.  The central idea for
+performing this foliation was to define a one-form that is a differential
+$\Omega_a = dt$ of the coordinate time $t$.  This definition corresponds to
+surfaces of constant coordinate time and implies
+\[
+  \begin{array}{ccc}
+    d \Omega = 0 & \leftrightarrow & \nabla_{[a} \Omega_{b]} = 0
+  \end{array}
+\]
+which is a consequence of the Poincar\'{e} lemma.  Defining the normalized
+one-form as in (\ref{eq:norm_form}) yields the corresponding relation
+\[
+  \begin{array}{ccc}
+    \omega \wedge d \omega = 0 & \leftrightarrow & \omega_{[a}
+    \nabla_{b} \omega_{c]} = 0
+  \end{array}
+\]
+which is an instance of the Froebinius theorem.  The one-form dual to the
+normal vector to a constant-$t$ surface, allows the Froebinius relation
+to be rewritten as
+\begin{equation}\label{eq:norm_Froeb}
+  n_{[a} \nabla_{b} n_{c]} = 0
+\end{equation}
+which is the crucial relationship that reveals the many faces of the
+extrinsic curvature.  By contracting (\ref{eq:norm_Froeb}) with $n^c$ the
+relationship
+\begin{equation}\label{eq:norm_Fr_con}
+ \begin{array}{ccccc}
+  n^c n_{[a} \nabla_{b} n_{c]} & = & 0 & = & n_{[a} a_{b]} + \nabla_{[a} n_{b]}
+ \end{array}
+\end{equation}
+is obtained.  With this in hand, the general definition of the extrinsic
+curvature
+\[
+   K_{ab} = -\nabla_{a} n_{b} - n_{a} a_{b}
+\]
+is seen to be entirely symmetric in its two indices.  This follows from
+\[
+   K_{ab} = -\nabla_{(a} n_{b)} - n_{(a} a_{b)} -\nabla_{[a} n_{b]} - n_{[a} a_{b]}
+\]
+and (\ref{eq:norm_Fr_con}).  Thus the extrinsic curvature can also be written as
+\[
+   K_{ab}  =  -\nabla_{(a} n_{b)} - n_{(a}a_{b)} \eqp
+\]
+Define $\perp$ as shorthand for applying the projection tensor to all free
+indices.  By applying $\perp$ to $K_{ab}$ and repeatedly using the identities
+$n^a \nabla_b n_a = 0$ and $n^a {h_a}^b = 0$gives
+\begin{eqnarray*}
+   \perp K_{ab} & = & {h_a}^c {h_b}^d K_{cd} \\
+%                & = & -\nabla_{(a} n_{b)} - n_{a} n^c \nabla_c n_{b} \\
+%                &   & -n_b n^d \nabla_d n_a \\
+                & = & -\nabla_{(a} n_{b)} - n_{(a} a_{b)} \\
+                & = & K_{ab}
+\end{eqnarray*}
+which demonstrates that $K_{ab}$ is entirely a spatial tensor.
+
+Finally, the extrinsic curvature can be related to the Lie derivative of the
+three metric along the normal vector field giving
+\[
+   {\mathcal L}_{\mathbf{n}} h_{ab} = 2 \left[ \nabla_{(a} n_{b)} + n_{(a}a_{b)} \right]
+\]
+which when compared with (\ref{eq:norm_Froeb}) yields the desired connection
+\begin{equation}\label{eq:Lie_K}
+   K_{ab} = - \frac{1}{2} {\mathcal L}_{\mathbf{n}} h_{ab}
+\end{equation}
+between the extrinsic curvature and the 3-metric.
+
+
+\subsection{The 3-Dimensional Riemann Tensor}
+To complete the study of the spatial hypersurface, the 3-dimensional Riemann
+tensor must be defined in terms of the spatial covariant derivative $D_a$ which
+takes the form
+\[
+   D_a {T^{b_1 \ldots b_k}}_{c_1 \ldots c_m} = {h^{b_1}}_{s_1}
+                                               \ldots {h_{c_m}}^{t_m} {h_a}^{d}
+                                               \nabla_d
+                                               {T^{s_1 \ldots s_k}}_{t_1 \ldots t_m}
+\]
+on the spatial slice.  That this is a good definition of a covariant derivative
+is seen from its application to the 3-metric which yields
+\[
+   D_a h_{bc} = {h_a}^{r} {h_b}^s {h_c}^t \nabla_r
+                \left( g_{st} + n_s n_t \right) = 0
+\]
+since $g_{ab}$ is covariantly constant and since ${h_a}^b n_b = 0$.  The
+3-dimensional Riemann tensor is then defined by
+\begin{equation}\label{eq:3_d_Riemann}
+   {}^{(3)}{R^c}_{dab} V^d = \left( D_{a}D_{b} - D_{b}D_{a} \right) V^c
+\end{equation}
+which is exactly the same form as in 4-dimensional spacetime.  To achieve the
+3+1 decomposition, the spatial Riemann must be related to the spacetime Riemann.
+This process starts with the term
+\begin{eqnarray*}
+D_b V^c & = & {h_b}^a {h^c}_e \nabla _a V^e \\
+        & = & {h_b}^a \left( {\delta ^c}_e + n^c n_e  \right) \nabla _a V^e \\
+        & = & {h_b}^a {\delta ^c}_e \nabla _a V^e + {h_b}^a n^c n_e \nabla _a V^e \\
+        & = & {h_b}^a \nabla _a V^c - {h_b}^a n^c V^e \nabla _a n_e \\
+        & = & {h_b}^a \nabla _a V^c - {h_b}^a n^c V^e
+              \left( -K_{ae} - n_a a_e \right) \\
+        & = & {h_b}^a \nabla _a V^c + K_{be} n^c V^e \eqp
+\end{eqnarray*}
+The next step involves a repeated application of the 3-dimensional covariant
+derivative which when expanded yields
+\begin{eqnarray*}
+  D_a \left( D_b \, V^c \right) & = &   D_a \left({h_b}^d \nabla _d V^c \right)
+                                   + D_a \left(K_{bd} V^d n^c \right) \\
+                             & = &   {h_b}^d {h_a}^e {h_d}^f {h^c}_g
+                                     \nabla _e \nabla _f V^g
+                                   + D_a \left(K_{bd} V^d n^c \right) \\
+                             & = &   {h_b}^f {h_a}^e {h^c}_g
+                                     \nabla _e \nabla _f V^g
+                                   + D_a \left(K_{bd} V^d n^c \right) \,.
+\end{eqnarray*}
+The last term can be simplified
+\begin{eqnarray*}
+  D_a \left( K_{bd} V^d n^c \right) & = & {h_a}^p {h_b}^q {h^c}_r
+                                          \nabla _p
+                                          \left( K_{qd} V^d n^r \right) \\
+                                    & = & {h_a}^p {h_b}^q {h^c}_r
+                                          K_{qd} V^d \nabla _p n^r \\
+                                    & = & K_{bd} {h_a}^p {h^c}_r V^d
+                                          \left(-{K_p}^r - n_p a^r \right) \\
+                                    & = & -K_{bd}{K_a}^c V^d \, ,
+\end{eqnarray*}
+where ${h^c}_r n^r = 0$ was used to eliminate two terms.
+To complete the evaluation of the 3-dimensional Riemann, the above expressions
+must be anti-symmetrized over $a$ and $b$ giving
+\begin{eqnarray*}
+ \left( D_{a}D_{b} - D_{b}D_{a} \right) V^c & = & {h_b}^f {h_a}^e {h^c}_g
+                                                 \left(   \nabla _e \nabla _f
+                                                        - \nabla _f \nabla _e
+                                                 \right)  V^g \\
+                                            &    &
+                                                 +
+                                                 \left(   K_{ad} {K_b}^c
+                                                        - K_{bd} {K_a}^c
+                                                 \right) V^d \eqp
+\end{eqnarray*}
+Substituting in the definitions of the 3- and 4-dimensional Riemann tensors
+gives
+\begin{eqnarray*}
+ {}^{(3)} {R^c}_{dab} V^d & = & {h_b}^f {h_a}^e {h^c}_g \, {}^{(4)} {R^g}_{mef} V^m \\
+                                            &    &
+                                                 +
+                                                 \left(   K_{ad} {K_b}^c
+                                                        - K_{bd} {K_a}^c
+                                                 \right) V^d \eqp
+\end{eqnarray*}
+
+\begin{eqnarray}\label{eq:gauss}
+ {}^{(3)} {R^c}_{dab} & = & {h_b}^f {h_a}^e {h^c}_g {h_d}^m
+                            \, {}^{(4)} {R^g}_{mef} \nonumber \\
+                      &   &
+                            +
+                            \left(   K_{ad} {K_b}^c
+                                   - K_{bd} {K_a}^c
+                            \right) \nonumber \\
+                       & = & \perp {R^c}_{dab} + K_{ad}{K_b}^c - K_{bd}{K_a}^{c} \, .
+\end{eqnarray}
+between the spatial and spacetime Riemann tensors.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The ADM Field Equations}\label{S:ADM_gp}
+
+Finally we arrive at the field equations for the ADM system.  The equations are
+obtain by first recasting the Hilbert-Einstein action in terms of the shift, the
+lapse, the 3-metric, and the extrinsic curvature.  Once done, a conjugate
+momentum to the 3-metric is defined and the action is put into full Hamiltonian
+form.
+
+\subsection{Expressing the Hilbert Action in 3+1 Language}\label{SS:Hilbert_A}
+
+Before transforming the Hilbert action the final relation between $K_{ab}$ and
+the time derivative of the spatial geometry must be derived.  A straightforward
+manipulation of (\ref{eq:Lie_K}) gives
+\begin{eqnarray}\label{eq:Lie_K_2}
+   K_{ab} & = & -\frac{1}{2} {\mathcal L}_{\mathbf{n}} h_{ab} \nonumber \\
+          & = & -\frac{1}{2} \left[
+                                \left(\nabla_c h_{ab}\right)n^c
+                                + h_{ac} \nabla_b n^c + h_{cb} \nabla_a n^c
+                               \right] \nonumber \\
+          & = & -\frac{1}{2} \left[
+                                \left(
+                                  \nabla_c h_{ab}
+                                \right)n^c \right. \nonumber \\
+          &   &                   \left. + \frac{1}{N}h_{ac}
+                                  \left\{ \nabla_b \left(N n^c \right)
+                                          - n^c \nabla_b N \right\} \right. \nonumber \\
+          &   &                   \left. + \frac{1}{N}h_{cb}
+                                  \left\{ \nabla_a \left(N n^c \right)
+                                          - n^c \nabla_a N \right\}
+                             \right] \nonumber \\
+          & = & -\frac{1}{2N} {\mathcal L}_{N\mathbf{n}} h_{ab} \eqp
+\end{eqnarray}
+From the definition of the normal vector in terms of the time vector and the shift
+the above relation becomes
+\begin{eqnarray}
+K_{ab}    & = & -\frac{1}{2 N} {\mathcal L}_{\mathbf{t} - \mathbf{N}} h_{ab} \nonumber \\
+          & = & -\frac{1}{2 N} \left[ {\dot h}_{ab}
+               - {\mathcal L}_{\mathbf{N}} h_{ab} \right] \eqp
+\end{eqnarray}
+
+The inherent flexibility of the Lie derivative can be exploited to simplify the
+calculation of the Lie derivative of the metric along the shift vector by
+using the spatial covariant derivative (and in the process getting rid of all
+derivatives of the 3-metric except for the $\mathbf{\dot h}$ term).
+Doing so gives
+\[
+   {\mathcal L}_{\mathbf{N}} h_{ab} = h_{ab|c} N^c + h_{cb} {N^{c}}_{|a}
+                                                  + h_{ac} {N^{c}}_{|b}
+\]
+where the vertical bar stands for the spatial covariant derivative.  Combining
+this result with (\ref{eq:Lie_K_2}) gives
+\[
+   K_{ab} = -\frac{1}{2 N} \left( {\dot h}_{ab} - D_{a} N_{b} - D_{b} N_{a} \right) \eqp
+\]
+With the above results in hand, it is relatively simple to recast the Hilbert
+action.  From the definition of the Einstein tensor the Ricci scalar can be
+isolated by contracting the Einstein tensor relation with unit-normals to give
+\begin{equation}\label{eq:Ricci}
+   R = 2 \left( G_{ab}n^an^b - R_{ab} n^a n^b \right) \eqp
+\end{equation}
+The term involving the Einstein tensor in (\ref{eq:Ricci}) can be related to
+contractions on the Riemann tensor through an equivalent route.  Starting from
+\begin{eqnarray*}
+   \frac{1}{2} R_{abcd} h^{ac} h^{bd} & = & R + R_{ab} n^a n^b \nonumber \\
+                                      & = & G_{ab} n^a n^b
+\end{eqnarray*}
+and using (\ref{eq:gauss}) gives
+\begin{eqnarray*}
+   R_{abcd} h^{ac} h^{bd} & = & R_{abcd}{h^a}_m h^{mq} {h_q}^c {h^b}_s h^{st} {h_t}^d \nonumber \\
+                          & = & \perp R_{msqt} h^{mq} h^{st} \nonumber \\
+                          & = & \perp \left( {}^{(3)}R_{msqt} + K_{st}K_{qm} \right. \nonumber \\
+                          &   & \left. - K_{qt}K_{sm} \right) h^{mq} h^{st} \nonumber \\
+                          & = & {}^{(3)}R + {Tr(K)}^2 - K^{ms}K_{ms} \nonumber \\
+                          & = & {}^{(3)}R + {Tr(K)}^2 - Tr({\mathbf K}^2)
+\end{eqnarray*}
+which is seen to be the first term in equation (\ref{eq:Ricci}).
+The second term on the right-hand side of
+(\ref{eq:Ricci}) is
+\begin{eqnarray*}
+   R_{ab} n^a n^b & = & {R^c}_{acb} n^a n^b \\
+                  & = & n^b {R^c}_{acb}n^a \\
+                  & = & n^b \left( \nabla_c \nabla_b - \nabla_b \nabla_c \right) n^c \\
+                  & = & \nabla_c(n^b \nabla_b n^c)-(\nabla_c n^b)(\nabla_b n^c) \\
+                  &   & - \nabla_b(n^b \nabla_c n^c)+(\nabla_b n^b)(\nabla_c n^c) \\
+                  & = & K^2 - K_{ab} K^{ab} -
+                          \nabla_c \left( n^b \nabla_b n^c \right) \\
+                  &   & + \nabla_b \left( n^b \nabla_c n^c \right)  \\
+                  & = & Tr(K)^2 - Tr({\mathbf K}^2) -
+                          \nabla_c \left( n^b \nabla_b n^c \right) \\
+                  &   & + \nabla_b \left( n^b \nabla_c n^c \right)  \eqp
+\end{eqnarray*}
+Since the last two terms are divergences they will be ignored.  Finally using
+$\sqrt{-g} = N \sqrt{h}$ gives the ADM Lagrange density
+\begin{equation}\label{eq:Hilbert_L}
+   {\mathcal L} = N \sqrt{h} \left[ {}^{(3)}R + Tr({\mathbf K^2}) - Tr(K)^2 \right] \eqp
+\end{equation}
+
+
+\subsection{The ADM Action in Canonical Coordinates}\label{SS:Can_ADM}
+
+The starting point for deriving the ADM field equations is the Hilbert Lagrangian
+density (\ref{eq:Hilbert_L}) expressed in $3+1$ language in terms of the
+3-dimensional Ricci scalar and the extrinsic curvature of the spatial
+hypersurface (with $K= {K^a}_{a}$).  The first step is to define the conjugate
+momenta by
+\[
+   \pi^{ab} = \frac{\partial {\mathcal L} } {\partial {\dot h}_{ab}}
+            = \frac{\partial {\mathcal L} } {\partial K_{ab}}
+              \frac{\partial K_{ab}}{\partial {\dot h}_{ab} }
+\]
+and to use the relationship between the extrinsic curvature and the
+time-derivative of the 3-metric (\ref{eq:Lie_K_2}) to arrive at
+\begin{equation}\label{eq:pi_def}
+   \pi^{ab} = -\sqrt{h} \left[ K^{ab} - h^{ab} K \right] \eqp
+\end{equation}
+The next step is to define the Hamiltonian density as
+\[
+   {\mathcal H} = \pi^{ab} {\dot h}_{ab} - {\mathcal L} \eqp
+\]
+Solving (\ref{eq:Lie_K_2}) for
+\[
+   {\dot h}_{ab} = - 2 N K_{ab} + 2 N_{(a|b)}
+\]
+and use this in conjunction with (\ref{eq:pi_def}) contracted with $h_{ab}$
+\begin{eqnarray*}
+   \pi^{ab} h_{ab} & = & -\sqrt{h} \left[ K - K {h^b}_{b} \right] \\
+                   & = & -\sqrt{h} \left[ K - 3 K \right] \\
+                   & = & 2\sqrt{h} K
+\end{eqnarray*}
+allows (\ref{eq:pi_def}) to be inverted, giving $K^{ab}$ in terms of $\pi^{ab}$
+as
+\[
+   K^{ab} = -\frac{\pi^{ab}}{\sqrt{h}} + \frac{\pi}{2 \sqrt{h}} h^{ab} \eqp
+\]
+Using these relations,, the Hamiltonian density becomes
+\begin{eqnarray}\label{eq:H_den_1}
+   {\mathcal H} & = & \sqrt{h} N \left[ \frac{\pi^{ab} \pi_{ab}}{h} -
+                                   \frac{ \pi^2}{2 h} - {}^{(3)}R
+                            \right] \nonumber \\
+               &   & + 2 N_a {\pi^{ab}}_{|b} - 2 \left( N_a \pi^{ab} \right)_{|b} \eqp
+\end{eqnarray}
+Since the last term in (\ref{eq:H_den_1}) is a total divergence, it can be
+ignored and the Lagrangian density becomes
+\begin{eqnarray}
+   {\mathcal L} = {\dot h}_{ab} \pi^{ab} - N \left(
+                 \underbrace{ \sqrt{h}
+                 \left[ \frac{\pi^{ab} \pi_{ab}}{h} -
+                        \frac{ \pi^2}{2 h} - {}^{(3)}R
+                 \right]}_{R^0} \right) \nonumber \\
+                 - N_a \left( \underbrace{ -2  {\pi^{ab}}_{|b}}_{R^i} \right)
+\end{eqnarray}
+which is the standard ADM Lagrangian density.
+
+The ADM action is then
+\begin{equation}\label{eq:ADM_action}
+   I = \frac{1}{16 \pi} \int dt d^3x \left[ {\dot h}_{ab} \pi^{ab}
+                                            - N R^0 - N_i R^i \right]
+\end{equation}
+where the change in index notation was done to emphasize the spatial nature of
+$N_i$ and $R^i$.
+
+
+\subsection{The Variations}\label{SS:Variations}
+
+In this section we present the variations of the action that lead to the
+ADM field equations.  The variations are with respect to the shift, the lapse,
+the 3-metric and its conjugate momentum.
+
+
+\subsubsection{Varying the Shift and Lapse}
+
+In canonical form, the ADM action (\ref{eq:ADM_action}) contains two non-
+dynamical entities, the shift and the lapse, which act effectively as Lagrange
+multipliers.  Variation of the ADM action with respect to these parameters
+yields the initial value equations
+\[
+   R^0 = -\sqrt{h} \left[ {}^{(3)}R + h^{-1} \left( \frac{1}{2} {\pi}^2 -
+                                                Tr \left( \mathbf{\pi}^2 \right)
+                                             \right)
+                   \right] = 0
+\]
+and
+\[
+   R^i = -2 {\pi^{ij}}_{|j} = 0 \eqp
+\]
+
+
+\subsubsection{Varying the Conjugate Momenta}
+
+The next variation to consider is that of the conjugate momenta.  This variation
+is relatively straightforward and is carried out in two steps.  The first step
+involves taking the variation of $N R^0$ with respect to $\pi^{ij}$ which results
+in
+\[
+\frac{ \delta N R^0}{\delta \pi^{ij}} = \frac{2 N}{\sqrt{h}}
+                                      \left(
+                                        \pi_{ij} - h_{ij} \frac{\pi}{2}
+                                      \right) \eqp
+\]
+the second step involves taking the variation of $N_i R^i$ with respect to $\pi^{ij}$
+, noting in the course of the variation, that from its definition $\pi^{ij}$ must
+be symmetric.  Thus
+\[
+   \frac{\delta N_i R^i}{\delta \pi^{ij}} = D_{(i} N_{j)}
+\]
+and the variation results in the equation for the time-derivative of the 3-metric
+as
+\[
+   {\dot h}_{ij} = \frac{2 N}{\sqrt{h}} \left( \pi_{ij} - h_{ij} \frac{\pi}{2}
+                                        \right) + D_{(i} N_{j)} \eqp
+\]
+\subsubsection{Varying the 3-Metric}
+
+Finally, the variation of the ADM action with respect to the 3-metric $h_{ij}$
+must be performed.  Due to is complexity, this variation is best performed
+on each term in the action and the results combined at the end.  Starting with
+$R^0$, the variation is
+
+\begin{eqnarray*}
+   \frac{\delta N R^0}{\delta h_{ij}} & = &
+   \underbrace{\frac{\delta}{\delta h_{ij}} \left( N \sqrt{h} {}^{(3)}R \right)}
+              _{A1}
+  +\underbrace{\frac{\delta}{\delta h_{ij}} \left( \frac{N \pi^2}{2 \sqrt{h}} \right)}
+              _{A2} \\
+  & &
+  -\underbrace{\frac{\delta}{\delta h_{ij}} \left( \frac{N Tr \left(\pi^2 \right)}
+                                                   {\sqrt{h}} \right)}
+              _{A3} \eqp
+\end{eqnarray*}
+The term labeled $A1$ yields two basic terms
+
+\[
+   A1 = N \sqrt{h} \left[ \frac{1}{2} {}^{(3)}R h^{ij} - {}^{(3)}R^{ij} \right]
+        + N \sqrt{h} h^{k \ell} \frac{\delta R_{k \ell}}{\delta h_{ij}} \eqp
+\]
+the first term arise directly from the variations of the metric factors $\sqrt{h}$
+and the $h^{ab}$ in the contraction to form the Ricci scalar (as it does in
+the conventional Hilbert action).
+The second term
+\[
+  N \sqrt{h} h^{ab} \delta R_{ab} = N \sqrt{h} h^{ab}
+                                   \left(
+                                     \delta {\Gamma^c}_{ab;c} -
+                                     \delta {\Gamma^c}_{ac;b}
+                                   \right)
+\]
+normally vanishes under a covariant integration by parts when $N=constant$.  This can
+be seen by writing out the first term (with $N=1$)
+\[
+  \sqrt{h} h^{ab} \delta {\Gamma^c}_{ab;c} = \left(
+                                               \sqrt{h} h^{ab} \delta {\Gamma^c}_{ab}
+                                             \right)_{;c} -
+                                             \left(
+                                               \sqrt{h} h^{ab}
+                                             \right)_{;c} \delta {\Gamma^c}_{ab}
+\]
+as representative.
+Since both $\sqrt{h}$ and $h^{ij}$ are covariantly constant, the second term is
+identically zero.  The first term is a total divergence and can be dropped.
+However, the presence of the lapse function yields a `boundary' term of the form
+\begin{equation}\label{eq:piece_of_A}
+   \sqrt{h} h^{ab} \left(   N_{;b} \delta {\Gamma ^c}_{ac}
+                          - N_{;c} \delta {\Gamma ^c}_{ab} \right) .
+\end{equation}
+Using the standard expression for the connection coefficients
+${\Gamma^a}_{bc}$ their variations can be expressed as
+\[
+   \delta {\Gamma^c}_{ab} = \delta \left[ \frac{1}{2} h^{cs}
+                            \left( h_{sa,b} + h_{sb,a} - h_{ab,s} \right) \right]
+\]
+and \
+\[
+   \delta {\Gamma^c}_{ac} = \delta \left[ \frac{1}{2} h^{c s} h_{cs,a} \right]
+\]
+Now to simplify the calculations, Riemann normal coodinates are
+employed to assume $h_{cs,a} = 0$.
+The first part of
+(\ref{eq:piece_of_A}) becomes
+\begin{eqnarray}
+\sqrt{h} h^{a b} N_{;b} \delta {\Gamma^c}_{ac}
+& = & \sqrt{h} h^{a b} N_{;b} \frac{1}{2}
+              \left[  -h^{c q} \delta h_{q p} h^{p s} h_{c s,a} \right. \nonumber \\
+&   &         \left.  + h^{c s} \delta h_{c s,a} \right]
+\nonumber \\
+& = &    \frac{1}{2} \sqrt{h} h^{a b} N_{;b} h^{c s} \delta h_{c s, a}
+\nonumber \\
+& = &   -\frac{1}{2} \left( \sqrt{h} N^{;a} h^{c s} \right)_{,a} \delta h_{c s}
+\nonumber \\
+& = &   -\frac{1}{2} {N^{;a}}_{,a} \sqrt{h} h^{c s} \delta h_{c s}
+\nonumber \\
+&   &   - \frac{1}{2} N^{;a} \left( \sqrt{h} h^{c s} \right)_{,a}
+\delta h_{c s}
+\nonumber \\
+& = &   -\frac{1}{2} {N^{;a}}_{;a} \sqrt{h} h^{c s} \delta h_{c s}
+\end{eqnarray}
+where in the last line the `comma-to-semicolon' rule was applied.
+Continuing in this fashion and making the common notational switch
+from $Q_{;b}$ to $Q_{|b}$ to emphasize the three-dimensional
+nature of the computation, the $A1$-term becomes
+\begin{eqnarray*}
+   A1 & = & N \sqrt{h} \left[ \frac{1}{2} {}^{(3)}R h^{ij} - {}^{(3)}R^{ij} \right] \\
+      &   &  + \sqrt{h} \left( N^{|i|j} - h^{ij} {N^{|k}}_{|k} \right) \eqp
+\end{eqnarray*}
+The $A2$ and $A3$ terms become (taking into account the `hidden' $h_{ij}$'s in
+the lowered indices on the $\pi^{ij}$'s in the various contractions
+\[
+   A2 = N \left( \pi^{ij} \frac{\pi}{\sqrt{h}} - \frac{\pi^2}{4 \sqrt{h}} h^{ij}
+          \right)
+\]
+and
+\[
+   A3 = \left(
+               \frac{-2 N}{\sqrt{h}} {\pi^i}_{k} \pi^{kj} +
+               \frac{N}{2 \sqrt{h}}  Tr\left( \pi^2 \right) h^{ij}
+        \right) \eqp
+\]
+The final piece is the variation of $R^i$ which from a naive look seems to be
+zero since neither $\pi^{ij}$ of $N_{i}$ depend on $h_{ij}$.  However the
+covariant derivative operator does and the term gives a nontrivial result.
+The calculation is simplified by noting that, from (\ref{eq:pi_def}), $\pi^{ij}$
+is a tensor density.
+This gives the following simple relation
+\[
+   \delta \left( {\pi^{ij}}_{|j} \right)= \pi^{jk} \delta {\Gamma^i}_{jk}
+\]
+which can be immediately used to get
+\[
+    \frac{\delta N_k R^k}{\delta h_{ij}}
+= - \left( \pi^{ik} N^j \right)_{|k}
+  - \left( \pi^{jk} N^i \right)_{|k}
+  + \left( \pi^{ij} N^k \right)_{|k} \eqp
+\]
+Combining all of these results gives the equation for the time-derivative of
+the conjugate momenta
+\begin{eqnarray*}
+{\dot \pi}^{ij} & = &
+  - N \sqrt{h} \left( {}^{(3)}R^{ij} - \frac{1}{2} h^{ij} {}^{(3)}R \right) \\
+  & &
+  + \frac{N}{2\sqrt{h}} h^{ij} \left(
+                                      Tr\left( \pi^2\right) - \frac{1}{2} \pi^2
+                               \right) \\
+  & &
+  - 2 \frac{N}{\sqrt{h}} \left(
+                                \pi^{ik}{\pi_k}^j - \frac{\pi}{2} \pi^{ij}
+                         \right) \\
+  & &
+  + \sqrt{h} \left( N^{|ij} - h^{ij} {N^{|i}}_{|i} \right)
+  + \left( \pi^{ij} N^k \right)_{|k} \\
+  & &
+  - \left( \pi^{ik} N^j \right)_{|k}
+  - \left( \pi^{jk} N^i \right)_{|k} \eqp
+\end{eqnarray*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The ADM `\ggm-K` Variant}\label{S:ADM_gk}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The BSSN Field Equations}\label{S:BSSN}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gauge Choices for the Shift and Lapse}\label{S:shift_lapse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Boundary Conditions}\label{S:BCs}

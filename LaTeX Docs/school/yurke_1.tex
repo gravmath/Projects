@@ -1,0 +1,802 @@
+% ****** Start of file yurke2.tex ******
+%
+%   This file is the first draft of the paper detailing our approach
+%   to the study of gravitational radiation using the simple
+%   conservative damped oscillator model of yurke 
+% 
+%
+%
+%   updates:	 9/13/99 major reworking to include new
+% 			     explanation of the radial and along-track
+%				 forces - CS
+%
+%           	 10/8/99 inclusion of the balance incoming and 
+%                outgoing radiation solutions - CS
+%
+%  
+
+%**************************************************************
+%
+%  Preliminary matters
+%
+%**************************************************************
+% \documentstyle[preprint,eqsecnum,aps]{revtex}
+\documentstyle[eqsecnum,aps,epsfig]{revtex}
+\bibliographystyle{prsty}
+\newcounter{bean}
+\def\.{{\quad .}}
+\def\_.{{\quad .}}
+\def\_,{{\quad ,}}
+
+%**************************************************************
+%
+%  Begin the document
+%
+%**************************************************************
+\begin{document}
+\draft
+
+
+
+\twocolumn[\hsize\textwidth\columnwidth\hsize\csname
+@twocolumnfalse\endcsname
+\preprint{GR-QC/????}
+
+%**************************************************************
+%
+%  Front matter
+%
+%**************************************************************
+\title{Determining Radiation of Adiabatically Damped Motion 
+       Via a Simple Model}
+%
+\author{C. Schiff and C. W. Misner}
+\address{
+            Department of Physics, University of Maryland,
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt  cmschiff@erols.com\\
+                      misner@umail.umd.edu\\
+					  Revision 2.0
+}
+\date{\today}
+\maketitle
+
+
+%**************************************************************
+%
+%  Abstract
+%
+%**************************************************************
+\widetext
+\begin{abstract}
+We present a method for determining approximately the radiative 
+loss due the coupling of a mechanical system with a field in the 
+case where the motion of the mechanical system can be 
+characterized as circular with an adiabatically changing radius. 
+The mechanical system, which is coupled to a pair of infinite 
+strings, is driven in circular motion by a motor.
+The motion of the strings obeys the linear wave equation subject 
+to outgoing-wave boundary conditions.  
+The motor, which continuously provides energy to replace the loss 
+radiated away via the strings, can be used to approximately 
+determine the relationships between the radius, the angular 
+frequency, and the radiated energy.  
+For a given circular radius, the oscillator is driven at its 
+natural (undamped) frequency when the radial component of the 
+force due to the motor is zero.  
+The along-track component of the force then uniquely determines 
+the the amount of damping present and as a consequence the amount 
+of energy being radiated.
+This method, which grew out of our analysis of the coupled 
+harmonic oscillator-string model studied by Yurke (1984), is 
+applicable to damped circular motion in an arbitrary central 
+potential.  
+We believe that the model offers valuable insight into possible 
+numerical approaches for calculating the gravitational radiation 
+produced by a binary neutron star system during the the stages of 
+inspiral prior to the final plunge and coalescence.
+\end{abstract}
+\pacs{0425.-g,04.25.Dm,04.30.-w,04.30.Db,04.30.Nk}
+
+\narrowtext
+\vskip2pc]
+
+
+\section{Introduction}\label{sec:intro_level1}
+
+The inspiral of two compact objects (\emph{e.g} neutron stars), 
+within the framework of general relativity, is expected to be a 
+prominent source of weak gravitational waves (see section 36.6 
+of \cite{mtw}).  
+Due to the lack of symmetry and the inherent nonlinearities, 
+analytical solutions have been mostly confined to the relatively 
+weak-field post-Newtonian regime.  
+Full numerical simulations of the final stages where the binary 
+approaches the last stable circular orbit and begins to coalesce, 
+have been undertaken by the Grand Challenge.  
+However, these simulations are not stable for more than a few 
+orbits in the weak- to moderate- field regimes \cite{whelan}.
+Thus there is a `gap' regime in the study of a radiating, 
+inspiralling compact-object binaries.
+
+We present a method, based on a simple model from classical 
+physics, that offers insights into how this `gap' may be filled 
+by a numerical scheme which approximately determines the energy 
+loss due to the gravitational radiation produced during most of 
+an inspiral.
+In addition, our method is compatible with existing codes for solving
+either Einstein's equations or simpler scalar theories of gravity.
+Central to our method is the fact that motion in this regime is 
+essentially circular \cite{peters63,peters64}.
+In addition, the energy loss per orbit is small compared to the 
+binding energy of the system.  
+These observations lead naturally to a frame that rotates with the 
+binary's orbital angular velocity in which the compact objects 
+are quasi-stationary.  
+This approach stills places a heavy burden on numerical codes, 
+since equations of the motion for both the compact objects and 
+the gravitational field must be solved.  
+An ideal approach is one in which the compact objects can be 
+considered truly stationary without losing the gravitational 
+radiation produced because they are not.
+Our solution is to allow a fictitious driving force to act on the 
+binary, instantaneously supplying just enough energy to counteract 
+the loss due to gravity.
+Analysis of the components of the force in the rotating frame 
+yields the desired relationship between the radius, the angular 
+frequency, and the energy loss.  
+
+To motivate this approach, we discuss an analogous model from 
+classical mechanics before we sketch out some of the aspects of 
+the numerical approach used for relativity.  
+The classical mechanics model benefits from both is calculation 
+simplicity and the fact that one's intuition is easier to apply.
+
+\section{The Simple Radiative Model}
+
+We begin our presentation of the simple classical mechanics model 
+by summarizing the main ingredients our model must have to be 
+analogous with the binary inspiral.
+The important qualitative features of the inspiraling binary 
+system are:
+
+\begin{list}
+   {$\bullet$}{\usecounter{bean}
+    \setlength{\rightmargin}{\leftmargin}}
+	\item Conservation of angular momentum 
+ 	\item Nearly circular motion throughout much of the evolution
+	\item Coupling of the mechanical motion to a field medium that can radiate 
+	      energy away
+	\item Nonlinear behavior near the source
+	\item Linear behavior at infinity
+\end{list}
+
+Yurke has presented a model of a conservative system consisting 
+of a one-dimensional mechanical oscillator coupled to a single string, 
+semi-infinite in extent.
+This system locally shows dissipation in the motion of the 
+oscillator through the imposition of outgoing wave 
+boundary conditions \cite{yurke84}.
+We modify this model by allowing the mechanical body, of mass $m$, 
+to move in a general (\emph{i.e.} nonlinear) central potential in 
+a plane perpendicular to pair of semi--infinite strings (see 
+Figure 1).  
+%\begin{figure}[htb]
+%\begin{center}
+%\epsfig{file=yurke.eps, width = 4.0 in}
+%\end{center}
+%\caption{test}
+%\end{figure}
+The central potential guarantees the conservation of angular 
+momentum and the strings provide coupling to a medium which can 
+radiate energy from the mechanical system.  
+The central body's dynamical state is described by its location 
+${\vec R}(t) = \left[ X(t), Y(t) \right]$ in the x-y plane as a 
+function of time.  
+The dynamical state of the strings is analogously described by 
+the transverse amplitudes ${\vec r}(z,t) = \left[ x(z,t), y(z,t) 
+\right]$.  
+Consistency is guaranteed at $z = 0$ by
+
+\begin{eqnarray}\label{eq:consist_cond}
+	x(0,t) & = & X(t) \nonumber \\
+   y(0,t) & = & Y(t)  
+\end{eqnarray}
+
+The strings are assumed to obey the linear wave equation
+\begin{equation}\label{eq:wave_eq}
+	\mu \frac{\partial ^2 {\vec r}}{\partial t^2} 
+       - T  \frac{\partial ^2 {\vec r}}{\partial z^2} 
+	= 0
+\end{equation}
+where $\mu$ is the string's mass per unit length and $T$ is the 
+tension.  
+In addition to the above modifications, we allow a wider range of 
+boundary conditions in our model than used by Yurke.  
+Our primary focus will be on the radiation losses, which are 
+modeled with outgoing wave boundary conditions 
+
+\[
+	{\vec r}(z,t) = {\vec r} \left( t - \frac{|z|}{c} \right)
+\]
+
+(where $c = \sqrt{ \frac{T}{\mu}}$ is wave speed along the string) 
+on both transverse amplitudes.
+However, we will impose a mixture of incoming and outgoing 
+wave boundary conditions on each component of the string's 
+amplitude.  
+The corresponding wave form is then
+\begin{equation}\label{eq:mixed_bcs}
+  {\vec r}(z,t) = \alpha {\vec r}\left( t - \frac{|z|}{c} \right) 
+                + \left(1 - \alpha \right){\vec r} \left( t + \frac{|z|}{c} \right)
+\end{equation}
+where the real parameter $0 \le \alpha \le 1$ controls the 
+mixture.  Outgoing wave boundary conditions are then recovered by 
+setting $\alpha = 1$ 
+
+ 
+\subsection{Deriving the Equations of Motion}
+
+As discussed above, the mechanical body moves within a central 
+potential $V(R) \equiv V(|\vec R|)$.
+The force is then derived from the gradient as
+
+\[
+	\vec F = - \nabla V( R )
+\]
+
+\noindent Using the chain rule and the definition of the radius 
+$R = \sqrt{X^2 + Y^2}$ the central force can be written as 
+\begin{equation}\label{eq:F_pot}
+  \vec F = -\frac{1}{R} \frac{d V(R)}{d R} {\vec R}(t)
+\end{equation}
+In order to calculate the motion of the body, the forces provided 
+by the strings must also be taken into account.  
+Assuming that the strings are held at a constant tension $T$, 
+the force they exert on the oscillator is
+
+\begin{equation}\label{eq:F_tension}
+   {\vec F}_{tension} = T \left[ \left.\frac{d}{ds} \right|_{right} + 
+                          \left.\frac{d}{ds}  \right|_{left} \right]_{z=0}
+\end{equation}
+
+The tension along the right string $\left. T \frac{d}{ds} 
+\right|_{right} $ can be expressed in a coordinate basis as 
+
+\[
+	\left. T \frac{d}{ds} \right|_{right}  = T \left[ 
+			\frac{dx}{ds}\frac{\partial}{\partial x} +
+		        \frac{dy}{ds}\frac{\partial}{\partial y} +
+		        \frac{dz}{ds}\frac{\partial}{\partial z}
+			\right]
+\]
+
+In addition, we will approximate that the strings make a small 
+deflection from the horizontal allowing us to express the 
+right-ward tension in its final form
+
+\[
+	\left. T \frac{d}{ds} \right|_{right}  = T \left[ 
+			\frac{dx}{dz}\frac{\partial}{\partial x} +
+		        \frac{dy}{dz}\frac{\partial}{\partial y} +
+		        \frac{\partial}{\partial z}
+			\right]
+\]
+
+A similar calculation for the left string gives the same form 
+except for a sign change on the last term.  
+Combining these with (\ref{eq:F_tension}) gives
+
+\begin{eqnarray}\label{eq:mixed_motion}
+ 	m {\ddot {\vec R} }(t) & = & -\frac{1}{R} \frac{d V(R)}
+	                            {d R} {\vec R}(t) \nonumber \\
+			& & +  T 
+			\left[ 
+			\left. \frac{\partial \vec r}{\partial z} \right|_{z = 0^+} 
+		     -  \left. \frac{\partial \vec r}{\partial z} \right|_{z = 0^-}
+			\right]
+\end{eqnarray}
+
+\noindent for the equation of motion for the mechanical body.  
+This form is awkward due to the appearance of the partial 
+derivatives of the string amplitudes on the right-hand side.
+These can be eliminated by using the consistency condition
+(\ref{eq:consist_cond}) with the mixed boundary conditions
+(\ref{eq:mixed_bcs}) 
+\begin{eqnarray*}
+	\frac{\partial {\vec r}}{\partial z} & = &   \frac{-\alpha \, signum(z)}{c} \, 
+	                                       \frac{\partial {\vec r}}{\partial t}
+										   \left(t - \frac{|z|}{c} \right) \\
+										 &   & +
+										   \frac{(1-\alpha) \, signum(z)}{c} \,
+	                                       \frac{\partial {\vec r}}{\partial t}
+										   \left(t + \frac{|z|}{c} \right)
+\end{eqnarray*}
+to yield
+\[
+	\left. \frac{\partial {\vec r}}{\partial z} \right|_{z=0^{\pm}} 
+	= \pm \left( 1 - 2 \alpha \right)\frac{{\dot {\vec R}}(t)}{c} 
+\]
+
+Substituting into (\ref{eq:mixed_motion}) gives the equation of 
+motion for the mechanical oscillator 
+
+\begin{equation}\label{eq:osc_motion}
+    {\ddot {\vec R}}(t) - 2 \Gamma \left(1 - 2 \alpha \right) {\dot {\vec R}}(t)  
+   +\frac{1}{R} \frac{d V(R)}{d R} {\vec R}(t) = 0
+\end{equation}
+where the damping parameter $\Gamma = \frac{T}{cm}$ is defined in 
+terms specified physical parameters of both the mechanical body 
+and the radiative system.  Defining the impedance of a string
+as $Z = \frac{T}{c}$ \cite{pain} shows that the damping is
+characterized by the ratio of the impedance of the string to 
+the mass of the mechanical body.
+Equations (\ref{eq:consist_cond}-\ref{eq:mixed_bcs}) together with 
+(\ref{eq:osc_motion}) provide the complete equations of motion for 
+the combined string-oscillator system.  
+
+These equations can be further condensed to 
+\begin{eqnarray}\label{eq:equ_motion}
+    \left[ \mu + m \delta (z) \right] \frac{\partial ^2}{\partial t^2} {\vec r}
+& = &  T \frac{\partial ^2}{\partial z^2}{\vec r} \nonumber \\
+&   & \left(-\frac{1}{R} \frac{d V(R)}{d R} \right) 
+      \, {\vec r} \, \delta (z)
+\end{eqnarray}
+by using the Dirac $\delta$-function.  
+This form emphasizes the coupled nature of the mechanical 
+body-string system and leads directly to a variational formulation.  
+Using it, we note that the equations can be 
+derived from a variation of the action
+\begin{eqnarray}
+  I & = & \int dt L(t) \nonumber \\ 
+    & = & \int dt dz 
+      \left[
+	    \frac{1}{2}
+	    \left(\mu + m \delta(z)\right)
+        \left( {x_{,t}}^2 + {y_{,t}}^2 \right) \right. \nonumber \\
+	&   &
+		\left.
+	   -\frac{T}{2} \left( {x_{,z}}^2 + {y_{,z}}^2 \right)
+       - V(R) \delta(z)
+  	  \right]
+\end{eqnarray}
+with respect to $x(z,t)$ and $y(z,t)$.
+The corresponding energy functional
+\begin{eqnarray}
+  E & = & \int dz 
+      \left[
+	    \frac{1}{2}
+	    \left(\mu + m \delta(z)\right)
+        \left( {x_{,t}}^2 + {y_{,t}}^2 \right) \right. \nonumber \\
+	&   &
+		\left.
+	   +\frac{T}{2} \left( {x_{,z}}^2 + {y_{,z}}^2 \right)
+       + V(R) \delta(z)
+  	  \right]
+\end{eqnarray}
+is formally infinite, when integrated over the entire range of $z$.
+However, the energy in the interval $-L \leq z \leq L$ is 
+well-defined.  
+Using this expression and the assuming the equations of motion 
+are satisfied, the change in the energy in this interval is given 
+in terms of the Poynting-like flux by
+\[
+\frac{dE}{dt} = T \left[x_{,t} x_{,z} + y_{,t} y_{,z}\right]{\left.{}^{} \right|}_{z=-L}^{z=L}	
+\]
+Applying the mixed boundary conditions yields
+\begin{eqnarray}\label{eq:Poynt_1}
+\frac{dE}{dt} & = &  \frac{2T}{c}\left[ -\alpha
+                                               \left( {x_{,t}}^2 + {y_{,t}}^2 \right)
+                                                     (t - |z|/c)
+								  \right. \nonumber \\
+			  &   & 			+ 
+			                      \left. 
+								   (1 - \alpha) \left( {x_{,t}}^2 + {y_{,t}}^2 \right)
+								                     (t + |z|/c)
+							\right]_{z=L}
+\end{eqnarray}
+where $x$ and $y$ are solutions of the form of 
+(\ref{eq:mixed_bcs}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Stationary Circular Motion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solving the Equations of Motion for Steady Circular Motion}
+
+In this section, we discuss solutions to the equations of motion 
+(\ref{eq:mixed_motion}) that allow stationary circular motion.
+Stationary circular motion is characterized by the kinematical 
+condition
+\begin{equation}\label{eq:R_circ}
+{\vec R}(t) = \rho cos(\omega t) {\hat \imath} + \rho sin(\omega t) {\hat \jmath}
+\end{equation}
+where ${\hat \imath}$ and ${\hat \jmath}$ are unit vectors lying 
+along the x- and y-axes respectively and $\rho$ is the constant
+radius of the circle.
+Our approach will be to start with (\ref{eq:mixed_motion}) and 
+impose different types of wave boundary conditions.
+If the resulting vector equation of motion for the mechanical body 
+is consistent with (\ref{eq:R_circ}) then the stationary circular 
+motion will result.  
+We will show that these types of solutions can be obtained in 
+two distinct ways.
+In the first way, the outgoing radiation can be exactly balanced 
+by incoming radiation from infinity.
+In the second way, the energy carried away by the outgoing 
+radiation is replaced by a motor.
+We discuss both of these physical systems in turn below.   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Mixed Outgoing and Incoming Wave Boundary Conditions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Mixed Outgoing and Incoming Wave Boundary Conditions}
+
+Equation (\ref{eq:osc_motion}) is the starting point for our
+analysis of the motion with mixed wave boundary conditions.
+Combining this equation with the kinematical condition
+(\ref{eq:R_circ}) we arrive at the matrix equation
+\[
+            \underbrace{
+                  \left[
+			       \begin{array}{cc}
+				   {\omega _{\rho} }^2 - \omega ^2 & - 2 \Gamma (1 - 2 \alpha) \omega \\
+                   - 2 \Gamma (1 - 2 \alpha) \omega & {\omega _{\rho} }^2 - \omega ^2 				    
+    		       \end{array}
+			      \right]
+				 }_{M}
+				  \left(
+				   \begin{array}{c}
+				    \rho \cos ( \omega t) \\
+					\rho \sin ( \omega t)
+				   \end{array}
+				  \right)
+				  = 
+				  0
+\] 
+where ${\omega _{\rho}}^2$ is the constant defined by
+\[
+  {\omega _{\rho}}^2 = \left(\frac{1}{R} \frac{dV}{dR}\right)_{R=\rho}
+\]
+This equation has a nontrivial solution only when $\det(M) = 0$.  
+Carrying out the determinant yields a bi-quadratic equation for the
+rotation frequency $\omega$.
+Solving the equation gives
+\[
+  \omega = \pm i \, \Gamma (1-2\alpha)  
+           \pm \sqrt{ {\omega _{\rho}}^2 - \Gamma ^ 2 (1 - 2 \alpha)^2}
+\]
+for the rotation frequency.
+Real solutions for $\omega$ are obtained by setting $\alpha = 1/2$
+giving an exact balance between incoming and outgoing radiation.
+The resulting rotation frequency is then given by
+\[
+  \omega^2 = \left( \frac{1}{R} \frac{dV}{dR} \right)_{R = \rho}
+\]
+and the corresponding equation of motion is given by
+\begin{equation}\label{eq:osc_motion_bal}
+ {\ddot {\vec R}}(t) 
+  + \left( \frac{1}{R} \frac{\partial V(R)}{\partial R} \right)_{R=\rho} {\vec R}(t) = 0
+\end{equation}
+
+At this point, it is worth asking if (\ref{eq:mixed_bcs}) offer the most general
+solutions consistent with the boundary conditions.  
+It is easy to see, in fact, that (\ref{eq:consist_cond}) and (\ref{eq:wave_eq})
+are satisfied by the inclusion of a set of traveling wave 
+solutions of the form
+\[
+  {\vec h}(z,t) = {\vec h}\left(t - \frac{z}{c}\right) 
+                - {\vec h}\left(t + \frac{z}{c}\right)
+\] 
+However, the inclusion of these terms adds an inhomogeneous term to 
+the equation of motion, transforming it to
+\begin{equation}\label{eq:osc_motion_homo}
+ {\ddot {\vec R}}(t) 
+  + \left( \frac{1}{R} \frac{\partial V(R)}{\partial R} \right)_{R=\rho} {\vec R}(t) = 
+   - 4 \Gamma {\vec h}'(t)
+\end{equation}
+where the prime denotes differentiation with respect to the argument 
+$t \pm z/c$ followed by an evaluation at $z=0$.
+Since the inhomogeneous term is incompatible with the kinematical 
+condition (\ref{eq:R_circ}) the traveling waves must be rejected. 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Motorized Circular Motion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Motorized Circular Motion}
+
+Finally, we allow the inclusion of an external force, 
+${\vec F}_{driving}$, acting solely on the mechanical body 
+provided by a motor.
+Pure outgoing wave boundary conditions will be imposed 
+(\emph{i.e.} $\alpha =1$).
+Equation (\ref{eq:osc_motion}) can then be expressed as 
+\begin{equation}\label{eq:forced_osc_motion}
+    {\ddot {\vec R}}(t) + 2 \Gamma {\dot {\vec R}}(t) + 
+\left(\frac{1}{m r} \frac{\partial V(r)}{\partial r} \right) {\vec R}(t) = 
+\frac{{\vec F}_{driving}}{m}
+\end{equation}
+Inserting the kinematical condition (\ref{eq:R_circ}) leads directly 
+to the vector equation 
+\begin{equation}\label{eq:F_vector}
+\frac{{\vec F}_{driving}}{m} =
+                  \left[
+			       \begin{array}{c}
+				    \left(
+					  {\omega _{\rho}}^2 - \omega^2
+					\right) \rho \cos(\omega t) 
+					  - 2 \Gamma \rho \omega \sin( \omega t)\\
+				    \left(
+					  {\omega _{\rho}}^2 - \omega^2
+					\right) \rho \cos(\omega t) 
+					  - 2 \Gamma \rho \omega \sin( \omega t)\\
+    		       \end{array}
+			      \right]
+\end{equation}
+where ${\omega _{\rho}^2}$ is as defined above.
+However, the inertial components of the driving force in 
+(\ref{eq:F_vector}) do not lend themselves to the simple physical 
+interpretation that obtains in a coordinate system that rotates 
+with the mechanical oscillator.  
+In this coordinate system, one axis, the radial axis, always lies 
+along the line joining the origin to the oscillator. 
+The other axis, the along-track axis, lies in the plane of the 
+motion at a right-angle to the radial axis.  
+The radial component of the driving force $F_r$ is obtained from 
+\begin{eqnarray}\label{eq:F_r}
+	F_r & = &  
+		\frac{ {\vec F}_{driving} \cdot {\vec r} }{|{\vec r}|} \nonumber \\
+            & = & m \rho \left(
+			               {\omega _{\rho}^2} - \omega^2
+                         \right)  
+\end{eqnarray}
+
+and along-track component of the driving force $F_a$ is obtained 
+from
+
+\begin{eqnarray}\label{eq:F_a}
+	F_a & = &  
+		\frac{ {\vec F}_{driving} \cdot {\vec v} }{|{\vec v}|} \nonumber \\
+            & = & 2 m \Gamma \omega \rho
+\end{eqnarray}
+Applying the outgoing boundary conditions yields
+\begin{equation}\label{eq:Poynt_1_forced}
+\frac{dE}{dt} = \frac{-2T}{c}\left[{x'}^2 + {y'}^2 \right]_{z=L}
+\end{equation}
+where $x$ and $y$ are solutions of the form of 
+(\ref{eq:mixed_bcs}) with $\alpha = 1$ and the prime denotes 
+differentiation with respect to the argument $t - \frac{|z|}{c}$.
+
+Taking the limit $L \rightarrow 0$ in (\ref{eq:Poynt_1_forced})
+gives 
+\begin{equation}\label{eq:Poynt_2}
+ \frac{dE}{dt} = \frac{-2T}{c}\rho^2 \omega^2 = -2 \Gamma m \rho^2 \omega^2
+\end{equation}
+as the energy loss per unit time of the mechanical body.
+Equations (\ref{eq:F_r}) and (\ref{eq:F_a}) are the fundamental 
+equations from which the natural frequency and the energy 
+radiated for a given radius may be determined.  
+In particular, the system is driven at its natural frequency, 
+defined to be the frequency of a circular orbit in the absence of 
+damping, for a given radius when $F_r = 0$.  
+Measuring the remaining component of force $F_a$ immediately 
+determines the damping parameter $\Gamma$, which represents the 
+coupling between the mechanical and radiative systems.  
+These calculations will be first presented in the context of the 
+linear oscillator, where an exact analytic solution is readily 
+obtained.
+They will then be extended to the case of a nonlinear oscillator 
+where comparisons are made between the theoretical approximations 
+and the results from numerical experiments.  
+Finally, we examine a Schwarzschild-like potential that possesses
+a critical value of angular momentum below which the orbit inspirals to the
+origin.  
+This potential differs markedly from the previous potentials in 
+that the instantaneous energy loss grows as the radius decreases 
+rather than diminishes.
+
+\subsubsection{The Linear Oscillator}
+
+For the case of the linear oscillator the potential is given by 
+\[
+  V(r) = \frac{1}{2}k r^2
+\]
+and the natural frequency, $\omega_0$, is independent of radius.  
+Equation (\ref{eq:F_r}) determines a unique driving frequency
+\[
+  \omega = \omega _0 = \sqrt{ \frac{k}{m}}
+\]
+ for 
+all sized circular orbits.  
+Before proceeding, however, it is instructive to look at equation 
+(\ref{eq:forced_osc_motion}) with the driving force set to zero.  
+The solution for initially circular motion is given as
+\[
+{\vec R}(t) = e^{-\Gamma t} 
+                  \left[
+			       \begin{array}{c}
+			         \rho _0 \cos( \omega _D t) \\
+					 \rho _0 \sin( \omega _D t) \\
+    		       \end{array}
+			      \right]
+\]
+where $\omega_D = \sqrt{\omega_0^2 - \Gamma^2}$.
+Note that the absence of the driving force prevents stationary 
+circular motion from occuring; $\omega_0$ would have to an 
+imaginary component that just balanced the damping term given 
+by $\Gamma$.
+Since $\omega_0$ represents a real rotation frequency, stationary
+motion without driving is unphysical.  
+The energy of the mechanical system is given by
+\begin{eqnarray*}
+  E(t) & = & \frac{m}{2}{\dot {\vec R}}(t) + 
+             \frac{1}{2} k {\vec R}(t) \\
+       & = & k {\rho _0}^2 e^{-2 \Gamma t}
+\end{eqnarray*}
+and the radiative loss can be directly calculated to yield
+\begin{eqnarray*}
+  \frac{d E}{d t} & = & -2 \Gamma k {\rho _0}^2 e^{-2 \Gamma t} \\
+                  & = & -2 \Gamma k r(t)^2
+\end{eqnarray*}
+The result of (\ref{eq:Poynt_2}) also gives this answer with the 
+understanding that the stationary radius $\rho$ referred to in
+(\ref{eq:Poynt_2}) is chosen to be the same value as the dynamic
+$r(t)$ at the desired time.  
+A tighter connection can be made as follows.
+The energy of the mechanical system can be written a solely a 
+function of the radius $r$ by using the kinematical condition 
+(\ref{eq:R_circ}).  
+Combining this relation with the instantaneous energy loss 
+$\frac{dE}{dt}$ given by (\ref{eq:Poynt_2}) provides a differential 
+equation 
+\begin{equation}\label{eq:dr_dt}
+ \frac{dr}{dt} = \frac{ \frac{dE}{dt} }{ \frac{dE}{dr}}
+\end{equation}
+for $r = r(t)$.  
+In the case of the linear oscillator, the energy $E$ as a 
+function of $r$ is 
+\[
+  E(r) = \frac{1}{2} m r^2 \omega^2 + \frac{1}{2}k r^2
+\]
+which yields 
+\[
+  \frac{dE}{dr} = 2 k r
+\]
+for the derivative.
+The corresponding differential equation for the radius
+\[
+  \frac{dr}{dt} = -\Gamma r
+\] 
+has the familiar solution 
+\[
+  r(t) = \rho _0 e^{-\Gamma t}
+\] 
+which we derived by more elementary means above.
+
+All of this analysis can be cast in an intuitive picture as 
+follows.  
+Imagine we run the motor driving the mechanical body and that 
+someone else has attached the strings without disclosing the tension 
+or linear mass density.  
+Watching the motion (\emph{i.e.} kinematics) and monitoring the 
+work done by our motor in both the radial and along-track 
+directions allows us to deduce the impedance of the strings.  
+By sampling different radii we can determine the amount energy 
+radiated and by solving the equation for $r(t)$ we can 
+reconstruct the entire dynamics.
+
+\subsubsection{The Nonlinear Oscillator}
+
+Very little changes in the transition from the linear to the nonlinear regime.
+The potential we examined is given by 
+\[
+  V(r) = \frac{1}{2}k r^2 + \frac{\lambda}{4} r^4
+\]
+with $\lambda \ne 0$.
+The natural frequency for circular orbits, $\omega_0$, obtained
+from (\ref{eq:F_r}), is no longer independent of radius but is 
+given by
+\[ 
+{\omega_{0}}^2 = \left( \frac{k}{m} + \frac{\lambda}{m} \rho^2 \right)
+\]
+
+Figure 2a shows the comparison between $\frac{d E}{d t}(\rho)$ obtained
+from the quasi-stationary method compared to what was obtained by direct 
+numerical integration.  Figure 2b shows the comparison between 
+$\frac{d E}{d t}(t)$ reconstructed from the quasi-stationary method
+with the results obtained from the numerical integration.
+
+\subsubsection{The Schwarzschild-like Potential}
+
+The final potential we examined
+\[
+	V(|\vec r|) = \frac{1}{2} - \frac{M}{r} - \frac{M \lambda}{r^3}
+\]
+was constructed to, as closely as possible, mimic the dynamics
+arising in general relativity.  Analyzing the potential using the
+standard techniques of classical mechanics, one obtains the 
+effective potential  
+\[
+  V_{eff} = 1 - \frac{2 M}{r} + \frac{ {p_{\phi}}^2}{r^2} 
+              - \frac{2 M \lambda}{r^3}
+\]
+where $M$ and $\lambda$ are freely specifiable parameters of the 
+potential and $p_{\phi}$ is the conserved angular momentum.
+This effective potential is formally the same as that arising 
+from the Schwarzschild metric with the identification
+$\lambda = p_{\phi}^2$. 
+The extrema of the effective potential occur at
+\[
+  r_{\pm} = \frac{ p_{\phi}^2 \pm \sqrt{ p_{\phi}^4 - 
+                                         12 M^2 \lambda
+									   } 
+				 }{2M}
+\]
+Real solutions occur only for orbits with angular momentum greater 
+than the critical value
+\[
+  p_{\phi_{crit}} = \left( 12 M^2 \lambda \right)^{\frac{1}{4}}
+\]
+Figure 3 shows a set effective potentials with $p_{\phi}$ greater than, 
+equal to, and less than $p_{\phi_{crit}}$.
+
+Using (\ref{eq:F_r}) gives a natural frequency
+\[
+  \omega _0 = \sqrt{\frac{M}{\rho^5}\left(\rho^2 + 3 \lambda \right)  }
+\]
+
+ 
+\section{Application to General Relativity}
+
+We conclude by sketching how our method would apply to a numerical simulation
+in general relativity.  Central to the discussion above was the concept of using
+the driving force as a method for determining the relationship between the 
+radius, angular frequency, and the radiated energy.  The presence of the 
+radiation, mediated by the strings, required a non-zero driving force to keep 
+the oscillator in stationary circular motion at is natural frequency and 
+radius.  Analogously, the presence of gravitational radiation would require a
+driving force to halt the inspiral of two compact objects 
+(\emph{e.g} neutron stars).  This driving force would signal its presence in 
+general relativity by the failure of the center-of-masses for the compact 
+objects to follow a geodesic.
+
+The equation for geodesic motion
+\[
+   \nabla_{\mathbf{U}} \mathbf{U} = U^{b}_{;a} U^a = 0 \_,
+\]
+would then become
+\[
+   \nabla_{\mathbf{U}} \mathbf{U} = U^{b}_{;a} U^a = A^b \_,
+\]
+where $A^b$ is the identified with the four-acceleration.  In the rotating frame 
+the two compact objects will appear fixed, yielding a stationary matter 
+distribution 
+\[
+   \frac{\partial}{\partial t} T^{\mu \nu} = 0
+\]
+In this frame, the radial and along-track directions are 
+unambiguously defined.  The method detailed above can then be applied;
+%
+\begin{list}
+   {\arabic{bean})}{\usecounter{bean}
+    \setlength{\rightmargin}{\leftmargin}}
+	\item Pick a radius 
+ 	\item Vary the frequency until $F_r = 0$
+	\item Calculate the work done by the driving force over one orbit 
+	\item Estimated instantaneous energy loss equal to the work divided by 
+	      the period
+\end{list}
+%
+The frequency can be varied in a numerically efficient manner by the 
+implementation of a Newton method for finding the root for $F_r = F_r(\omega) 
+= 0$.  The energy loss per change in angular frequency $\frac{dE}{d \omega}$ can
+be obtained with little extra effort by running through the above algorithm for
+a given frequency $\omega$ and a nearby frequency $\omega + \delta \omega$.  The
+derivative can then be approximated by a finite difference.
+
+
+
+\bibliography{gr,oscil}
+\end{document}
+

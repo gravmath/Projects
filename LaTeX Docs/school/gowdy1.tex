@@ -1,0 +1,523 @@
+%% Created by Maple V Release 3
+\documentstyle[maplems]{article}
+\begin{document}
+A study of the polarized Gowdy solution in the direction of time in which the universe 
+expands.
+
+-- C. W. Misner  \qquad        31 August 1997
+
+
+The metric form is  
+$$
+   ds^2 = t^{-1/2} e^{\lambda/2}(-dt^2 + dz^2) 
+         + t( e^{+P} dx^2 + e^{-P} dy^2)
+$$
+
+\begin{mapleinput}
+P:= (t,z)-> A*BesselJ(0,2*Pi*n*t)*cos(2*Pi*n*z);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{P} := (\,{t}, {z}\,) \rightarrow {A}\,{\rm BesselJ}(\,0, 2\,{ 
+\pi}\,{n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)
+\]
+\end{maplelatex}
+\begin{mapleinput}
+P(0,0);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{A}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+diff(P(t,z),t);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ - 2\,{A}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{ \pi}\,{n}
+\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)
+\]
+\end{maplelatex}
+\begin{mapleinput}
+diff(P(t,z),z);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ - 2\,{A}\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm sin}(
+\,2\,{ \pi}\,{n}\,{z}\,)\,{ \pi}\,{n}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+lambda:=(t,z)->-t*Pi*n*A^2*BesselJ(0,2*Pi*n*t)*BesselJ(1,2*Pi*n*t)*2*cos(2*Pi*n*z
+\end{mapleinput}
+\begin{mapleinput}
+)^2+2*Pi^2*n^2*t^2*A^2*(BesselJ(0,2*Pi*n*t)^2 +BesselJ(1,2*Pi*n*t)^2);
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{{ \lambda} := (\,{t}, {z}\,) \rightarrow  - 2\,{t}\,{ 
+\pi}\,{n}\,{A}^{2}\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,
+{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}
+\,{n}\,{z}\,)^{2}} \\
+ & & \mbox{} + 2\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\, \left( 
+\! \,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2} + {\rm BesselJ
+}(\,1, 2\,{ \pi}\,{n}\,{t}\,)^{2}\, \!  \right) 
+\mbox{\hspace{46pt}}
+\end{eqnarray*}
+\end{maplelatex}
+Maple seems not to know the asymptotic forms for Bessel function, so we put in
+by hand the limiting large $t$ behavior using $J_n(u) \approx \sqrt{2/(\pi u)}
+\cos(u - n \pi/2 - \pi/4)$ and let Maple simplify it further:
+
+\begin{mapleinput}
+L_inf:=(t,z)->(Pi^2*n*t)^(-1)*( -t*Pi*n*A^2*cos(2*Pi*n*t-Pi/4)*cos(2*Pi*n*t-3*Pi/4)*2*
+\end{mapleinput}
+\begin{mapleinput}
+cos(2*Pi*n*z)^2+2*Pi^2*n^2*t^2*A^2*(cos(2*Pi*n*t-Pi/4)^2 +cos(2*Pi*n*t-3*Pi/4)^2
+\end{mapleinput}
+\begin{mapleinput}
+) );
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{{\it L\_inf} := (\,{t}, {z}\,) \rightarrow  \left( 
+{\vrule height0.86em width0em depth0.86em} \right. \! \!  - 2\,{t
+}\,{ \pi}\,{n}\,{A}^{2}\,{\rm cos} \left( \! \,2\,{ \pi}\,{n}\,{t
+} - {\displaystyle \frac {1}{4}}\,{ \pi}\, \!  \right) \,{\rm cos
+} \left( \! \,2\,{ \pi}\,{n}\,{t} - {\displaystyle \frac {3}{4}}
+\,{ \pi}\, \!  \right) \,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}}
+ \\
+ & & \mbox{} + 2\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\, \left( 
+\! \,{\rm cos} \left( \! \,2\,{ \pi}\,{n}\,{t} - {\displaystyle 
+\frac {1}{4}}\,{ \pi}\, \!  \right) ^{2} + {\rm cos} \left( \! \,
+2\,{ \pi}\,{n}\,{t} - {\displaystyle \frac {3}{4}}\,{ \pi}\, \! 
+ \right) ^{2}\, \!  \right)  \! \! \left. {\vrule 
+height0.86em width0em depth0.86em} \right)  \left/ {\vrule 
+height0.43em width0em depth0.43em} \right. \! \!  \left( \! \,{ 
+\pi}^{2}\,{n}\,{t}\, \!  \right) \mbox{\hspace{17pt}}
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+simplify( L_inf(t,z) );
+\end{mapleinput}
+\begin{maplelatex}
+\[
+2\,{\displaystyle \frac {{A}^{2}\, \left( \! \,{\rm sin} \left( 
+\! \,2\,{ \pi}\,{n}\,{t} + {\displaystyle \frac {1}{4}}\,{ \pi}\,
+ \!  \right) \,{\rm cos} \left( \! \,2\,{ \pi}\,{n}\,{t} + 
+{\displaystyle \frac {1}{4}}\,{ \pi}\, \!  \right) \,{\rm cos}(\,
+2\,{ \pi}\,{n}\,{z}\,)^{2} + { \pi}\,{n}\,{t}\, \!  \right) }{{ 
+\pi}}}
+\]
+\end{maplelatex}
+Now we check that the constraints are actually satisfied:
+
+\begin{mapleinput}
+Diff('lambda'(t,z),t)-t*(Diff('P'(t,z),t))^2- t*(Diff('P'(t,z),z))^2;
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ \left( \! \,{\frac {{ \partial}}{{ \partial}{t}}}\,{ \lambda}(\,
+{t}, {z}\,)\, \!  \right)  - {t}\, \left( \! \,{\frac {{ \partial
+}}{{ \partial}{t}}}\,{\rm P}(\,{t}, {z}\,)\, \!  \right) ^{2} - {
+t}\, \left( \! \,{\frac {{ \partial}}{{ \partial}{z}}}\,{\rm P}(
+\,{t}, {z}\,)\, \!  \right) ^{2}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+diff(lambda(t,z),t)-t*(diff(P(t,z),t))^2- t*(diff(P(t,z),z))^2;
+\end{mapleinput}
+\begin{mapleinput}
+simplify(");
+\end{mapleinput}
+\begin{maplelatex}
+\[
+0
+\]
+\end{maplelatex}
+\begin{mapleinput}
+Diff('lambda'(t,z),z)-2*t*Diff('P'(t,z),z)*Diff('P'(t,z),t);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ \left( \! \,{\frac {{ \partial}}{{ \partial}{z}}}\,{ \lambda}(\,
+{t}, {z}\,)\, \!  \right)  - 2\,{t}\, \left( \! \,{\frac {{ 
+\partial}}{{ \partial}{z}}}\,{\rm P}(\,{t}, {z}\,)\, \!  \right) 
+\, \left( \! \,{\frac {{ \partial}}{{ \partial}{t}}}\,{\rm P}(\,{
+t}, {z}\,)\, \!  \right) 
+\]
+\end{maplelatex}
+\begin{mapleinput}
+diff(lambda(t,z),z)-2*t*diff(P(t,z),z)*diff(P(t,z),t);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+0
+\]
+\end{maplelatex}
+Now we construct the metric components and differentiate them to get the second
+fundamental form components $K_{ij}$ .
+
+\begin{mapleinput}
+N:=(t,z) -> t^(-1/4)*exp(lambda(t,z)/4);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{N} := (\,{t}, {z}\,) \rightarrow {\displaystyle \frac {{\rm e}^{
+(\,1/4\,{ \lambda}(\,{t}, {z}\,)\,)}}{{t}^{1/4}}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+g_33:=(t,z) -> N(t,z)^2;
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it g\_33} := (\,{t}, {z}\,) \rightarrow {\rm N}(\,{t}, {z}\,)^{
+2}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+g_33(t,z);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ \left( \! \,{\rm e}^{ \left( \! \, - \,1/2\,{t}\,{ \pi}\,{n}\,{A
+}^{2}\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm BesselJ}(
+\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{
+2} + 1/2\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\, \left( \! \,
+{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2} + {\rm BesselJ}(\,1
+, 2\,{ \pi}\,{n}\,{t}\,)^{2}\, \!  \right) \, \!  \right) }\, \! 
+ \right) ^{2} \left/ {\vrule height0.41em width0em depth0.41em}
+ \right. \! \! \sqrt {{t}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+diff(g_33(t,z),t): simplify(");
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{2}}{\rm e}^{ \left( \! \,{
+ \pi}\,{t}\,{n}\,{A}^{2}\, \left( \! \,{ \pi}\,{n}\,{t}\,{\rm \%1
+}^{2} + { \pi}\,{n}\,{t}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}
+\,)^{2} - {\rm \%1}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,
+{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}\, \!  \right) \, \! 
+ \right) } \left( {\vrule height0.44em width0em depth0.44em}
+ \right. \! \! 1} \\
+ & & \mbox{} - 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,
+{n}\,{z}\,)^{2} + 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+\%1}^{2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2} \\
+ & & \mbox{} - 4\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\,{\rm \%1
+}^{2} \! \! \left. {\vrule height0.44em width0em depth0.44em}
+ \right)  \left/ {\vrule height0.37em width0em depth0.37em}
+ \right. \! \! {t}^{3/2} \\
+ & & {\rm \%1} := {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+K_33:=(t,z) -> -diff(g_33(t,z),t)/(2*N(t,z));
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it K\_33} := (\,{t}, {z}\,) \rightarrow  - \,{\displaystyle 
+\frac {1}{2}}\,{\displaystyle \frac {{\rm diff}(\,{\rm g\_33}(\,{
+t}, {z}\,), {t}\,)}{{\rm N}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K_33(t,z): simplify(");
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{{\displaystyle \frac {1}{4}}{\rm e}^{ \left( \! \,1/2\,{
+ \pi}\,{t}\,{n}\,{A}^{2}\, \left( \! \,{ \pi}\,{n}\,{t}\,{\rm \%1
+}^{2} + { \pi}\,{n}\,{t}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}
+\,)^{2} - {\rm \%1}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,
+{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}\, \!  \right) \, \! 
+ \right) } \left( {\vrule height0.44em width0em depth0.44em}
+ \right. \! \! 1} \\
+ & & \mbox{} - 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,
+{n}\,{z}\,)^{2} + 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+\%1}^{2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2} \\
+ & & \mbox{} - 4\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\,{\rm \%1
+}^{2} \! \! \left. {\vrule height0.44em width0em depth0.44em}
+ \right)  \left/ {\vrule height0.37em width0em depth0.37em}
+ \right. \! \! {t}^{5/4} \\
+ & & {\rm \%1} := {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+K_33(t,z)+diff(N(t,z),t): simplify(");
+\end{mapleinput}
+\begin{maplelatex}
+\[
+0
+\]
+\end{maplelatex}
+\begin{mapleinput}
+simplify( K_33(t,z)/N(t,z) );
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{4}} \left( {\vrule 
+height0.44em width0em depth0.44em} \right. \! \!  - 1 + 4\,{ \pi}
+^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n
+}\,{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}} \\
+ & & \mbox{} - 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,
+{n}\,{z}\,)^{2} + 4\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\,{\rm 
+BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2} \! \! \left. {\vrule 
+height0.44em width0em depth0.44em} \right)  \left/ {\vrule 
+height0.37em width0em depth0.37em} \right. \! \! {t}
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+K33:= (t,z) -> K_33(t,z) / g_33(t,z);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it K33} := (\,{t}, {z}\,) \rightarrow {\displaystyle \frac {
+{\rm K\_33}(\,{t}, {z}\,)}{{\rm g\_33}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+                              \newpage
+\begin{mapleinput}
+simplify( K33(t,z) );
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{4}}{\rm e}^{ \left( \! \,
+ - \,1/2\,{ \pi}\,{t}\,{n}\,{A}^{2}\, \left( \! \,{ \pi}\,{n}\,{t
+}\,{\rm \%1}^{2} + { \pi}\,{n}\,{t}\,{\rm BesselJ}(\,1, 2\,{ \pi}
+\,{n}\,{t}\,)^{2} - {\rm \%1}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}
+\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}\, \!  \right) \,
+ \!  \right) } \left( {\vrule height0.44em width0em depth0.44em}
+ \right. \! \!  - 1} \\
+ & & \mbox{} + 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,
+{n}\,{z}\,)^{2} - 4\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{t}^{2}\,{\rm 
+\%1}^{2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2} \\
+ & & \mbox{} + 4\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\,{\rm \%1
+}^{2} \! \! \left. {\vrule height0.44em width0em depth0.44em}
+ \right)  \left/ {\vrule height0.37em width0em depth0.37em}
+ \right. \! \! {t}^{3/4} \\
+ & & {\rm \%1} := {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+g_11:= (t,z) -> t*exp(P(t,z));
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it g\_11} := (\,{t}, {z}\,) \rightarrow {t}\,{\rm e}^{{\rm P}(
+\,{t}, {z}\,)}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K_11:= (t,z) -> -diff(g_11(t,z),t)/(2*N(t,z));
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it K\_11} := (\,{t}, {z}\,) \rightarrow  - \,{\displaystyle 
+\frac {1}{2}}\,{\displaystyle \frac {{\rm diff}(\,{\rm g\_11}(\,{
+t}, {z}\,), {t}\,)}{{\rm N}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K_11(t,z): simplify(");
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{2}}\,{\rm e}^{ \left( \! 
+\, - \,1/2\,{A}\, \left( \! \, - 2\,{\rm \%2}\,{\rm cos}(\,2\,{ 
+\pi}\,{n}\,{z}\,) + { \pi}^{2}\,{t}^{2}\,{n}^{2}\,{A}\,{\rm \%2}
+^{2} + { \pi}^{2}\,{t}^{2}\,{n}^{2}\,{A}\,{\rm \%1}^{2} - { \pi}
+\,{t}\,{n}\,{A}\,{\rm \%2}\,{\rm \%1}\,{\rm cos}(\,2\,{ \pi}\,{n}
+\,{z}\,)^{2}\, \!  \right) \, \!  \right) }\,{t}^{1/4} + } \\
+ & & {\rm e}^{ \left( \! \, - \,1/2\,{A}\, \left( \! \, - 2\,
+{\rm \%2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,) + { \pi}^{2}\,{t}^{
+2}\,{n}^{2}\,{A}\,{\rm \%2}^{2} + { \pi}^{2}\,{t}^{2}\,{n}^{2}\,{
+A}\,{\rm \%1}^{2} - { \pi}\,{t}\,{n}\,{A}\,{\rm \%2}\,{\rm \%1}\,
+{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}\, \!  \right) \, \! 
+ \right) }\,{t}^{5/4}\,{A}\,{\rm \%1}\,{ \pi}\,{n} \\
+ & & {\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,) \\
+ & & {\rm \%1} := {\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,) \\
+ & & {\rm \%2} := {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+simplify(N(t,z)*K_11(t,z)/exp(P(t,z)) );
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ - \,{\displaystyle \frac {1}{2}} + {t}\,{A}\,{\rm BesselJ}(\,1, 
+2\,{ \pi}\,{n}\,{t}\,)\,{ \pi}\,{n}\,{\rm cos}(\,2\,{ \pi}\,{n}\,
+{z}\,)
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K11:= (t,z) -> K_11(t,z) / g_11(t,z);
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it K11} := (\,{t}, {z}\,) \rightarrow {\displaystyle \frac {
+{\rm K\_11}(\,{t}, {z}\,)}{{\rm g\_11}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+simplify( K11(t,z) );
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{{\displaystyle \frac {1}{2}}(\, - 1 + 2\,{t}\,{A}\,{\rm 
+BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{ \pi}\,{n}\,{\rm cos}(\,2
+\,{ \pi}\,{n}\,{z}\,)\,)} \\
+ & & {\rm e}^{ \left( \! \, - \,1/2\,{ \pi}\,{t}\,{n}\,{A}^{2}\,
+ \left( \! \,{ \pi}\,{n}\,{t}\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}
+\,{t}\,)^{2} + { \pi}\,{n}\,{t}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n
+}\,{t}\,)^{2} - {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm 
+BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}
+\,{z}\,)^{2}\, \!  \right) \, \!  \right) } \left/ {\vrule 
+height0.37em width0em depth0.37em} \right. \! \! {t}^{3/4}
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+g_22:= (t,z) -> t*exp(-P(t,z));
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it g\_22} := (\,{t}, {z}\,) \rightarrow {t}\,{\rm e}^{(\, - 
+{\rm P}(\,{t}, {z}\,)\,)}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K_22:= (t,z) -> -diff(g_22(t,z),t)/(2*N(t,z));
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it K\_22} := (\,{t}, {z}\,) \rightarrow  - \,{\displaystyle 
+\frac {1}{2}}\,{\displaystyle \frac {{\rm diff}(\,{\rm g\_22}(\,{
+t}, {z}\,), {t}\,)}{{\rm N}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K_22(t,z): simplify(");
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{2}}\,{\rm e}^{ \left( \! 
+\, - \,1/2\,{A}\, \left( \! \,2\,{\rm \%2}\,{\rm cos}(\,2\,{ \pi}
+\,{n}\,{z}\,) + { \pi}^{2}\,{t}^{2}\,{n}^{2}\,{A}\,{\rm \%2}^{2}
+ + { \pi}^{2}\,{t}^{2}\,{n}^{2}\,{A}\,{\rm \%1}^{2} - { \pi}\,{t}
+\,{n}\,{A}\,{\rm \%2}\,{\rm \%1}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}
+\,)^{2}\, \!  \right) \, \!  \right) }\,{t}^{1/4} - } \\
+ & & {\rm e}^{ \left( \! \, - \,1/2\,{A}\, \left( \! \,2\,{\rm 
+\%2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,) + { \pi}^{2}\,{t}^{2}\,{
+n}^{2}\,{A}\,{\rm \%2}^{2} + { \pi}^{2}\,{t}^{2}\,{n}^{2}\,{A}\,
+{\rm \%1}^{2} - { \pi}\,{t}\,{n}\,{A}\,{\rm \%2}\,{\rm \%1}\,
+{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}\, \!  \right) \, \! 
+ \right) }\,{t}^{5/4}\,{A}\,{\rm \%1}\,{ \pi}\,{n}\,{\rm cos}(\,2
+\,{ \pi}\,{n}\,{z}\,) \\
+ & & {\rm \%1} := {\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,) \\
+ & & {\rm \%2} := {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+simplify(N(t,z)*K_22(t,z)*exp(P(t,z)) );
+\end{mapleinput}
+\begin{maplelatex}
+\[
+ - \,{\displaystyle \frac {1}{2}} - {t}\,{A}\,{\rm BesselJ}(\,1, 
+2\,{ \pi}\,{n}\,{t}\,)\,{ \pi}\,{n}\,{\rm cos}(\,2\,{ \pi}\,{n}\,
+{z}\,)
+\]
+\end{maplelatex}
+\begin{mapleinput}
+K22:= (t,z) -> K_22(t,z) / g_22(t,z) ;
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it K22} := (\,{t}, {z}\,) \rightarrow {\displaystyle \frac {
+{\rm K\_22}(\,{t}, {z}\,)}{{\rm g\_22}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+simplify( K22(t,z) );
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{2}}(\,1 + 2\,{t}\,{A}\,
+{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{ \pi}\,{n}\,{\rm cos}
+(\,2\,{ \pi}\,{n}\,{z}\,)\,)} \\
+ & & {\rm e}^{ \left( \! \, - \,1/2\,{ \pi}\,{t}\,{n}\,{A}^{2}\,
+ \left( \! \,{ \pi}\,{n}\,{t}\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}
+\,{t}\,)^{2} + { \pi}\,{n}\,{t}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n
+}\,{t}\,)^{2} - {\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm 
+BesselJ}(\,1, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}
+\,{z}\,)^{2}\, \!  \right) \, \!  \right) } \left/ {\vrule 
+height0.37em width0em depth0.37em} \right. \! \! {t}^{3/4}
+\end{eqnarray*}
+\end{maplelatex}
+\begin{mapleinput}
+simplify( N(t,z)*( K11(t,z)+K22(t,z)+K33(t,z) ) );
+\end{mapleinput}
+\begin{maplelatex}
+\begin{eqnarray*}
+\lefteqn{ - \,{\displaystyle \frac {1}{4}} \left( {\vrule 
+height0.44em width0em depth0.44em} \right. \! \! 3 + 4\,{t}^{2}\,
+{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{\rm BesselJ}(\,1, 2\,{ \pi}\,{n}\,
+{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}} \\
+ & & \mbox{} - 4\,{t}^{2}\,{ \pi}^{2}\,{n}^{2}\,{A}^{2}\,{\rm 
+BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2}\,{\rm cos}(\,2\,{ \pi}\,
+{n}\,{z}\,)^{2} + 4\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\,{A}^{2}\,{\rm 
+BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2} \! \! \left. {\vrule 
+height0.44em width0em depth0.44em} \right)  \left/ {\vrule 
+height0.37em width0em depth0.37em} \right. \! \! {t}
+\end{eqnarray*}
+\end{maplelatex}
+What follows is for the purpose of calculating plots in cases of interest:
+
+\begin{mapleinput}
+tide:= (t,z) -> g_11(t,z) / g_22(t,z) ;
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\it tide} := (\,{t}, {z}\,) \rightarrow {\displaystyle \frac {
+{\rm g\_11}(\,{t}, {z}\,)}{{\rm g\_22}(\,{t}, {z}\,)}}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+simplify( tide(t,z) );
+\end{mapleinput}
+\begin{maplelatex}
+\[
+{\rm e}^{(\,2\,{A}\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,
+{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)\,)}
+\]
+\end{maplelatex}
+\begin{mapleinput}
+A:=0.2;n:=1;
+\end{mapleinput}
+\begin{mapleinput}
+evalf(N(1,0));
+\end{mapleinput}
+\begin{mapleinput}
+tidetitle := ` Plot of  g_11/g_22 at z=0 and z=1/4 for A=.2 and n=1 `;
+\end{mapleinput}
+\begin{mapleinput}
+plot( {tide(t,0),tide(t,1/4)} , t=.02..20, title=tidetitle );
+\end{mapleinput}
+\begin{mapleinput}
+plot({g_33(t,0),g_33(t,1/4)},t=10..15,title=`Plot of g_33 at z=0 and z=1/4 for A=.2 an
+\end{mapleinput}
+\begin{mapleinput}
+d n=1` );
+\end{mapleinput}
+\begin{mapleinput}
+
+\end{mapleinput}
+\end{document}
+%% End of Maple V Session Output
+

@@ -1,0 +1,124 @@
+where the partial derivatives of the density
+\[
+  \rho = \sqrt{
+           \frac{-g_{\mu\nu}(z) {\dot z}^{\mu}(t) {\dot z}^{\nu}(t)}
+                {-g(x)}
+              }
+         m W(\vec x - \vec z)
+\]
+need to be computed.  Before tackling the entire computation it is
+better to start with the partial derivative of the `smoothed'
+metric functions $g^{\mu\nu}(z)$ with respect to the metric
+functions defined at the field coordinates $g^{\alpha\beta}(x)$.
+Since the defining relation between the two is linear we arrive at
+the simple relation (assuming the values of the time coordinate in
+the two expression are equal)
+\bea
+  \frac{\partial}{\partial g^{\alpha \beta}(x)} \int d^3x \,
+   g^{\mu\nu}(x) W(\vec x - \vec z)
+& = &
+  \int d^3x \,\frac{\partial g^{\mu\nu}(x)}{\partial g^{\alpha\beta}(x)}
+   W(\vec x -\vec z) \nonumber \\
+& = &
+  \int d^3x \, {\delta^\mu}_{\alpha} {\delta^{\nu}}_{\beta}
+W(\vec x - \vec z) = {\delta^\mu}_{\alpha} {\delta^{\nu}}_{\beta}
+\eqp  \nonumber \eea
+This result will form the basis for all
+subsequent results.  For example the derivative of the metric
+functions $g_{\mu\nu}(z)$ with respect to the $g^{\alpha\beta}(x)$
+is easily related to the above result using the chain rule.  Doing
+so yields
+\[
+  \frac{\partial g_{\mu\nu}(z)}{\partial g^{\alpha\beta}(x)} =
+  \frac{\partial g_{\mu\nu}(z)}{\partial g^{\sigma\tau}(z)}
+  \frac{\partial g^{\sigma\tau}(z)}{\partial g^{\alpha\beta}(x)}
+  \eqp
+\]
+Using the fundamental relation between the field and `smoothed'
+g's derived above, this reduces to
+\[
+  \frac{\partial g_{\mu\nu}(z)}{\partial g^{\alpha\beta}(x)} =
+  - g_{\alpha\mu}(z)g_{\beta\nu}(z) \eqp
+\]
+We are ready to calculate the derivative of $\rho$. Operating the
+derivative on the definition of the density gives
+\bea
+  \frac{\partial \rho}{\partial g^{\alpha\beta}(x)}
+   & = &
+     \frac{\partial}{\partial g^{\alpha\beta}(x)}
+       \left( m W(\vec x - \vec z)
+       \sqrt{ \frac{-g_{\mu\nu}(z){\dot z}^{\mu} {\dot z}^{\nu}}{-g(x)} } \right) \nonumber \\
+   & = &
+     m W(\vec x - \vec z) \left\{
+       \frac{1/2}{ \sqrt{-g(x)} \sqrt{-g_{\mu\nu}(z){\dot z}^{\mu} {\dot z}^{\nu}}}
+       \frac{\partial}{\partial g^{\alpha\beta}(x)}
+       \left( -g_{\mu\nu}(z){\dot z}^{\mu} {\dot z}^{\nu}\right) \right. \nonumber \\
+   &   &
+     + \left. \sqrt{-g_{\mu\nu}(z){\dot z}^{\mu} {\dot z}^{\nu}}
+       \frac{1}{\left( \sqrt{-g(x)} \right)^2}
+       \frac{\partial}{\partial g^{\alpha\beta}} \sqrt{-g(x)}
+     \right\} \nonumber \eqp
+\eea
+The only term not dealt with above is the term
+$\frac{\partial \sqrt{-g(x)}}{\partial g^{\alpha\beta}(x)}$ which
+can be evaluated using the standard relationship to yield
+\[
+  \frac{\partial \sqrt{-g(x)}}{\partial g^{\alpha\beta}(x)} =
+  \frac{-1}{2} \sqrt{-g(x)}g_{\mu\nu}(x)
+  \frac{\partial g^{\mu\nu}(x)}{\partial g^{\alpha\beta}(x)} =
+  \frac{-1}{2} \sqrt{-g(x)}g_{\alpha\beta}(x) \eqp
+\]
+Using all the relations derived above and using the definition of
+the density, we arrive at our final expression for the derivative
+of $\rho$ with respect to the metric function defined on the field
+coordinates.
+\[
+\frac{\partial \rho}{\partial g^{\alpha\beta}} = \frac{1}{2} \rho
+\left\{u_{\alpha}(t) u_{\beta}(t) + g_{\alpha\beta} \right\} \eqp
+\]
+The presence of the kernel in $\rho$ guarantees that
+$u_{\alpha}(t;\vec x) = u_{\alpha}(t)$ within the support of
+$W(\vec x - \vec z)$.  Likewise for the pressure, which we assume
+is defined via an equation of state $P = P(\rho)$ . This behavior
+shows that our fat particle moves as a rigid body. Substituting
+this result into the variation of the action yields the following
+integral relation
+\bea
+ \delta I \vert_{\delta g^{\mu\nu}}
+ & = &
+   \int d^4x \, \delta g^{\alpha\beta}
+   \left\{ \frac{1}{16\pi} G_{\mu\nu} \sqrt{-g} -
+   \frac{P}{\rho^2}\frac{\rho}{2}
+   \left(u_{\alpha}u_{\beta} + g_{\alpha\beta} \right)
+   W(\vec x - \vec z) m \Lambda \right. \nonumber \\
+ &   &
+   \left. -m(1+e) \Lambda \frac{1}{2} u_{\alpha} u_{\beta} W(\vec x -\vec z)
+   \right\} \nonumber \eqp
+\eea
+Assuming that the variations can be arbitrarily specified and
+setting the variation equal to zero yields the following field
+equations
+\[
+G_{\alpha\beta} = 8 \pi \left[ P g_{\alpha\beta} + \rho \left( 1 +
+e + \frac{P}{\rho} \right) u_{\alpha}u_{\beta} \right] \eqc
+\]
+which are the `smoothed' equivalents of the corresponding
+continuum ones.
+
+At this point we have used up all the freedom we had in picking
+the combination of coordinates used in the defining relation for
+the density.  To summarize, we have found that we could derive the
+expected `smoothed' relations for the continuum equations obtained
+from the variations of $\Lambda$, $u_{\mu}$, and $g^{\alpha\beta}$
+by using the odd combination
+\[
+  \rho = m W(\vec x - \vec z) \frac{ \sqrt{-g_{\mu\nu}(z) {\dot
+  z}^{\mu} {\dot z}^{\nu}}}{\sqrt{-g(x)}}
+\]
+in defining the density in conjunction with the SPH smoothing
+approximation for rational functions.  The final set of equations,
+derived from the variation of the particle path $z^{\mu}$ must now
+be calculated.  If it provides a reasonable set of equations, that
+is to say that a single fat particle that starts at rest will stay
+at rest, we can then feel that the entire theory is on good
+footing.

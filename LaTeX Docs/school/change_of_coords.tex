@@ -1,0 +1,62 @@
+%Simple document on the change of coordinates under an orthogonal rotation
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Orthogonal Rotation of Coordinates}
+\maketitle
+
+
+This short note deals with determining the simple relation between a coordinate frame
+described by the coordinates $(x,y)$ and one described by the coordinates $(x',y')$,
+where the two frames are related by a simple rotation.
+
+Assuming that the coordinates of the point \mP in terms of the $(x,y)$ system are known
+then the coordinates of \mP in terms of the $(x',y')$ are determined as follows.
+\begin{figure}\label{fig:rot_coords}
+\centerline{
+   \includegraphics[height=4in,width=4in,keepaspectratio]{rotation_of_coords.eps}}
+   \caption{Diagram for relating coordinates under a orthogonal transformation.}\label{fig:D1}
+\end{figure}
+
+Referring to Figure \refp{fig:rot_coords}, the following two geometric relations are obvious:
+\beas
+  x' & = & \ell + m \\
+  y  & = & a + b \eqp
+\eeas
+In addition, the following four trigonometric relations are obvious:
+\beas
+  x  & = & \ell \cos(\gq) \\
+  a  & = & \ell \sin(\gq) \\
+  y' & = & b \cos(\gq)    \\
+  m  & = & m \cos(\gq) \eqp
+\eeas
+
+The coordinate $x'$ is related to $x$ and $y$ as follows:
+\beas
+  x' & = & \ell + m                                  \\
+     & = & \ell + b \sin(\gq)                        \\
+     & = & \ell \surp{y - a} \sin(\gq)               \\
+     & = & \surp{\ell - a \sin(\gq)} + y \sin(\gq)   \\
+     & = & \ell \surp{1 - \sin^2(\gq)} + y \sin(\gq) \\
+     & = & \ell \cos^2 (\gq) + y \sin(\gq)           \\
+     & = & x \cos(\gq) + y \sin(\gq) \eqp
+\eeas
+Likewise the $y'$ is related to $x$ and $y$ as follows:
+\beas
+  y' & = & b \cos(\gq)                            \\
+     & = & \surp{y - a} \cos(\gq)                 \\
+     & = & y \cos(\gq) - \ell \sin(\gq) \cos(\gq) \\
+     & = & -x \sin(\gq) + y \cos(\gq) \eqp
+\eeas
+
+
+Generally, these relationships are written in matrix form as:
+\bes
+  \surp{\begin{array}{c} x' \\ y' \end{array}}
+=
+  \surp{
+    \begin{array}{cc} \cos(\gq) & \sin(\gq) \\ -\cos(\gq) & \sin(\gq) \end{array}
+    }
+  \surp{\begin{array}{c} x \\ y \end{array}} \eqp
+\ees
+\end{document}

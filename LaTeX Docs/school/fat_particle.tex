@@ -1,0 +1,802 @@
+% ****** Start of file fat_particle.tex ******
+%
+%   This file is the first draft of the paper detailing our approach
+%   to the full-backreacting two fat particle system
+% 
+%
+%
+%   updates:	 10/29/99 first version of the paper - just the 
+%                skeleton - CS
+%                
+%                11/6/99 major reworking - finished 11/14/99
+%  
+
+%**************************************************************
+%
+%  Preliminary matters
+%
+%**************************************************************
+% \documentstyle[preprint,eqsecnum,aps]{revtex}
+\documentstyle[eqsecnum,aps,epsfig]{revtex}
+\bibliographystyle{prsty}
+\newcounter{bean}
+\def\.{{\quad .}}
+\def\_.{{\quad .}}
+\def\_,{{\quad ,}}
+
+%**************************************************************
+%
+%  Begin the document
+%
+%**************************************************************
+\begin{document}
+\draft
+
+
+\preprint{GR-QC/????}
+
+%**************************************************************
+%
+%  Front matter
+%
+%**************************************************************
+\title{Two Fat Particles}
+%
+\author{C. Schiff}
+\address{
+            Department of Physics, University of Maryland,
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt  cmschiff@erols.com\\
+					  Revision 2.0
+}
+\date{\today}
+\maketitle
+
+
+%**************************************************************
+%
+%  Abstract
+%
+%**************************************************************
+\begin{abstract}
+\end{abstract}
+
+
+\section{Discrete ADM}
+
+What follows is my specifications for our two-fat particle
+code.  
+To ensure that we are all on the same page I've attempted to
+make these `specs' self-contained.  
+To this end, I'll start with baryon conservation as the 
+symmetry that we will impose and I'll derive a form for the 
+density.
+Next I'll derive a spatially discrete form of Einstein equations
+in their covariant formulation and show that the requirement
+of consistency between the density definition derived from 
+baryon conservation and the one derived from the variational
+formulation uniquely determines how the grid-defined metric
+functions are smoothed to the particle position.
+Finally, I'll derive the discrete equations in ADM $3+1$ formulation.  
+
+\subsection{Baryon Conservation}
+
+The covariant form of baryon conservation is given by 
+\[
+  \left( \rho U^{\alpha} \right)_{;\alpha} = 0
+\]
+where $U^{\alpha}$ is the normalized four velocity 
+(i.e. $U^{\alpha} U_{\alpha} = -1$) and $\rho$ is the 
+density.
+This equation can also take on the form
+\[
+  \frac{1}{\sqrt{-g}} \left( \rho \sqrt{-g} U^{\alpha} \right)_{,\alpha} = 0 \, .
+\]
+By integrating the above equation over the spatial variables we
+obtain the conservation law
+\[
+  \int \, d^3 x \rho(x) \sqrt{-g(x)} {U^{0}}(x) = const = \sum _A m_A
+\]
+where the constant $const$ is taken to be the sum of the rest masses.
+
+As we will eventually move to $3+1$, we can regard  
+the coordinate velocity as computationally fundamental.  
+With this in mind we recast the zeroth component of the four-velocity
+\[
+  U^0 = \frac{1}{\sqrt{ -g_{\mu \nu} 
+                        \frac{d z^{\mu}}{d \lambda}
+                        \frac{d z^{\nu}}{d \lambda}				  
+    	              } }
+		\frac{d z^0}{d \lambda}
+\]
+as
+\[
+  U^0 = \frac{1}{ \frac{d z^0}{d \lambda} \sqrt{ -g_{\mu \nu} 
+                        \frac{d z^{\mu}}{d z^0}
+                        \frac{d z^{\nu}}{d z^0}				  
+    	              } }
+		\frac{d z^0}{d \lambda} 
+	  \equiv \frac{1}{ \sqrt{ -g_{\mu \nu} V^{\mu} V^{\nu} } } 
+\]
+where the four-dimensional coordinate velocity is defined as
+\[
+  V^{\mu} {\dot = } \left(1, \frac{d z^i}{d z^0} \right) \equiv \left(1, V^i \right) \, .  
+\]
+Substituting this form into the conservation integral yields
+\[
+  \int \, d^3 x \rho(x)
+                \left( 
+                \sqrt{
+                      \frac{ g } {g_{\mu \nu} V^{\mu} V^{\nu}}  
+                     }
+				\right)(x)  = \sum _A m_A
+\]
+which can be satisfied, identically, by the density definition
+\[
+  \rho(x) = \left(
+            \sqrt{
+                   \frac{g_{\mu \nu} V^{\mu} V^{\nu}}{g}
+                 }
+		    \right)(x)
+            \sum _A m_A \delta^3(\vec x - \vec z_A) \, .
+\]
+Discretization of the spatial coordinates is accomplished through the  
+following prescription.  
+Firstly the integral becomes a sum over a grid points 
+\[
+  \int \, d^3 x \rightarrow \sum _{\ell} k^3 
+\]
+denoted by 
+a multi-index $\ell$ and where $k$ is the linear spatial extent
+of a single cell.
+The delta function is now approximated by a smoothing kernel
+\[
+  \delta^3(\vec x - \vec z_A ) = \frac{W(\vec x_{\ell} - \vec z_A)}
+                                       {\sum _m k^3 W(\vec x_m - \vec z_A)}
+\]
+where $W(\vec x_{\ell} - \vec z_A)$ is non-zero only within a 
+finite region.
+Finally, we will regard the fluid to be comprised by 
+discrete fluid elements.
+The location of these elements will be given by the location
+of their center-of-mass.
+To prevent gravitational collapse, their mass will be
+smoothed out onto the grid and we will assume that there is no overlap
+between two smoothing kernels.
+The coordinate velocity at a grid point is then set equal to
+the center-of-mass coordinate velocity of the particle whose 
+smoothing kernel envelopes the grid point.  
+Those grid points which are enveloped by no kernel have a zero 
+coordinate velocity.  
+These conditions are concisely summarized by 
+\[
+  V^{\mu}( \vec x_{\ell},x^0) =    \sum _A {V_A}^{\mu}(x^0) 
+                                            \Theta \left[ W(\vec x_{\ell} - \vec z_A) 
+											       \right]
+\]
+where 
+\[
+  \Theta(x) = \left\{
+                     \begin{array}{cc}
+					   1  & x > 0 \\
+					   0  & otherwise
+					 \end{array}
+			   \right. \, .
+\]
+The density then becomes
+\[
+  \rho(\vec x_{\ell},x^0) = \left(
+                              \sqrt{
+                                    \frac{g_{\mu \nu} V^{\mu} V^{\nu}}{g}
+                                    }
+                              \right)(\vec x_{\ell},x^0)
+            \sum _A m_A \frac{W(\vec x_{\ell} - \vec z_A)}
+			                 {\sum _n k^3 W(\vec x_n - \vec z_A)} \, .
+\]
+which when substituted into the discrete form of the 
+conservation integral is
+\[
+  \sum _{\ell} k^3 \rho( \vec x_{\ell},x^0)
+                   \left( 
+                   \sqrt{
+				      \frac{g}{ g_{\mu \nu} V^{\mu} V^{\nu} } 
+					    }
+				   \right)(\vec x_{\ell},x^0)
+				   =
+				   \sum _A m_A \, .
+\]
+
+
+\subsection{Covariant Discretization}
+
+The starting point is the combined gravitational and matter action 
+\[
+  I = I_{HE} + I_{matter}
+\]
+where the gravitational action is given by the usual
+Hilbert-Einstein action
+\[
+  I_{HE} = \frac{1}{16 \pi} \int \, d^4 x \, R(x) \sqrt{ -g(x) } 
+\]
+and the matter action by
+\[
+  I_{matter} = - m_1 \int \, d \lambda_1 
+                     \sqrt{ -g_{\mu \nu}(z_1(\lambda_1)) 
+					        \frac{d {z_1}^{\mu}(\lambda_1)}{d \lambda_1} 
+					        \frac{d {z_1}^{\nu}(\lambda_1)}{d \lambda_1} }
+               - m_2 \int \, d \lambda_2 
+                     \sqrt{ -g_{\mu \nu}(z_2(\lambda_2)) 
+					        \frac{d {z_2}^{\mu}(\lambda_2)}{d \lambda_2} 
+					        \frac{d {z_2}^{\nu}(\lambda_2)}{d \lambda_2} }\, .				
+\]
+
+Again using the arbitrariness of the path parameter in the
+matter action, $\lambda_A$ can be eliminated in favor of
+${z_A}^0$ to give
+\[
+  I_{matter} = - m_1 \int \, d {z_1}^0 
+                     \sqrt{ -g_{\mu \nu}({z_1}^i({z_1}^0);{z_1}^0) 
+					        {V_1}^{\mu}({z_1}^0) {V_1}^{\nu}({z_1}^0) } 
+               - m_2 \int \, d {z_2}^0 
+                     \sqrt{ -g_{\mu \nu}({z_2}^i({z_2}^0);{z_2}^0) 
+					        {V_2}^{\mu}({z_2}^0) {V_2}^{\nu}({z_2}^0) }\, .				
+\]
+
+The combined action can be written in terms of the field variables $x^{\mu}$ 
+\begin{eqnarray*}
+  I & = & \int \, d^4 x \left\{ 
+                         \frac{R(x) \sqrt{-g(x)} }{16 \pi}
+						 -
+						 \left( m_1 \int \, d {z_1}^0
+						        \sqrt{ -g_{\mu \nu}({z_1}^i({z_1}^0);{z_1}^0) 
+								        {V_1}^{\mu}({z_1}^0) 
+										{V_1}^{\nu}({z_1}^0) }
+						 \right)
+						 \delta^4(x - z_1) \right .\\
+	&   & 
+    					 - \left.
+						 \left( m_2 \int \, d {z_2}^0
+						        \sqrt{ -g_{\mu \nu}({z_2}^i({z_2}^0);{z_2}^0) 
+								        {V_2}^{\mu}({z_2}^0) 
+										{V_2}^{\nu}({z_2}^0) }
+						 \right)
+						 \delta^4(x - z_2)
+                    \right\} \, .
+\end{eqnarray*}
+The integration over $d {z_A}^0$ can be eliminated by using $\delta(x^0 - {z_A}^0)$
+to yield
+\begin{eqnarray*}
+  I  & = &   \int \, d^4 x \left\{ 
+                         \frac{R(x) \sqrt{-g(x)} }{16 \pi}
+						 -
+						 \left( m_1 
+						        \sqrt{ -g_{\mu \nu}({z_1}^i(x^0);x^0) 
+								        {V_1}^{\mu}(x^0) 
+										{V_1}^{\nu}(x^0) }
+						 \right)
+						 \delta^3({\vec x} - {\vec z_1}) \right.\\
+	 &    &
+    					 - \left.
+						 \left( m_2 
+						        \sqrt{ -g_{\mu \nu}({z_2}^i(x^0);x^0) 
+								        {V_2}^{\mu}(x^0) 
+										{V_2}^{\nu}(x^0) }
+						 \right)
+						 \delta^3({\vec x} - {\vec z_2})
+                    \right\} \.
+\end{eqnarray*}
+The above action is now ready for the discretization program discussed above.
+However, a freedom exists in the above continuum expression that is absent
+in the discrete form; namely where the metric functions are to be evaluated.
+With the spatial $\delta$-functions present 
+\[
+  g_{\mu\nu}(\vec x,x^0)\delta(\vec x - \vec z_A) = g_{\mu\nu}(\vec z_A(x^0);x^0) 
+                                                    \delta(\vec x - \vec z_A)  
+\]
+but when the spatial $\delta$-functions are transitioned to smoothing
+kernels the above equation no longer holds.
+Since after discretization the metric is only known at grid points, we
+choose the left-hand form before smoothing the spatial $\delta$-functions.
+Introducing the $K$-term 
+\[
+  K({V_A}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0)) 
+               \equiv \sqrt {-g_{\mu \nu}(\vec x_{\ell},x^0) 
+			                 {V_A}^{\mu}(x^0) {V_A}^{\nu}(x^0)
+							}
+\]
+and the $S$-term
+\[
+  S_{(\ell,A)} = \frac{ W({\vec x}_{\ell} - {\vec z_A})}
+                      {\sum _n k^3 W({\vec x}_{n} - {\vec z_A}) }
+\]
+for brevity, the discrete action becomes
+\[
+  I  =  \int \, d x^0 \sum _{\ell}  k^3 \left\{ 
+                         \frac{R({\vec x}_{\ell},x^0) \sqrt{-g({\vec x}_{\ell},x^0)} }{16 \pi}
+						 - m_1   K({V_1}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0)) 
+						         S_{(\ell,1)} 
+						 - m_2   K({V_2}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0))
+						         S_{(\ell,2)} 
+                    \right\} \, .
+\]
+
+Finally, varying the discrete action with respect to the metric functions defined 
+at each grid point gives 
+\begin{eqnarray*}
+  \delta I \vert_{\delta g_{\alpha \beta}(\vec x_{\ell},x^0)} & = &  
+        \int \, d x^0 \sum _{\ell}  k^3 \left\{ 
+                         \frac{ -G^{\alpha\beta}({\vec x}_{\ell},x^0) 
+						        \sqrt{-g({\vec x}_{\ell},x^0)} 
+							  }
+							  { 16 \pi } \right. \\
+					&   & \left.
+					  +  \frac{ m_1 {V_1}^{\alpha}(x^0) {V_1}^{\beta}(x^0) S_{(\ell,1)} }
+					          { 2 K({V_1}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0))  }
+					  +  \frac{ m_2 {V_2}^{\alpha}(x^0) {V_2}^{\beta}(x^0) S_{(\ell,2)} }
+					          { 2 K({V_2}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0))  }
+                    \right\} \delta g_{\alpha \beta}(\vec x_{\ell},x^0) \, .  
+\end{eqnarray*}
+Setting the variation to zero yields a discrete form of the Einstein equations
+\[
+  G^{\alpha\beta}({\vec x}_{\ell},x^0) = 8 \pi 
+                                         \left\{
+					     \frac{ m_1 {V_1}^{\alpha}(x^0) {V_1}^{\beta}(x^0) }
+					          { 2 K({V_1}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0))  
+							    \sqrt{-g({\vec x}_{\ell},x^0)}
+							  }
+							  S_{(\ell,1)} 
+					  +  \frac{ m_2 {V_2}^{\alpha}(x^0) {V_2}^{\beta}(x^0) }
+					          { 2 K({V_2}^{\mu},g_{\mu\nu}(\vec x_{\ell},x^0))  
+							    \sqrt{-g({\vec x}_{\ell},x^0)}							  
+							  }
+							  S_{(\ell,2)} 
+                                         \right\} \, .
+\]
+This can be put into a form in which the density can be read off as follows.
+Use the relationship between the coordinate velocities defined at a particle 
+and at a grid point to rewrite the above as
+\[
+  G^{\alpha\beta}({\vec x}_{\ell},x^0) = 8 \pi 
+                                         \left(
+										 \frac{K(V^{\mu}(\vec x_{\ell},x^0),
+										             g_{\mu\nu}(\vec x_{\ell},x^0))
+											  }
+                 					          {                                           										 
+                							    \sqrt{-g({\vec x}_{\ell},x^0)} 
+											  }
+										 \sum _A m_A S_{(\ell,A)}								 
+										 \right)
+										 \frac{
+                                                {V}^{\alpha}(\vec x_{\ell},x^0) 
+                                                {V}^{\beta} (\vec x_{\ell},x^0)
+											  }
+											  {
+											    \left(
+                                                  K(V^{\mu}(\vec x_{\ell},x^0),
+												    g_{\mu\nu}(\vec x_{\ell},x^0))
+												\right)^2
+											  } \, .
+\]
+Now since $U^0 = 1/K$ and $V^{\mu} U^0 = U^{\mu}$, the above discrete 
+form of Einstein equations becomes
+\[
+  G^{\alpha\beta}({\vec x}_{\ell},x^0) = 8 \pi 
+                                         \left(
+										 \frac{K(V^{\mu}(\vec x_{\ell},x^0),
+										             g_{\mu\nu}(\vec x_{\ell},x^0))
+											  }
+                 					          {                                           										 
+                							    \sqrt{-g({\vec x}_{\ell},x^0)} 
+											  }
+										 \sum _A m_A S_{(\ell,A)}								 
+										 \right)
+										 U^{\alpha} U^{\beta} \, .
+\]
+The right-hand side is formally identical to the stress-energy tensor of 
+dust and thus the quantity in the parentheses can be identified as the density
+\[
+  \rho(\vec x_{\ell},x^0) = \left(
+							       \frac{K(V^{\mu}(\vec x_{\ell},x^0),
+							        g_{\mu\nu}(\vec x_{\ell},x^0))
+								  }
+                 			      {                                           										 
+                				    \sqrt{-g({\vec x}_{\ell},x^0)} 
+								  }
+							 \sum _A m_A S_{(\ell,A)}								 
+							\right) \, .
+\]
+Replacing the `K'- and `S'-terms by their definitions gives
+\[
+  \rho(\vec x_{\ell},x^0) = \left( 
+                              \sqrt{
+                                 \frac{g_{\mu\nu} V^{\mu} V^{\nu}}
+								      {g}
+								   }
+						    \right)(\vec x_{\ell},x^0)
+							\sum _A m_A 
+							\frac{ W({\vec x}_{\ell} - {\vec z_A})}
+                                 {\sum _n k^3 W({\vec x}_{n} - {\vec z_A}) } 
+\]
+which is identical to the expression obtained by applying baryon 
+conservation.  
+\\
+\\
+\\
+\\
+\noindent
+\textbf{Thus the prescription of defining all metric functions directly on the 
+computational grid in the discrete action is consistent with the 
+discrete form of baryon conservation.}
+
+\newpage 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       3+1 ADM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsection{Discretizing the Action in 3+1 - Conventional Hamiltonian}
+
+I begin again with the combined gravitational and matter actions
+\[
+  I = I_{HE} + I_{matter}
+\]
+where the gravitational action is given by the usual
+Hilbert-Einstein action 
+\[
+  I_{HE} = \frac{1}{16 \pi} \int \, d^4 x R(x) \sqrt{ -g(x) } 
+\]
+and the matter action by
+\[
+  I_{matter} = - m_1 \int \, d \lambda_1 
+                     \sqrt{ -g_{\mu \nu}(z_1(\lambda_1)) 
+					        \frac{d {z_1}^{\mu}(\lambda_1)}{d \lambda_1} 
+					        \frac{d {z_1}^{\nu}(\lambda_1)}{d \lambda_1} }
+               - m_2 \int \, d \lambda_2 
+                     \sqrt{ -g_{\mu \nu}(z_2(\lambda_2)) 
+					        \frac{d {z_2}^{\mu}(\lambda_2)}{d \lambda_2} 
+					        \frac{d {z_2}^{\nu}(\lambda_2)}{d \lambda_2} }\, .				
+\]
+Using the standard ADM prescription for particles this can be re-written
+as
+\begin{eqnarray*}
+  I_{matter} & = & - m_1 \int \, d {z_1}^0 L_{matter}(\vec z_1({z_1}^0),\tilde p_1({z_1}^0);g_{\mu\nu}(\vec z_1({z_1}^0);{z_1}^0)) \\
+             &   &  - m_2 \int \, d {z_2}^0 L_{matter}(\vec z_2({z_2}^0),\tilde p_2({z_2}^0);g_{\mu\nu}(\vec z_2({z_2}^0);{z_1}^0)) 
+\end{eqnarray*}
+where the individual matter Lagrangians take the form  
+\begin{eqnarray*}
+  L_{matter}(\vec z_A({z_A}^0),\tilde p_A({z_A}^0);g_{\mu\nu}(\vec z_A({z_A}^0);{z_A}^0))
+    & = &    \left\{
+			         {p_A}_k({z_A}^0) \frac{d {z_A}^k}{d {z_A}^0}({z_A}^0) \right. \\
+	&   &    \left.
+					 - H \left( \vec z_A({z_A}^0),
+					            \tilde p_A({z_A}^0);
+								g_{\mu\nu}(\vec z_A({z_A}^0);{z_A}^0)
+						 \right) \frac{}{}
+			 \right\}
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+  H(\vec z_A({z_A}^0),
+    \tilde p_A({z_A}^0);
+	g_{\mu\nu}(\vec z_A({z_A}^0);{z_A}^0))  & = &  
+	                                 - {p_A}_k({z_A}^0) {N_A}^k(\vec z_A({z_A}^0)) \\ 
+    &   &                             + N(\vec z_A({z_A}^0)) \sqrt{
+			            					    m_A^2 + h^{ij}(\vec z_A({z_A}^0);{z_A}^0) 
+						            			{p_A}_i({z_A}^0) {p_A}_j({z_A}^0)
+								               } 
+\end{eqnarray*}
+and the particle index $A$ takes on values 1 or 2.
+For brevity each particles contravariant components of position 
+will be denoted by ${\vec z}_A \equiv {z_A}^k$ and covariant components of
+momenta by ${\tilde p}_A \equiv {p_A}_k$.  It is to be understood that both
+the position and the conjugate momenta are parameterized by ${z_A}^0$.
+
+The total action may then be written as a function of 
+the coordinates $x^{\mu}$ through the $\delta$-functions 
+to yield 
+\begin{eqnarray*}
+  I & = & \int \, d^4 x \left\{
+  	  	   	  	  		  \frac{R(x) \sqrt{-g(x)}}{16 \pi} 
+						  -m_1 \int d{z_1}^0 
+						  L_{matter}(\vec z_1({z_1}^0),
+						             \tilde p_1({z_1}^0);
+									 g_{\mu\nu}(\vec z_1({z_1}^0);{z_1}^0))
+						  \delta^4(x - z_1) \right. \\
+	&    &                \left.		
+						  -m_2 \int d{z_2}^0 
+						  L_{matter}(\vec z_2({z_2}^0),
+						             \tilde p_2({z_2}^0);
+									 g_{\mu\nu}(\vec z_2({z_2}^0);{z_2}^0))
+						  \delta^4(x - z_2)
+  	  	   	  	  	\right\} \, .
+\end{eqnarray*}
+The integrations over $d {z_A}^0$ can again be eliminated using $\delta(x^0 - {z_A}^0)$
+\begin{eqnarray*}
+  I & = & \int \, d^4 x \left\{
+  	  	   	  	  		  \frac{R(x) \sqrt{-g(x)}}{16 \pi} 
+						  -m_1  
+						  L_{matter}(\vec z_1(x^0),
+						             \tilde p_1(x^0);
+									 g_{\mu\nu}(\vec z_1(x^0);x^0))
+						  \delta^3(\vec x - \vec z_1(x^0)) \right. \\
+	&    &                \left.
+						  -m_2  
+						  L_{matter}(\vec z_2(x^0),
+						             \tilde p_2(x^0);
+									 g_{\mu\nu}(\vec z_2(x^0);x^0))
+						  \delta^3(\vec x - \vec z_2(x^0))
+  	  	   	  	  	\right\} \, .
+\end{eqnarray*}
+Now perform the ADM decomposition (and renaming $x^0 = t$)
+\begin{eqnarray*}
+  I & = &  \int \, dt d^3 x \left\{
+                             \frac{1}{16 \pi}
+                             \left( {\dot h}_{ij}(\vec x, t) \pi^{ij}(\vec x, t) - 
+							        N(\vec x, t) R^0(\vec x, t) - N_i(\vec x, t) R^i(\vec x, t) 
+							 \right) \right. \\
+    &   &        						
+	             -m_1 
+     			  L_{matter}(\vec z_1(t),
+				             \tilde p_1(t);
+							 g_{\mu\nu}(\vec z_1(t);t))
+		    				  \delta^3(\vec x - \vec z_1(t)) \\
+    &   &         \left.
+				 -m_2
+     			  L_{matter}(\vec z_2(t),
+				             \tilde p_2(t);
+							 g_{\mu\nu}(\vec z_2(t);t))
+		    				  \delta^3(\vec x - \vec z_1(t))
+  	  	   	  	  	\right\} 
+\end{eqnarray*}
+where 
+\[
+  R^0 = -\sqrt{h}\left[ {}^3R + 
+         h^{-1} \left( \frac{1}{2}Tr(\pi)^2 - Tr(\pi^2)\right) \right]
+\]
+and
+\[
+  R^i = 2 {\pi^{ij}}_{|j} \, .
+\]
+Now discretize the spatial portion of the fields by allowing 
+$\int \, d^3 x \rightarrow \sum_{\ell} k^3$ where $\ell$ is a multi-index uniquely 
+denoting each discrete grid point.
+This process compels the definition
+\[
+  \delta^3(\vec x - {\vec z}_A) \rightarrow 
+                                \frac{W({\vec x}_{\ell} - {\vec z}_A)}
+								     {\sum _n k^3 W(\vec x_n - \vec z_A) } \, .
+\]
+Again choose the action to contain only the metric function defined at grid points
+by using the freedom of the $\delta$-function before discretization.  
+This gives
+\begin{eqnarray*}
+  I & = &  \int \, dt \sum _{\ell} k^3 \left\{
+                             \frac{1}{16 \pi}
+                             \left(  {\dot h}_{ij}(\vec x_{\ell}, t) 
+							         \pi^{ij}(\vec x_{\ell}, t) 
+									- 
+							         N(\vec x_{\ell}, t) 
+									 R^0(\vec x_{\ell}, t) 
+									- 
+									 N_i(\vec x_{\ell}, t) 
+									 R^i(\vec x_{\ell}, t) 
+							 \right) \right. \\
+    &   &        \left.							
+	             -m_1 
+     			  L_{matter}(\vec z_1(t),
+				             \tilde p_1(t);
+							 g_{\mu\nu}(\vec x_{\ell};t))
+			      \frac{W({\vec x}_{\ell} - {\vec z}_1)}
+    				   {\sum _{n} k^3 W({\vec x}_n - {\vec z}_1) }
+				 -m_2
+     			  L_{matter}(\vec z_2(t),
+				             \tilde p_2(t);
+							 g_{\mu\nu}(\vec x_{\ell};t))
+			      \frac{W({\vec x}_{\ell} - {\vec z}_2)}
+					   {\sum _{n} k^3 W({\vec x}_{n} - {\vec z}_2) }
+                  \frac{}{}						   
+  	  	   	  	  	\right\} \, .
+\end{eqnarray*}
+Introducing the (slightly new) notation 
+\[
+   \frac{W({\vec x}_{\ell} - {\vec z}_A)}
+        {\sum _n k^3 W(\vec x_n - \vec z_A) }
+	    \equiv S({\vec x}_{\ell} - {\vec z}_A)
+\]
+allows for a slightly denser notation and the final form of the action is  
+\begin{eqnarray*}
+  I & = &  \int \, dt \sum _{\ell} k^3 \left\{
+                             \frac{1}{16 \pi}
+                             \left(  {\dot h}_{ij}(\vec x_{\ell},t) 
+							         \pi^{ij}(\vec x_{\ell},t) 
+									- 
+							         N(\vec x_{\ell},t) 
+									 R^0(\vec x_{\ell},t) 
+									- 
+									 N_i(\vec x_{\ell},t) 
+									 R^i(\vec x_{\ell},t) 
+							 \right) \right. \\
+    &   &        \left.							
+	             -m_1 
+     			  L_{matter}(\vec z_1(t),
+				             \tilde p_1(t);
+							 g_{\mu\nu}(\vec x_{\ell};t))
+				  S({\vec x}_{\ell} - {\vec z}_1)
+				 -m_2 
+     			  L_{matter}(\vec z_2(t),
+				             \tilde p_2(t);
+							 g_{\mu\nu}(\vec x_{\ell};t))
+				  S({\vec x}_{\ell} - {\vec z}_2)
+                  \frac{}{}						   
+  	  	   	  	  	\right\} \, .
+\end{eqnarray*}
+
+\subsubsection{Varying the conjugate momenta $\tilde p_A(t)$}
+Taking the variation of the above integral with respect to 
+the conjugate momenta $\tilde p_A(t)$ yields
+\begin{eqnarray*}
+  \delta I \vert_{\delta {p_A}_i(t)} & = & - \int \, dt \sum _{\ell} k^3 \sum _{A} m_A
+                                        \left(
+										  \frac{ d {z_A}^i(t) }{d t}
+										 -\frac{ \partial H(\vec z_A(t),
+										                    \tilde p_A(t);
+                                                            g_{\mu\nu}(\vec x_{\ell};t)) }
+											   { \partial {p_A}_i(t)}
+										\right)											   
+										   S({\vec x}_{\ell} - {\vec z}_A(t))			
+                                           \delta {p_A}_i(t) \, . 
+\end{eqnarray*}
+When this variation is set to zero the resulting particle equation becomes 
+\[
+   \frac{ d {z_A}^i(t) }{d t} = \sum _{\ell} k^3 
+                                  \frac{ \partial H(\vec z_A(t),
+										            \tilde p_A(t);
+                                                    g_{\mu\nu}(\vec x_{\ell};t)) 
+									   }
+									   { \partial {p_A}_i(t)}
+  									   S({\vec x}_{\ell} - {\vec z}_A(t))													  
+\]
+which is equivalent to 
+\[
+   \frac{ d {z_A}^i(t) }{d t} = \frac{
+                                          \sum _{\ell}
+										  \left( 
+										  -N^i(\vec x_{\ell},t) 
+										  +
+										  \frac{
+										        N(\vec x_{\ell},t) 
+												h^{ij}(\vec x_{\ell},t)
+												{p_A}_j(t)
+										       }
+											   {\mu(\tilde p_A(t),
+											        h^{ij}(\vec x_{\ell},t)
+											   } 
+										  \right)                                    
+										  W(\vec x_{\ell} - \vec z_A(t))									 
+									 }
+									 {
+    									 \sum _{n} W(\vec x_{n} - \vec z_A(t))
+									 }
+\]
+where I have used the $\mu$-parameter 
+\[
+  \mu(\tilde p_A(t),h^{ij}(\vec x_{\ell},t)) = \sqrt{
+			            					             m_A^2 
+													   + h^{ij}(\vec x_{\ell},t) 
+            						            		{p_A}_i(t) 
+            						            		{p_A}_j(t)
+													   }
+\]
+defined by CWM in \emph{Geodesic Integrator Formulae}.
+
+\subsubsection{Varying the particle trajectories $\vec z_A(t)$}
+
+Taking the variation of the action integral with respect to 
+the particle trajectory $\vec z_A(t)$ yields
+\begin{eqnarray*}
+  \delta I \vert_{\delta {z_A}^i(t)} & = & - \int \, dt \sum _{\ell} k^3 \sum _{A} m_A
+                                      \left[
+                                        \left(
+										  {p_A}_i(t)
+										  \frac{ d }{d t}
+										  \delta{z_A}^i(t)
+										 -\frac{ \partial H(\vec z_A(t),
+										                    \tilde p_A(t);
+                                                            g_{\mu\nu}(\vec x_{\ell};t)) }
+											   { \partial {z_A}^i(t)}
+										\right)											   
+										S({\vec x}_{\ell} - {\vec z}_A(t)) \right. \\
+								&  & \left.
+                                      + \left(
+									      {p_A}_i(t)
+										  \frac{ d {z_A}^i(t) }{d t}
+										  - H(\vec z_A(t),
+    						                  \tilde p_A(t);
+                                              g_{\mu\nu}(\vec x_{\ell};t))
+									    \right)						
+										\frac{ \partial
+										       S({\vec x}_{\ell} - {\vec z}_A(t))
+											 }
+											 { \partial {z_A}^i(t)}
+                                     \right] \, . 				   			
+\end{eqnarray*}
+The only dependence on $\vec z_A$ in $H$ was through the metric functions.
+However, this dependence is now absent because of our prescription.
+Taking this into account and performing an integration-by-parts (IBP)
+on the first term yields 
+\begin{eqnarray*}
+  \delta I \vert_{\delta {z_A}^i(t)} & = & - \int \, dt \sum _{\ell} k^3 \sum _{A} m_A
+                                      \left[
+     	  							   -\frac{ d }{d t}									  
+                                       \left(
+										  {p_A}_i(t)
+   										  S({\vec x}_{\ell} - {\vec z}_A(t)) 
+									   \right)
+									  + 
+  								      {p_A}_i(t)
+									  \frac{ d {z_A}^i(t) }{d t}
+   									  \frac{ \partial
+										      S({\vec x}_{\ell} - {\vec z}_A(t))
+										   }
+										   { \partial {z_A}^i(t)} \right. \\
+				                        &  & \left.
+										  - H(\vec z_A(t),
+    						                  \tilde p_A(t);
+                                              g_{\mu\nu}(\vec x_{\ell};t))
+									  \frac{ \partial
+										     S({\vec x}_{\ell} - {\vec z}_A(t))
+										   }
+										   { \partial {z_A}^i(t)}
+                                     \right] \, . 				   			
+\end{eqnarray*}
+When the derivative $d/dt$ in the first term hits the smoothing it cancels the second
+term identically.  
+Switching the derivative from $\partial/ \partial {z_A}^i(t)$ 
+to $\partial/\partial {x_{\ell}}^i$ and performing a summation by parts 
+on the last term gives
+\begin{eqnarray*}
+  \delta I \vert_{\delta {z_A}^i(t)} & = & - \int \, dt \sum _{\ell} k^3 \sum _{A} m_A
+                                      \left[
+     	  							   -\frac{ d {p_A}_i(t) }{d t}									  
+									  - 
+                                        \frac{ \partial H(\vec z_A(t),
+										                  \tilde p_A(t);
+                                                          g_{\mu\nu}(\vec x_{\ell};t)) 
+									         }
+									         { \partial {x_{\ell}}^i}
+									  \right]
+										     S({\vec x}_{\ell} - {\vec z}_A(t)) \, .
+\end{eqnarray*}
+Setting the variation to zero finally gives the particle position updates
+\[
+  \frac{ d {p_A}_i(t) }{d t}  =  -\sum _{\ell} k^3 \sum _{A} m_A
+                                    \frac{ \partial H(\vec z_A(t),
+	         							              \tilde p_A(t);
+                                                      g_{\mu\nu}(\vec x_{\ell};t)) 
+									     }
+									     { \partial {x_{\ell}}^i}
+									     S({\vec x}_{\ell} - {\vec z}_A(t)) 
+\]
+which can also be written as
+\begin{eqnarray*}
+  \frac{ d {p_A}_i(t) }{d t}  & = & - \sum _{A} m_A \sum _{\ell} \\
+                              &   &  \frac{ \left(
+									        -{p_A}_k(t) 
+											{N_A}^k_{,i}(\vec x_{\ell},t)
+											+ {N_A}_{,i}(\vec x_{\ell},t)
+											\mu(\tilde p_A(t),h^{ij}(\vec x_{\ell},t))
+											-\frac{{N_A}(\vec x_{\ell},t)}
+											      {\mu(\tilde p_A(t),h^{ij}(\vec x_{\ell},t))}
+											 {h^{jk}}_{,i}(\vec x_{\ell},t) 
+											 {p_A}_j(t)
+											 {p_A}_k(t)
+									       \right) 
+										   W({\vec x}_{\ell} - {\vec z}_A(t))
+									     }
+									     { \sum _n W({\vec x}_n - {\vec z}_A(t)) }\, .
+\end{eqnarray*}
+
+
+\end{document}
+

@@ -1,0 +1,842 @@
+\documentclass{article}
+\include{my_commands}
+\begin{document}
+%%
+%%Top matter
+%%
+%%First draft version 0.3 completed on 1/29/02
+%%
+%%Updates:
+%%         3/05/02 - corrected the density definition based on an update to my_commands
+%%                   section 1 version 0.3.1
+%%         4/12/02 - corrected sign error in sqrt{-g{x}} term in T_\mu\nu equation in
+%%                   section 2.3 version 0.3.2
+%%         5/6/02  - added initial section on the single fat particle star
+\title{Single Fat Particle Systems}
+\author{Conrad Schiff \\
+        University of Maryland\\
+      \texttt{cmschiff@erols.com} \\
+      version 0.3.3}
+\date{1/29/02  \\ \small{update 5/6/02} }
+\maketitle
+%%
+%%Abstract
+%%
+%\begin{abstract}
+%
+%\end{abstract}
+\section{Introduction}
+
+In our previous work we developed a Lagrangian variational
+principle for a self-gravitating fluid based on the action
+\bes
+I_{matter} = I_{grav} + \myint{d^4a} \gtro (1 + \erg) \surb{
+\pdtraj{\gm} \pvel{\gm} - \gL \mH} \eqc
+\ees
+where the parameter \gtro is related to the number density \gr by
+\bes
+  \gtro = \gr \contarg \sqrt{
+        \frac{ -{\bar g} \contarg }{ -g_{\bar 0 \bar
+        0}\contarg}}
+\ees
+and, as the notation implies, the metric functions in \gtro are
+evaluated in terms of a co-moving frame that is at rest with
+respect to the fluid flow. The internal energy $e = e(\gr)$ gives
+rise to the pressure required to keep the fluid from collapsing.
+The last term leads to the Euler equations determining how the
+fluid flows.  The super-Hamiltonian
+\bes
+  \mH = \frac{1}{2}\surp{ \imet{\gm}{\gn} \pvel{\gm} \pvel{\gn} + 1}
+\ees
+expresses the standard four-velocity normalization and is identically zero along
+the proper geodesic motion \ptraj{\gm} of the fluid.
+The Lagrange multiplier \gL enforces this constraint.
+All told, this variational principle requires the variation of the metric
+components \imet{\gm}{\gn}, the fluid-element trajectories
+\ptraj{\gn}, the conjugate four-velocities \pvel{\gm}, and the
+Lagrange multiplier \gL \back. These variations are performed subject to
+the background constraint of the conservation of baryon number. In
+our earlier work we wrote this conservation equation as
+\bes
+  \gtro = \gtr J
+\ees
+where \gtr has analogous definition as \gtro  above
+\bes
+\gtr(z) = \gr(z) \sqrt{\frac{-\metd(z)}{-\met{\gm}{\gn}(z)
+\pdtraj{\gm} \pdtraj{\gn}}} \eqc
+\ees
+$\ptraj{\gm} \equiv \frac{d z^\gm}{d a^0}$, and the metric
+functions are evaluated along the fluid flow lines. The Jacobean determinant
+is given by $J \equiv \det \surp{
+\frac{\partial z^{\mu}}{\partial a^{\nu}}}$.
+
+What we wish to do in this work is to develop a coupled
+matter-field system for a single self-gravitating fluid element.
+The basic approach will be based on the above action but will be
+specialized to a single particle whose extent will be spread out
+over a finite coordinate distance using a smoothing kernel.  This
+discretization will be affected using the relation $\gtro = m \gd
+\surp{\cv{a} - \cv{r}_1}$.  The internal energy will not be set
+equal to zero in the action.  At a glance, this may seem like
+nonsense since we expect the internal energy to arise from an
+interaction amongst several particles.  However, in physics we
+often refer to collections of particles like a star, or a lake, or
+a glass of water in singular terms.  What we are doing here is to
+extend this concept to a single fluid element in General
+Relativity.  There will necessarily be an approximation that all
+of the constituents of the fluid element, which we are ignoring,
+move with the same four-velocity.  Thus the element will resist
+shear stresses and remain rigid through its course. Our hope for
+this program is that the resulting field equations provide a
+computational tool for modelling black holes in 3-d numerical
+relativity.  However, before we try to model this difficult
+problem we will attempt to see if a single fat particle can
+provide a black hole-like solution to the Einstein field
+equations.
+
+\section{Deriving the Equations of Motion}
+
+In this section we derive the equations of motion for our single
+fluid element, hereafter denoted as a single fat particle. As
+discussed in the Introduction, we arrive at a single fat particle
+action by making the substitution
+\bes
+ \gtro = m \gd(\cv{a} - \cv{r}_1) \eqp
+\ees
+Inserting this expression into the action leads to
+\bes
+  I = I_{grav} + \int da^0 m (1 + \erg_1) \surp{ \pdtraja{1}{\gm}
+  \pvela{1}{\gm} - \gL {\mathcal H}_1 } \eqc
+\ees
+where we use the following notation
+\\ \\
+\bea
+  \pdtraja{1}{\gm} & = &  \pdtraj{\gm}\harg     \push \nonumber \\
+  \pvela{1}{\gm}   & = &  \pvel{\gm} \harg      \push \nonumber \\
+  \erg_1              & = &  \erg\surp{\gr\harg}      \push \nonumber \\
+  {\mathcal H}_1   & = & \frac{1}{2}(\imet{\gm}{\gn}\harg \pvela{1}{\gm} \pvela{1}{\gn} + 1) \eqp   \nonumber
+\eea
+The `1' index at this point is excess baggage reminding us of our
+humble beginnings with one particle but serving no other purpose.
+Thus we drop it hereafter and just keep the single particle
+concept in the back of our minds.
+
+The introduction of the four-dimensional \dfunc $\gd(x^\gm -
+z^\gm) = \gd(x^0 - z^0) \, \gd(\cv{x} - \cv{z})$ allows the
+hydrodynamic action to be written in term of the gravitational
+field variables.
+\beas
+I & = & \frac{1}{16 \pi} \myint{d^4x} R(x) \sqrt{-g(x)} \\
+  &   & + m \myint{da^0} d^4x \push (1 + \erg) \surb{ \ptraj{\gm} \pvel{\gm} -
+\gL \mathcal{H} } \gd(x^0 - z^0) \gd(\cv{x} - \cv{z})
+\eeas
+Now use path invariance and say $da^0 = dz^0$.  This allows us to
+perform the $da^0$ integration and eliminate one \dfunc. The
+remaining three-dimensional \dfunc over the spatial variables is
+then approximated by a smoothing kernel leading to:
+\bes
+I =  \int d^4x \push \surc{ \frac{R(x) \sqrt{-g(x)}}{16 \pi} + m
+(1 + \erg) \surb{ \ptraj{\gm} \pvel{\gm} - \gL\mathcal{H} }
+\sm{x}{z} }
+\ees
+A delicate point arises here.  The presence of the \dfuncs meant
+that we could be sloppy, allowing ourselves the luxury of
+switching back and forth between the fluid trajectory variables
+\ptraj{\gm} and the field variables $x^\mu$.  Once the
+approximation of the spatial \dfuncs with the smoothing kernel has
+been made, we are compelled to pick where our functions live.
+
+In general, the choice for each function appearing in the action
+is relatively straightforward.  Only the density, tentatively
+defined by
+\bes
+  \gr = \frac { \sqrt{-\met{\gm}{\gn} \pdtraj{\gm} \pdtraj{\gn}}}
+              { \sqrt{-g}} m \sm{x}{z} \eqc
+\ees
+presents any difficulty.  Here we are confronted with two choices
+for where the metric functions are defined.  In great measure, we
+are free to pick any convenient definition from the numerous ones
+possible. We have this freedom since the prescription for baryon
+number conservation can be written as
+\bes
+  \int d^3x \, \rho \frac{ \sqrt{-g}}
+                         { \sqrt{-\met{\gm}{\gn} \ptraj{\gm} \ptraj{\nu}}}
+                         m \sm{x}{z}
+  = m \eqp
+\ees
+As long as the smoothing kernel $W$ is normalized any combination
+of $\frac{ \sqrt{-\met{\gm}{\gn} \pdtraj{\gm} \pdtraj{\gn} }}{
+\sqrt{-g}}$ can be used in the definition of \gr as long as the
+same combination is used when calculating the total baryon number.
+The primary complication is the `coupling' term
+$\sqrt{-\met{\gm}{\gn} \pdtraj{\gm} \pdtraj{\gn} }$. It is
+directly related to $u^0$ and is identified with the Lagrange
+multiplier \gL in the continuum case by simultaneously using the
+four-velocity normalization and the equation $\pdtraj{\gm} = \gL
+\imet{\gm}{\gn} \pvel{\gn}$.  We will see below that in order to
+make the `smoothed' analogs of the equations for the four-velocity
+normalization and the relation between \pdtraj{\gm} and \pvel{\gm}
+look natural we will have to adopt the following convention.  Any
+time a metric function is used in combination with a fat particle
+hydrodynamic function it should be smoothed according to the
+prescription
+\be\label{eq:inv_sm_met}
+  \simet{\gm\gn}\parg = \myint{d^3x} \imet{\gm}{\gn}\farg \sm{x}{z} \eqp
+\ee
+We define the smoothed metric \sura{\met{\gm}{\gn}} by requiring
+\be\label{eq:sm_met}
+\simet{\gm\gn} \smet{\gn\gr} = \Kd{\gm}{\gr} \eqp
+\ee
+The density can be explicitly written as
+\be\label{eq:rho_def}
+    \gr = m \frac{ \sqrt{-\smet{\gm\gn} \pdtraj{\gm} \pdtraj{\gn}}}
+                 { \sqrt{-g(t,\cv{x})}} \sm{x}{z} \eqp
+\ee
+
+Also we will be compelled to regard the internal energy, where
+this coupling between the field and the hydrodynamic variables is
+most entangled, as being a function of both $x^{\mu}$ subject to
+the particle trajectories \ptraj{\gm}.  Functionally, we will
+denote this dependence, when needed, as $\erg = \ierg$.  Finally we
+will take the term $\sqrt{-g} = \sqrt{-g(x)}$.  Again the reason
+for this choice is that it will make the field equations derived
+by varying $\imet{\ga}{\gb}(x)$ look natural.  However, we
+emphasize that once these two choices have been adopted we no
+longer have the ability to adjust anything else in the action. The
+resulting equations for the fluid motion will then reflect the
+viability of these choices.
+
+\subsection{Action Variation With Respect to \gL}
+First we look at the variation of the action with respect to \gL
+which yields
+\bes
+\vwrt{I}{\gL} = -\int d^4x \push m(1+\erg) \mathcal{H} \sm{x}{z}
+\var{\gL} \eqp
+\ees
+Using the definition of the Hamiltonian reduces the above equation
+to
+\bes
+\int dt \push d^3x \push \sm{x}{z} (1 + \erg)
+\surb{\imet{\gm}{\gn}(x) \pvel{\gm} \pvel{\gn} + 1} = 0 \eqp
+\ees
+Defining an associated smoothing
+\bes
+    \langle f(z) \rangle _\erg = \int d^3x \, \sm{x}{z} (1+\erg) f(x)
+\ees
+where the inclusion of the internal energy term is unavoidable due
+to the entanglement of the field and hydrodynamic degrees of
+freedom as discussed above.  Ordinarily this would present a
+substantial complication, creating a self-coupled variational
+principle that would require extensive modification of the simple
+equations of motion that resulted from the continuum theory.  In
+order to avoid this we employ the standard SPH approximation of
+rational functions that states
+\bes
+  \sura{ \frac{A(\vec r)}{B(\vec r)} }= \frac{ \langle
+  A(\vec r) \rangle}{\langle B(\vec r) \rangle} + O(h^2) \eqp
+\ees
+Writing the equation resulting from $\delta \Lambda$ in terms of
+the auxiliary smoothing we arrive at
+\bes
+  \langle g^{\mu\nu}(t,\vec z) \rangle_e u_{\mu}(t) u_{\nu}(t) +
+  \langle 1 \rangle_\erg = 0 \eqp
+\ees
+Dividing by $\langle 1 \rangle_e$ we arrive at
+\bes
+  \frac{\langle g^{\mu\nu}(t,\vec z) \rangle_\erg}{\langle 1
+  \rangle_\erg}u_{\mu}(t) u_{\nu}(t) + 1 = 0 \eqp
+\ees
+The first term is simplified using the SPH approximation of
+rational functions to yield
+\bes
+\frac{\langle g^{\mu\nu}(t,\vec z) \rangle_\erg}{\langle 1
+  \rangle_\erg}  =   \myint{d^3x} \frac{g^{\mu\nu}(t,\vec x)}{1+\erg} (1+\erg)
+  W(\vec z - \vec x) = \myint{d^3x} g^{\mu\nu}(t,\vec x) W(\vec z
+  - \vec x)
+\ees
+Using this relation simplifies the four-velocity normalization
+condition to
+\be\label{eq:norm_cond}
+g^{\mu\nu}(t,\vec z) u_{\mu}(t) u_{\nu}(t) + 1 = 0
+\ee
+where $g^{\mu\nu}(t,\vec z) = \int d^3x \, g^{\mu\nu}(x) W(\vec x
+- \vec z)$.
+
+This equation agrees with what one would obtain by taking the
+corresponding equation of the continuum theory and directly
+smoothing.  This correspondence is used to justify the claim made
+above that the metric functions can be smoothed using solely the
+smoothing kernel.
+
+\subsection{Action Variation with Respect to \pvel{\gm}}
+Next we look at the variation of the action with respect to the
+covariant four-velocity $u_{\mu}$ which yields
+\bes
+  \delta I_{\vert \delta u_{\mu}} = \myint{dt} m (1 + \erg) \left\{
+  {\dot z}^{\mu} - \Lambda g^{\mu\nu}(t,\vec z) u_{\nu}(t)
+  \right\} \delta u_{\mu}(t) \eqp
+\ees
+Again using the SPH approximation as above we arrive at
+\be\label{eq:4vel_def}
+{\dot z}^{\mu} = \Lambda g^{\mu\nu}(t,\vec z) u_{\nu}(t)
+\ee
+which is the `smoothed' analog of the continuum equation relating
+the coordinate velocities ${\dot z}^{\mu}$ to the covariant
+four-velocities $u_{\mu}$. Combining the two equations and solving
+for $\Lambda$ yields
+\be\label{eq:Lambda}
+ \Lambda^2 = -g_{\mu\nu}(t,\vec z) {\dot z}^{\mu}{\dot z}^{\nu}
+\ee
+where $g_{\mu\nu}(t,\vec z)$ is the inverse matrix of
+$g^{\mu\nu}(t,\vec z)$ formally defined by
+\bes
+g_{\mu\nu}(t,\vec z) g^{\mu\sigma}(t,\vec z) =
+{\delta^{\sigma}}_{\nu} \eqp
+\ees
+Solving the above equation for $\Lambda$ gives us an equation
+consistent with our smoothing convention; namely that since
+$g_{\mu\nu}$ appears in conjunction with fluid degrees of freedom
+it must be the smoothed form of that function.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Action Variation with Respect to \imet{\gm}{\gn}(x)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now turn to the variation of the combined action with respect
+to $g^{\mu\nu}(x)$. Taking this variation yields
+\bea\label{eq:var_I_g}
+ \vwrt{I}{g^{\mu\nu}} & = &
+   \frac{1}{16\pi} \myint{d^3x \nudge dt} G_{\mu\nu} \sqrt{-g} \,\,
+   \var{\imet{\gm}{\gn}} \nonumber \\
+& &
+ + \myint{d^3x \nudge dt} m \frac{P}{\gr^2} \vwrt{\gr}{\imet{\gm}{\gn}}
+     \surc{ \pdtraj{\gm} u_{\mu} - \gL \mathcal{H} } W(\vec x - \vec z) \nonumber \\
+& &
+ - \myint{d^3x \nudge dt} m(1 + \erg)\frac{\gL}{2} u_{\mu} u_{\nu} \var{\imet{\gm}{\gn}} \eqp
+\eea
+The first term in \refq{eq:var_I_g} is the usual term that comes from the
+variation of the Hilbert action.  The second term depends on the variation of the density,
+as defined in \refq{eq:rho_def}, which is comprised of the two terms
+\be\label{eq:var_rho}
+\vwrt{\gr}{\imet{\gm}{\gn}} = \frac{-m \sm{x}{z}}{2}
+\surc{ \frac{1}{\gL\sqrt{-g}} \var{\smet{\gm\gn}} \pdtraj{\gm}\pdtraj{\gn}
++ \frac{\gL}{\surp{-g}^{3/2}} \var{g}}
+\ee
+with \gL defined as in \refq{eq:Lambda} and $g(x) = \det{\surp{\met{\gm}{\gn}}}$.
+The first term in \refq{eq:var_rho}, \var{\smet{\gm\gn}}, can be related to
+the variation of the smoothed inverse metric defined in \refq{eq:inv_sm_met} by
+taking the variation of \ref{eq:sm_met}
+\bes
+  \var{\smet{\gs\gt}} = \smet{\gs\ga} \var{\simet{\ga\gb}} \smet{\gb\gt} \eqp
+\ees
+The variation of \simet{\ga\gb}
+\bes
+  \var{\simet{\ga\gb}} = \myint{d^3x} \sm{x}{z} \var{\imet{\ga}{\gb}}
+\ees
+is easily obtained from the equation \refq{eq:inv_sm_met}.
+The variation of the determinant of the metric follows from the standard relation
+\bes
+  \var{\metd} = - \metd \met{\gm}{\gn} \var{\imet{\gm}{\gn}} \eqp
+\ees
+
+Substituting these relations in \refq{eq:var_rho} and collecting terms against the
+definition of \gr in \refq{eq:rho_def} yields
+\bes
+  \vwrt{\gr}{\imet{\gm}{\gn}}    =   \frac{\gr}{2} \surp{\met{\gm}{\gn}
+                                     \var{\imet{\gm}{\gn}}
+                                   + u_{\gm}(t) u_{\gn}(t)
+                                     \myint{d^3y} \var{\imet{\gm}{\gn}}(\cv{y},t) \sm{y}{z}} \eqp
+\ees
+Using equation \refq{eq:4vel_def}, in the form \pdtraj{\mu} \ptvel{\mu} = -\gL, in
+combination with \mH = 0, renders the action variation as
+\beas
+ \var{I} & = & \myint{d^3x dt}    \surc{ \frac{\idx{G}{\dn{\gm\gn}}}{16 \gp}
+                                - \frac{\gr}{2} (1+e) \ptvel{\mu} \ptvel{\gn}
+                                - \frac{P}{2} \met{\gm}{\gn}
+                                       } \sqrt{-\metd} \nudge \var{\imet{\gm}{\gn}} \\
+         & + & \myint{d^3x dt} P \nudge \ptvel{\gm} \ptvel{\gn} \sqrt{-\metd}
+               \myint{d^3y} \sm{y}{z} \var{\imet{\gm}{\gn}(\cv{y},t)} \eqp
+\eeas
+By switching the dummy variables of integration in the latter integral, $x \rightarrow y$ and
+$y \rightarrow x$, and collecting terms under one integral, we arrive at
+\beas
+\var{I} & = & \myint{d^3x dt} \left\{ \frac{\idx{G}{\dn{\gm\gn}}}{16 \gp} - \frac{\gr}{2}
+  (1+e) \ptvel{\gm} \ptvel{\gn} - \frac{P}{2} \met{\gm}{\gn} \right. \\
+        &   &  \left. + \frac{\sm{x}{z}}{\sqrt{-\metd}}  \ptvel{\gm} \ptvel{\gn}
+        \myint{d^3y} P \nudge \sqrt{-\metd} \right\} \sqrt{-\metd} \nudge \var{\imet{\gm}{\gn}} \eqp
+\eeas
+Setting the variation to zero, we arrive at the `smoothed' form of the Einstein equations
+\bea\label{eq:def_T}
+   \idx{G}{\dn{\gm\gn}} = 8 \gp \surc{   \gr (1+e) \ptvel{\gm} \ptvel{\gn} + P \met{\gm}{\gn}
+                                  + \frac{W(\cv{x} - \cv{z})}{\sqrt{-g(x)}}
+                                    \ptvel{\gm} \ptvel{\gn}
+                                    \surb{\myint{d^3y} P(y) \sqrt{-g(y)}} }
+\eea
+with the right-hand side being taken as the definition of the `smoothed' stress-energy tensor.
+
+
+\subsection{Action Variation with Respect to \ptraj{\gm}}
+
+The final step is to take the variation of the action \wrt
+\ptraj{\gm} to obtain the Euler equations for the particle. To
+facilitate this end, the separation between space and time will be
+observed.  The action, thus becomes
+\be\label{eq:smthI}
+I = m \int
+dt \push \pdtraj{\gm} \pvel{\gm} \sura{1+e} - m \int dt \push
+\frac{\gL}{2} \sura{\surp{1+e}\surp{\imet{\gm}{\gn} \pvel{\gm}
+\pvel{\gn} + 1}} \eqp
+\ee
+%
+Now taking the variation of \surp{\ref{eq:smthI}} yields
+\bes
+\vIz{i} = m \int dt \push \surc{ \var{\pdpos{i}} \ptvel{i}
+\sura{1+e} + \pdtraj{\gm} \pvel{\gm} \var{\sura{1+e}} -
+\frac{\gL}{2} \var{ \sura{ \surp{1+e} \surb{\normeq{\gm}{\gn}}}}}
+\eqp
+\ees
+Integrate the first term by parts to move the time derivative off
+of \ptraj{\mu}.  Next use the relation $\pdtraj{\gm}\!\pvel{\gm} =
+-\gL$ in the second term.  For the third term, the relation
+\be\label{eq:norm}
+ \sura{f(x)\surb{\normeq{\gm}{\gn}}} =
+\sura{f(x)}\sura{\normeq{\gm}{\gn}} = 0
+\ee
+%
+is used to expand the variation.  Follow this by switching the
+derivative on the smoothing kernel from
+\idx{\partial}{\dn{\cv{z}}} to \idx{\partial}{\dn{\cv{x}}} and
+integrate by parts.  Performing these steps yields \bea \vIz{i} &
+= & m \myint{dt} \surc{
+   \dby{t} \surp{\pvel{i}\sura{1+\erg}} \var{\ptraj{i}}
+ - \gL \var{\sura{1+\erg}} } \nonumber \\
+        &   & - m \myint{dt}
+   \frac{\gL}{2} \myint{d^3x} \pdby{x^i} \surc{ \surp{1+\erg}
+     \surp{\imet{\gm}{\gn} \pvel{\gm} \pvel{\gn} + 1}} \sm{x}{z} \var{\ptraj{i}}
+\eea
+%
+Again use \surp{\ref{eq:norm}} when expanding
+\pdby{x^i}\surc{\surp{1+\erg}\surb{\normeq{\gm}{\gn}}} to obtain
+%
+\bea
+\vIz{i} & = & -m \myint{dt} \surc{
+   \dby{t} \surp{ \pvel{i} \sura{1+\erg} } \var{\ptraj{i}}
+ - \gL \var{\sura{1+\erg}}} \nonumber \\
+             &   & - m \myint{dt}
+   \frac{\gL}{2} \myint{d^3x} \surp{1+\erg}
+   \pdxby{\imet{\gm}{\gn}}{x^i} \pvel{\gm} \pvel{\gm} \sm{x}{z}
+   \var{\ptraj{i}} \eqp
+\eea
+%
+Now expand the \var{\sura{1+\erg}} term to obtain
+%
+\bea
+\vIz{i} & = & -m \myint{dt} \dby{t} \surp{\pvel{i}
+\sura{1+\erg}} \var{\ptraj{i}} \nonumber \\
+             &   & -m \myint{dt} \gL \surp{
+             \pdxby{\sura{1+\erg}}{\ptraj{i}}  \var{\ptraj{i}} +
+             \pdxby{\sura{1+\erg}}{\pdtraj{i}} \var{\pdtraj{i}} }
+             \nonumber \\
+             &   & -m \myint{dt} \frac{\gL}{2} \pvel{\gm}
+             \pvel{\gn} \sura{ \surp{1+\erg}
+             \pdxby{\imet{\gm}{\gn}}{x^i}} \var{\ptraj{i}} \eqc
+\eea
+%
+
+Integrating the third term by parts and collecting yields
+%
+\bea
+\vIz{i} & = & -m \myint{dt} \left\{ \dby{t} \surp{\pvel{i}
+\sura{1+\erg} - \gL \pdxby{\sura{1+\erg}}{\pdtraj{i}} } \right.
+\nonumber \\
+        &   & \left. \gL \pdxby{\sura{1+\erg}}{\ptraj{i}}
+        + \frac{\gL}{2} \pvel{\gm} \pvel{\gn} \sura{ \surp{1+\erg}
+        \pdxby{\imet{\gm}{\gn}}{x^i}} \right\} \var{\ptraj{i}}
+        \eqp
+\eea
+%
+To proceed further, the terms involving
+\pdxby{\sura{1+\erg}}{\ptraj{i}} and
+\pdxby{\sura{1+\erg}}{\pdtraj{i}} must be expanded. Several
+intermediate results are helpful in tackling the
+\pdxby{\sura{1+\erg}}{\ptraj{i}} term first:
+\bes
+\pdxby{\gr}{\ptraj{i}} = \gr \surb{ \frac{1}{\sm{x}{z}}
+\pdxby{\sm{x}{z}}{\ptraj{i}} + \frac{1}{2}
+\pdxby{\simet{\ga\gb}}{\ptraj{i}} \pvel{\ga} \pvel{\gb} }
+\ees
+and
+\bes
+\pdxby{\gr}{x^i} = \gr \surb{ \frac{-1}{\sm{x}{z}}
+\pdxby{\sm{x}{z}}{\ptraj{i}} + \frac{1}{2} \met{\gm}{\gn}
+\pdxby{\imet{\gm}{\gn}}{x^i}} \eqp
+\ees
+Using these relations gives
+%
+\bea \pdxby{\sura{1+\erg}}{\ptraj{i}} & = & \myint{d^3x}
+\pdxby{\erg}{\gr} \surc{\pdxby{\gr}{\ptraj{i}} +
+\pdxby{\gr}{x^i}} \sm{x}{z} \nonumber \\
+& = & \sura{\frac{P}{\gr}} \frac{1}{2}
+\pdxby{\simet{\ga\gb}}{\ptraj{i}} + \frac{1}{2} \sura{
+\frac{P}{\gr} \met{\gm}{\gn} \pdxby{\imet{\gm}{\gn}}{x^i}} \eea
+%
+Similarly, the term of \pdxby{\sura{1+\erg}}{\pdtraj{i}} is
+tackled by using the intermediate relation
+\bes
+\pdxby{\gr}{\pdtraj{i}} = -\frac{\gr \pvel{i}}{\gL}
+\ees
+to obtain
+\bes
+\pdxby{\sura{1+\erg}}{\pdtraj{i}} =
+-\frac{\pvel{i}}{\gL}\sura{\frac{P}{\gr}} \eqp
+\ees
+Finally, the term \sura{\surp{1+\erg}\pdxby{\imet{\gm}{\gn}}{x^i}}
+can be simplified using the SPH rules used before to yield
+\bes
+\sura{\surp{1+\erg}\pdxby{\imet{\gm}{\gn}}{x^i}} = \sura{1+\erg}
+\sura{\pdxby{\imet{\gm}{\gn}}{x^i}} = \sura{1+\erg}
+\pdxby{\simet{\gm\gn}}{\ptraj{i}} \eqp
+\ees
+Putting all of these pieces together and setting the variation
+equal to zero gives the SPH version of the Euler equations
+%
+\be\label{eq:SPHEuler}
+ \frac{1}{\gL} \dby{t} \surb{ \sura{1+\erg+\frac{P}{\gr}}
+\pvel{i} } + \frac{1}{2} \sura{1+\erg+\frac{P}{\gr}}
+\pdxby{\simet{\gm\gn}}{\ptraj{i}} \pvel{\gm} \pvel{\gn} +
+\frac{1}{2} \sura{\frac{P}{\gr} \met{\gm}{\gn}
+\pdxby{\imet{\gm}{\gn}}{x^i}} = 0 \eqp
+\ee
+%
+The covariant form of the Euler equations for an ideal fluid
+($\idx{T}{\dn{\gm\gn}} = \gr \surp{1+\erg+\frac{P}{\gr}}
+\idx{u}{\dn{\gm}} \idx{u}{\dn{\gn}} + P \met{\gm}{\gn}$) take the
+form
+\bes
+\gr\surp{1+\erg+\frac{P}{\gr}} \pvel{\ga;\gn} \idx{u}{\up{\gn}} =
+-\idx{P}{\dn{,\ga}} - \pvel{\ga} \idx{u}{\up{\gn}}
+\idx{P}{\dn{,\gn}}
+\ees
+Making the identifications $\pvel{\ga,\gn} \idx{u}{\up{\gn}} =
+\dxby{\pvel{\ga}}{\gt}$ and $\idx{P}{\dn{,\gn}} \idx{u}{\up{\gn}}
+= \dxby{P}{\gt}$, yields the equivalent form
+\bes
+ \gr \surp{1 + \erg
++ \frac{P}{\gr}} \surp{\dxby{\pvel{i}}{\gt} -
+\idx{\gG}{\up{\ga}\dn{\gn i}} \pvel{\ga} u^{\gn} } =
+-\idx{P}{\dn{,i}} - \pvel{i} \dxby{P}{\gt} \eqc
+\ees
+which is more suitable for comparison.  Continuing along, the identities
+$\idx{\gG}{\up{\gm}\dn{\ga\gb}} \pvel{\gm} \idx{u}{\up{\gb}} =
+\frac{1}{2} \idx{u}{\up{\gs}} \idx{u}{\up{\gb}} \met{\gs}{\gb , \ga} =
+-\frac{1}{2} \pvel{\gs} \pvel{\gb} \idx{\imet{\gs}{\gb}}{\dn{,\ga}}$ and
+$\dby{\gt}\surp{1 + \erg + \frac{P}{\gr}} = \frac{1}{\gr} \dxby{P}{\gt}$ allow for
+further simplification, yielding
+\be\label{eq:Euler_final_form}
+\dby{\gt} \surb{ \surp{1 + \erg + \frac{P}{\gr}} \pvel{i}}
++ \frac{1}{2} \surp{1 + \erg + \frac{P}{\gr}} \pdxby{\imet{\ga}{\gn}}{x^i}\pvel{\ga}\pvel{\gn}
++ \frac{1}{\gr} \idx{P}{\dn{,i}} = 0
+\ee
+as our final form.
+Comparison between \sure{\ref{eq:Euler_final_form}} and \sure{\ref{eq:SPHEuler}} shows that
+the functional forms of the two equations are very similar.
+The predominant difference arises in the pressure gradient term.
+In \sure{\ref{eq:Euler_final_form}} the spatial gradient of the pressure is directly
+computed while in \sure{\ref{eq:SPHEuler}} the pressure gradient is inferred from the spatial
+gradient of the metric.
+This coupling between the pressure and the metric is also present in the expression for the
+stress-energy tensor.
+
+\section{Analysis of the Fat Particle Equations}
+
+In this section, attention is turned to analyzing the Fat Particle equations for a
+variety of elementary physical systems.  The first system is the case of a static,
+spherically-symmetric star.
+
+\subsection{Static Spherically Symmetric Star}
+
+Our aim here is to demonstrate that the Fat Particle equations provide a
+mathematically complete description of a static spherically-symmetric star
+where a barotropic equation of state is assumed.  The Fat Particle will be
+assumed to be at rest at the origin of the coordinate system.
+
+
+\subsubsection{Metric Choice and the Einstein Field Tensor}
+
+Because of the presence of the term $\sqrt{-g(t,\cv{x})}$ in the denominator of
+\refq{eq:rho_def}, we desired a form of a static spherically symmetric which can be
+expressed in coordinates that are free of singularities at the origin.
+The metric chosen is the isotropic coordinates and is given by
+\bes
+  ds^2 = -e^{2\gF} dt^2 + e^{2\gm} \surb{dr^2 + r^2 d\gW^2}
+\ees
+or alternatively
+\bes
+  ds^2 = -e^{2\gF} dt^2 + e^{2\gm} \surb{dx^2 + dy^2 + dz^2} \eqp
+\ees
+
+Our strategy will be to use the spherical coordinates to compute the field equations
+and then to transform to cartesian coordinates.  In this way we can exploit the
+spherical symmetry for the majority of the computations and then only at the last
+step, when defining the hydrodynamics, switch to cartesian coordinates to avoid the
+singularity at the origin.
+
+The non-zero connection coefficients are:
+\bea
+  \Cnx{t}{t r}       & = & \gF' \eqc \nonumber \\
+  \nonumber \\
+  \Cnx{r}{t t}       & = & e^{2 \surp{\gF - \gm} } \gF'      \nonumber \\
+  \Cnx{r}{r r}       & = & \gm'                              \nonumber \\
+  \Cnx{r}{\gq \gq}   & = & -r \surp{ r \gm' + 1 }            \nonumber \\
+  \Cnx{r}{\gf \gf}   & = & -r \sin^2(\gq) \surp{ r \gm' + 1} \eqc \nonumber \\
+  \nonumber \\
+  \Cnx{\gq}{r \gq}   & = & \gm' + \frac{1}{r}                \nonumber \\
+  \Cnx{\gq}{\gf \gf} & = & - \sin(\gq) \cos(\gq)             \eqc \nonumber \\
+  \nonumber \\
+  \Cnx{\gf}{r \gf}   & = &  \gm' + \frac{1}{r}               \nonumber \\
+  \Cnx{\gf}{\gq \gf} & = &  \frac{\cos(\gq)}{\sin(\gq)}      \eqp
+\eea
+
+Using GRTensorII the Einstein field equations in $(t,r,\gq,\gf)$ coordinates is
+\bes
+  \idx{G}{\up{\gm\gn}} = diag \surp{ A, B, C/r^2, C/r^2 \sin(\gq)^2}
+\ees
+where the functions $A, B, \mbox{and}, C$ are
+\bea
+ A & = & - e^{-2\surp{\gF + \gm}} \surb{ \frac{4}{r} \gm' + 2 \gm '' + \surp{\gm'}^2 } \nonumber \\
+ B & = & e^{-4\gm} \surb{2 \gF' \gm' + \frac{2}{r} \surp{\gm' + \gF'} + \surp{\gm'}^2 } \nonumber \\
+ C & = & e^{-4\gm} \surb{ \gm'' + \gF'' + \surp{\gF'}^2 + \frac{1}{r} \surp{\gF' + \gm'}} \eqp
+\eea
+
+The next step is to convert the Einstein tensor from spherical to cartesian coordinates.
+The transformation equations are given by
+\bea
+  x & = & r \sin(\gq) \cos(\gf) \\
+  y & = & r \sin(\gq) \sin(\gf) \\
+  z & = & r \cos(\gq)
+\eea
+and the corresponding Jacobean \Jac{\gta}{\gm} = \pdxby{(t,x,y,z)}{(t,r,\gq,\gf)}
+\bes
+\surp{
+  \begin{array}{cccc}
+    1 & 0                   &  0                     &  0                     \\
+    0 & \cos(\gf) \sin(\gq) &  r \cos(\gf) \cos(\gq) & -r \sin(\gf) \sin(\gq) \\
+    0 & \sin(\gf) \sin(\gq) &  r \sin(\gf) \cos(\gq) &  r \cos(\gf) \sin(\gq) \\
+    0 & \cos(\gq)           & -r \sin(\gq)           &  0
+  \end{array}
+} \eqp
+\ees
+The conversion of the Einstein tensor to cartesian coordinates given by
+\bes
+   \idx{G}{\up{\gta\gtb}} = \Jac{\gta}{\gm} \idx{G}{\up{\gm\gn}} \jac{\gn}{\gtb}
+\ees
+results in the following system of equations
+\bea
+  G^{xx}          & = & (B-C) \sin(\gq)^2 \cos(\gf)^2 + C     \eqc \nonumber \\
+  G^{xy} = G^{yx} & = & (B-C) \sin(\gq)^2 \sin(\gf) \cos(\gf) \eqc \nonumber \\
+  G^{xz} = G^{zx} & = & (B-C) \sin(\gq) \cos(\gq) \cos(\gf)   \eqc \nonumber \\
+  G^{yy}          & = & (B-C) \sin(\gq)^2 \sin(\gf)^2 + C     \eqc \nonumber \\
+  G^{yz} = G^{zy} & = & (B-C) \sin(\gq) \cos(\gq) \sin(\gf)   \eqc \nonumber \\
+  G^{zz}          & = & -(B-C) \sin(\gq)^2 + B \eqp
+\eea
+The expressions $r$, \gq, and \gf should now be regarded as functions of the coordinates
+$x$, $y$, and $z$ given by inverting the transformation from spherical to cartesian
+coordinates.  In particular, $r$ should be thought of as a representation for
+the function $\sqrt{x^2 + y^2 + z^2}$.
+Finally, the square-root of the determinant of the metric, in cartesian coordinates
+is given by
+\bes
+  \sqrt{-g} = e^{\gF + 3 \gm} \eqp
+\ees
+
+\subsubsection{Stress-Energy Tensor}
+
+In this section, we construct the specific form of the stress-energy tensor \idx{T}{\up{\gm\gn}}
+based on \refq{eq:def_T} and the cartesian form of the metric.
+
+The requirement that the Fat Particle remains at rest at the origin implies that
+the coordinate velocity take the form
+\bes
+  \idx{\dt{z}}{\up{\gm}} = \surp{1,0,0,0} \eqp
+\ees
+Since the metric is diagonal, the covariant 4-velocity must be given by
+\bes
+  \idx{u}{\dn{\gm}} = \surp{u_t,0,0,0} \eqp
+\ees
+The value of $u_t$ is obtained from the normalization condition
+\bes
+  \idx{\surp{u_t}}{\up{2}} \sura{g^{tt}} = -1
+\ees
+and the definition of the smoothed metric which
+yields
+\bes
+  u_t = 1/\sqrt{ - \sura{g^{tt}}}
+\ees
+with \sura{\idx{g}{\up{tt}}} given by
+\bes
+  \sura{g^{tt}} = -4 \gp \myint{dr} r^2 e^{-2\gF} W(r) \eqp
+\ees
+The factor \gL is expressed by
+\bes
+  \gL = \sqrt{ - \sura{g_{\gm\gn}} \dt{z}^{\gm} \dt{z}^{\gn} } = 1 / \sqrt{-\sura{g^{tt}}} \eqp
+\ees
+Thus the density, defined in \refq{eq:rho_def} is expressed as
+\bes
+  \gr = m \frac{e^{-\gF-3\gm}}{\sqrt{-\sura{g^{tt}}}} W(r)
+\ees
+where it should be emphasized that \gF and \gm are still unknown functions.
+Now that the rest-mass energy density has been obtained, the pressure and the
+internal energy must be expressed.  We will consider only barotropic equations of
+state in which the pressure and internal energy are solely functions of \gr.
+In particular, we will assume that the mass-energy density is
+expressed as a power-law
+\bes
+  \gr \surp{1+e} = K \gr^{\ggm} \eqp
+\ees
+in terms of the rest-mass density \gr.
+The usual thermodynamic identity $de = P/\gr^2 d\gr$ allow the pressure to be expressed as
+\bea
+  P & \equiv & \gr \dby{\gr} \surb{ \gr \surp{1+e}} - \gr \surp{1+e} \nonumber \\
+    & = & \surp{\ggm - 1} \gr \surp{1 + e}  = K \surp{\ggm - 1} \gr^{\ggm} \eqp
+\eea
+The constant $K$ is an arbitrary real positive constant.  The speed of sound, which is also
+of interest, is given by
+\be
+  c^2 \equiv \frac{\gr}{\gr\surp{1+e} + P}  \surp{\pdxby{P}{\gr}}_{s}  = \ggm - 1 \eqp
+\ee
+To have a speed of sound less than the speed of light \ggm could not exceed $2$
+and to avoid negative pressure \ggm should not be smaller than $1$.
+
+The stress energy tensor has the form
+\beas
+  T^{tt} & = & \surb{ \gr(1+e) + W(r) e^{-(\gF+3\gm)} \myint{d^3 x} P e^{\gF+3\gm}}
+               \surp{u_{t}}^2 \sura{g^{tt}}^2 - P e^{-2\gF} \nonumber \\
+         & = & -\surb{ \gr(1+e) + 4 \gp W(r) e^{-(\gF+3\gm)} \myint{d r} r^2 P e^{\gF+3\gm}}
+                \sura{g^{tt}} - P e^{-2\gF}
+\eeas
+and
+\bes
+  T^{xx} = T^{yy} = T^{zz}  \equiv T^{CC} = P e^{-2\gm}
+\ees
+where, as mentioned above, the coordinate $r$ is now regarded as a function of the
+cartesian coordinates $x, y, \mbox{and } z$ (\textit{i.e.} $r= \sqrt{x^2 +y^2 + z^2}$).
+
+\subsubsection{Einstein Equations}
+
+The Einstein field equations can now be written in matrix form as:
+\bes
+  \surp{
+   \begin{array}{cccc}
+   G^{tt} &   0    & 0      & 0      \\
+   0      & G^{xx} & G^{xy} & G^{xz} \\
+   0      & G^{yx} & G^{yy} & G^{yz} \\
+   0      & G^{zx} & G^{zy} & G^{zz}
+   \end{array}
+  }
+=
+  \surp{
+   \begin{array}{cccc}
+   T^{tt} &   0    & 0      & 0      \\
+   0      & T^{CC} & 0      & 0      \\
+   0      & 0      & T^{CC} & 0      \\
+   0      & 0      & 0      & T^{CC}
+   \end{array}
+  }  \eqp
+\ees
+There are two possible solutions for this system of equations.
+In the first, we take the above equation at face value an assume that
+the only solution possible is if $B = C$.
+The resulting equations are
+\bea
+  A & = & 8 \gp T^{tt} \\
+  B & = & 8 \gp T^{CC} \eqc
+\eea
+with the equation for $G^{\gq\gq}/r^2$ being relegated to a constraint.
+The presence of the unknown functions \gF and \gm on both sides
+of the equations means implies that Einstein equations are now integro-differential
+equations.  We envision solving these equations by using an iterative technique in
+which the form of the spacetime will be guessed and substituted into the
+right-hand side and treated as a fixed source for the derivative terms on the
+left-hand side.  The net effect is to transform the set of integro-differential
+equations into a set of differential equations with fixed sources.  The cost
+associated with this simplification is that the process must be iterated until
+a final form of \gF and \gm is reached.
+
+To begin the recasting of these equations, we define the state of our
+system as
+\be
+ \cs{S} = \trps{\surp{\gF,\gm, \gm'}} \eqp
+\ee
+Transforming Einstein's equations into a set of first order differential equations
+for this state involves isolating $\gF'$ and $\gm''$ on the right-hand side.
+It will be convenient to take the terms involving the exponential functions
+$\exp(\gF)$ and $\exp(\gm)$ also to the right-hand side making them effectively
+additional contributions to the source.
+Thus the equations can now be written as
+\bea
+  \surb{ \frac{4}{r} \gm' + 2 \gm'' + \surp{\gm'}^2} & = &
+    -8 \gp e^{2\surp{\gF+\gm}} T^{tt} \nonumber \\
+  \surb{2 \gF' \gm' + \frac{2}{r} \surp{\gm' + \gF'} + \surp{\gm'}^2 } & = &
+    8 \gp e^{4 \gm} T^{CC} \eqp
+\eea
+Solving the first equation for $\gm''$ yields
+\be
+  \gm'' = -4 \gp T^{tt} e^{2\surp{\gF+\gm}} - \gm' \surb{ \frac{2}{r} + \frac{1}{2} \gm'} \eqp
+\ee
+Solving the second equation for $\gF'$ yields
+\be
+  \gF' = \frac{ 8 \gp e^{4\gm} T^{CC} - \gm' \surp{\gm' + \frac{2}{r}}}
+              {2 \surb{\gm' + \frac{1}{r}}} \eqp
+\ee
+Evolution of the state of the system is obtained by numerically solving the equation
+\be
+\dby{r} \cs{S} = \dby{r} \surp{\begin{array}{c} \gF \\ \gm \\ \gm'\end{array}}
+               =         \surp{\begin{array}{c}
+                              f(\gF,\gm,\gm') \\ \gm' \\ g(\gF,\gm,\gm') \end{array}} \eqp
+\ee
+where
+\be
+  f(\gF,\gm,\gm') = \frac{ 8 \gp e^{4\gm} T^{CC} - \gm' \surp{\gm' + \frac{2}{r}}}
+              {2 \surb{\gm' + \frac{1}{r}}}
+\ee
+and
+\be
+  g(\gF,\gm,\gm') = -4 \gp T^{tt} e^{2\surp{\gF+\gm}} - \gm' \surb{ \frac{2}{r} + \frac{1}{2} \gm'} \eqp
+\ee
+To see how this arises, consider the Bianchi identity \idx{G}{\up{\gm\gn}\dn{;\gn}} = 0.
+Expanding the terms and using the non-zero connection coefficients allows us to express
+$G^{\gq\gq}$ as
+\be
+  \idx{G}{\up{\gq\gq}} = -\frac{ \surb{ \idx{G}{\up{rr}\dn{,r}} + G^{rr} \surp{2 \Cnx{r}{rr} +
+                                \Cnx{\gq}{r\gq} + \Cnx{\gf}{r \gf} } + \Cnx{r}{tt} G^{tt}} }
+                               {\surb{\Cnx{r}{\gq\gq} + \sin^{-2}(\gq) \Cnx{r}{\gf\gf}}} \eqp
+\ee
+In the event that the stress-energy tensor is also divergenceless
+(i.e. \idx{T}{\up{\gm\gn}\dn{;\gn}} = 0), then the $G^{\gq\gq}$ equation
+is guaranteed to be satisfied if the other two equations are satisfied.
+The other possibility, is that $B \neq C$ and that the stress-energy
+tensor that we are proposing fails to capture all the stresses needed to keep
+the Fat Particle structure.  We will assume for now that the first viewpoint is
+the correct one and will revisit this point after some numerical simulations
+have been constructed.  In any event, since the Fat Particles are intended to
+be enable numerical simulations, the presence of 'unmodelled' stresses are not
+unreasonable and may simply be the cost we must pay to have such an object
+present.
+
+\subsubsection{Euler's Equation}
+
+Finally we have to consider Euler's equation for the motion of the Fat Particle.
+The requirement is that if an isolated Fat Particle starts at rest it will
+\bes
+ \sura{F}_{\mO} = \int_{0}^{2\gp} d\gf \int_0^{\gp} d\gq \sin(\gq) \int_0^R dr \nudge
+                   r^2 F(r) W(r)
+\ees
+
+\bes
+  \sura{\pdxby{F}{x}}_{\mO} = \int_{0}^{2\gp} d\gf \int_0^{\gp}
+  d\gq \sin(\gq) \int_0^R dr \nudge r^2 \pdxby{F(r)}{r} \sin(\gq) \cos(\gf) W(r) = 0
+\ees
+
+Similar results obtain for \sura{\pdxby{F}{y}} and \sura{\pdxby{F}{z}}.  Thus the Euler
+equation is identically zero.
+\end{document}

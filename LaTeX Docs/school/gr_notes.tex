@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+\usepackage{epic,eepic,graphicx,url}
+\include{my_commands}
+\newcommand{\Bv}[1]  {\ensuremath{\idx{\op{e}}  {\dn{#1}}} }
+\newcommand{\Bf}[1]  {\ensuremath{\idx{\op{\gw}}{\up{#1}}} }
+\newcommand{\Chr}[3] {\ensuremath{\idx{\gG}{\up{#1}\dn{#2 #3}}} }
+\newcommand{\chr}[3] {\ensuremath{\idx{\gG}{\dn{#1 #2 #3}}} }
+
+\begin{document}
+\begin{tabular}{|c|}
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $d \Bv{\gm} = \Chr{\ga}{\gm}{\gb} \Bv{\ga} \Bf{\gb}$ \\
+  $d \sqrt{-g} = \surp{ \pdxby{\sqrt{-g}}{x^{\gr}} - \Chr{\gs}{\gs}{\gr} \sqrt{-g} } \Bf{\gr}$ \\
+  $d f = \pdxby{f}{x^\gr} \Bf{\gr}$ \\ \hline
+\end{tabular}
+
+\end{document}

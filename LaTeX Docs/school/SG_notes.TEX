@@ -1,0 +1,227 @@
+% ****** Start of file SG_notes.tex ******
+%
+%   Some notes on the SGSolvr paper
+% 
+%
+%
+%   updates:	 1/1/00 first version of the paper - CS
+%                
+
+%**************************************************************
+%
+%  Preliminary matters
+%
+%**************************************************************
+% \documentstyle[preprint,eqsecnum,aps]{revtex}
+\documentstyle[eqsecnum,aps,epsfig]{revtex}
+\bibliographystyle{prsty}
+\newcounter{bean}
+\def\.{{\quad .}}
+\def\_.{{\quad .}}
+\def\_,{{\quad ,}}
+
+%**************************************************************
+%
+%  Begin the document
+%
+%**************************************************************
+\begin{document}
+\draft
+
+
+%\preprint{GR-QC/????}
+
+%**************************************************************
+%
+%  Front matter
+%
+%**************************************************************
+\title{Some notes on SGSolvr2}
+%
+\author{C. Schiff}
+\address{
+            Department of Physics, University of Maryland,
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt  cmschiff@erols.com\\
+					  Revision 0.0
+}
+\date{1/11/00}
+\maketitle
+
+
+%**************************************************************
+%
+%  Abstract
+%
+%**************************************************************
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+Hello.  
+Thought I would way in on the cross-talk about the scalar gravity solver.
+My input should be regarded as questions and comments rather than 
+definitive corrections.
+
+\section{Scalar action in Rotating Coordinates}
+
+The first thing I did was to obtain the inverse metric for flat Mink. space
+in cylindrical coords.
+The metric is 
+\[
+ds^2 = -dt^2 + dx^2 + dy^2 + dz ^2 = -dt^2 + dr^2 + r^2 d {\theta}^2 + dz^2
+\] 
+and thus the inverse is
+\[
+\left( \frac{\partial}{\partial s} \right) ^2 = 
+   - \left( \frac{\partial}{\partial t} \right) ^2
+   + \left( \frac{\partial}{\partial r} \right) ^2
+   + \frac{1}{r^2}\left( \frac{\partial}{\partial \theta} \right) ^2
+   + \left( \frac{\partial}{\partial z} \right) ^2          
+\]
+I next calculated the Jacobian matrix of the transformation from inertial
+cylindrical to rotating-cylindrical coords.
+\[
+{\Lambda _{\nu}}^{\tilde \mu} = \left( \begin{array}{cccc}
+                                     1 & 0 & - \omega & 0 \\
+						             0 & 1 &    0     & 0 \\
+								     0 & 0 &    1     & 0 \\
+								     0 & 0 &    0     & 1 
+							        \end{array} \right)
+\]
+which resulted in an inverse metric 
+\[
+{\eta}^{\tilde \mu \tilde \nu}= \left( \begin{array}{cccc}
+                                     -1     & 0 & \omega            & 0 \\
+						             0      & 1 &    0              & 0 \\
+								     \omega & 0 &  1/r^2 - \omega^2 & 0 \\
+								     0      & 0 &    0              & 1 
+							        \end{array} \right)
+\]
+As expected the determinant $\sqrt{-\eta}$ is r but to be sure I calculated 
+the determinant of ${\eta}^{\tilde \mu \tilde \nu}$ by hand and in MathCAD and Maple.
+Everybody was in agreement.
+
+The bi-linear form for the action now became
+\begin{eqnarray}
+{\eta}^{\tilde \mu \tilde \nu} 
+\Phi _{,\tilde \mu} \Phi _{,\tilde \nu} & = & 
+     -\left( \Phi _{,\tilde t } \right)^2
+	 +\left( \Phi _{,\tilde r } \right)^2
+	 +\frac{1}{r^2} \left( \Phi _{,\tilde \theta } \right)^2
+	 +\left( \Phi _{,\tilde z } \right)^2
+	 +2 \omega \Phi _{,\tilde t} \Phi _{\tilde \theta}
+	 -\omega^2 \left( \Phi _{,\tilde \theta } \right)^2 
+\end{eqnarray}
+Since
+\[
+  \nabla \Phi =   \frac{\partial \Phi}{\partial \tilde r} 
+                      {\hat e}_{\tilde r} 
+                + \frac{1}{r} \frac{\partial \Phi}{\partial \tilde \theta}
+				      {\hat e}_{\tilde \theta}
+			    + \frac{\partial \Phi}{\partial \tilde z} 
+				      {\hat e}_{\tilde z}
+\]
+the bilinear form for the action becomes
+\[
+{\eta}^{\tilde \mu \tilde \nu} 
+\Phi _{,\tilde \mu} \Phi _{,\tilde \nu} = 
+     -\left( \Phi _{,\tilde t } \right)^2
+	 +\left( \nabla \Phi \right)^2
+	 +2 \omega \Phi _{,\tilde t} \Phi _{,\tilde \theta}
+	 -\omega^2 \left( \Phi _{,\tilde \theta } \right)^2 
+\]
+Carrying out the variation is straightforward since each term must be integrated-by-parts
+giving
+\[
+- \Phi _{,\tilde t \tilde t } 
++ \nabla^2 \Phi 
++ 2 \omega \Phi _{,\tilde \theta \tilde t} 
+- \omega^2 \Phi _{,\tilde \theta \tilde \theta} + 4 \pi S = 0 
+\]  
+where 
+\[
+  S = \frac{\delta L_{matter}}{\delta g^{\mu\nu}}\frac{\delta g^{\mu\nu}}{\delta \Phi}
+\]
+Adding the damping term $-2D {\Phi}_{,\tilde t}$ yields
+\[
+- \Phi _{,\tilde t \tilde t } 
++ \nabla^2 \Phi 
++ 2 \omega \Phi _{,\tilde \theta \tilde t} 
+- \omega^2 \Phi _{,\tilde \theta \tilde \theta}
+- 2 D \Phi_{,\tilde t} 
++ 4 \pi S = 0 
+\]  
+Defining $\Pi$ as
+\[
+  \Pi = \Phi_{,t} = \Phi_{,\tilde t} - \omega \Phi_{, \tilde \theta}
+\]
+gives
+\[
+  \Pi_{,\tilde t} = \Phi_{,\tilde t \tilde t} - \omega \Phi_{,\tilde \theta \tilde t} \.
+\]
+Upon elimination of $\Phi_{,\tilde t}$ using
+\[
+  \Phi_{,\tilde t} = \Pi + \omega \Phi_{, \tilde \theta}
+\]
+I arrive at
+\[
+  \Pi_{\tilde t}  = 
+  \nabla^2 \Phi
+ +\omega \Pi_{,\tilde \theta}
+ -2 D \Pi
+ -2 D \omega \Phi_{,\tilde \theta}
+ + 4 \pi S
+\]
+ 
+Now if I interpret $\partial _{\tilde \theta} = -{\tilde y} \partial _{\tilde x}
++ {\tilde x} \partial _{\tilde y}$ and assume I'm in rotating cartesian coordinates 
+(such that $\sqrt{-\eta} = 1$) then I get
+exactly what Keith has in his equation (1.20).
+
+\section{Inverse Metric}
+
+Starting at the scalar field metric
+\[
+  ds^2 = - e^{2 \Phi} dt^2 + e^{-2 \Phi} \left( dx^2 + dy^2 + dz^2 \right) 
+\]
+and making the standard transformation I also end up with Keith's
+equation (1.25)
+\[
+  ds^2 = \left(-e^{2 \Phi} + r^2 \omega^2 e^{-2 \Phi} \right) dt^2 
+        + e^{-2 \Phi} \left(dx^2 + dy^2 + dz^2 \right) 
+		+ 2 \omega r^2 e^{-2 \Phi} d {\tilde \theta} dt
+\]
+or in matrix form
+\[
+g_{\mu\nu} = \left(
+             \begin{array}{cccc}
+               -e^{2 \Phi} + (x^2 + y^2) \omega^2 e^{-2 \Phi} & 
+			   -y \omega e^{-2 \Phi} &
+			    x \omega e^{-2 \Phi} &
+				0 \\
+			   -y \omega e^{-2 \Phi} &
+			    e^{-2 \Phi} &
+			    0  &
+			    0 \\
+     		    x \omega e^{-2 \Phi} &
+				0 &
+				e^{-2 \Phi} &
+				0 \\
+				0 &
+				0 &
+				0 & 
+				e^{-2 \Phi}
+			 \end{array}
+			 \right)
+\]
+I then used this expression to calculate $g^{\mu\nu}$ and the variational derivative
+$\frac{\delta g^{\mu\nu}}{\delta \Phi}$ in MathCAD and Maple.
+I didn't get anything as clean as Charlie did, for example
+\[
+g^{00} = 1/\left(-e^{2 \Phi} + z^2 \omega^2 e^{-2 \Phi} \right)
+\]
+
+\end{document}

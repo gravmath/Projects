@@ -1,0 +1,83 @@
+%
+%
+%	This is a file to make C W Misner's letter to
+%	   Kim New
+%
+%   re Gowdy analytic test case
+%
+%	It is designed to be processed by LaTeX and to be emailed 28 Aug'97 
+%
+%
+\documentstyle{letter}
+\signature{Charlie
+}
+
+%\addtolength{\textheight}{1.0in}
+%\addtolength{\topmargin}{-0.5in}
+
+\begin{document}
+
+\begin{letter}{%
+Dr.\ Kimberly New\\
+Drexel U
+}
+
+
+\opening{Dear Kim}
+
+     As a try at your problems getting the Gowdy polarized case to
+converge, I am sending you my formulas for an analytic solution that
+I suppose you are using as the test case.  If your initial condition
+or later analytic/exact solution values are different from these,
+that could be part of the problem.
+
+    I take the metric to be 
+        \begin{equation}\label{eq-gdyt}
+    ds^2 = t^{-1/2} e^{\lambda/2}(- dt^2 + dz^2)
+           +t\, dw^2
+    \end{equation}
+with
+    \begin{equation}\label{eq-cag}
+    dw^2  =  \cosh Q (e^P\,dx^2 + e^{-P}\,dy^2) 
+                + 2 \sinh Q \,dx\,dy
+    \end{equation}
+    but now we set $Q=0$ everywhere.
+    Thus the metric components (with $x^0 = t$) are
+    $g_{00} = -t^{-1/2} \exp{(\lambda/2)}$, 
+    $g_{33} = -g_{00} = t^{-1/2} \exp{(\lambda/2)}$,
+    $g_{11} = t \exp{(P)}$, and 
+    $g_{22} = t \exp{(-P)}$
+    with all others zero.
+
+    For $P$ and $\lambda$\, I choose
+    \begin{equation}
+{P}(\,{t}, {z}\,) \equiv {\rm BesselJ}(\,0, 2\,{ \pi}\,{
+n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)
+    \end{equation}
+    and
+    \begin{eqnarray}
+\lefteqn{{\lambda}(\,{t}, {z}\,) \equiv  - 2\,{t}\,{ \pi}\,{n}
+\,{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)\,{\rm BesselJ}(\,1, 2
+\,{ \pi}\,{n}\,{t}\,)\,{\rm cos}(\,2\,{ \pi}\,{n}\,{z}\,)^{2}} 
+    \nonumber\\
+ & & \mbox{} + 2\,{ \pi}^{2}\,{n}^{2}\,{t}^{2}\, \left( \! \,
+{\rm BesselJ}(\,0, 2\,{ \pi}\,{n}\,{t}\,)^{2} + {\rm BesselJ}(\,1
+, 2\,{ \pi}\,{n}\,{t}\,)^{2}\, \!  \right) 
+\quad . \mbox{\hspace{40pt}}
+    \end{eqnarray}
+    This last was the hard part, finding a solution to the constraint
+equations.  I used MapleV to check my intermediate guesses and help
+me converge to a solution that it then verified.
+
+    You should be able to just change names (e.g., switch $z$ and
+$x$) but don't forget that the lapse condition must set the lapse
+squared to the metric component in the propagation direction.
+
+    \closing{%
+Good luck,
+    }
+
+\end{letter}
+
+\end{document}
+

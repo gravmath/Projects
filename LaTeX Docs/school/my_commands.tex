@@ -1,0 +1,245 @@
+%load packages
+\usepackage{latexsym}
+\usepackage{epic,eepic,graphicx,url}
+%spacer commands
+\newcommand{\eqc}{\ensuremath{\: ,} }
+\newcommand{\eqp}{\ensuremath{\: .} }
+\newcounter{bean}
+\newcommand{\surp}[1]{\ensuremath{\left( {#1} \right)} }
+\newcommand{\surb}[1]{\ensuremath{\left[ {#1} \right]} }
+\newcommand{\surc}[1]{\ensuremath{\left\{ {#1} \right\}} }
+\newcommand{\sura}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+\newcommand{\sure}[1]{({#1})}
+\newcommand{\push} {\ensuremath{\:}}
+\newcommand{\nudge}{\ensuremath{\,}}
+\newcommand{\back}{\ensuremath{\!\!}}
+\newcommand{\iback}{\ensuremath{\!\!\!\!}}
+%equation commands
+\newcommand{\be} { \begin{equation} }
+\newcommand{\ee} { \end{equation}   }
+\newcommand{\bes} { \[ }
+\newcommand{\ees} { \]  }
+\newcommand{\bea}{ \begin{eqnarray} }
+\newcommand{\eea}{ \end{eqnarray}   }
+\newcommand{\beas}{ \begin{eqnarray*} }
+\newcommand{\eeas}{ \end{eqnarray*}   }
+%index commands
+\newcommand{\idx}[2] {\ensuremath{ {#1}{#2}   }}
+\newcommand{\up} [1] {\ensuremath{{}^{#1}     } }
+\newcommand{\dn} [1] {\ensuremath{{}_{#1}     } }
+%array commands
+\newcommand{\cv}  [1]{\ensuremath{\vec {#1}} }
+\newcommand{\rv}  [1]{\ensuremath{{\vec {#1}}^{\,T}} }
+\newcommand{\cf}  [1]{\ensuremath{\tilde {#1}} }
+\newcommand{\rf}  [1]{\ensuremath{{\tilde {#1}}{\,^T}} }
+\newcommand{\cs}  [1]{\ensuremath{\bar {#1}} }
+\newcommand{\rs}  [1]{\ensuremath{{\bar {#1}}{\,^T}} }
+\newcommand{\cuv} [1]{\ensuremath{\hat {#1}} }
+\newcommand{\ruv} [1]{\ensuremath{{\hat {#1}}{\,^T}} }
+\newcommand{\op}  [1]{\ensuremath{\mathbf{{#1}}}}
+\newcommand{\dt}  [1]{\ensuremath{\dot {{#1}}} }
+\newcommand{\ddt} [1]{\ensuremath{\ddot {{#1}}} }
+\newcommand{\trps}[1]{\ensuremath{{#1}^{\,T} } }
+\newcommand{\bv}  [1]{\ensuremath{\cs{e}_{#1}} }
+\newcommand{\bd}  [1]{\ensuremath{\cf{\gw}^{#1}} }
+%\newcommand{\rank}[2]{\ensuremath{\surp{\begin{array}{c}{#1 \\ #2}\end{array}}} }
+\newcommand{\rank}[2]{\ensuremath{\surp{#1, #2}}}
+%inner products
+\newcommand{\ipp}[2]{\ensuremath{ (  {#1} ,     {#2} ) } }
+\newcommand{\ipb}[2]{\ensuremath{ \langle {#1} ,     {#2} \rangle } }
+\newcommand{\ipD}[2]{\ensuremath{ \langle {#1} |     {#2} \rangle } }
+\newcommand{\ipd}[2]{\ensuremath{         {#1} \cdot {#2}         } }
+%derivative and integral commands
+\newcommand{\dby}   [1]{\ensuremath{ \frac{d}{d #1}} }
+\newcommand{\dxby}  [2]{\ensuremath{ \frac{d #1}{d #2}} }
+\newcommand{\pdby}  [1]{\ensuremath{ \frac{\partial}{\partial #1}} }
+\newcommand{\pdxby} [2]{\ensuremath{ \frac{\partial #1}{\partial #2}} }
+\newcommand{\myint} [1]{\ensuremath{ \int #1 \push} }
+%variations
+\newcommand{\var}[1]{\ensuremath{\delta {#1}}}
+\newcommand{\vwrt}[2]{\ensuremath{\idx{\delta {#1}\vert}{\dn{\delta {#2}}}} }
+\newcommand{\IBP}{\ensuremath{\stackrel{\mbox{\tiny{IBP}}}{=}}}
+%common abreviations
+\newcommand{\wrt}{with respect to }
+\newcommand{\bdyterms}{boundary-terms }
+\newcommand{\ibp}{integration-by-parts }
+\newcommand{\dfunc}{\gd\back-function }
+\newcommand{\dfuncs}{\gd\back-functions }
+%special characters
+\newcommand{\ga}{\ensuremath{\alpha} }
+\newcommand{\gba}{\ensuremath{\bar \alpha} }
+\newcommand{\gha}{\ensuremath{\hat \alpha} }
+\newcommand{\gta}{\ensuremath{\tilde \alpha} }
+\newcommand{\gb}{\ensuremath{\beta} }
+\newcommand{\gbb}{\ensuremath{\bar \beta} }
+\newcommand{\ghb}{\ensuremath{\hat \beta} }
+\newcommand{\gtb}{\ensuremath{\tilde \beta} }
+\newcommand{\gd}{\ensuremath{\delta} }
+\newcommand{\gbd}{\ensuremath{\bar \delta} }
+\newcommand{\ghd}{\ensuremath{\hat \delta} }
+\newcommand{\gtd}{\ensuremath{\tilde \delta} }
+\newcommand{\gD}{\ensuremath{\Delta} }
+\newcommand{\gbD}{\ensuremath{\bar \Delta} }
+\newcommand{\ghD}{\ensuremath{\hat \Delta} }
+\newcommand{\gtD}{\ensuremath{\tilde \Delta} }
+\newcommand{\get}{\ensuremath{\eta} }
+\newcommand{\gbet}{\ensuremath{\bar \eta} }
+\newcommand{\ghet}{\ensuremath{\hat \eta} }
+\newcommand{\gtet}{\ensuremath{\tilde \eta} }
+\newcommand{\gf}{\ensuremath{\phi} }
+\newcommand{\gbf}{\ensuremath{\bar \phi} }
+\newcommand{\ghf}{\ensuremath{\hat \phi} }
+\newcommand{\gtf}{\ensuremath{\tilde \phi} }
+\newcommand{\gF}{\ensuremath{\Phi} }
+\newcommand{\gbF}{\ensuremath{\bar \Phi} }
+\newcommand{\ghF}{\ensuremath{\hat \Phi} }
+\newcommand{\gtF}{\ensuremath{\tilde \Phi} }
+\newcommand{\gG}{\ensuremath{\Gamma} }
+\newcommand{\gbG}{\ensuremath{\bar \Gamma} }
+\newcommand{\ghG}{\ensuremath{\hat \Gamma} }
+\newcommand{\gtG}{\ensuremath{\tilde \Gamma} }
+\newcommand{\ggm}{\ensuremath{\gamma} }
+\newcommand{\gbgm}{\ensuremath{\bar \gamma} }
+\newcommand{\ghgm}{\ensuremath{\hat \gamma} }
+\newcommand{\gtgm}{\ensuremath{\tilde \gamma} }
+\newcommand{\gl}{\ensuremath{\lambda} }
+\newcommand{\gbl}{\ensuremath{\bar \lambda} }
+\newcommand{\ghl}{\ensuremath{\hat \lambda} }
+\newcommand{\gtl}{\ensuremath{\tilde \lambda} }
+\newcommand{\gL}{\ensuremath{\Lambda} }
+\newcommand{\gbL}{\ensuremath{\bar \Lambda} }
+\newcommand{\ghL}{\ensuremath{\hat \Lambda} }
+\newcommand{\gtL}{\ensuremath{\tilde \Lambda} }
+\newcommand{\gm}{\ensuremath{\mu} }
+\newcommand{\gbm}{\ensuremath{\bar \mu} }
+\newcommand{\ghm}{\ensuremath{\hat \mu} }
+\newcommand{\gtm}{\ensuremath{\tilde \mu} }
+\newcommand{\gn}{\ensuremath{\nu} }
+\newcommand{\gbn}{\ensuremath{\bar \nu} }
+\newcommand{\ghn}{\ensuremath{\hat \nu} }
+\newcommand{\gtn}{\ensuremath{\tilde \nu} }
+\newcommand{\gp}{\ensuremath{\pi} }
+\newcommand{\gbp}{\ensuremath{\bar \pi} }
+\newcommand{\ghp}{\ensuremath{\hat \pi} }
+\newcommand{\gtp}{\ensuremath{\tilde \pi} }
+\newcommand{\gq}{\ensuremath{\theta} }
+\newcommand{\gbq}{\ensuremath{\bar \theta} }
+\newcommand{\ghq}{\ensuremath{\hat \theta} }
+\newcommand{\gtq}{\ensuremath{\tilde \theta} }
+\newcommand{\gr}{\ensuremath{\rho} }
+\newcommand{\gbr}{\ensuremath{\bar \rho} }
+\newcommand{\ghr}{\ensuremath{\hat \rho} }
+\newcommand{\gtr}{\ensuremath{\tilde \rho} }
+\newcommand{\gs}{\ensuremath{\sigma} }
+\newcommand{\gbs}{\ensuremath{\bar \sigma} }
+\newcommand{\ghs}{\ensuremath{\hat \sigma} }
+\newcommand{\gts}{\ensuremath{\tilde \sigma} }
+\newcommand{\gt}{\ensuremath{\tau} }
+\newcommand{\gbt}{\ensuremath{\bar \tau} }
+\newcommand{\ght}{\ensuremath{\hat \tau} }
+\newcommand{\gtt}{\ensuremath{\tilde \tau} }
+\newcommand{\gw}{\ensuremath{\omega} }
+\newcommand{\gbw}{\ensuremath{\bar \omega} }
+\newcommand{\ghw}{\ensuremath{\hat \omega} }
+\newcommand{\gtw}{\ensuremath{\tilde \omega} }
+\newcommand{\gW}{\ensuremath{\Omega} }
+\newcommand{\gbW}{\ensuremath{\bar \Omega} }
+\newcommand{\ghW}{\ensuremath{\hat \Omega} }
+\newcommand{\gtW}{\ensuremath{\tilde \Omega} }
+\newcommand{\gy}{\ensuremath{\psi} }
+\newcommand{\gby}{\ensuremath{\bar \psi} }
+\newcommand{\ghy}{\ensuremath{\hat \psi} }
+\newcommand{\gty}{\ensuremath{\tilde \psi} }
+\newcommand{\gY}{\ensuremath{\Psi} }
+\newcommand{\gbY}{\ensuremath{\bar \Psi} }
+\newcommand{\ghY}{\ensuremath{\hat \Psi} }
+\newcommand{\gtY}{\ensuremath{\tilde \Psi} }
+%Script letters
+\newcommand{\mA}{\ensuremath{\mathcal A} }
+\newcommand{\mB}{\ensuremath{\mathcal B} }
+\newcommand{\mC}{\ensuremath{\mathcal C} }
+\newcommand{\mD}{\ensuremath{\mathcal D} }
+\newcommand{\mE}{\ensuremath{\mathcal E} }
+\newcommand{\mF}{\ensuremath{\mathcal F} }
+\newcommand{\mG}{\ensuremath{\mathcal G} }
+\newcommand{\mH}{\ensuremath{\mathcal H} }
+\newcommand{\mI}{\ensuremath{\mathcal I} }
+\newcommand{\mJ}{\ensuremath{\mathcal J} }
+\newcommand{\mK}{\ensuremath{\mathcal K} }
+\newcommand{\mL}{\ensuremath{\mathcal L} }
+\newcommand{\mM}{\ensuremath{\mathcal M} }
+\newcommand{\mN}{\ensuremath{\mathcal N} }
+\newcommand{\mO}{\ensuremath{\mathcal O} }
+\newcommand{\mP}{\ensuremath{\mathcal P} }
+\newcommand{\mQ}{\ensuremath{\mathcal Q} }
+\newcommand{\mR}{\ensuremath{\mathcal R} }
+\newcommand{\mS}{\ensuremath{\mathcal S} }
+\newcommand{\mT}{\ensuremath{\mathcal T} }
+\newcommand{\mU}{\ensuremath{\mathcal U} }
+\newcommand{\mV}{\ensuremath{\mathcal V} }
+\newcommand{\mW}{\ensuremath{\mathcal W} }
+\newcommand{\mX}{\ensuremath{\mathcal X} }
+\newcommand{\mY}{\ensuremath{\mathcal Y} }
+\newcommand{\mZ}{\ensuremath{\mathcal Z} }
+%references and citations
+\newcommand{\refq}[1]{\sure{\ref{#1}}}
+\newcommand{\refp}[1]{\ref{#1}}
+\newcommand{\refs}[1]{\cite{#1}}
+%Thermo, Fluid, and GR objects
+%%%particle kinematics
+\newcommand{\ptraj}  [1]{\ensuremath{\idx{z}{\up{#1}}}}
+\newcommand{\pdtraj} [1]{\ensuremath{\idx{\dt{z}}{\up{#1}}}}
+\newcommand{\pvel}   [1]{\ensuremath{\idx{u}{\dn{#1}}}}
+\newcommand{\ppos}   [1]{\ensuremath{\idx{z}{\up{#1}}}}
+\newcommand{\pdpos}  [1]{\ensuremath{\idx{\dt{z}}{\up{#1}}}}
+\newcommand{\ptvel}  [1]{\ensuremath{\idx{u}{\dn{#1}}}}
+\newcommand{\pdtvel} [1]{\ensuremath{\idx{\dt{u}}{\dn{#1}}}}
+\newcommand{\ptraja} [2]{\ensuremath{\idx{z}{\dn{#1}\up{#2}}}}
+\newcommand{\pdtraja}[2]{\ensuremath{\idx{\dt{z}}{\dn{#1}\up{#2}}}}
+\newcommand{\pvela}  [2]{\ensuremath{\idx{u}{\dn{#1#2}}}}
+\newcommand{\sm}     [2]{\ensuremath{W\!\surp{\cv{#1} - \cv{#2}}}}
+%%%thermodynamic parameters
+\newcommand{\gtro}{\ensuremath{\idx{\gtr}{\dn{0}}} }
+\newcommand{\ierg}{\ensuremath{e\surp{\gr\surp{x}}} }
+\newcommand{\erg} {\ensuremath{e} }
+%%%metric functions
+\newcommand{\bV}[2] {\idx{\cv{#1}}{\dn{#2}} \nudge }
+\newcommand{\bF}[2] {\idx{\cf{#1}}{\up{#2}} \nudge }
+\newcommand{\Jac}[2]{\idx{\gL}{\up{#1}\dn{#2}} \nudge }
+\newcommand{\jac}[2]{\idx{\gL}{\dn{#1}\up{#2}} \nudge }
+\newcommand{\Kd}[2] {\idx{\gd \nudge}{\up{#1}\dn{#2}} \nudge }
+\newcommand{\kd}[2] {\idx{\gd}{\dn{#1}\up{#2}} \nudge }
+\newcommand{\Cnx}[2]{\idx{\gG}{\up{#1}\dn{#2}} \nudge }
+\newcommand{\met} [2]{\ensuremath{\idx{g}{\dn{#1 #2}}}}
+\newcommand{\imet}[2]{\ensuremath{\idx{g}{\up{#1 #2}}}}
+\newcommand{\metd}   {\ensuremath{ g } }
+\newcommand{\smet} [1]{\ensuremath{\sura{\idx{g}{\dn{#1}}}} }
+\newcommand{\simet}[1]{\ensuremath{\sura{\idx{g}{\up{#1}}}} }
+\newcommand{\smetd}   {\ensuremath{\sura{g}}}
+%functional arguments
+\newcommand{\contarg}{\ensuremath{\surp{\idx{a}{\up{0}};\cv{a}}} }
+\newcommand{\harg}   {\ensuremath{\surp{a^0,\cv{r}_1}} }
+\newcommand{\parg}   {\ensuremath{\surp{t,\cv{z}}} }
+\newcommand{\farg}   {\ensuremath{\surp{t,\cv{x}}} }
+%variations
+\newcommand{\vIz}[1] {\ensuremath{\vwrt{I}{\ptraj{#1}}} }
+%useful relations
+\newcommand{\normeq}[2]{\ensuremath{ \imet{#1}{#2} \pvel{#1}
+\pvel{#2} + 1} }
+
+%bibtex stuff
+\pagenumbering{arabic}
+\bibliographystyle{plain}
+%backwards compatibility
+\def\a{{\vec a}}
+\def\x{{\vec x}}
+\def\z{{\vec z}}
+\def\P{{\Phi}}
+\def\l{{\ell}}
+\def\Pl{{\Phi_{\ell}}}
+\def\D{{\Delta}}
+\def\.{{\quad .}}
+%\def\_,{{\quad ,}}
+\def\half{\mbox{$\frac{1}{2}$}}
+%\def\_.{{\quad .}}
+\def\po{{\hat \rho}_{0}}

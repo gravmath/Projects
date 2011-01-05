@@ -1,0 +1,51 @@
+\documentclass[12pt]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------------------------------
+% PACKAGES
+%------------------------------------------
+\usepackage[none,bottom]{draftcopy}
+\usepackage{epic,eepic,graphicx,url}
+% THIS FOR PDF DOCUMENT GENERATION
+%%%% Begin PDF stuff
+\usepackage[backref]{hyperref} % USE TO NAVIGATE THROUGH PDF FILE
+\special{ pdf: docinfo << /Author(Conrad Schiff)
+ /Title(test)
+/Subject(GR)
+/Keywords(skippy)
+>>}
+%%%% End PDF stuff
+%------------------------------------------
+% FOR FLOATS
+%------------------------------------------
+\renewcommand{\topfraction}{0.4}
+\renewcommand{\bottomfraction}{0.5}
+\renewcommand{\textfraction}{0.3}
+\renewcommand{\intextsep}{2.0mm}
+%------------------------------------------
+% VERTICAL PARAMETERS
+%------------------------------------------
+\setlength{\topmargin}{0in} \setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+%------------------------------------------
+% MARGINS AND TEXT LENGTH
+%------------------------------------------
+\setlength{\evensidemargin}{0.0truein}%!!!
+\setlength{\oddsidemargin}{0.0truein}
+\setlength{\textheight}{9.00truein}
+\setlength{\textwidth}{6.5truein}
+
+\setcounter{secnumdepth}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Skippy}
+\begin{figure}
+\centerline{
+   \includegraphics[height=5in,width=7in,keepaspectratio]{drawing1.eps}}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,322 @@
+\documentstyle[fleqn]{article}
+
+\begin{document}
+
+\title{Variational Smoothed Particle Hydrodynamics\\
+	I. Classical Fluids}
+%
+\author{   \sc
+            Conrad Schiff\\
+           \em
+            Department of Physics, University of Maryland%,
+           \\ \em
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt cmschiff@erols.com
+        }
+\date{5 Nov., 1997}
+% 
+\maketitle
+
+\section{Introduction}
+
+My aim in writing this document (and its follow-on) is to provide a summary of the various things I've examined while attempting to put the smoothed particle hydrodynamics (SPH) terms into our BNS work.  Although not the strategy I originally chose, I think that the presentation is most easily followed by starting with classical fluid mechanics and only after covering that rather thoroughly moving to the analogous formalism in general relativity.  Section \ref{cfm} covers the variational approach of Mittag, Stephen, and Yourgrau (MSY) to classical fluid mechanics.  Section \ref{sph} reviews the some of the SPH basics and touches upon some of the existing work in which variational methods play a role.  My work in combining the two approaches is detailed in section \ref{cfmsph}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Classical Fluid Mechanics}\label{cfm}
+Start with a fluid at $t=0$ and label each fluid element by its postion ${\vec a}$.  MSY then introduce what I like to term the trajectory function ${\vec x}({\vec a},t)$ which gives any fluid element's position at some later time $t$ by
+\begin{equation}
+{\vec r} = {\vec x}({\vec a},t)
+\end{equation}
+The trajectory function has the obvious boundary condition ${\vec x}({\vec a},0) = {\vec a}$.  Assuming the fluid to be ideal, its motion is subject to two constraints.  The first is the conservation of mass which takes the form
+\begin{equation}
+\rho ({\vec x},t) d^3 {\vec x} = \rho({\vec a},0) d^3 {\vec a}.
+\end{equation}
+Introducing the Jacobian, $J = \frac{\partial(x_1,x_2,x_3)}{\partial(a_1,a_2,a_3)}$, allows the conservation of mass equation to be given by
+\begin{equation}
+\rho({\vec x},t) J = \rho_0.
+\end{equation}
+The second constraint is the conservation of entropy which takes on the form
+\begin{equation}
+s({\vec x},t) = s({\vec a},0) = s_0.
+\end{equation}
+
+These constraints can be placed into a variational principle by the use of the Lagrange multipliers $\alpha$ and $\beta$.  MSY then write their Lagrangian as:
+\begin{eqnarray}
+I & = & \int dt \int d^3a \left[\frac{\rho_0}{2} \left( \frac{\partial x_i}{\partial t}\right)^2 - \rho_0(e+U) \right. \nonumber \\
+& & + \left. \alpha (\rho J - {\rho}_0) + \beta (s - s_0) \right]
+\end{eqnarray}
+where $e$ is the specific internal energy and $U$ is the external potential energy.  In this formalism, ${\vec x}$, $\alpha$, $\beta$, $\rho$, and $s$ are all field variables that are varied to produce the equations of motion.
+
+The total variation of the action
+\begin{equation}
+\delta I = \int dt \int d^3a \left[ \frac{\delta I}{\delta \vec x}\dot{\delta \vec x} + \frac{\delta I}{\delta \alpha}{\delta \alpha} + \frac{\delta I}{\delta \beta}{\delta \beta} + \frac{\delta I}{\delta \rho}{\delta \rho} \right]
+\end{equation}
+is more easily handled by considering the partial variations separately.  As an example, the notation for the variation of $\alpha$ will be given by
+\begin{eqnarray}\label{vara}
+\delta I \vert_{\delta \alpha} & = & \int dt \int d^3a \left[ \frac{\delta I}{\delta \alpha} {\delta \alpha} \right] \nonumber \\
+& = & \int dt \int d^3a (\rho J  - \rho_0) \delta \alpha
+\end{eqnarray}
+Equating this variation yields $\rho J = \rho_0$ which is the conservation of mass.
+Likewise the variation with respect to $\beta$ gives the conservation of entropy
+\begin{equation}
+\delta I \vert_{\delta \beta} = 0 \hspace{0.5 in} \Rightarrow s = s_0.
+\end{equation} 
+Using the thermodynamic relation $\left. \frac{\partial e}{\partial \rho} \right) _{s} = P/{\rho}^2$, the variation of the density gives
+\begin{equation}
+\delta I \vert_{\delta \rho} = \int dt \int d^3a \left[ \alpha J - \rho_0 P/{\rho}^2 \right] \delta \rho
+\end{equation}
+which combined with (\ref{vara}) gives
+\begin{equation}
+\alpha = P/{\rho}.
+\end{equation}
+Using the other thermodynamic relation $\left. \frac{\partial e}{\partial s} \right)_{\rho} = T$, the variation of the entropy also yields a simple expression
+\begin{equation}
+\delta I \vert_{\delta s} = \int dt \int d^3a \left[ \beta - \rho_0 T \right] \delta s \hspace{0.5 in} \Rightarrow \beta = \rho_0 T
+\end{equation}
+The last variation is with respect to the trajectory function ${\vec x}$.  This is the most difficult variation since many of the terms in the action have dependence on ${\vec x}$.  Taking the variation gives
+\begin{equation}
+\delta I \vert_{\delta x_i} = \int dt \int d^3a \left[ \rho_0 \left(\frac{\partial x_i}{\partial t}\right)\delta \left(\frac{\partial x_i}{\partial t} \right) - \rho_0 \frac{\partial U}{\partial x_i} \delta {x_i} + \alpha \rho \delta J \right].
+\end{equation}
+Using $\delta J = \frac{\partial J}{\partial x_{i,j}} \delta x_{i,j} = J_{ij} \delta x_{i,j}$, where $x_{i,j} = \frac{\partial x_i}{\partial a_j}$ and $J_{ij}$ is the (i,j) minor of the Jacobian, the last term can be simplfied.  Exchanging the order of the variation and the partial differention in the first and third terms and integrating these terms by parts gives
+\begin{equation}
+\delta I \vert_{\delta x_i} = -\int dt \int d^3a \left[ \rho_0 \left(\frac{\partial^2 x_i}{\partial t^2}\right) + \rho_0 \frac{\partial U}{\partial x_i} + \frac{\partial}{\partial a_j}\left(\alpha \rho J_{ij}\right) \right] \delta x_i.
+\end{equation}
+Setting this variation to zero leads to the partial differential equation
+\begin{equation}\label{EL}
+\rho_0 \left(\frac{\partial^2 x_i}{\partial t^2}\right) + \rho_0 \frac{\partial U}{\partial x_i} + \frac{\partial}{\partial a_j}\left(\alpha \rho J_{ij}\right) = 0.
+\end{equation}
+Using the relations $\frac{\partial J_{ij}}{\partial a_j} = 0$, and $\rho \alpha = P$ the last term becomes
+\begin{equation}
+\frac{\partial}{\partial a_j}\left( \rho \alpha J_{ij} \right) = \frac{\partial P}{\partial a_j} J_{ij} = \frac{\partial P}{\partial x_k}\frac{\partial x_k}{\partial a_j} J_{ij}.
+\end{equation}
+Finally using $\frac{\partial x_k}{\partial a_j} J_{ij} = J \delta_{ik}$ and $J = \rho_0 / \rho$ (\ref{EL}) takes the familar form
+\begin{equation}
+\left(\frac{\partial^2 x_i}{\partial t^2}\right) + \frac{\partial U}{\partial x_i} + \frac{1}{\rho} \frac{\partial P}{\partial x_i} = 0.
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Smoothed Particle Hydrodynamics}\label{sph}
+In this section, I just want to quote some of the standard SPH equations without getting too bogged down in the detail.  In addition, I also want to touch upon the manuscript entitled `Variational SPH' that I sent to Joan which serves well as reference for the standard SPH.
+
+The single most important relation that should be stated is the idea of approximating the equation
+\begin{equation}
+f({\vec x}) = \int d^3x \delta({\vec x} - {\vec x}') f({\vec x}')
+\end{equation}
+by the relation
+\begin{equation}\label{sph_fun}
+\langle f({\vec x}) \rangle  \simeq \int d^3x W({\vec x} - {\vec x}'; h) f({\vec x}').
+\end{equation}
+The essential properties on the smoothing kernel are that it is normalized
+\begin{equation}\label{norm}
+\int d^3x W({\vec x};h) = 1
+\end{equation}
+and that it has a delta function limit
+\begin{equation}
+\lim_{h \rightarrow 0} W({\vec x} - {\vec x}';h) = \delta({\vec x} - {\vec x}')
+\end{equation}
+In addition, I'm going to assume that we are always using a symmetric, even, non-negative kernel so that the smoothing approximation is $O(h^2)$.  In other words,
+\begin{equation}
+\langle f({\vec x}) \rangle = f({\vec x}) + c\nabla f({\vec x}) h^2
+\end{equation}
+where $c$ is a constant independent of $h$.  
+
+In my manuscript I discuss how Gingold and Monaghan motivate a derivation of SPH starting from the Lagrangian for a nondissipative, isentropic gas
+\begin{equation}
+L = \int d{\vec r} \left[ \frac{1}{2} {\dot {\vec r} }^2 - U(\rho) \right] \rho
+\end{equation}
+where $\frac{\partial U(\rho)}{\partial \rho} = \frac{P}{\rho^2}$.  Now they write the integral in discrete form
+\begin{equation}
+L \simeq \sum_{i=1}^{N} \left( \frac{1}{2} {\dot {\vec r_i}}^2 - U(\rho_i) \right) m_i.
+\end{equation}
+Calculating the terms in the Euler-Lagrange equations gives the SPH momentum equation
+\begin{equation}
+m_j {\ddot {\vec r_j}} + \sum_{i=1}^{N} \frac{P_i}{\rho_i^2} \frac{\partial \rho_i}{\partial {\vec r_j}} m_i = 0
+\end{equation}
+Connection with SPH can be made by identifying 
+\begin{equation}
+\rho_i = \sum_{k=1}^{N} m_k W ( {\vec r_i} - {\vec r_k}; h )
+\end{equation}
+which leads to the symmetric momentum equation
+\begin{equation}
+{\ddot {\vec r_j}} + \sum_{i=1}^{N} \left( \frac{P_i}{\rho_i^2} + \frac{P_j}{\rho_j^2} \right) m_i \nabla_j W ( {\vec r_j} - {\vec r_i}; h )
+\end{equation} 
+that Monaghan advocates for its ability to conserve linear and angular momentum.
+
+Note that the approximation of $L = \int \left( 1/2 {\dot {\vec r}}^2 - U(\rho) \right) \rho d{\vec r}$ into discrete form is ill-defined (e.g. it can't be done by using the number density expression in Hernquist and Katz $n({\vec r}) = \sum_{j=1}^{N} \delta({\vec r} - {\vec r_j})$) because it is unclear why $U(\rho)$ becomes $U(\rho_i)$ but $\rho d{\vec r}$ becomes $m_i$. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Combining MSY and SPH}\label{cfmsph}
+
+The results of the last two sections can be combined by noting that (\ref{sph_fun}) can be used to define a smoothed Lagrangian density within the action.  Thus the action, $I$, of MSY can be approximated as
+\begin{equation}
+\langle I \rangle = \int dt \int d^3a \langle {\cal L}({\vec x},t)\rangle
+\end{equation}
+where $\langle {\cal L} \rangle$ is the smoothed Lagrangian density
+\begin{eqnarray}\label{cfmsph_fun}
+\langle {\cal L}({\vec x},t) \rangle & = & \int d^3r \: W({\vec r} - {\vec x}){\cal L}({\vec r},t) \nonumber \\
+& = & \int d^3r \: W({\vec r} - {\vec x}) \! \left[\frac{\rho_0}{2} \left( \frac{\partial x_i}{\partial t}\right)^2 - \rho_0(e+U) \right. \nonumber \\
+& & \left. + \alpha (\rho J - {\rho}_0) + \beta (s- s_0) \frac{^{}}{}\right].
+\end{eqnarray}
+It is important to note that the functions $\alpha$ and $\rho$ in (\ref{cfmsph_fun}) are functions of form $f = f({\vec r}, t)$.
+
+The same variations that were performed in Section \ref{cfm} can be performed.
+The first variation, with respect to $\alpha$ gives
+\begin{equation}
+\delta \langle I \rangle \vert_{\delta \alpha} = \int dt \int d^3r \int d^3a \: W({\vec r} - {\vec x}) \left\{ \rho J - \rho_o \right\} \delta \alpha({\vec r},t)
+\end{equation}
+which when equated to zero leads to
+\begin{equation}
+\rho({\vec r},t) \int d^3a \: W({\vec r} - {\vec x}) J = \int d^3a W({\vec r} - {\vec x}) \rho_0.
+\end{equation}
+
+Likewise, the variations with respect to $\beta$, $\rho$, and $s$ give
+\begin{equation}
+\delta \langle I \rangle \vert_{\delta \beta} = \int dt \int d^3r \int d^3a \: W({\vec r} - {\vec x})(s - s_0) \delta \beta({\vec r},t),
+\end{equation}
+
+\begin{equation}
+\delta \langle I \rangle \vert_{\delta \rho} = \int dt \int d^3r \int d^3a \: W({\vec r} - {\vec x}) \left[\alpha J - \rho_0 \frac{\partial e}{\partial \rho} \right] \delta \rho({\vec r},t)
+\end{equation}
+
+and
+
+\begin{equation}
+\delta \langle I \rangle \vert_{\delta s} = \int dt \int d^3r \int d^3a \: W({\vec r} - {\vec x}) \left[ \beta - \rho_0 T\right] \delta s({\vec r},t)
+\end{equation}
+
+For simplicity these results are summarized here (with $W = W({\vec r} - {\vec x})$)
+\begin{eqnarray}\label{summ}
+\delta \langle I \rangle \vert \delta_{\alpha} = 0 & \hspace{0.5in} \Rightarrow \hspace{0.5in} & \int d^3a \: W \rho J = \int d^3a W \rho_0 \\
+%
+\delta \langle I \rangle \vert \delta_{\beta} = 0 & \hspace{0.5in} \Rightarrow \hspace{0.5in} & \int d^3a \: W s = \int d^3a W s_0 \\
+%
+\delta \langle I \rangle \vert \delta_{\rho}  = 0 & \hspace{0.5in} \Rightarrow \hspace{0.5in} & \int d^3a \: W \alpha J = \int d^3a W \rho_0 \frac{P}{\rho^2}\\
+%
+\delta \langle I \rangle \vert \delta_{s} = 0 & \hspace{0.5in} \Rightarrow \hspace{0.5in} & \int d^3a \: W \beta = \int d^3a W \rho_0 T
+\end{eqnarray}
+
+The final variation with respect to the trajectory function ${\vec x}({\vec a},t)$ is much more complicated than before due to the presence of derivatives of the smoothing function.  The general approach for handleing these terms is to exploit the symmetric nature of the kernel to switch derivatives with repect to ${\vec x}$ to those with respect to ${\vec r}$.  This step is usually accompanied by an integration by parts.  Several abbreviations make the calculation a bit more palatable; $W = W({\vec r} - {\vec x})$, $x_{i,t} = \frac{\partial x_i}{\partial t}$, and $x_{i,l} = \frac{\partial x_i}{\partial a_l}$.
+
+\begin{eqnarray}\label{x_var}
+\delta \langle I \rangle \vert_{\delta x_j} & = & \int dt\! \int d^3a\! \int d^3r\!
+	 \left\{
+		  \frac{\partial W}{\partial x_j} {\cal L} \delta x_j 
+	 	  \right. \nonumber \\
+		  & & + W \left. 
+		\left[  \frac{\rho_0}{2} \frac{\partial}{\partial x_{j,t}} 
+			(x_{i,t}^2) \delta x_{j,t} + \alpha \rho \frac{\partial}
+			{\partial x_{j,l}} J \delta x_{j,l} 
+		\right] 
+	\right\}
+\end{eqnarray}
+
+Switching the integration from $x$ to $r$ in the first term of (\ref{x_var}), assuming that the $\delta$ operator commutes with $\frac{\partial}{\partial t}$ and $\frac{\partial}{\partial a_l}$, and integrating each term by parts leads to
+
+\begin{eqnarray}
+\delta \langle I \rangle \vert_{\delta x_j} & = & \int dt\! \int d^3a\! \int d^3r\! 
+	\left\{ 
+		W \frac{\partial {\cal L}}{\partial r_j} \right. \nonumber \\
+		& & \left. - \left( W \rho_0 x_{j,t} \right)_{,t} - \left( W \alpha 
+		\rho \frac{\partial}{\partial x_{j,l}} J \right)_{,l} 
+	\right\}
+\end{eqnarray}
+expanding the derivatives and collecting terms gives
+
+\begin{eqnarray}\label{cruc_var}
+\delta \langle I \rangle \vert_{\delta x_j} & = & \int dt\! \int d^3r\! 
+	\left\{
+		\frac{\partial \rho}{\partial r_j}
+		\int d^3a\: W \left[ \alpha J - \rho_0 \frac{P}{\rho^2} \right]
+	 	\delta x_j \right. \nonumber \\
+%
+		 & & +
+		\frac{\partial s}{\partial r_j}
+		\int d^3a\: W \left[ \beta - \rho_0 T \right]
+	 	\delta x_j \nonumber \\
+%
+		 & & +
+		\frac{\partial \beta}{\partial r_j}
+		\int d^3a\: W \left[ s - s_0 \right]
+	 	\delta x_j \nonumber \\
+%
+		& & +
+		\int d^3a  \left( -\rho_0 \frac{\partial U}{\partial r_j} W 
+		+ \frac{\partial \alpha}{\partial r_j} \rho J W
+		- \frac{\partial W}{\partial x_k} \rho_0 x_{k,t} x_{j,t}
+		\right. \nonumber \\
+%
+		& & - \left. \left.
+		W \rho_0 x_{j,tt}
+		- \alpha \rho \frac{\partial W}{\partial x_k} x_{k,l} J_{jl}
+	 	\right) \delta x_j
+	\right\}
+\end{eqnarray}
+	
+Since $\delta x_j$ are arbitrary, the first 3 terms in (\ref{cruc_var}) are identically zero.  Using the previously detailed properties of the Jacobian, the expression $x_{k,l} J_{jl}$ combines to form $J \delta_{jk}$.  This reduces (\ref{cruc_var}) to
+\begin{eqnarray}
+\delta \langle I \rangle \vert_{\delta x_j} & = & \int dt\! \int d^3r\! \int d^3a\!
+	\left(	
+		-\rho_0 \frac{\partial U}{\partial r_j} W 
+		+ \frac{\partial \alpha}{\partial r_j} \rho J W
+		- \frac{\partial W}{\partial x_k} \rho_0 x_{k,t} x_{j,t}
+	\right. \nonumber \\
+	& & 
+	\left.
+		- W \rho_0 x_{j,tt}
+		- \alpha \rho \frac{\partial W}{\partial x_j} J
+ 	\right) 
+	\delta x_j
+\end{eqnarray}
+
+Switching the integration in the third term and intergrating by parts brings $\frac{\partial}{\partial r_k}$ to bear on $\rho_0 x_{k,t} x_{j,t}$ which gives zero since neither $\rho_0$ or $x_j$ are functions of $r$.  Doing likewise on the last term, expanding the derivative,  and then combining the resulting term with the relation, $\alpha = \frac{P}{\rho^2}$, (from the ratio of (34) and (36)), leads to 
+
+\begin{eqnarray}
+\delta \langle I \rangle \vert_{\delta x_j} & = & \int dt\! \int d^3r\! \int d^3a\:
+	W \rho_0
+	\left(	
+		-\frac{\partial U}{\partial r_j}
+		-x_{j,tt}
+		-\frac{P}{\rho^2} \frac{\partial \rho}{\partial r_j}
+ 	\right) 
+	\delta x_j
+\end{eqnarray}
+
+Finally, equating the variation to zero gives
+
+\begin{eqnarray}\label{fin_var}
+\delta \langle I \rangle \vert_{\delta x_j} = 0 & \Rightarrow & \int d^3r\! 
+	W
+	\left(	
+		\frac{\partial U}{\partial r_j}
+		+ x_{j,tt}
+		+ \frac{P}{\rho^2} \frac{\partial \rho}{\partial r_j}
+ 	\right)  
+	= 0
+\end{eqnarray}
+
+Under the SPH approach the continuum is replaced by discreet particles whose motion are followed.  The discretization is accomplished by setting the initial density as a sum of delta functions.  
+\begin{equation}\label{rho0}
+\rho_0 = \sum_{i=1}^{N} m_i \delta({\vec a} - {\vec A}_i).
+\end{equation}
+
+The integral on the LHS is (by (\ref{norm})) identically 1.  Substituting (\ref{rho0}) into (\ref{summ}) gives
+\begin{equation}
+\rho({\vec r},t) = \sum_{i=1}^{N} m_i W({\vec r} - {\vec x}({\vec A}_i,t))
+\end{equation}
+which has the boundary condition at $t=0$
+\begin{equation}
+\rho({\vec r},0) = \sum_{i=1}^{N} m_i W({\vec r} - {\vec A}_i)
+\end{equation}
+
+This relation looks like we are the right track in that it yields a fundamental SPH relation for the density.
+
+\end{document}
+

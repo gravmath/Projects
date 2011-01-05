@@ -1,0 +1,899 @@
+\documentclass[12pt]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------------------------------
+% PACKAGES
+%------------------------------------------
+\usepackage[none,bottom]{draftcopy}
+\usepackage{epic,eepic,graphicx,url}
+% THIS FOR PDF DOCUMENT GENERATION
+%%%% Begin PDF stuff
+\usepackage[backref]{hyperref} % USE TO NAVIGATE THROUGH PDF FILE
+\special{ pdf: docinfo << /Author(Laurie M. Mailhe)
+ /Title( Leonardo-BRDF : Preliminary Primer Vector Analysis Tool - Final
+Report)
+/Subject(Optimization)
+/Keywords(Primer Vector)
+>>}
+%%%% End PDF stuff
+\special{papersize=8.5in,11in}  % DVI SPECIAL
+%------------------------------------------
+% FOR FLOATS
+%------------------------------------------
+\renewcommand{\topfraction}{0.4}
+\renewcommand{\bottomfraction}{0.5}
+\renewcommand{\textfraction}{0.3}
+\renewcommand{\intextsep}{2.0mm}
+%------------------------------------------
+% VERTICAL PARAMETERS
+%------------------------------------------
+\setlength{\topmargin}{0in} \setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+%------------------------------------------
+% MARGINS AND TEXT LENGTH
+%------------------------------------------
+\setlength{\evensidemargin}{0.0truein}%!!!
+\setlength{\oddsidemargin}{0.0truein}
+\setlength{\textheight}{9.00truein}
+\setlength{\textwidth}{6.5truein}
+%------------------------------------------
+% SOME NEW COMMANDS
+%------------------------------------------
+\newcommand{\FF}{FreeFlyer$^{\mbox{\tiny TM}}~$}
+\newcommand{\MT}{MATLAB}
+
+\setcounter{secnumdepth}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{ Leonardo-BRDF \\ A Preliminary Primer Vector Analysis Tool \\ Final Report}
+\author{Laurie M. Mailhe }
+%\hspace{-5.0cm} a.i. solutions, Inc.
+%\begin{picture}(13,9)(20,0)
+%      \put(-110.0,-100.00){\mbox{ \includegraphics[width=2.0in,clip]{D:/ailogo.eps} }}
+%\end{picture}
+\maketitle
+\tableofcontents
+\newpage
+\chapter{INTRODUCTION}
+This report summarizes a preliminary study in developing a set of
+optimization tools for orbital Rendezvous.  While this work was
+performed under the Leonardo-BRDF task, it takes part on a larger
+scale effort undergoing at GSFC, FDAB to build generic tools,
+which will unable mission with tight fuel budget such as
+Leonardo-BRDF~\cite{Hugh00}.  The work presented in this report
+focuses on trajectory optimization using Lawden Primer Vector
+theory \cite{Lawden63}. This optimization scheme based on calculus
+of variation is also referred as indirect optimization method as
+opposed to genetic algorithms or simulated annealing which are
+labeled direct methods.  We chose to first assess Primer Vector,
+to get a better understanding of optimal control theory.  Our
+ultimate goal is to determine the pros and cons of the main
+existing techniques as well as their application domaine
+\cite{Jezew91}.  We hope this 'state-of-the-art' survey to help
+determining the appropriate optimization technique for a given
+mission. The report is divided in two main sections. In
+chapter~\ref{chp:pvt},\,we introduce the basics of Primer Vector
+theory which were implemented in the \MT \,\,code. In
+chapter~\ref{chp:pvat}, we present the $\beta$-version of the
+Primer Vector Analysis Tool (PVAT) written in \MT.  First, we
+detail the algorithms and the functions composing the current
+version of the code. Then, we discuss some test cases and
+preliminary results obtained using PVAT. Finally, we present our
+conclusions and
+our directions for future work.\\
+
+\chapter{PRIMER VECTOR THEORY}\label{chp:pvt}
+
+In this chapter, we recall the main Lawden primer vector rules of
+optimality used in PVAT. A more detailed derivation of the primer
+vector theory can be found in ref. \cite{Schiff01}.
+
+\section{Minimum Fuel Problem}
+First, we need to formulate our problem. We wish to minimize the
+mission $\Delta$V expense while still satisfying the mission
+constraints. Assuming a N-impulse trajectory, our problem
+translates to:
+\begin{equation}
+\mbox{Find  Min$_{_{t \epsilon [t_{o},t_{f}]}}$ J}= \sum_{i=1}^{N}
+\Delta V_{i} \label{eq:mainprob}
+\end{equation}
+Subject to:
+\begin{eqnarray*}
+\dot{x}(t)       & = & f(\dot{x},x,t)  \\
+x(t_{o})      & = &  x_{o} \\
+\dot{x}(t_{o})& = & \dot{x}_{o} \\
+x(t_{f})      & = &  x_{f} \\
+\dot{x}(t_{f})& = & \dot{x}_{f} \\
+\end{eqnarray*}
+\noindent Where $f(\dot{x},x,t)$ represents the spacecraft
+two-body equations of motion. The problem now defined, we can
+express the primer vector equations using calculus of variation
+theory. We label the initial trajectory "reference trajectory".
+
+\section{Primer Vector Equations for the Two-Body Problem}
+
+The primer vector is defined as the adjoint to the velocity vector
+in the variational Hamiltonian formulation
+\cite{Lawden63,Schiff01,Hiday92}.  It obeys the following equation
+also known as the second order canonical form of the Euler-Lagrange equation:\\
+\begin{equation}
+\ddot{\bar{p}} = \mu\,(-\frac{\bar{p}}{r^{3}} + 3
+\frac{\bar{r}}{r^{5}}(\sum_{i=1}^{3} p_{i}\,r_{i}))
+\label{eq:pveom}
+\end{equation}
+\noindent where $\bar r$ is the satellite position vector on the
+reference trajectory, $\bar p$ is the primer vector and $\mu$ is
+the Earth gravitational constant.\\
+The satellite position is found using the well-known second-order
+form equation of motion:
+\begin{equation}
+\ddot{\bar{r}} = -\mu\,\frac{\bar{r}}{r^{3}}
+\end{equation}
+As shown in Eq.~\ref{eq:pveom}, the primer vector state can not be
+derived simultaneously with the spacecraft state. Its history must
+be post-processed from the spacecraft ephemeris.\\
+\noindent The primer vector state $(\bar p, \dot{\bar p})$ can
+also be obtained from an initial state $(\bar p_{o}, \dot{\bar
+p_{o}})$ using $\underline{\phi}(t,t_{o})$, the satellite
+trajectory state transition matrix (STM):\\
+
+\begin{equation}
+    \left( \begin{array}{c} \bar p \\ \dot{\bar p}
+    \end{array} \right) = \underline{\phi}(t,t_{o})\cdot
+    \left( \begin{array}{c} \bar p_{o} \\ \dot{\bar p_{o}}
+    \end{array} \right) =
+    \left[ \begin{array}{cc} M & N \\ S & T \\ \end{array} \right] \cdot
+    \left( \begin{array}{c} \bar p_{o} \\ \dot{\bar p_{o}}
+    \end{array} \right)
+    \label{eq:stm}
+\end{equation}
+
+\noindent Where M, N, S and T are 3x3 matrices, partitions of
+$\underline{\phi}(t,t_{o})$. In this report, we use the STM
+expression developed by Der~\cite{Der97},which is valid for
+arbitrary conic.\\
+
+\section{Lawden Necessary Conditions for an Optimal Trajectory}
+
+Based on primer vector defined by Eq.~\ref{eq:pveom}, Lawden
+derived the 4 necessary conditions for an optimal trajectory:
+\begin{enumerate}
+\item The primer vector must be $\mathcal{C}^{1}$ for the
+entire history.
+\item The magnitude of the primer must be less than one during a coasting phase and equal
+to one when an impulse is performed.
+\item At the impulse time, the primer is a unit vector equal to the thrust direction.
+\item The derivative of the primer vector magnitude must be zero for all interior impulses
+( i.e. not the initial or final impulse).
+\end{enumerate}
+
+\section{Computing the Primer Vector History}
+\noindent Solving for the primer vector history is equivalent to
+solving a two-point boundary value problem. Lets first assume that
+$N=2$ in Eq.~\ref{eq:mainprob}. We know from Lawden that, at an
+impulse, the primer vector equals the thrust direction. Thus, we
+can express the initial and final primer vector as :
+\begin{equation}
+\bar p_{o} = \frac{\Delta\bar V_{o}}{|\Delta\bar V_{o}|}
+\end{equation}
+\begin{equation}
+\bar p_{f} = \frac{\Delta\bar V_{f}}{|\Delta\bar V_{f}|}
+\end{equation}\\
+
+\noindent The initial and final primer vectors and the
+time-of-flight $(t_{f}-t_{o})$ are given to the problem. However,
+to propagate Eq.~\ref{eq:pveom} we need the complete primer
+initial state $(\bar p_{o}, \dot{\bar p_{o}})$. To obtain
+$\dot{\bar p_{o}}$, we can either use a shooting method or use the
+STM formulation from Eq.~\ref{eq:stm}. In general, using the STM
+is faster and sufficiently accurate. However, it is worthwhile
+noting that for coplanar, 180$^{\circ}$ transfer, the STM breaks down~\cite{PrusCon}.\\
+Using Eq.~\ref{eq:stm}, the initial derivative of the primer
+vector can be expressed as:
+
+\begin{equation}
+\dot{\bar p_{o}} = N^{-1} \cdot (\bar p_{f} - M \cdot \bar p_{o})
+\label{eq:pdot}
+\end{equation}
+
+\noindent Eq.~\ref{eq:pdot} can be generalized for a N-impulse
+trajectory by examining each individual 2-burn transfer. Lets
+consider the transfer between impulse(i) and impulse(i+1) where i
+varies from 1 to N. For this leg, the primer vector derivatives
+are:
+
+\begin{equation}
+\dot{\bar p_{i}}^{+} = N_{i}^{-1} \cdot (\bar p_{i+1} - M_{i}
+\cdot \bar p_{i}) \label{eq:pdot2}
+\end{equation}
+
+\begin{equation}
+\dot{\bar p}_{i+1}^{-} = S_{i} \cdot \bar p_{i} + T_{i} \cdot
+\dot{\bar p_{i}}^{+} \label{eq:pdot3}
+\end{equation}
+
+\noindent Where:
+\begin{eqnarray}
+M_{i}& = & M(t_{i+1},t_{i}) \\
+N_{i}& = & N(t_{i+1},t_{i})\nonumber\\
+S_{i}& = & S(t_{i+1},t_{i})\nonumber\\
+T_{i}& = & T(t_{i+1},t_{i}) \nonumber
+\end{eqnarray}
+
+
+\noindent Once the primer vector history is computed, we can
+determine the optimality of the trajectory using the 4 Lawden
+necessary conditions. For a non-optimal primer vector history, two
+type of actions can be inferred:
+\begin{enumerate}
+\item Moving the initial or final impulse
+\item Adding or/and moving an interior impulse
+\end{enumerate}
+
+\section{Moving an Initial or a Final Impulse}
+An improvement in total $\Delta$V can be achieved, if the initial
+or final primer vector magnitude velocity $\frac{d|\bar{p}|}{dt}$
+is different from zero~\cite{Schiff01}. We assume that the
+departure from the initial orbit and the arrival to the final
+orbit can be varied. However, additional constraint to the problem
+might require the boundary burns to be fixed or to be within a
+certain time interval. If so, there might be no or very little way
+of improving the $\Delta$V budget using the initial and final
+impulses.  In general, there are four different cases:
+\begin{itemize}
+  \item The slope of the initial primer vector magnitude is positive : $\frac{d|\bar{p}|}{dt}|_{t_{o}}>0$ \\
+  \noindent Right after the first impulse, the magnitude of the
+  primer vector is over one, which violates the Lawden law
+  no. 2. In this case, the trajectory can be improved by coasting in
+  the initial orbit before performing the departure maneuver.
+
+  \item The slope of the initial primer vector magnitude is negative : $\frac{d|\bar{p}|}{dt}|_{t_{o}}<0$ \\
+  \noindent Right after the first impulse, the magnitude of the
+  primer vector is below one, which does not violate any optimality law.
+  However, this is an indication of a late departure and the total fuel expense
+  can decrease by burning earlier in the initial orbit
+  \cite{Hiday92}. In this case the primer vector slope is in agreement with the Lawden rules.
+  Therefore, the initial burn is moved only if the reference trajectory has no interior
+  impulse and we are not concerned with any primer vector slope
+  discontinuity at the midcourse impulse.
+
+  \item The slope of the final primer vector magnitude is negative : $\frac{d|\bar{p}|}{dt}|_{t_{f}}<0$ \\
+  \noindent Right before the last impulse, the magnitude of the
+  primer vector is over one, which violates the Lawden law
+  no. 2. In this case, the trajectory can be improved by adding  a coast in
+  the final orbit (i.e. performing the arrival maneuver earlier in the final
+  orbit and then coasting to the final epoch).
+
+  \item The slope of the final primer vector magnitude is positive : $\frac{d|\bar{p}|}{dt}|_{t_{f}}>0$ \\
+  \noindent Right before the last impulse, the magnitude of the
+  primer vector is below one, which does not violate any optimality law.
+  However, this is an indication of a early arrival and the total fuel expense
+  can decrease by burning later in the initial orbit
+  \cite{Hiday92}. Again, this scenario is considered only if the
+  reference trajectory has no interior impulse.
+\end{itemize}
+
+\noindent All the derivations which correspond to the statement
+listed above can be found in ref. \cite{Schiff01}.
+
+\section{Moving or Adding an Interior Impulse}
+As stated above, if the trajectory departure and arrival states
+are optimal, we then examine the primer vector at interior
+impulses \,(if any) and during the coasting phases. There are two
+major scenarios:
+\begin{itemize}
+\item There exist midcourse impulses at which the primer slope is
+discontinuous. Then, we can decrease the cost function by moving
+the impulse position and time so that Lawden law no.1 is
+satisfied.\\
+\item Lawden rule no.1 is not violated but the magnitude of the
+primer vector goes above 1 during a coast phase. Then, we can
+decrease the cost function by adding an impulse.\\
+\end{itemize}
+
+\subsection{Moving an Impulse}
+If the primer vector derivative is not continuous at an interior
+impulse, then the cost function J (i.e. total trajectory
+$\Delta$V) defined in Eq.~\ref{eq:mainprob} can be decreased by
+moving the midcourse position and time ($t_{m}$,$\bar R_{m}$). The
+midcourse state is varied using the following first-order gradient
+of J:
+
+\begin{equation}
+\bar \nabla J = \left[ \begin{array}{c}
+ \dot{\bar p}_{m}^{+} - \dot{\bar p}_{m}^{-} \\
+ -(H_{m}^{+} - H_{m}^{-}) \\
+\end{array} \right]
+\label{eq:grad1}
+\end{equation}
+
+\noindent Where H is the variational Hamiltonian corresponding to
+the problem stated in Eq.~\ref{eq:mainprob}. At the interior
+impulse, the Hamiltonian is expressed as:
+\begin{equation}
+H = \dot{\bar p^{T}}\cdot\bar v - {\bar p}^{T}\cdot\bar g
+\end{equation}
+\noindent Since $\bar g$ is continuous at ($t_{m}$,$R_{m}$),
+Eq.~\ref{eq:grad1} becomes:
+
+\begin{equation}
+\bar \nabla J = \left[ \begin{array}{c}
+ \dot{\bar p}_{m}^{+} - \dot{\bar p}_{m}^{-} \\
+ -(\tilde{H}_{m}^{+} - \tilde{H}_{m}^{-}) \\
+\end{array} \right]
+\label{eq:grad2}
+\end{equation}
+
+\noindent Where
+\begin{equation}
+\tilde{H}_{m}^{+} = \dot{\bar p_{m}^{+}}^{T}\cdot{\bar v_{m}}^{+}
+\end{equation}
+\begin{equation}
+\tilde{H}_{m}^{-} = \dot{\bar p_{m}^{-}}^{T}\cdot{\bar v_{m}}^{-}
+\end{equation}
+
+\noindent The gradient of J in Eq.~\ref{eq:grad2} is used in
+conjunction with a Broyden-Fletcher-Goldberg-Shanno minimization
+technique which will be detailed in chapter~\ref{chp:pvat}. At the
+local minimum, $\nabla J$ equals 0, thus satisfying Lawden rule
+no.1. Finally, when all interior impulse $\dot{\bar p}$ are
+continuous and the boundary impulses are optimal, we must check
+that law no.2 holds for the coasting phases.
+
+\subsection{Adding an Impulse}
+When the primer vector magnitude is over 1 during a coasting phase
+on a given leg , an improvement in the total $\Delta$V is obtained
+by adding an impulse. To get the most efficient decrease in cost,
+the impulse should be added at the time, $t_{max}$, where $|\bar
+p|$ is maximum, $\bar p_{max}$.
+
+\noindent We know from Lawden rules that the impulse direction
+should equal the primer vector:
+\begin{equation}
+\Delta \bar V_{m} = c \cdot \frac{\bar p_{max}}{|\bar
+p_{max}|}\label{eq:dv}
+\end{equation}
+
+\noindent Using a second-order approximation, a first-guess for
+the magnitude $c$ is derived:
+
+\begin{equation}
+c = \frac{\beta \cdot \frac{ \Delta V_{f}}{|\Delta V_{f}|} -
+\alpha \cdot \frac{\Delta V_{o}}{|\Delta V_{o}|} - 1}{\frac{\alpha
+\cdot \alpha - \frac{(\alpha \cdot \Delta V_{o})^{2}}{|\Delta
+V_{o}|^{2}}}{|\Delta V_{o}|}+ \frac{\beta \cdot \beta -
+\frac{(\beta \cdot \Delta V_{f})^{2}}{|\Delta V_{f}|^{2}}}{|\Delta
+V_{f}|}}\label{eq:c}
+\end{equation}
+
+\noindent Where $\alpha$ and $\beta$ are:
+\begin{equation}
+\alpha = N^{-1}(t_{max},t_{o}) \cdot \underline{A}^{-1} \cdot
+\frac{\bar p_{max}}{|\bar p_{max}|}
+\end{equation}
+
+\begin{equation}
+\beta = N^{-1}(t_{max},t_{f}) \cdot \underline{A}^{-1} \cdot
+\frac{\bar p_{max}}{|\bar p_{max}|}
+\end{equation}
+
+
+\noindent $\Delta V_{o}$ and $\Delta V_{f}$ are the initial 2
+impulses on the selected leg of the reference trajectory before
+any burn is added. The matrix A is defined as:
+
+\begin{equation}
+\underline{A} = T(t_{max},t_{f}) \cdot N^{-1}(t_{max},t_{f}) -
+T(t_{max},t_{o}) \cdot N^{-1}(t_{max},t_{o}) \label{eq:a}
+\end{equation}
+
+\noindent The matrices T and N are partitions of the STM defined
+in Eq.~\ref{eq:stm}. Note that Eq.~\ref{eq:c} is an approximation
+of the solution to the following equation:
+
+
+\begin{eqnarray}
+\frac{d}{dc}[\sqrt{\bar \Delta V_{o}^{T} \cdot \bar \Delta
+V_{o}^{T} + 2c(\bar\alpha^{T}\cdot \bar \Delta V_{o}) + c^{2}
+(\bar\alpha^{T}\cdot\bar\alpha)}\\
++\sqrt{\bar \Delta V_{f}^{T} \cdot \bar \Delta V_{f}^{T} +
+2c(\bar\beta^{T}\cdot \bar \Delta V_{f})+c^{2}
+(\bar\beta^{T}\cdot\bar\beta)}& +c ]=0 \nonumber \label{eq:ceq}
+\end{eqnarray}
+
+\noindent Using Eqs.~\ref{eq:dv}, \ref{eq:c}, \ref{eq:a}, we can
+express the perturbed position $\bar R_{m}$:
+
+\begin{equation}
+\bar R_{m} = \bar R_{ref}(t_{max}) + \underline{A}^{-1} \cdot
+\Delta \bar V_{m} \label{eq:Rpert}
+\end{equation}
+
+\noindent Finally, using a Lambert solver, we compute the
+trajectory data, $\underline{R}$, $\underline{V}_{p}$,
+$\underline{V}_{m}$, and $\overline{TOF}$, for the two new
+transfer leg.
+
+
+
+\chapter{PRIMER VECTOR APPLICATION : Primer Vector Analysis Tool
+(PVAT)}\label{chp:pvat} This chapter is intended as an
+introduction to a $\beta$-version of the Primer Vector Analysis
+Tool written in \MT. First, we detail the major functions and
+algorithm of PVAT. Then, we present some test cases and
+preliminary results obtained using PVAT.
+
+\section{Algorithm and Functions}
+\subsection{Overall Algorithm}
+Figure~\ref{main} shows the overall primer vector analysis
+technique. Since th is algorithm is \underline{not} implemented
+yet, we manually call the functions. First, we need to provide a
+reference trajectory ,which initially satisfy the mission
+constraint, for PVAT to analyze . This reference trajectory
+summary file can be created manually, using FreeFlyer or any other
+orbit analysis tool. By calling the subroutine PVAT, the
+trajectory data is loaded and stored in the proper variables.
+Then, we call ComputePrimer to obtain the major primer vector data
+needed to evaluate whether the primer vector is optimal and if
+not, how it can be improved. This subroutine needs to be called
+every time the trajectory is changed as it will also change the
+primer vector history. Once the primer vector data is generated,
+we have to perform a serie of checks. First, we check the initial
+primer magnitude slope, $\dot{|p|}_{o}$. If the initial slope is
+positive for $N>2$ or non-zero for $N=2$ then, the total $\Delta
+V$ will be decreased by calling MoveInitialBurn. The final primer
+magnitude slope,$\dot{|p|}_{f}$ is also checked and this process
+is repeated until both the initial \underline{and} final slopes
+meet their stopping condition. Note that if both the initial and
+final primer vector magnitude slopes violates Lawden laws, there
+is another option : adding an impulse at the maximum primer
+magnitude by calling AddImpulseN. This option is not shown in the
+schematic in Figure~\ref{main} as we opted for a sequential check
+of the primer vector criteria. Once the boundary impulses are
+optimal according to Lawden laws, we need to check the interior
+impulses (if any) and the primer vector magnitude during the
+transfer. If $N>2$, we compute the gradient of J according to
+Eq.~\ref{eq:grad2}. If the gradient is different from null, we
+call MoveImpulseN. This function moves the interior impulses
+position and time using the BFGS minimization
+technique~\cite{Rao96}. If $N=2$ or the gradient of J is zero, we
+check the maximum primer vector magnitude. If it is above one,
+then adding an impulse by calling AddImpulseN will decrease the
+total trajectory cost J. Each time, the trajectory is changed, we
+need to recompute the primer vector data and re-iterate the entire
+checking process until no improvement can be made according to
+Lawden rules.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.55]{MainAlg2.eps}
+\caption{\textbf{PVAT} Overall Flowchart} \label{main}
+\end{figure}
+
+
+\subsection{Creating/Loading the Reference Trajectory : PVAT}
+
+If the option of loading a file is chosen, it must have the
+following format where each line represents a burn:
+\begin{tabbing}
+Co\= Column222 \= Colu 333  \= Colu 444  \= Colu 55  \= Colu 6 \=
+Colu 7 \= Colu 8  \= Colu 9  \= Colu 10  \= Colu 11  \kill \>
+\textsc{$\;\;$Epoch} \> \textsc{$\;\;\;$ X} \>
+\textsc{$\;\;\;\;$Y} \> \textsc{$\;\;\;$Z} \> \textsc{$VX^{-}$} \>
+\textsc{$VY^{-}$} \> \textsc{$VZ^{-}$} \> \textsc{$VX^{+}$} \>
+\textsc{$VY^{+}$}
+\> \textsc{$VZ^{+}$} \\
+ \> \textit{21544.98} \> \textit{1986.09} \>
+\textit{-6497.48} \> \textit{27.97} \> \textit{7.32} \>
+\textit{2.23} \> \textit{0.19} \> \textit{7.31} \> \textit{2.17}
+\> \textit{0.47} \\
+\> \textit{21545.00} \> \textit{6769.33} \> \textit{619.08} \>
+\textit{422.84} \> \textit{-0.729} \> \textit{7.58} \>
+\textit{0.063} \> \textit{-0.70} \> \textit{7.61}
+\> \textit{0.075}\\
+ \> ... \> ... \> ... \> ... \> ... \> ... \> ... \> ... \> ...
+\> etc ...\\
+\end{tabbing}
+\noindent The default name of the file described above is
+"Summary.txt". However, the user can also load other filename with
+the format described above, choose to enter manually the data or
+load a Matlab workspace file "*.mat". Based on the Epoch
+information in units of days, the time-of-flight is generated for
+each transfer leg and stored in a (N-1) vector, $TOF$, converted
+in seconds. The cartesian position,$\;\underline{R} = [ X \; Y \;Z
+]$ and the velocities before an impulse,$\underline{V}m = [ VX^{-}
+\; VY^{-} \; VZ^{-}]$, and after an impulse,$\; \underline{V}p= [
+VX^{+} \; VY^{+} \; VZ^{+}]$, are stored in a (3xN) matrix. The
+rows correspond to the 3 cartesian coordinates and the columns
+correspond to the N impulses. Once the initial trajectory is
+loaded, we can compute the primer vector data using
+"ComputePrimer".
+
+
+
+\subsection{Computing the Primer Vector Data : ComputePrimer}
+\begin{description}
+\item[\underline{syntax}]$[ \dot{|p|}_{o}, \dot{|p|}_{f}, |p|_{max}, t_{max}, \bar p_{max}, filename, leg\underline{\;\;}number, \Delta \dot{\bar p}_{m}, \Delta \tilde{H} ]$
+\item[]$\; \; \; \; \; \; \; \; \; \; \; \;\;\;\;\;\;\;\;\;\;\;\;\; = \textbf{ComputePrimer}(R, Vp, Vm, TOF,plot\underline{\;\;}output)$
+\end{description}
+
+\noindent This subroutine computes the major primer vector data
+needed to evaluate whether the primer vector is optimal and if
+not, how it can be improved. $\textbf{ComputePrimer}$ requires 5
+inputs. The first 4 inputs are the trajectory time-of flight
+vector,$TOF$,the position matrix,$\;\underline{R}$, the velocity
+matrices before and after the impulses,$\;\underline{V}m$ and
+$\;\underline{V}p$. In addition, the user also has to specify
+whether he wishes to plot the data by setting the output flag,$\;
+plot\underline{\;\;}output $,$\;$ to 1 or 0 otherwise.
+Figure~\ref{CompP} summarizes the function algorithm. First using
+Lawden law no. 3, we can compute the primer vector at each
+impulse. Then, a trajectory ephemeris is generated for each leg
+between the impulse. As explained in the previous section, to
+propagate Eq.~\ref{eq:pveom} ,we need the primer initial state
+$(\bar p_{i}, \dot{\bar {p_{i}}^{+}})$ for each transfer leg
+$[t_{i},t_{i+1}]$ where $i=1,...,N$. To find the primer velocity,
+we use the State Transition Matrix (STM) from
+Eqs.~\ref{eq:pdot2}-\ref{eq:pdot3}. However,if the transfer is
+coplanar with a transfer angle of 180$^{\circ}$, we use a shooting
+method~\cite{Guzman01}. If there are any interior impulse, we
+record the discontinuity $ \Delta \dot{\bar p}_{m}$. Once, the
+primer state is determined the equations of motion are propagated
+using the ephemeris previously stored. From the primer vector
+ephemeris, we can generate all the outputs necessary to evaluate
+the optimality of the trajectory. There are 9 outputs: the initial
+primer magnitude velocity,$\dot{|p|}_{o}$, the final primer
+magnitude velocity,$\dot{|p|}_{f}$, the maximum primer
+magnitude,$|p|_{max}$, its corresponding epoch, $t_{max}$,
+ephemeris filename, and leg number, the difference in primer
+velocity at the interior impulse,$\Delta \dot{\bar p}_{m}$, and
+the difference in Hamiltonian at the interior impulse,$\Delta
+\tilde{H}$.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{CPFig.eps}
+\caption{\textbf{ComputePrimer} Algorithm Flowchart} \label{CompP}
+\end{figure}
+
+\subsection{Moving Initial/Final Impulse : MoveInitialBurn / MoveFinalBurn}
+\begin{description}
+\item[\underline{syntax}]$[ \Delta V, \underline{R}^{*}, {\underline{V}p}^{*},{\underline{V}m}^{*},{\overline{TOF}}^{\,*}]$
+\item[]$\; \; \; \; \; \; \; \; \; \; \; \;\;\;\;\;\;\;\;\;\;\;\;\; = \textbf{MoveInitialBurn}(\dot{|\bar p|}_{o}, Tolerance, \underline{R}, \underline{V}p,\underline{V}m,\bar TOF)$
+\end{description}
+MoveInitialBurn (MoveFinalBurn) moves the departure (arrival)
+state to zero-out the initial (final) slope of the primer
+magnitude to within a certain tolerance. The MoveInitialBurn and
+MoveFinalBurn subroutines are identical in their structure so only
+one is presented in Figure~\ref{MIni}. MoveInitialBurn requires 6
+inputs: the initial primer magnitude slope,$\dot{|\bar p|}_{o}$,
+the stopping condition or tolerance and the trajectory data
+$\underline{R}, \underline{V}p,\underline{V}m$ and $\bar TOF$. To
+determine the departure state which corresponds to a zero initial
+slope, we implemented a bissection method. If the slope is
+positive then the departure state is propagated forward, otherwise
+it is propagated backward. To quickly recompute the trajectory
+data, we use a Lambert solver. Two Lambert solvers are
+implemented: one fast formulation based on the Lagrangian
+equations for transfer with no singularity and one used when there
+exist singularities such as 180$^{\circ}$-Coplanar
+transfer~\cite{Bat84}. The primer magnitude slope is then updated
+for the new trajectory and the process is repeated until the slope
+is below the tolerance. When, the step size is too big, the
+$\Delta V$ sometimes suffer a sudden increase. There exist two
+remedies: decrease the step size or switch the type of the Lambert
+arc. Two type of Lambert arc can pass through 2 given positions,
+$\bar R_{1}$ and $\bar R_{2}$ for a specified time-of-flight : a
+type I defined as a transfer with a transfer angle smaller than
+180$^{\circ}$ and a type II defined as transfer with a transfer
+angle bigger than 180$^{\circ}$. Switching from a type I to a type
+II or vice-versa can allow convergence to a different kind of
+solution than if one had decreased the step size. Example of
+switching type of transfer is shown in the results section. Once
+the subroutine has converged on a solutions, it outputs the
+$\Delta V$ history and the new trajectory states,
+$\underline{R}^{*}, {\underline{V}p}^{*}, {\underline{V}m}^{*},
+{\overline{TOF}}^{\,*}$.\\
+\\
+\\
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{MIni.eps}
+\caption{\textbf{MoveInitialBurn} Algorithm} \label{MIni}
+\end{figure}
+
+\subsection{Moving Midcourse Impulse : MoveImpulseN}
+\begin{description}
+\item[\underline{syntax}]$[ S^{*}, \underline{R}^{*}, {\underline{V}p}^{*},{\underline{V}m}^{*},{\overline{TOF}}^{\,*},S_{iter},\Delta V, \|Grad_{rel} J\|]$
+\item[]$\; \; \; \; \; \; \; \; \; \; \; \;\;\;\;\;\;\;\;\;\;\;\;\; = \textbf{MoveImpulseN}(\underline{R}, \underline{V}p,\underline{V}m,\overline{TOF},Tolerance)$
+\end{description}
+\noindent This subroutine moves the interior impulses position and
+time so that the gradient of the cost function expressed in
+Eq.~\ref{eq:grad2} is null. It requires 5 inputs: the trajectory
+data, $\underline{R},
+\underline{V}p,\underline{V}m,\overline{TOF}$ and the stopping
+condition or tolerance. To move the midcourse impulses states, we
+use the Broyden-Fletcher-Goldberg-Shanno (BFGS) minimization
+technique. This Quasi-Newton method uses an approximation of the
+Hessian matrix instead of its direct evaluation. The approximation
+formula is called BFGS update. We are trying to solve for the
+vector $\bar S$ which contains the position and time of all the
+interior impulse so that the gradient J is null:
+
+\begin{equation}
+\mbox{Find $\bar S^{*}$  / Min [J}(\bar S^{*})= \sum_{i=1}^{N}
+\Delta V_{i}] \label{eq:gradprob}
+\end{equation}
+
+Where:
+
+\begin{equation}
+\bar S = \left( \begin{array}{c}
+\bar R_{2} \\
+ t_{2} \\
+. \\
+\bar R_{k} \\
+ t_{k} \\
+. \\
+\bar R_{N-1} \\
+ t_{N-1} \end{array} \right)
+\label{eq:S}
+\end{equation}
+
+And,
+
+\begin{equation}
+\bar \nabla J = \left[ \begin{array}{c}
+\dot{\bar p}_{2}^{+} - \dot{\bar p}_{2}^{-} \\
+-(\tilde{H}_{2}^{+} - \tilde{H}_{2}^{-}) \\
+. \\
+\dot{\bar p}_{k}^{+} - \dot{\bar p}_{k}^{-} \\
+-(\tilde{H}_{k}^{+} - \tilde{H}_{k}^{-}) \\
+. \\
+\dot{\bar p}_{N-1}^{+} - \dot{\bar p}_{N-1}^{-} \\
+-(\tilde{H}_{N-1}^{+} - \tilde{H}_{N-1}^{-}) \end{array} \right]
+\label{eq:gradJ}
+\end{equation}
+
+\noindent The line search direction is defined as:
+\begin{equation}
+\overline{SD} = - \overline{Hess} \cdot \bar \nabla J
+\end{equation}
+
+\noindent We are trying to solve a multi-dimensional problem,
+thus, we need to normalize the search direction:
+\begin{equation}
+\overline{SD}_{norm} = \frac{\overline{SD}}{\|\overline{SD}\|}
+\end{equation}
+
+\noindent Using quadratic interpolation, we find the optimal step
+size, $\lambda^{*}$, along the search direction $\overline{SD}$
+~\cite{Rao96} and we update $\bar S$ as:
+
+\begin{equation}
+\bar S^{*} = \bar S + \lambda^{*} \cdot \overline {SD}_{norm}
+\end{equation}
+
+\noindent Then, we compute the new gradient of J at $\bar S^{*}$
+and repeat the process until the stopping condition is met. We
+achieve convergence on a local minimum when the norm of the
+relative gradient is below a given tolerance. The relative
+gradient is defined as follow:
+
+\begin{equation}
+\bar \nabla J_{rel} = \left[ \begin{array}{c}
+...\\
+\frac{\dot{\bar p1}_{k}^{+} - \dot{\bar p1}_{k}^{-}}{|\dot{\bar p1}_{k}^{+}| + |\dot{\bar p1}_{k}^{-}|} \\
+\; \\
+\frac{\dot{\bar p2}_{k}^{+} - \dot{\bar p2}_{k}^{-}}{|\dot{\bar p2}_{k}^{+}| + |\dot{\bar p2}_{k}^{-}|} \\
+\; \\
+\frac{\dot{\bar p3}_{k}^{+} - \dot{\bar p3}_{k}^{-}}{|\dot{\bar p3}_{k}^{+}| + |\dot{\bar p3}_{k}^{-}|} \\
+\; \\
+\frac{-(\tilde{H}_{k}^{+} - \tilde{H}_{k}^{-})}{|\tilde{H}_{k}^{+}| + |\tilde{H}_{k}^{-}| } \\
+...\\
+\end{array} \right] k = 2,...,(N-1)
+\label{eq:gJrel}
+\end{equation}
+
+\noindent Unlike the gradient, directly re-computed every
+iteration, the Hessian matrix is approximated using the BFGS
+update~\cite{Rao96}. The updated matrix is an approximation of the
+Hessian, thus we have to check that it remains positive
+definitive. If not, we re-initialize it to the identity matrix.
+When the convergence is achieves, MoveImpulseN outputs 8
+variables: the final midcourse position and time vector, $S^{*}$,
+the final trajectory data, $\underline{R}^{*},
+{\underline{V}p}^{*},{\underline{V}m}^{*},{\overline{TOF}}^{\,*}$,
+an history of $\bar S$,$\Delta V$, $\|Grad_{rel} J\|$ at each
+iteration.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{MImp.eps}
+\caption{\textbf{MoveImpulseN} Algorithm} \label{MImp}
+\end{figure}
+
+\subsection{Adding an Impulse : AddImpulseN}
+
+\begin{description}
+\item[\underline{syntax}]$[ \underline{R}^{*}, {\underline{V}p}^{*},{\underline{V}m}^{*},{\overline{TOF}}^{\,*}, Gain ]$
+\item[]$\; \; \; \; \; \; = \textbf{AddImpulseN}( \underline{R}, \underline{V}p,\underline{V}m,\overline{TOF},t_{max},\bar p_{max},filename,leg\underline{\;\;}number)$
+\end{description}
+
+\noindent This subroutine add an impulse at the maximum primer
+vector magnitude. It requires 8 inputs: the four trajectory data,
+the time at which the primer is maximum, $t_{max}$, the primer
+vector at $t_{max}$, $\bar p_{max}$, the name of the ephemeris
+file corresponding to the leg at which an impulse will be added,
+and the leg number, $leg\underline{\;\;}number$. AddImpulseN
+implements Eqs.~\ref{eq:dv}, \ref{eq:c} and \ref{eq:Rpert} seen in
+the previous section and retarget for the new trajectory state
+using a Lambert algorithm. Note that in some cases where we need
+accuracy in determining $c$, we must solve directly
+Eq.~\ref{eq:ceq} instead of using the first order approximation
+from Eq.~\ref{eq:c}. In a future version, an option will be
+prompted for the user to decide which method he chooses for
+determining the added impulse magnitude. Once the impulse is added
+to the selected leg and the trajectory updated, AddImpulseN
+returns the new trajectory data as well as the gain in $\Delta V$
+as a result of the added impulse.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{AddImp.eps}
+\caption{\textbf{AddImpulseN} Algorithm} \label{AddImp}
+\end{figure}
+
+\section{Test Cases and Preliminary Results}
+In this section, we present four test cases : a Hohmann and a
+Bi-Elliptical transfer for two different transfer radii ratios
+1.43 and 17. In addition, we show some preliminary result for
+initializing one Leonardo-BRDF spacecraft from its launching
+orbit.
+
+\subsection{Test Cases : Hohmann/Bi-elliptical Transfers}
+To test the validity of the primer vector computation, we choose
+to first look into the "well-known" Hohmann and Bi-elliptical
+transfers. The Hohmann transfer was our first choice as it is the
+known optimum for a circle-to-circle coplanar transfer. For ratio
+$R = \frac{r2}{r1}$ sufficiently large, Bi-elliptical transfer
+were shown to be cheaper than the Hohmann transfer\cite{PrusCon}.
+Figures~\ref{Ho7x10} and~\ref{Bi7x9x10} illustrate the primer
+vector data for a Hohmann and a Bi-elliptical transfer with a
+ratio of 1.43. Figures ~\ref{Ho7x119} and ~\ref{Bi7x140x119}
+present a Hohmann and a Bi-elliptical transfer for a transfer with
+a ratio of 17.
+
+\begin{figure}[h]
+\centerline{\includegraphics[scale=0.6]{Ho7x10.eps}}
+\caption{Primer Vector Data for a 7,000-km to 10,000-km Hohmann
+Transfer, $\Delta V = 1.22881 km/s$} \label{Ho7x10}
+\end{figure}
+
+\noindent Both Bi-elliptical and Hohmann transfers are optimal in
+term of the Lawden Laws, which was expected. For $R = 1.43$, the
+total trajectory cost are identical. For $R= 17$, the
+Bi-elliptical transfer is 7 m/s cheaper. Even though this gain in
+$\Delta V$ might not seem significant, it points to a very
+important characteristic of the primer vector theory: it is a
+local optima theory. In other words, the primer vector analysis
+tool will converge on a neighborhood local
+solution not on the global optimum.% A good example of this limitation is shown in
+%ref.~\cite{Jezew}.
+
+\begin{figure}[ht]
+\centerline{\includegraphics[scale=0.6]{Bi7x9x10.eps}}
+\caption{Primer Vector Data for a 7,000-km to 10,000-km
+Bi-elliptical Transfer (Midradius of 9,000-km), $\Delta V =
+1.22883 km/s$ } \label{Bi7x9x10}
+\end{figure}
+
+\begin{figure}[ht]
+\centerline{\includegraphics[scale=0.6]{Ho7x119.eps}}
+\caption{Primer Vector Data for a 7,000-km to 119,000-km Hohmann
+Transfer, $\Delta V = 4.04513 km/s$ } \label{Ho7x119}
+\end{figure}
+
+\begin{figure}[ht]
+\centerline{\includegraphics[scale=0.6]{Bi7x140x119.eps}}
+\caption{Primer Vector Data for a 7,000-km to 119,000-km
+Bi-elliptical Transfer (Midradius of 140,000-km), $\Delta V =
+4.03801 km/s$} \label{Bi7x140x119}
+\end{figure}
+
+
+
+\subsection{Initializing a Leonardo-BRDF Trajectory}
+\noindent After checking the validity of the primer vector
+computation with known optimal transfers such as a Hohmann, we ran
+PVAT to initialize one leonardo-type trajectory. Using PVAT, we
+achieved a decrease of 40 m/s (i.e. 12$\%$). Below is a table
+summarizing the orbital elements for the launching orbit and the
+final Leonardo orbit to achieve:
+
+\begin{table}[htb]
+\centering \caption{Keplerian orbital elements} \vspace{0 pt}
+\begin{tabular}{ccccccc} \hline \hline
+& a (km) & e & $I (^{\circ})$ & $\Omega (^{\circ})$ & $\omega
+(^{\circ})$ & $TA (^{\circ})$ \\ \hline
+ Launch & 6803.1 &  0.0017  & 1.5084 & 278.4  & 329.59 & TBD \\
+ LEO1   & 6802.8 &  0.0012  & 3.6042 & 256.79 & 284.27 & 184.19\\
+\hline \hline
+\end{tabular}
+\label{table:orbitelemt}
+\end{table}
+
+\noindent This scenario initialize one spacecraft out of the six
+composing the total formation with a two-burn lambert arc as an
+initial guess. Using FreeFlyer, we vary the position of the first
+maneuver in the departure orbit and the transfer time-of-flight
+such that the total $\Delta V$ of the transfer to the final orbit
+is reasonable($< 1 km/s)$. We arbitrarily picked an initial
+trajectory with an initial true anomaly of xx , a time-of-flight
+of xx and an initial cost of 323 m/s. Figure~\ref{leo1ini} shows
+the primer vector data for this reference trajectory.
+
+\begin{figure}[htb]
+\centerline{\includegraphics{Leo1_initial.eps}}\label{leo1ini}
+\end{figure}
+
+\noindent By inspection of Figure~\ref{leo1ini}, we know from
+chapter xx that a decrease in $\Delta V$ can be achieved by moving
+the initial departure. After re-computing the primer vector data,
+we successively vary the initial and final impulses.
+Figure~\ref{dvhist} summarizes the $\Delta V$ history for each
+iteration. The final optimal primer vector history is plotted in
+Figure~\ref{leo1final}.
+
+\begin{figure}
+\centerline{\includegraphics{Final_Leo1_Type1.eps}}\label{leo1final}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics{TypeDVHist.eps}}\label{dvhist}
+\end{figure}
+
+\noindent While varying the initial and final impulse, there was
+an option to switch from a type 1 to a type 2. The results
+presented above are for a two-burn type 1 transfer where a choice
+was made to reduce the step size instead of switching the Lambert
+type. Below we present the results obtained when we switched to a
+type 2. Figure~\ref{swt1t2} is a plot of the primer vector data
+right after switching to a type 2. The primer vector history
+indicates that adding an impulse will improve the total trajectory
+cost. Adding an impulse leads to a non-optimal 3-burn trajectory
+shown in Figure~\ref{nopt3}. After several iterations, we converge
+to a 3-burn optimal trajectory with a total cost of 283 m/s
+(Figure~\ref{leo1fin2}). Figure~\ref{dvhist2} summarize the
+$\Delta V$ history for this scenario.
+\begin{figure}
+\centerline{\includegraphics{SwitchT1_to_T2.eps}}\label{swt1t2}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics{Type2_NonOpt_3.eps}}\label{nopt3}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics{Final_Leo1_Type2.eps}}\label{leo1fin2}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics{Type2DVHist.eps}}\label{dvhist2}
+\end{figure}
+
+
+
+
+\chapter{CONCLUSIONS and RECOMMENDATIONS}
+
+\bibliographystyle{unsrt}
+\bibliography{primer_vector}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

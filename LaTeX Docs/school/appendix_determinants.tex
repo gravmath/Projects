@@ -1,0 +1,272 @@
+In several places in the main body of this text, derivatives of the determinant of the
+metric or of the Jacobian of a map are needed.  The algebra of the computations
+is involved enough that its inclusion would be a distraction and thus the various
+results have been gathered here.
+
+Let \op{A} be an $N \times N$ matrix
+\bes
+  \op{A} = \left(
+              \begin{array}{cccc}
+                \idx{a}{\dn{11}} & \idx{a}{\dn{12}} & \cdots & \idx{a}{\dn{1N}} \\
+                \idx{a}{\dn{21}} & \idx{a}{\dn{22}} & \vdots & \idx{a}{\dn{2N}} \\
+                \vdots           & \vdots           & \ddots & \vdots           \\
+                \idx{a}{\dn{N1}} & \idx{a}{\dn{N2}} & \cdots & \idx{a}{\dn{NN}}
+              \end{array}
+           \right)
+\ees
+with entries $ \idx{\surb{\op{A}}}{\dn{ij}} = \idx{a}{\dn{ij}}$ and with $i=1,2, \ldots, N$,
+and $j=1,2, \ldots, N$.
+Define a signed elementary product from \op{A} \refs{anton84} to mean any product
+$\pm a_{i_1 j_1} a_{i_2 j_2} \cdots a_{i_N j_N}$ of $N$
+entries from \op{A}, no two of which come
+from the same row or column.
+The plus sign is chosen if both $i_1, i_2, \ldots, i_N$ and
+$j_1, j_2, \ldots, j_N$ are either even or odd permutations of $1, 2, \ldots, N$.
+The determinant of \op{A}, denoted by $a$, can be expressed as
+\be\label{eq:D1}
+\det{\surp{\op{A}}} \equiv a = \frac{1}{N!} \surb{i_1, i_2, \ldots, i_N}
+       \surb{j_1, j_2, \ldots, j_N} \idx{a}{\dn{i_1 j_1}}
+       \idx{a}{\dn{i_2 j_2}} \dots \idx{a}{\dn{i_N j_N}} \eqc
+\ee
+where the permutation symbol $\surb{i_1, i_2, \ldots, i_N}$ is defined as
+\bes
+\surb{i_1, i_2, \ldots, i_N}  = \left\{
+                                  \begin{array}{rl}
+                                  +1 & \mbox{if $i_1, i_2, \ldots, i_N$
+                                             is an even permutation of $1, 2, \ldots, N$} \\
+                                  -1 & \mbox{if $i_1, i_2, \ldots, i_N$
+                                             is an odd permutation of $1, 2, \ldots, N$}  \\
+                                  0  & \mbox{otherwise} \eqp
+                                  \end{array}
+                                \right.
+\ees
+The first permutation symbol assures that each term
+$a_{i_1 j_1} a_{i_2 j_2} \cdots a_{i_N j_N}$ comes from a different row while the
+second permutation symbol assures each term comes from a different column.
+The determinant is defined to be the sum of the $N!$ different signed
+elementary products in \op{A} \refs{anton84}.
+The product of the two permutation symbols in \refq{eq:D1} produces a sum
+of $N!$ terms, each term being comprised of the $N!$ different signed elementary
+products.
+The normalization $1/N!$ is included to account for this overcounting.
+
+Differentiating \sure{\ref{eq:D1}} \wrt $a_{r s}$ yields an expression for the
+cofactors of the determinant
+\be\label{eq:D2}
+  C_{r s} = \pdxby{a}{a_{rs}}
+          = \frac{1}{\surp{N-1}!} \surb{r, i_2, \ldots, i_N}
+            \surb{s, j_2, \ldots, j_N} a_{i_1 j_1} \cdots a_{i_N j_N} \eqp
+\ee
+Comparing \refq{eq:D2} to \refq{eq:D1} leads to
+\bes
+C_{r s} a_{t s} = C_{s r} a_{s t} = a \push \delta_{r t}
+\ees
+of which the familiar Laplace expression \refs{anton84}
+\be\label{eq:D3}
+ a = C_{r s} a_{r s} \eqc
+\ee
+is a special case.
+These results can be combined to yield the well-known result
+\be
+  \surb{\op{A}^{-1}}_{rs} = \frac{1}{a} C_{s r}
+\ee
+for the inverse of an $N \times N$ matrix in terms of the transpose of the
+matrix of cofactors \refs{anton84,L_00}.
+Using \refq{eq:D3}, the formula for the variation of the determinant is
+\be\label{eq:D4}
+  \var{a} = C_{r s} \var{a_{r s}} = a \surb{\op{A}^{-1}}_{s r} \var{a_{r s}} \eqp
+\ee
+
+\noindent \emph{Variations of the Metric}
+
+It is common, when performing variational principles in general relativity,
+to have to compute the variation of the determinant of the metric, denoted
+by $g$.
+To obtain the desired result, the substitutions $a_{r s} \rightarrow g_{\gm \gn}$
+and $\surb{\op{A}^{-1}}_{s r} \rightarrow g^{\gm \gn}$ are used in \refq{eq:D4} to yield
+\be
+ \var{g} = g \push g^{\gn \gm} \var{g_{\gm \gn}} = g \push g^{\gm \gn} \var{g_{\gm \gn}} \eqp
+\ee
+
+\noindent \emph{Variations of a Jacobean}
+
+Consider a general mapping from coordinates $x^j$ to coordinates $q^i$ where the transformation
+is given by
+\bes
+    q^{\gbm} = q^{\gbm} \surp{x^\gn} \eqp
+\ees
+The Jacobean of the map is defined to be the matrix of partial derivatives
+\bes
+  \Jac{\gbm}{\gn} = \pdxby{q^{\gbm}}{x^{\gn}} \eqp
+\ees
+The determinant of this matrix
+\bes
+   J \equiv \det{\Jac{\gbm}{\gn}} = \det{\surp{\pdxby{q^{\gbm}}{x^{\gn}}}}
+\ees
+plays a fundamental role in the fluid dynamics variational principles discussed.
+The variation of the Jacobean determinant can be expressed in
+terms of \refq{eq:D3} as
+\be\label{eq:D5}
+  \var{J} = J \push \idx{C}{\dn{\gbm}\up{\gn}} \Jac{\gbm}{\gn} \eqp
+\ee
+where the cofactors \idx{C}{\dn{\gbm}\up{\gn}} are given by
+\be\label{eq:D6}
+\idx{C}{\dn{\gbm}\up{\gn}} = \frac{1}{\surp{N-1}!} \surb{\gbm, i_2, \ldots, i_N}
+                        \surb{\gn, j_2, \ldots, j_N} \idx{q}{\up{i_2}\dn{,j_2}}
+                        \cdots \idx{q}{\up{i_N}\dn{,j_N}} \eqp
+\ee
+An important property of the cofactors of the Jacobean is
+\be\label{eq:D7}
+\pdby{x^{\gn}} \idx{C}{\dn{\gbm}\up{\gn}} = 0 \eqp
+\ee
+This property can be easily seen since each term in \refq{eq:D7}
+\bes
+   \frac{1}{\surp{N-1}!} \surb{\gbm, i_2, \ldots, i_N} \surb{\gn, j_2, \ldots, j_N}
+                         \idx{q}{\up{i_2}\dn{,j_2}}   \cdots
+                         \idx{q}{\up{i_M}\dn{,j_M \gn}} \cdots
+                         \idx{q}{\up{i_N}\dn{,j_N}} \eqc
+\ees
+is a product between symmetric and antisymmetric arrays.
+
+Other relations involving the determinant of the Jacobian arise when defining the
+concept of a tensor density.
+The presentation here of both the covariant and Lie derivatives of a tensor density follow
+closely the respective presentations in section 4.1 and 4.4 of \refs{LR89}.
+To define a tensor density, consider the transformation of the metric between `barred'
+and `un-barred' coordinates given by
+\be
+ \met{\gbm \gbn} = \jac{\gbm}{\ga} \jac{\gbn}{\gb} \met{\ga \gb} \eqp
+\ee
+Taking the determinant of both sides yields
+\be\label{eq:D8}
+  {\bar g} = \mJ^2 g \eqp
+\ee
+where the determinant of the inverse Jacobian of the mapping \mJ \nudge is defined as
+\be
+  \mJ = \det{ \surp{ \pdxby{x^{\gn}}{q^{\gbm}}} } \eqp
+\ee
+Equation \refq{eq:D8} is the simplest example of a tensor density, in this case a scalar
+density, and the power of \mJ \nudge in \refq{eq:D8} is called the weight.
+The determinant of the metric is said to be a scalar density
+of weight $2$ and the more usual quantity $\sqrt{-g}$ is a scalar density of weight $1$.
+Generalizing \refq{eq:D8} to an arbitrary tensor \idx{a}{\dn{\ga\gb}} of
+weight $w$ and taking the partial
+derivative with respect to \idx{x}{\up{\gba}} yields
+\be
+  \idx{\bar a}{\dn{,\gba}} = w \mJ^{w-1} \pdxby{\mJ}{\jac{\gbm}{\gn}}
+                                         \pdxby{\jac{\gbm}{\gn}}{x^{\gba}}
+                             + \mJ^w \pdxby{a}{x^{\gb}} \pdxby{x^{\gb}}{x^{\gba}} \eqp
+\ee
+Again \refq{eq:D4} can used to rewrite the first term yielding the expression
+\be\label{eq:D9}
+  \idx{\bar a}{\dn{,\gba}} = w \mJ^w \jac{\gn}{\gbm} \idx{\jac{\gbm}{\gn}}{\dn{,\gba}}
+                             + \mJ^w \pdxby{a}{x^{\gb}} \pdxby{x^{\gb}}{x^{\gba}} \eqp
+\ee
+Using the transformation equation for the connection coefficients (see \textit{e.g.}
+equation 10.26 of \refs{MTW})
+\bes
+\Cnx{\gbr}{\gba\gbt} = \Jac{\gm}{\gba} \Jac{\gn}{\gbt} \Jac{\gbr}{\gs} \Cnx{\gs}{\gm\gn}
+                         + \pdxby{\Jac{\gn}{\gba}}{x^{\gbt}} \Jac{\gbr}{\gn} \eqc
+\ees
+the term involving the partial derivative of the Jacobian in \refq{eq:D9} can be written
+as
+\bes
+   \jac{\gn}{\gbm} \idx{\jac{\gbm}{\gn}}{\dn{,\gba}} =    \Cnx{\gbr}{\gbr\gba}
+                                                       - \Jac{\gn}{\gba} \Cnx{\gs}{\gs \gn} \eqp
+\ees
+Combining leads to
+\be\label{eq:D10}
+\surp{ \idx{\bar a}{\dn{,\gba}} - w \Cnx{\gbr}{\gbr \gba} {\bar a} } =
+  \jac{\gba}{\gb} \mJ^w \surp{ \idx{a}{\dn{,\gb}} - w \Cnx{\gs}{\gs \gb} a }.
+\ee
+Equation \refq{eq:D10} is the transformation law for a rank \rank{0}{1} tensor density
+of weight $w$ and thus defines the covariant derivative of the scalar density of weight
+$w$ to be
+\be\label{eq:D11}
+  \idx{a}{\dn{;\gb}} = \idx{a}{\dn{,\gb}} - w \Cnx{\gs}{\gs \gb} a \eqp
+\ee
+Arbitrary tensor densities are built by multiplying the desired absolute tensors
+by scalar densities of the appropriate weight.
+
+Finally, the Lie derivative of a tensor density may be defined.
+Recall that if a manifold is equipped with a vector field then the action of this
+field can be interpreted as a mapping between those points in the manifold that
+lie on the same integral curve of \cv{V} (see \textit{e.g.} \refs{Frankel}).
+\begin{figure}
+\centerline{
+   \includegraphics[height=2in,width=3in,keepaspectratio]{lie_flows.eps}}
+   \caption{Schematic representation of the flow on the manifold \mM \nudge due to
+   the vector field \cv{V}.  The point \mP \nudge is mapped downstream an amount
+   \gl to the point \mQ.}\label{fig:D1}
+\end{figure}
+Figure \ref{fig:D1} schematically shows this relationship.
+
+Assuming that points \mP \push and \mQ \push are separated along a particular integral curve,
+then the Lie derivative of a tensor (or tensor density) can be defined symbolically
+as
+\be\label{eq:D12}
+  \pounds_{\cv{V}} \op{T} = \lim_{\gl \rightarrow 0}
+                            \frac
+                              {\surp{\op{T}(\mQ) - \surb{\op{T}(\mP)}_{\mQ}}}
+                              {\gl} \eqc
+\ee
+where \op{T}(\mQ) is the tensor evaluated at point \mQ \push and $\surb{\op{T}(\mP)}_{\mQ}$
+is the same tensor, now evaluated at point \mP, and then mapped downstream.
+Since the flow generated by \cv{V} is a diffeomorphism, the mapping downstream can be done
+for tensors of mixed ranks (see appendix C of \refs{wald} for more details).
+All that is now needed is to express \refq{eq:D12} in terms of coordinates to derive
+the formulae in question.
+However, the general case of \refq{eq:D12} is unwieldy, and following \refs{LR89}
+only a \rank{1}{1} tensor density will be examined, from which the general pattern
+can be inferred.
+In the equations that follow, all terms will be kept to first order in \gl.
+To begin, assume that the mapping mediated by \cv{V} has the form
+\be
+  {\tilde x}^\gm = x^\gm + \gl V^{\gm}(x) \eqp
+\ee
+The Jacobian of this mapping is given by
+\be
+  \Jac{\gtm}{\gn} \equiv \pdxby{{\tilde x}^{\gm}}{x^\gn}
+\ee
+The inverse Jacobian of this mapping is given by
+\be
+  \jac{\gtn}{\gb} = \kd{\gn}{\gb} - \gl \idx{V}{\up{\gb}\dn{,\gn}} \eqc
+\ee
+and the corresponding determinant is
+\be
+  \mJ \simeq 1 - \gl \idx{V}{\up{\gs}\dn{,\gs}} \eqp
+\ee
+Now consider the \rank{1}{1} tensor density \idx{\mT}{\up{\gm}\dn{\gn}},
+which transforms as
+\be
+  \idx{\mT}{\up{\gtm}\dn{\gtn}} = \mJ^w \Jac{\gtm}{\ga} \jac{\gtn}{\gb}
+                                  \idx{\mT}{\up{\ga}\dn{\gb}} \eqp
+\ee
+The value of the tensor at downstream point \mQ \push is given by
+\bea
+ \op{T}(\mQ) & \doteq &   \idx{\mT}{\up{\gtm}\dn{\gtn}}(x^\gs + \gl V^{\gs}) \\
+             &   =    &   \idx{\mT}{\up{\gtm}\dn{\gtn}}(x^\gs)
+                         + \gl  \idx{\mT}{\up{\gtm}\dn{\gtn,\gs}} V^\gs \eqp
+\eea
+Likewise, the value of the tensor at the upstream point which is mapped downstream
+is
+\bea
+  \surb{\op{T}(\mP)}_\mQ & \doteq & \surp{1 - w \gl \idx{V}{\up{\gs}\dn{,\gs}}}
+                                    \surp{\Kd{\gm}{\ga} + \gl \idx{V}{\up{\gm}\dn{,\ga}}}
+                                    \surp{\kd{\gn}{\gb} - \gl \idx{V}{\up{\gb}\dn{,\gn}}}
+                                    \idx{\mT}{\up{\ga}\dn{\gb}} \\
+                         &  = &   \idx{\mT}{\up{\gm}\dn{\gn}}
+                                 - \gl \idx{T}{\up{\gm}\dn{\gb}} \idx{V}{\up{\gb}\dn{,\gn}}
+                                 + \gl \idx{T}{\up{\ga}\dn{\gn}} \idx{V}{\up{\gm}\dn{,\ga}}
+                                 - w \gl \idx{\mT}{\up{\gm}\dn{\gn}} \idx{V}{\up{\gs}\dn{,\gs}} \eqc
+\eea
+where every term on the right-hand side takes the argument $x^\gs$.
+Combining these expressions in \refq{eq:D12} and noting, in the limit as
+$\gl \rightarrow 0$, that ${\tilde x}^\gs \rightarrow x^{\gs}$, leads to the desired relation
+\be\label{eq:D13}
+  \pounds_{\cv{V}} \idx{\mT}{\up{\gm}\dn{\gn}} = \idx{\mT}{\up{\gm}\dn{\gn,\gs}} V^{\gs}
+   + \idx{\mT}{\up{\gm}\dn{\gb}} \idx{V}{\up{\gb}\dn{,\gn}}
+   - \idx{\mT}{\up{\ga}\dn{\gn}} \idx{V}{\up{\gn}\dn{,\ga}}
+   + w \idx{\mT}{\up{\gm}\dn{\gn}} \idx{V}{\up{\gs}\dn{,\gs}} \eqc
+\ee
+and the obvious generalizations to higher rank tensors.

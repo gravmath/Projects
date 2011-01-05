@@ -1,0 +1,290 @@
+%% 
+%% Delete all preceding lines before processing this file by LaTeX
+%>>*
+%% 
+%% File: geothy.tex version 1.2
+%% Last revised Sat 97Mar29  at 09:50 by Misner
+%% 
+% 1.0  Sun 96Nov24 23:00 Misner   first draft
+% 1.1  Mon 96Nov25 10:59 Misner   typos corrected
+% 1.2  Sat 97Mar29 09:50 Misner   another typo corrected
+%%
+%% 
+\documentstyle[11pt]{article}
+\def\half{\mbox{$\frac{1}{2}$}}     % small built-up `one-half'
+
+\begin{document}
+%% @nokeywords@
+
+\makeatletter
+\@addtoreset{equation}{section}
+\makeatother
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\def\x{{\bf x}}
+\def\z{{\bf z}}
+
+\newcommand{\avg}[1]{\langle #1 \rangle}
+
+%*<<
+
+%
+\title{Geodesic Integrator Formulae
+      }
+%
+\author{   \sc
+            Charles W. Misner\\
+           \em
+            Department of Physics, University of Maryland%,
+           \\ \em
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt misner@umail.umd.edu
+        }
+\date{29 Mar 1997 \qquad   ver. 1.2}
+%
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+
+
+\section*{}
+    To the BNS collaboration,\\[1.2ex]
+    Here is an analytic version of the equations we (mostly KNew and
+KWatt immediately) are writing a Fortran program to integrate.
+    From the snippet of Alliance code we looked at in Phila Friday
+(11/22) it appears that the names for the metric components should be
+    \begin{equation}\label{eq-ds2}
+    ds^2 = - \alpha^2 dt^2 + g_{ij} (dx^i + \beta^i\,dt)(dx^j +
+\beta^j\,dt) \quad .
+    \end{equation}
+    Although I noticed the $\alpha$, I didn't pay attention to
+whether it was $g_{ij}$ or $\gamma_{ij}$ or something else.
+    We should perhaps try to get a look at Empire code also, as from
+Jim York's paper I suspect they may use the names I've used before.
+    As Kim and Keith look at Alliance code they should make a table
+of comparable names and their mathematical, ADM code, and (when
+convenient) Empire code equivalences.
+    With such a table we could probably do some bits of rewriting to
+Empire compatibility (should that become desirable) with some editor
+macros, and I could keep the text descriptions in parallel to the
+code.
+
+    Among the quantities we need to call from Einstein solver code
+are not just the metric ($\alpha$, $\beta^k$, and $g_{ij}$ or
+$g^{ij}$), but also space (perhaps time) derivatives: $\alpha_{,k}$,
+${\beta^\ell}_{,k}$, and ${g^{ij}}_{,k}$.
+    Some of these derivatives may have names in the existing code that
+we should notice if we see them.
+    For instance, the quantity $-{g^{ij}}_{,k} = g^{im}
+{\Gamma^j}_{mk} + g^{jm} {\Gamma^i}_{mk}$ occurs in the geodesic
+equations but may be more easily available in the $\Gamma$ forms than
+as derivatives of the $g^{ij}$.
+
+
+\section{Geodesic Equations}
+    Our current geodesic equations come in Hamiltonian form from
+    \begin{equation}\label{eq-H}
+    H = - \beta^k p_k + \alpha \sqrt{m^2 + g^{ij} p_i p_j}
+    \quad .
+    \end{equation}
+    We should probably define $H = m\gamma$ and check for
+conservation of $\gamma$ in the cases of time independent metrics.
+    We will also need an abbreviation $\mu \equiv \sqrt{m^2 + g^{ij}
+p_i p_j}$ for this square root which should not be recalculated
+unnecessarily.  
+    Advise me if these names cause conflicts with established code.
+
+    The position update equations are
+    \begin{equation}\label{eq-v}
+    dz^k/dt = v^k(p,z,t)
+    \end{equation}
+    for a generic numerical integration scheme, and we have
+    \begin{equation}\label{eq-gv}
+    v^k(p,z,t) = -\beta^k + (\alpha/\mu) g^{kj} p_j
+    \quad .
+    \end{equation}
+    Similarly there are momentum update equations
+    \begin{equation}\label{eq-p}
+    dp_k/dt = f_k(p,z,t)
+    \end{equation}
+    for a generic numerical integration scheme, and our equations
+give
+    \begin{equation}\label{eq-gp}
+    f_k(p,z,t) = p_i{\beta^i}_{,k} - \mu \alpha_{,k}
+    - (\alpha/2\mu) {g^{ij}}_{,k}\, p_i p_j
+    \quad .
+    \end{equation}
+
+    The $z$-dependent functions in these equations vary from one
+metric to another, and will eventually be calls to the ADM or Empire
+code.  In the following section I give values for several sample
+cases that we will be testing.
+
+\section{Newtonian metric}
+
+    A metric that gives the correct Newtonian limit is
+    \begin{equation}\label{eq-Newton}
+    ds^2 = - (1-M/r)^2 dt^2 + \delta_{ij}\,dx^i\,dx^j
+    \end{equation}
+    so the specification for the metric quantities is
+    \begin{eqnarray}\label{eq-gNewton}
+    \alpha  & = & 1 - M/r\\
+    \beta^k & = & 0\\
+    g^{ij} & = & \delta^{ij}
+    \end{eqnarray}
+    where $r^2 = z^k z^k$.
+    The only nonzero metric gradient is
+    \begin{equation}\label{eq-dgNewton}
+    \alpha_{,k} = z^k (M/r^3)
+    \quad .
+    \end{equation}
+
+\section{Schwarzschild escape metric}
+
+    In an unfamiliar time coordinate the Schwarzschild metric can be
+written
+    \begin{equation}\label{eq-Schwe}
+    ds^2 = - dt^2 + \delta_{ij} (dx^i - x^i \sqrt{2 M/r^3}\,dt)(dx^j -
+x^j \sqrt{2 M/r^3}\,dt)
+    \end{equation}
+    so the specification for the metric quantities is
+    \begin{eqnarray}\label{eq-gSchwe}
+    \alpha  & = & 1\\
+    \beta^k & = & - z^k \sqrt{2 M/r^3}\\
+    g^{ij} & = & \delta^{ij}
+    \end{eqnarray}
+    where $r^2 = z^k z^k$.
+    The metric gradients are
+    \begin{eqnarray}\label{eq-dgSchwe}
+    \alpha_{,k}  & = & 0\\
+    {\beta^i}_{,k} & = & \sqrt{\frac{2 M}{r^3}} 
+        \left( \frac{3}{2}\frac{z^i z^k}{r^2} - \delta^{ik} \right)\\
+    {g^{ij}}_{,k} & = & 0 
+    \quad .
+    \end{eqnarray}
+
+\section{Scalar gravity metric}
+
+    In the spherically symmetric static case the metric in a scalar
+theory of gravity can be written
+    \begin{equation}\label{eq-Sclr}
+    ds^2 = (1-M/r)^2 [- dt^2 + \delta_{ij}\,dx^i\,dx^j]
+    \end{equation}
+    so the specification for the metric quantities is
+    \begin{eqnarray}\label{eq-gSclr}
+    \alpha  & = & 1 - M/r\\
+    \beta^k & = & 0\\
+    g^{ij} & = & \delta^{ij} (1 - M/r)^{-2}
+    \end{eqnarray}
+    where $r^2 = z^k z^k$.
+    The metric gradients are
+    \begin{eqnarray}\label{eq-dgSclr}
+    \alpha_{,k}  & = & z^k (M/r^3)\\
+    {\beta^i}_{,k} & = 0\\
+    {g^{ij}}_{,k} & = & -(2/\alpha^3)\delta^{ij} \alpha_{,k}
+    \quad .
+    \end{eqnarray}
+
+\section{Schwarzschild isotropic metric}
+
+    In isotropic spatial coordinates the Schwarzschild metric is
+    \begin{equation}\label{eq-Schwiso}
+    ds^2 = - \left( \frac{1-M/2r}{1+M/2r} \right)^2 dt^2 
+    + \left( 1 + \frac{M}{2r} \right)^4 \delta_{ij}\,dx^i\,dx^j
+    \end{equation}
+    so the specification for the metric quantities is
+    \begin{eqnarray}\label{eq-gSchwiso}
+    \alpha  & = & \frac{1-M/2r}{1+M/2r} \\
+    \beta^k & = & 0 \\
+    g^{ij} & = & \delta^{ij} \left( 1 + \frac{M}{2r} \right)^{-4} 
+    \end{eqnarray}
+    where $r^2 = z^k z^k$.
+    The metric gradients are
+    \begin{eqnarray}\label{eq-dgSchwiso}
+    \alpha_{,k}  & = & \frac{z^k}{r} \frac{M}{r^2}
+            \left( 1 + \frac{M}{2r} \right)^{-2} \\
+    {\beta^i}_{,k} & = & 0 \\
+    {g^{ij}}_{,k} & = & \delta^{ij} \frac{z^k}{r} \frac{2 M}{r^2}
+    \left( 1 + \frac{M}{2r} \right)^{-5} 
+    \quad .
+    \end{eqnarray}
+
+\section{Schwarzschild standard metric}
+
+    The standard Schwarzschild metric when converted to rectangular
+coordinates is
+    \begin{equation}\label{eq-Schwstd}
+    ds^2 = - \left( 1 -\frac{2 M}{r} \right) dt^2 + \left( \delta_{ij} 
+    + \frac{x^i x^j}{r^2} \frac{2M/r}{1-2M/r} \right) \,dx^i\,dx^j
+    \end{equation}
+    so the specification for the metric quantities is
+    \begin{eqnarray}\label{eq-gSchwstd}
+    \alpha  & = & \sqrt{1-2M/r}\\
+    \beta^k & = & 0 \\
+    g^{ij} & = & \delta^{ij} - \frac{2M}{r} \frac{z^i z^j}{r^2} 
+    \end{eqnarray}
+    where $r^2 = z^k z^k$.
+    The metric gradients are
+    \begin{eqnarray}\label{eq-dgSchwstd}
+    \alpha_{,k}  & = & \frac{z^k}{r} \frac{M}{r^2}
+            \left( 1 - \frac{2M}{r} \right)^{-1/2} \\
+    {\beta^i}_{,k} & = & 0 \\
+    {g^{ij}}_{,k} & = & \frac{2 M}{r^2} 
+        \left( 3 \frac{z^i z^j z^k}{r^3}
+        -\delta^{ik} \frac{z^j}{r} -\delta^{jk} \frac{z^i}{r} 
+        \right) 
+    \quad .
+    \end{eqnarray}
+
+\section{Vaidya metric}
+    There is a spherically symmetric time dependent solution of the
+Einstein equations in which an arbitrary flux of radially flowing
+radiation is present.  
+    This results in an arbitrary time dependence of the Schwarzschild
+mass $M(t)$ and could be a useful test case for the behavior of any
+numerical scheme when energy is not conserved. 
+    Whether an analytic formula for the geodesic's $\gamma(t)$ can be
+found to use in this check I don't know. 
+    We always have the option of using a high order integrations
+(which could not be used with calls to the Einstein code) as a check
+on any quadratic scheme.
+    I don't have the details on this case yet.
+
+\section{Angular momentum conservation}
+
+    Each of the above metrics is spherically symmetric, so with this
+symmetry there comes a conservation law of angular momentum.
+    Each metric has been written with space coordinates that are
+rectangular in the sense that orthogonal rotations $x^i \mapsto A^{ij}
+x^j$ with an orthogonal matrix $A$ leave the metric invariant.
+    These transformations leave  $p_k dz^k$ invariant and are therefor
+canonical transformations.  
+    But they also leave $p_k p_k$, $r^2$, $p_k z^k$ and thus the
+Hamiltonian invariant, so their generator is a constant of motion.
+    Since the canonical transformation is identical to the classical
+case, so is its generator.
+    Thus we conclude that the angular momentum defined as
+    \begin{equation}\label{eq-L}
+    L_k \equiv [kij] z^i p_j
+    \end{equation}
+is conserved in all these examples.
+    Here $[kij]$ is the antisymmetric symbol with values $0,\pm 1$ as
+used in MTW.
+
+
+\end{document}
+
+    
+    \begin{equation}\label{eq-tau}
+             \frac{dt}{d\tau} 
+            = -\frac{1}{m\alpha^2} (p_0 - \beta^k p_k)
+            = \frac{1}{m\alpha}\sqrt{m^2 + g^{k\l} p_k p_\l}
+            \quad .
+    \end{equation}
+
+
+
+ 
+

@@ -1,0 +1,102 @@
+%Simple document on the Riemann tensor
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Riemann Tensor}
+\maketitle
+
+
+The purpose of this short note is to demonstrate that the Riemann tensor is
+in fact a tensor (i.e. a linear machine).  The starting point will be
+the general formula for the curvature operator given by
+\bes
+  \mR\surp{\cs{B},\cs{C}} = \surb{\nabla_{\cs{B}},\nabla_{\cs{C}}}
+      - \nabla_{\surb{\cs{B},\cs{C}}} \eqp
+\ees
+In the process, the formulas for the Riemann tensor in both a coordinate and non-
+coordinate basis will be found.  The notational style is a unique blend of
+the abstract and index approaches.
+
+\section{Coordinate Basis}
+
+Start by examining the action of the curvature operator on a vector \cs{A}.
+To set the notation, the term $\nabla_{\cs{C}} \cs{A}$ will be examined first.
+\bea
+  \nabla_{\cs{C}} \cs{A} & = & \sura{ d \surp{A^a \bv{a}},C^b \bv{b} }\nonumber \\
+                         & = & \sura{\idx{A}{\up{a}\dn{,m}} \bv{a} \bd{m}
+                                     + A^a \Cnx{n}{am} \bv{n} \bd{m},C^b \bv{b}} \nonumber \\
+                         & = & \idx{A}{\up{a}\dn{,m}} \bv{a} C^b \ipb{\bd{m}}{\bv{b}}
+                                     + A^a \Cnx{n}{am}\bv{n} C^b \ipb{\bd{m}}{\bv{b}} \nonumber \\
+                         & = & \idx{A}{\up{a}\dn{,b}} \bv{a} C^b
+                                     + A^a \Cnx{n}{ab} \bv{n} C^b \eqp
+\eea
+For simplicity in the next steps, the three pieces of the curvature operator will be
+examined separately.
+The first term yields
+\bea
+  \nabla_{\cs{B}} \nabla_{\cs{C}} \cs{A} & = & \surb{ \surp{\idx{A}{\up{a}\dn{;b}} C^{b}}_{,d}
+                                             B^d + \idx{A}{\up{m}\dn{;b}} C^b \Cnx{a}{md} B^d }
+                                             \bv{a} \eqp
+\eea
+The next term yields
+\bea
+  \nabla_{\cs{C}} \nabla_{\cs{B}} \cs{A} & = & \surb{ \surp{\idx{A}{\up{a}\dn{;b}} B^{b}}_{,d}
+                                             C^d + \idx{A}{\up{m}\dn{;b}} B^b \Cnx{a}{md} C^d }
+                                             \bv{a} \eqp
+\eea
+The third term yields
+\be
+ \nabla_{\surb{\cs{B},\cs{C}}} \cs{A} = \idx{A}{\up{a}\dn{;b}} \surb{\cs{B},\cs{C}}^b \bv{a} \eqp
+\ee
+Thus the action of the curvature operator is expressed as follows
+\bea
+ \mR\surp{\cs{B},\cs{C}}\cs{A}  & = &  \left\{   \surp{\idx{A}{\up{a}\dn{;b}}C^b}_{,d} B^d
+                                               + \idx{A}{\up{m}\dn{;b}} C^b \Cnx{a}{md} B^d
+                                               - \surp{\idx{A}{\up{a}\dn{;b}} B^b}_{,d} C^d
+                                       \right. \nonumber \\
+                                &    & \left.
+                                         - \idx{A}{\up{m}\dn{;b}} B^b \Cnx{a}{md} C^d
+                                         - \idx{A}{\up{a}\dn{;b}} \surb{\cs{B},\cs{C}}^b
+                                        \right\}
+                                         \bv{a} \eqp
+\eea
+Using the standard definition of the covariant derivative, expanding the partial derivative,
+and using various index gymnastics the final result is
+\be
+ \mR\surp{\cs{B},\cs{C}}\cs{A}   =   \surp{   \Cnx{a}{bd,c} - \Cnx{a}{bc,d}
+                                            + \Cnx{a}{sc}\Cnx{s}{bd} - \Cnx{a}{sd}\Cnx{s}{bc} }
+                                     A^b B^c C^d \eqp
+\ee
+It is clear that in fact the Riemann tensor is a tensor; it is a linear operator on \cs{A},
+\cs{B}, and \cs{C}.  The components of the Riemann tensor is then obtained from
+\bea\label{eq:riemann}
+  \idx{R}{\up{a}\dn{bcd}} & = & \ipb{\bd{a}}{\mR\surp{\bv{c},\bv{d}} \bv{b}} \nonumber \\
+                          & = &   \Cnx{a}{bd,c} - \Cnx{a}{bc,d}
+                                + \Cnx{a}{sc}\Cnx{s}{bd} - \Cnx{a}{sd}\Cnx{s}{bc} \eqp
+\eea
+\section{Non-Coordinate Basis}
+As a final exercise, consider the components of Riemann in a non-coordinate basis.
+Such a basis is characterized by a non-vanishing of the Lie bracket of the basis vectors
+\be
+\surb{\bv{a},\bv{b}} = \idx{C}{\dn{ab}\up{c}} \bv{c} \eqp
+\ee
+but with the standard relationship
+\be
+  d \bv{a} = \Cnx{c}{ab} \bd{b} \bv{c}
+\ee
+preserved.
+Plugging these relationships into \refq{eq:riemann} gives
+\bea
+  \idx{R}{\up{a}\dn{bcd}} & = & \ipb{\bd{a}}{\mR\surp{\bv{c},\bv{d}} \bv{b}} \nonumber \\
+                          & = & \ipb{\bd{a}}
+                                {   \nabla_c \surp{ \ipb{d\bv{b}}{\bv{d}}}
+                                  - \nabla_d \surp{ \ipb{d\bv{b}}{\bv{c}}} }
+                                -\ipb{\bd{a}}{\ipb{d\bv{b}}{\idx{C}{\dn{cd}\up{m}}\bv{m}}} \eqp
+\eea
+Expanding and simplifying leads to
+\be
+  \idx{R}{\up{a}\dn{bcd}} =   \Cnx{a}{bd,c} - \Cnx{a}{bc,d}
+                            + \Cnx{a}{sc}\Cnx{s}{bd} - \Cnx{a}{sd}\Cnx{s}{bc}
+                            - \Cnx{a}{bp} \idx{C}{\dn{cd}\up{p}}
+\ee
+\end{document}

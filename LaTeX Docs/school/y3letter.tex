@@ -1,0 +1,111 @@
+\documentstyle[12pt]{report}
+\def\half{\mbox{$\frac{1}{2}$}}     % small built-up `one-half'
+
+\begin{document}
+
+Dear Conrad,\\[1ex]
+%
+     I'm doing a major reworking of yurke\_1 which I am calling 
+yurke\_3.  Apart from (planning to be) changing the text in the 
+introduction, I've found a couple of things to change in the 
+calculations.
+
+     I think the mock-up of Schwarzschild would be better without 
+the extra parameter, even if it means that we only model the 
+differential equations without being able to order a working model 
+constructed in the shop.  
+So I propose that the $\delta(z)$ terms in the combined Lagrangian 
+be 
+$$
+   L = \half (dR/dt)^2 + \half R^2 (d\theta/dt)^2 / [1-2M/R]  + M/R
+$$
+which in rectangular coordinates (X,Y) is
+$$
+  L = \half \frac{ \dot{X}^2 + \dot{Y}^2 
+                   - (2M/R^3)(X\dot{X}+Y\dot{Y})^2}{1-2M/R}
+             +M/R
+$$
+It leads to an energy 
+$$
+    E = \half \dot{R}^2 +  (h^2/2 R^2)(1-2M/R) - M/R
+$$
+This may no longer fit your general scheme with simply a $V(R)$ in 
+the lagrangian, but there will be no need to provide the 
+intermediate calculations in the paper, just a formula for the 
+frequency after stating our Lagrangian and energy formulae.
+
+   The next change is an error that I didn't catch earlier:  
+the conclusion that  $\det(M) = 0$ is sufficient to determine 
+$\omega$.  
+When $\det(M) = 0$, all one is guaranteed is that some nonzero 
+vector can be found to satisfy the equation, which in this case 
+might mean for some single time $t = t_0$.  
+This is not enough for us.  
+We need to solve equation(2.7), which fixes $d^2 R/dt^2$, in 
+some approximation.  
+I'm working our an approach using  $R = \rho \exp(i\theta)$, 
+representing the vector $R$ as a complex number.  
+The approximation is to be that both $\rho$ and 
+$\omega = d\theta /dt$ are slowly varying.  
+Then two real equations can be found from your equation (2.7) 
+which are
+$$
+   (d/dt)[\ln(\omega \rho^2)] = 2 \Gamma (1 - 2\alpha)
+$$
+and 
+$$
+  \omega^2 = {\omega_\rho}^2 -2\Gamma(1-2\alpha)(\dot{\rho}/\rho)
+                             + \ddot{\rho}/\rho
+$$
+These are exact, and the first one gives control over angular 
+momentum, showing that
+$\omega \rho^2 \propto \exp[2\Gamma(1-2\alpha)t]$.  
+We could probably find a similar equation that controls the energy.  
+Then these two equations should give us control of both $\rho$ 
+and $\omega$, but I haven't worked on that yet.
+
+   In a zeroth order approximation we neglect $\Gamma$ and all 
+time derivatives to find $\omega^2 = {\omega_\rho}^2$.
+
+   For the next order approximation we use this relationship in 
+small terms (previously neglected), so $\dot{\omega} / \omega$ 
+is approximated as 
+$\dot{\omega_\rho} / \omega_\rho = (\dot{\rho}/\rho) 
+d\ln(\omega_\rho) / d\ln(\rho) = \half (n-2)(\dot{\rho}/\rho)$.  
+Here the quantity $n$ is a constant in the simplest cases of a 
+power law potential $V(R) \propto R^n$, but is in any case a 
+known function of $\rho$:
+$$
+  n-2 = d\ln({\omega_\rho}^2)/d\ln(\rho) 
+$$
+This equation plus the angular momentum equation then give a 
+complete approximate evolution of $\rho$ and $\omega$:
+$$
+  \frac{\dot{\rho}}{\rho} = \frac{(1-2\alpha)\Gamma}{1 + (n-2)/4}
+$$
+and 
+$$
+  \frac{\dot{\omega}}{\omega} = \frac{(n-2)/2}{1 + (n-2)/4} (1-2\alpha)\Gamma
+$$
+When $n$ is constant (power law potential) then
+$\ddot{\rho}/\rho$ is fairly simple and one finds from its
+equation that
+$$
+  \omega^2 = {\omega_\rho}^2 
+             - (1-2\alpha)^2 \Gamma^2 \frac{1 + (n-2)/2}{1 + (n-2)/4}
+$$
+
+I think all these equations check for the $n=2$ case of a linear
+oscillator.
+We should also try to check the case $n= -1$ of Newtonian
+gravity.
+There the frequency equations says the correction due to
+radiation is in the opposite direction from that of the harmonic
+oscillator.\\[1ex]
+
+\hfill 2 November 1999
+
+
+\end{document}
+
+

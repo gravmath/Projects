@@ -1,0 +1,184 @@
+\documentclass[twocolumn]{article}
+%\usepackage{makeidx,babel}
+
+
+\begin{document}
+
+%%
+%%Top matter
+%%
+\title{A Derivation of the Transformation Relations between the 
+       Clohessy-Wiltshire and the GCI Frames}
+\author{Conrad Schiff \thanks{System Engineer} \\
+        AI Solutions Inc.\\
+	  \texttt{schiff@ai-solutions.com}}
+\date{\today}
+\maketitle
+
+%%
+%%Abstract
+%%
+\begin{abstract}
+In this brief note I present the derivation of the transformations between the 
+Clohessy-Wiltshire and GCI frames.  During the derivation a modest approximation
+is made in order to allow a simple construction of the frames.
+\end{abstract}
+
+\section{Introduction}\label{S:intro}
+The purpose of this note is to layout the necessary transformation relations 
+between the Clohessy-Wiltshire (CW) and GCI frames.  We assume that the 
+spacecraft's position and velocity are available in GCI and are denoted by 
+${\vec r}$ and ${\vec v}$.  The first step involved will be to define the basis 
+vectors of the CW frame and to evaluate the first time-derivatives of the basis 
+vectors.  From these vectors the tranformation matrix from the CW to GCI frame 
+and its first time-derivative will be constructed.  Finally the actual 
+transformation relations between the two frames will be presented.
+
+
+\section{CW Basis Vectors}\label{S:CW_vecs}
+The basis vector along the CW X-axis is defined as
+
+\begin{equation}\label{eq:Xhat}
+	{\hat X} = \frac{\vec r}{  | \vec r |}.
+\end{equation}
+
+The CW Z-axis is defined as 
+
+\begin{equation}\label{eq:Zhat}
+	{\hat Z} = \frac{ \vec r \times \vec v} { |  \vec r \times \vec v  |}.
+\end{equation}
+
+And the CW Y-axis is defined as
+
+\begin{equation}\label{eq:Yhat}
+ 	\hat Y = \hat Z \times \hat X.
+\end{equation}
+
+Since the CW frame is a moving (rotating) frame the time derivatives of the 
+basis vector must be calculated.  Fortunately only the time derivative of 
+$\hat Z$ is really complicated and once it and ${\dot {\hat X}}$ are computed 
+the derivative of $\hat Y$ follows from equation (\ref{eq:Yhat}).  
+
+Starting with $\hat X$ we obtain
+\begin{eqnarray}\label{eq:Xhatdot}
+	\dot{	\hat X} & = &  \frac{\vec v}{| \vec r |} - \frac{\vec r}{| \vec r |^2} 
+	                     \frac{d}{dt} | \vec r | \nonumber \\
+ 	    	        & = &  \frac{\vec v}{| \vec r |} - \frac{\vec r}{| \vec r |^2}
+ 	    	               \frac{d}{dt} \sqrt{ \vec r \cdot \vec r} \nonumber \\
+			        & = &  \frac{\vec v}{| \vec r |} - \frac{\vec r}{| \vec r |^2} 
+			               \frac{1}{2 \sqrt{ \vec r \cdot \vec r} } \frac{d}{dt} 
+			               \left( { \vec r \cdot \vec r} \right) \nonumber \\
+			        & = &  \frac{\vec v}{| \vec r |} - \frac{\vec r}{| \vec r |^3} 
+			               \left( { \vec r \cdot \vec v} \right).
+\end{eqnarray}
+
+For $\hat Z$ we obtain
+\begin{eqnarray}\label{eq:Zhatdot}
+	\dot{	\hat Z} & = & \frac{ \vec v \times \vec v + \vec r \times \vec a} 
+	                         { |  \vec r \times \vec v  |} - 
+	                    \frac{ \vec r \times \vec v} 
+	                         { |  \vec r \times \vec v  |^2 } 
+	                    \frac{d}{dt} |  \vec r \times \vec v  |  \nonumber \\
+	              & = & \frac{ \vec v \times \vec v + \vec r \times \vec a} 
+	                         { |  \vec r \times \vec v  |} - 
+	                    \frac{ \vec r \times \vec v} 
+	                         { |  \vec r \times \vec v  |^2 } 
+	                    \frac{d}{dt} 
+	                    \sqrt{\left( \vec r \times \vec v \right) \cdot 
+	                    \left( \vec r \times \vec v \right) } \nonumber \\
+	              & = & \frac{ \vec v \times \vec v + \vec r \times \vec a} 
+	                         { |  \vec r \times \vec v  |} - 
+	                    \frac{ \vec r \times \vec v} 
+	                         { 2 |  \vec r \times \vec v  |^3 } 
+	                    \frac{d}{dt} 
+	                    \left( \vec r \times \vec v \right) \nonumber \\
+	              & = & \frac{ \vec v \times \vec v + \vec r \times \vec a} 
+	                         { |  \vec r \times \vec v  |} - 
+	                    \frac{ \vec r \times \vec v} 
+	                         { 2 |  \vec r \times \vec v  |^3 } 
+	                    \left( \vec v \times \vec v + \vec r \times \vec a \right)
+\end{eqnarray}
+where $\vec a$ is the acceleration.
+ 
+The terms in equation (\ref{eq:Zhatdot}) of the form $\vec v \times \vec v$ are 
+identically zero.  This leaves 
+\begin{equation}\label{eq:Zhatdot_2}
+	\dot{	\hat Z} = \frac{ \vec r \times \vec a} 
+	                     { |  \vec r \times \vec v  |} - 
+	                \frac{ \vec r \times \vec v} 
+	                     { 2 |  \vec r \times \vec v  |^3 } 
+	                \left( \vec r \times \vec a \right).
+\end{equation}
+In this form equation (\ref{eq:Zhatdot_2}) is almost impossible to evaluate 
+since the accelerations are usually evaluated via a complex set of model 
+(\emph{e.g.} geopotential).  Fortunately, these terms are almost always small 
+perturbations to the central force motion due to the $\frac{1}{r}$ potential 
+due to the central body.  This observation then motivates the assumption that 
+$\vec r$ and $\vec a$ are essentially parallel.  Thus equation 
+(\ref{eq:Zhatdot_2}) reduces to 
+\begin{equation}\label{eq:Zhatdot_3}
+	\dot {\hat Z} = 0.
+\end{equation}
+
+Finally $\dot {\hat Y}$ is given by
+\begin{equation}\label{eq:Yhatdot}
+	\dot{\hat Y} = {\hat Z} \times \dot{\hat X}.
+\end{equation}
+
+\section{CW to GCI}
+The transformation from the CW frame to the GCI frame is done in two steps.  In 
+the first the position is converted via
+\begin{equation}\label{eq:CW2GCI_pos}
+	{\vec r}_{CW} = A \cdot {\vec r},
+\end{equation}
+where the matrix $A$ is given by
+\begin{equation}\label{eq:A}
+A = 
+\left(
+  \begin{array}{clcr}
+	 \hat X \cdot \hat \imath  & \hat X \cdot \hat \jmath & \hat X \cdot \hat k  \\
+	 \hat Y \cdot \hat \imath  & \hat Y \cdot \hat \jmath & \hat Y \cdot \hat k  \\
+	 \hat Z \cdot \hat \imath  & \hat Z \cdot \hat \jmath & \hat Z \cdot \hat k  \\
+  \end{array}
+\right) \quad .
+\end{equation}
+The velocity is tranformed by taking the time derivative of equation 
+(\ref{eq:CW2GCI_pos})
+to give
+\begin{equation}\label{eq:CW2GCI_vel}
+	{\vec v}_{CW} = A \cdot {\vec v} + {\dot A} \cdot {\vec r},
+\end{equation}
+where $\dot A$ is given by
+\begin{equation}\label{eq:Adot}
+{\dot A}
+\left(
+  \begin{array}{clcr}
+	 \dot {\hat X} \cdot \hat \imath  & \dot {\hat X} \cdot \hat \jmath & \dot {\hat X} \cdot \hat k  \\
+	 \dot {\hat Y} \cdot \hat \imath  & \dot {\hat Y} \cdot \hat \jmath & \dot {\hat Y} \cdot \hat k  \\
+	 \dot {\hat Z} \cdot \hat \imath  & \dot {\hat Z} \cdot \hat \jmath & \dot {\hat Z} \cdot \hat k  \\
+  \end{array}
+\right)
+\end{equation}
+and where the time derivatives are given in equations (\ref{eq:Xhatdot}, 
+\ref{eq:Zhatdot_3},\ref{eq:Yhatdot}).
+
+
+\section{GCI to CW}
+
+Finally the transformations from the GCI to CW frame can be done by inverting 
+equation (\ref{eq:CW2GCI_pos}) to give
+\begin{equation}
+	\vec r = A^{T} \cdot {\vec r}_{CW}
+\end{equation}
+and then using this result when inverting equation (\ref{eq:CW2GCI_vel}) to give
+\begin{equation}
+	\vec v = A^{T} \cdot \left( {\vec v}_{CW} - {\dot A} \cdot A^{T} 
+	               \cdot {\vec r}_{CW} \right).
+\end{equation}
+
+
+
+
+
+                  
+\end{document}

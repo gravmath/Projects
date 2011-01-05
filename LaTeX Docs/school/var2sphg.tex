@@ -1,0 +1,159 @@
+\documentstyle[fleqn]{article}
+
+\begin{document}
+
+\title{Constrained Variational Hydrodynamics: \\ Relativistic Fluids}
+%
+\author{   \sc
+            Conrad Schiff\\
+           \em
+            Department of Physics, University of Maryland%,
+           \\ \em
+            College Park MD 20742-4111 USA\\
+           \rm
+         e-mail: \tt cmschiff@erols.com
+        }
+\date{28 Jan., 1998}
+% 
+\maketitle
+
+\section{Introduction}
+
+This article extends the action principle presented in CWM's Sakharov paper on relativistic Lagrangian hydrodymanics.  In this work, constraints that were previously handeled via Lagrange multipliers are removed from the variational principle and held as subsidiary conditions.
+
+\section{Recasting the Action}
+
+The original variational principle that yielded the correct Einstein and Euler equations is
+
+\begin{eqnarray}
+I &=& \frac{1}{16\pi} \int d^4x \sqrt{-g(x)} R(x) - \nonumber \\
+& & \int d^4a \left\{ {\hat \rho}_{0} K(z) V(z) - \alpha(z) \rho(z) \sqrt{-g(z)} J\right\}
+\end{eqnarray}
+
+where the trajectory function is a function of the a-coordinates, $z^{\mu} =  z^{\mu}(a)$, and 
+
+\begin{eqnarray}
+K &=& \sqrt{ -g_{\mu\nu}(z) {\dot z}^{\mu} {\dot z}^{\nu} } \nonumber \\
+V &=& \left( \frac{}{} 1 + e + \alpha + \beta \left[ s_{0} - s \right] \right) \nonumber \\
+J &=& \frac{\partial\left(z^{\mu}\right)}{\partial\left(a^{\nu}\right)}\nonumber
+\end{eqnarray}
+
+In this form, the six functions, $z^{\mu}$, $g_{\alpha \beta}$, $\alpha$, $\beta$, $\rho$, and $s$ are to be varied.
+
+A simple re-arrangement results in
+\begin{eqnarray}
+I &=& \frac{1}{16\pi} \int d^4x \sqrt{-g(x)} R(x) - \int d^4a \left\{ \frac{}{} {\hat \rho}_{0} K(z) \left(1 + e(z) \right) \right. \nonumber \\
+& & \left.  + \alpha(z) \left( \frac{}{} {\hat \rho}_{0} K(z) - \rho(z) \sqrt{-g(z)} J \right) + {\hat \rho}_{0} K(z) \beta(z) \left( \frac{}{} s_{0} - s \right) \right\}
+\end{eqnarray}
+
+from which the Lagrange multipliers $\alpha$ and $\beta$ may be elimated to give the simpler action principle 
+
+\begin{equation}
+I = \frac{1}{16\pi} \int d^4x \sqrt{-g(x)} R(x) - \int d^4a {\hat \rho}_{0} K(z) (1 + e(z))
+\end{equation}
+
+in which only $z^{\mu}$ and $g_{\alpha \beta}$ are to be varied subject to subsidiary conditions 
+
+\begin{eqnarray}
+{\hat \rho}_{0} &=& \rho J \frac{-g}{K} \\
+s_0 &=& s.
+\end{eqnarray}
+
+The cost of this simplification is that the variation of $\rho$ is no longer independent of $z^{\mu}$ and $g_{\alpha \beta}$, being determined by equation (4).
+
+\section{Fundamental Variations}
+
+Before handling the $\rho$-variation, some fundamental variations will be noted as they simplify subsequent calculations.
+
+\begin{equation}
+\delta g = g g^{\alpha \beta} \delta g_{\alpha \beta}
+\end{equation}
+
+\begin{equation}
+\delta \sqrt{-g} = \frac{\sqrt{-g}}{2} g^{\alpha \beta} \delta g_{\alpha \beta}
+\end{equation}
+
+\begin{equation}
+\delta K = \frac{1}{2 K} \delta \left( -g_{\mu\nu} {\dot z}^{\mu} {\dot z}^{\nu} \right)
+\end{equation}
+
+\begin{equation}
+\delta \left( \frac{1}{K} \right) = \frac{-1}{K^2} \delta K
+\end{equation}
+
+\begin{equation}
+\delta J = \frac{ \partial J}{\partial \left( \frac{\partial z^\lambda}{\partial a^\gamma} \right)} \delta \left( \frac{\partial z^\lambda}{\partial a^\gamma} \right) = J^{\gamma}_{\lambda} \delta \left( \frac{\partial z^\lambda}{\partial a^\gamma} \right)
+\end{equation}
+
+
+\section{Variations of $\rho$}
+
+Since ${\hat \rho}_0$ does not depend on $z^{\mu}$ or $g_{\alpha \beta}$, its variation must be identically zero ({\it i.e.} $\delta {\hat \rho}_0 = 0$).  This equation can be solved to give 
+
+\begin{equation}
+\delta \rho = \frac{K}{J \sqrt{-g}} \left[ -\rho \delta \sqrt{-g} \frac{J}{K} - \rho \sqrt{-g} \delta \left( \frac{1}{K} \right) J - \rho \frac{\sqrt{-g}}{K} \delta J \right].
+\end{equation}
+
+Defining the four-velocity $u^{\alpha} \equiv {\dot z}^{\mu}/K(z)$ and using the fundamental variations detailed above yields
+ 
+\begin{equation}
+\delta \rho \vert _{\delta g_{\alpha\beta}} = \left[ \frac{-\rho}{2} g^{\alpha \beta} - \frac{\rho}{2} u^{\alpha}u^{\beta} \right] \delta g_{\alpha \beta}.
+\end{equation}
+
+
+\section{Metric Variation}
+
+The results of the proceeding sections can be combined to give the Einstein equations.  Substituting equation (4) into the action principle (3) gives
+\begin{equation}
+I = \frac{1}{16 \pi} \int d^4x \sqrt{-g(x)} R(x) - \int d^4 \rho(z) \sqrt{-g(z)} J (1+e(z)).
+\end{equation}
+which can simplified placing both terms on equal footing as functions of $x$.  
+\begin{equation}
+I = \int d^4x \sqrt{-g(x)} \left( \frac{R(x)}{16 \pi} - \rho(x) (1+e(x)) \right)
+\end{equation}
+Taking the variations of this action with repect to $g_{\alpha \beta}$ gives
+\begin{eqnarray}
+\delta I \vert_{\delta g_{\alpha \beta}} 
+	&=&
+	\int d^4x
+	\left[
+		\sqrt{-g}\frac{-G^{\alpha \beta}}{16 \pi} 
+		\delta g_{\alpha \beta} - \delta \rho \vert_{\delta g_{\alpha
+ 		\beta}} \sqrt{-g} \ (1+e)
+	\right.
+	\nonumber \\
+	& &
+	\left.
+		\frac{}{}
+		-\rho \delta \left( \sqrt{-g} \right)
+ 		\vert_{\delta g_{\alpha \beta}}(1+e) - \rho \sqrt{-g} \ \delta(1+e)
+		\vert_{\delta g_{\alpha \beta}}
+	\right]
+\end{eqnarray}
+which is simplified to
+\begin{eqnarray}
+\delta I \vert_{\delta g_{\alpha \beta}} 
+	&=&
+	\int d^4x
+	\left[
+		\sqrt{-g}\frac{-G^{\alpha \beta}}{16 \pi} 
+		+ \left[ \frac{\rho}{2} g^{\alpha \beta} + \frac{\rho}{2} u^\alpha 
+		u^\beta \right] \sqrt{-g} \ (1+e)
+	\right.
+	\nonumber \\
+	& &
+	\left.
+		\frac{}{}
+		- \frac{\rho}{2} \sqrt{-g} \ g^{\alpha \beta} (1+e)  
+		+ \rho \sqrt{-g} \frac{P}{\rho^2} \left[ \frac{\rho}{2} 
+		g^{\alpha \beta} + \frac{\rho}{2} u^\alpha u^\beta \right] 
+		\delta g_{\alpha \beta}
+	\right].
+\end{eqnarray}
+Requiring the variation to be zero gives the Einstein euqations
+\begin{equation}
+G^{\alpha \beta} = 8 \pi \left( \rho u^\alpha u^\beta (1 + e + \frac{P}{\rho}) + P g^{\alpha \beta} \right)
+\end{equation}
+with the familar expression for the stress-energy tensor.
+
+\end{document}

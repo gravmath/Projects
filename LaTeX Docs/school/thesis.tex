@@ -1,0 +1,72 @@
+%\documentclass[12pt]{umthesis}
+\documentclass[12pt]{report}
+\usepackage[centertags]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{newlfont}
+\usepackage{epic,eepic,graphicx,url}
+\include{my_commands}
+\begin{document}
+\chapter{Overview}
+
+\chapter{Classical Fluids}
+\include{chapter_classical_var_sph}
+
+\chapter{ADM Formulation}
+\include{appendix_ADM}
+
+\chapter{Relativistic Fluids}
+\section{intro}
+\section{Single Particle Geodesics}
+\section{Misner's Lagrangian Description of Fluid Dynamics}
+\section{Schiff's Lagrangian Description of Fluid Dynamics}
+\section{The Relativistic Particle-Grid Interpretation}
+\include{chapter_varhydro}
+
+\chapter{Fat Particles}
+\include{chapter_single_fp}
+
+\chapter{Conclusion}
+
+\appendix
+\chapter{Some Useful Properties of Determinants}
+\include{appendix_determinants}
+
+%\begin{thebibliography}{9}
+
+%\bibitem{A:CWM96}
+%  C. W. Misner, \emph{Variational Principle for Lagrangian Hydrodynamics},
+%  Proceedings of the Second International Sakharov Conference of Physics, 1996,
+%  I. Dremin and A. Semikhatov, eds., World Scientific Pubs.
+
+%\bibitem{B:MSY79}
+%  L. Mittag, M. J. Stephen, and W. Yourgrau ``Variational Principles in Hydrodynamics'',
+%  Chapter 13 in W. Yourgrau and S. Mandelstam, \emph{Variational Principles in Dynamics
+%  and Quantum Theory}, (Dover Publications Inc., New York 1979)
+
+%\bibitem{A:NP94}
+%  R. P. Nelson and J. C. B. Papaloizou, \emph{Mon. Not. R. Astron. Soc.}
+%  \textbf{270}, 1--20 (1994)
+
+%\bibitem{B:MTW}
+%  C. W. Misner, K. S. Thorne, and J. A. Wheeler, \emph{Gravitation},
+%  (W. H. Freeman, San Francisco, 1973)
+
+%\bibitem{A:JJM92}
+%  J. J. Monaghan, \emph{Annu. Rev. Astron. Astrophys.} \textbf{30}, 543--74 (1992)
+
+%\bibitem{A:WB89}
+%  W. Benz, ``Smooth Particle Hydrodynamics: A Review'', in \emph{Numerical Modeling of
+%  Stellar Pulsation}, NATO Workshop, Les Arcs, France (1989)
+
+%\bibitem{A:GM82}
+%  R. A. Gingold and J. J. Monaghan, \emph{J. Comp. Phys.} \textbf{46}, 429--453 (1982)
+
+%\bibitem{A:PJM91}
+%  J. J. Monaghan, \emph{Comp. Phys. Comm.} \textbf{48}, 89--96 (1988)
+
+%\end{thebibliography}
+
+\bibliography{thesis}
+\end{document}

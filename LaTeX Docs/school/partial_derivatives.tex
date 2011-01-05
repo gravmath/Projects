@@ -1,0 +1,95 @@
+%Simple document on the change of coordinates under an orthogonal rotation
+\documentclass[12pt]{article}
+\include{my_commands}
+\begin{document}
+\title{On the Transformation of Partial Derivatives}
+\maketitle
+
+
+This short note deals with determining the conversion of partial
+derivatives from one coordinate system to another.  The case chosen will be one in
+which orthogonal coordinates give way to oblique coordinates.
+The geometry is shown in Figure \refp{fig:partial_derives}.
+
+\begin{figure}
+\centerline{
+   \includegraphics[height=4in,width=4in,keepaspectratio]{partial_derivatives.eps}}
+   \caption{Diagram for relating changes in partial derivatives under a
+   change in coordinates.}\label{fig:partial_derives}
+\end{figure}
+
+The $r$ and $t$ coordinates are replaced by the $r$ and $m$ coordinates.
+The transformation equations are given by
+\bea
+  r & = & r \\
+  m & = & r + t \eqp
+\eea
+In order to transform the partial derivatives, the inverse transformation
+is needed.  It is given by
+\bea
+  r & = & r \\
+  t & = & r - m \eqp
+\eea
+
+The Jacobean is given by
+\be
+  \surp{
+    \begin{array}{cc}
+      \pdxby{r}{m} & \pdxby{t}{m} \\
+                   &              \\
+      \pdxby{r}{r} & \pdxby{t}{r}
+    \end{array}
+    }
+  =
+  \surp{
+    \begin{array}{cc}
+      0 & 1 \\
+        &   \\
+      1 & -1
+    \end{array}
+    } \eqp
+\ee
+The transformation of the partials is
+\be
+  \surp{
+    \begin{array}{c}
+      \pdby{m} \\
+               \\
+      \pdby{r}
+    \end{array}
+    }
+  =
+  \surp{
+    \begin{array}{cc}
+      0 & 1 \\
+        &   \\
+      1 & -1
+    \end{array}
+    }
+  \surp{
+    \begin{array}{c}
+      \pdby{r} \\
+               \\
+      \pdby{t}
+    \end{array}
+    } \eqp
+\ee
+As an example consider the function
+\be
+f = \frac{\sin(r+t)}{r} = \frac{\sin(m)}{r} \eqp
+\ee
+The possible partial derivatives are
+\bea
+\left. \pdxby{f}{m} \right)_r & = & \frac{\cos(m)}{r}    \\
+\left. \pdxby{f}{r} \right)_m & = & \frac{-\sin(m)}{r^2} \\
+\left. \pdxby{f}{t} \right)_r & = & \frac{\cos(r+t)}{r}  \\
+\left. \pdxby{f}{r} \right)_t & = & \frac{-\sin(r+t)}{r^2} + \frac{\cos(r+t)}{r} \eqp
+\eea
+
+Now from the above equations it is obvious that
+\be
+  \left. \pdxby{f}{r} \right)_m = \left. \pdxby{f}{r} \right)_t - \left. \pdxby{f}{t} \right)_r
+\ee
+which is the same result obtained using the Jacobian.  This geometric relation is shown in
+the Figure by the red vectors.
+\end{document}
