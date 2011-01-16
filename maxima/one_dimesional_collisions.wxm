@@ -1,0 +1,95 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: title   start ]
+A simple collision study in 1-dimension
+C. Schiff - 1/15/11
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Assume two masses m1 and m2 moving on a line such that they collide.  
+Further assume that their initial velocities are v1 and v2 and their 
+final velocities are w1 and w2.  Finally assume that the collision is 
+elastic such that energy, in addition to momentum, is conserved.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Define the momenta
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+p_init  : m1*v1 + m2*v2;
+p_final : m1*w1 + m2*w2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Define the energy
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+E_init  : m1/2*v1^2 + m2/2*v2^2;
+E_final : m1/2*w1^2 + m2/2*w2^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The conservation equations then require that p_init = p_final and E_init = E_final.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : p_init = p_final;
+eq2 : E_init = E_final;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Now let's see if Maxima can solve this system as is:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+soln : solve([eq1,eq2],[w1,w2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ignore the trivial solution of w1 = v1 and w2 = v2 since it indicates
+that the collision was a null collision (i.e., it didn't take place).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Let's look at the non-trivial solution when m1 = m2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+soln[2],m1 = m2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+For this case the velocity of the two particles exchange which means that in
+one dimension the best that happens is that one particle exchanges its speed with
+another.  For a homoegenous set of particles, this results suggests that it thermal
+equilibrium cannot be achieved since the velocities are always perserved.  That is
+to say, that no redistribution energies occurs in 1 dimension.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+What about if m2 >> m1?  Taylor series expand about m1 = 0 and keep only terms 
+to zeroth order.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+taylor(soln[2],m1,0,0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+In this limit, m1 bounces off of m2 with a speed equal to 2v2 - v1 and m2 goes 
+on its way with its speed essentially the same.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+The above analysis mirrors that given in Chapter 10 of Halliday and Resnick.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
