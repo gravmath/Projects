@@ -1,0 +1,90 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: title   start ]
+Work Item #1 - check sin(x)/x is analytic
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+The aim of this Maxima worksheet is to test the analyticity of sin(x)/x
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Define the complex variable z = x + iy and define the complex 
+version of sin(x)/x as sin(z)/z
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+z : x + %i*y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sinc : sin(z)/z;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Find the real and imaginary part of sin(z)/z defined as u = Re(sinc) and v = Im(sinc)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+U_sinc : realpart(sinc);
+V_sinc : imagpart(sinc);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Now check the Cauchy-Riemann relations
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+First check that du_dx = dv_dy
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+CR1 : diff(U_sinc,x) - diff(V_sinc,y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+CR1,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Next check du_dy = - dv_dx
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+CR2 : diff(U_sinc,y) + diff(V_sinc,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+CR2,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+An alternative way to check is first differentiate the complex sinc and then check 
+real and imaginary parts separately. Since differentiation is a linear 
+process it doesn't matter in which order the steps are done.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+dsinc_dx : diff(sinc,x);
+dsinc_dy : diff(sinc,y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+CR1_a : realpart(dsinc_dx) - imagpart(dsinc_dy);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+CR2_a : realpart(dsinc_dy) + imagpart(dsinc_dx);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+CR2_a,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

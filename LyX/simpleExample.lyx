@@ -1,0 +1,121 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass report
+\begin_preamble
+\usepackage{pst-plot}
+\end_preamble
+\language american
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize 12
+\spacing single 
+\papersize Default
+\paperpackage a4
+\use_geometry 0
+\use_amsmath 1
+\use_natbib 0
+\use_numerical_citations 0
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+
+\layout Standard
+\align center 
+
+\begin_inset ERT
+status Collapsed
+
+\layout Standard
+{
+\layout Standard
+
+\backslash 
+psset{unit=1.5}
+\layout Standard
+
+\backslash 
+pspicture(-1.1,-0.5)(5.2,2.5)
+\layout Standard
+    
+\backslash 
+psplot{0}{4.95}{x sqrt}
+\layout Standard
+    
+\backslash 
+pscustom{
+\layout Standard
+       
+\backslash 
+psplot{1}{4}{x sqrt}
+\layout Standard
+       
+\backslash 
+gsave
+\layout Standard
+          
+\backslash 
+psline(4,2)(4,0)
+\layout Standard
+          
+\backslash 
+psline(1,0)(4,0)
+\layout Standard
+          
+\backslash 
+psline(1,0)(1,1)
+\layout Standard
+          
+\backslash 
+fill[fillstyle=solid]
+\layout Standard
+       
+\backslash 
+grestore
+\layout Standard
+    }
+\layout Standard
+    
+\backslash 
+psaxes[labels=all,ticks=all]{->}(0,0)(-0.1,-0.1)(5,2.3)
+\layout Standard
+    
+\backslash 
+rput(1.1,1.8){$f
+\backslash 
+left( x 
+\backslash 
+right) =
+\backslash 
+sqrt x$}
+\layout Standard
+    
+\backslash 
+uput[0](0,2.3){$y$}
+\layout Standard
+    
+\backslash 
+uput[-90](5,0){$x$}   
+\layout Standard
+    %
+\backslash 
+uput[-90](1.08,0){$1$}   
+\layout Standard
+
+\backslash 
+endpspicture
+\layout Standard
+}
+\layout Standard
+
+\end_inset 
+
+
+\the_end

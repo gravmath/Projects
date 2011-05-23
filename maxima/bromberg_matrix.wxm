@@ -1,0 +1,55 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+A(t) := matrix([-1+3/2*cos(t)*cos(t),1-3/2*cos(t)*sin(t)],[-1-3/2*sin(t)*cos(t),-1+3/2*sin(t)*sin(t)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D(t) := trigsimp( expand( determinant(A(t)) ) );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tr(t) := trigsimp( expand( A(t)[1,1] + A(t)[2,2] ));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+charpoly(t) := trigsimp( expand( determinant( s*matrix([1,0],[0,1]) - A(t) ) ) );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D(t);
+Tr(t);
+charpoly(t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(charpoly(t),s);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln(t) := exp(t/2)*matrix([-cos(t)],[sin(t)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+LHS : diff(soln(t),t);
+RHS : trigsimp( expand (A(t).soln(t)) );
+ratsimp( LHS - RHS );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fund1(t) := exp(t/2)*matrix([-cos(t)],[sin(t)]);
+fund2(t) := exp(-t/2)*matrix([-cos(t)],[sin(t)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(a) := ratsimp( diff(a,t) - trigsimp( expand( A(t).a ) ) );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(fund1(t));
+Q(fund2(t));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,295 @@
+#LyX 1.6.8 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+A Tour Through `Principles of Quantum Mechanics' by Shankar
+\end_layout
+
+\begin_layout Author
+C.
+ Schiff
+\end_layout
+
+\begin_layout Date
+3/16/11
+\end_layout
+
+\begin_layout Section
+Mathematical Introduction
+\end_layout
+
+\begin_layout Standard
+The definition of a 
+\emph on
+linear vector space
+\emph default
+ 
+\begin_inset Formula $\mathbb{V}$
+\end_inset
+
+ is a collection of objects 
+\begin_inset Formula $\left|1\right>,\left|2\right>,\dots,\left|V\right>,\dots,\left|W\right>,\dots,$
+\end_inset
+
+ called vectors, for which there exists 
+\end_layout
+
+\begin_layout Enumerate
+A definite rule for forming the vector sum, denoted 
+\begin_inset Formula $\left|V\right>+\left|W\right>$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+A definite rule for multiplication by scalars 
+\begin_inset Formula $a,b,\dots,$
+\end_inset
+
+ denoted by 
+\begin_inset Formula $a\left|V\right>,$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+These two rules are equipped with the following features:
+\end_layout
+
+\begin_layout Description
+LV1: The result of these operations is another element of the space, a feature
+ called 
+\emph on
+closure
+\emph default
+: 
+\begin_inset Formula $\left|V\right>+\left|W\right>\in\mathbb{V}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV2: Scalar multiplication is 
+\emph on
+distributive
+\emph default
+ in the vectors: 
+\begin_inset Formula $a\left(\left|V\right>+\left|W\right>\right)=a\left|V\right>+a\left|W\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV3: Scalar multiplication is 
+\emph on
+distributive
+\emph default
+ in the scalars: 
+\begin_inset Formula $\left(a+b\right)\left|V\right>=a\left|V\right>+b\left|V\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV4: Scalar multiplication is 
+\emph on
+associative
+\emph default
+: 
+\begin_inset Formula $a\left(b\left|V\right>\right)=ab\left|V\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV5: Addition is 
+\emph on
+commutative
+\emph default
+: 
+\begin_inset Formula $\left|V\right>+\left|W\right>=\left|W\right>+\left|V\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV6: Addition is 
+\emph on
+associative
+\emph default
+: 
+\begin_inset Formula $\left|V\right>+\left(\left|W\right>+\left|Z\right>\right)=\left(\left|V\right>+\left|W\right>\right)+\left|Z\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV7: There exists a 
+\emph on
+null vector
+\emph default
+ 
+\begin_inset Formula $\left|0\right>$
+\end_inset
+
+ obeying 
+\begin_inset Formula $\left|V\right>+\left|0\right>=\left|V\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+LV8: For every vector 
+\begin_inset Formula $\left|V\right>$
+\end_inset
+
+there exists an 
+\emph on
+inverse under addition
+\emph default
+ 
+\begin_inset Formula $\left|-V\right>$
+\end_inset
+
+, such that 
+\begin_inset Formula $\left|V\right>$
+\end_inset
+
++
+\begin_inset Formula $\left|-V\right>$
+\end_inset
+
+=
+\begin_inset Formula $\left|0\right>$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The scalars 
+\begin_inset Formula $a,b,\dots$
+\end_inset
+
+ are called the 
+\emph on
+field
+\emph default
+ over which the vector space is defined.
+ If the field consists of real numbers, then the collection is a 
+\emph on
+real vector space
+\emph default
+, if they are complex, the collection is 
+\emph on
+complex vector space
+\emph default
+.
+ The vectors are neither real of complex; the adjective applies only to
+ the scalars.
+\end_layout
+
+\begin_layout Standard
+With the definitions above in hand, several interesting proofs can be completed.
+ 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\left|0\right>$
+\end_inset
+
+ is unique.
+ To prove this, assume that there are two distinct null vectors 
+\begin_inset Formula $\left|0\right>$
+\end_inset
+
+ and 
+\begin_inset Formula $\left|0'\right>$
+\end_inset
+
+ and examine their sum.
+ Focus first on 
+\begin_inset Formula $\left|0\right>$
+\end_inset
+
+ as the operative null vector and use LV7 and then switch the focus to 
+\begin_inset Formula $\left|0'\right>$
+\end_inset
+
+.
+ Doing so yields
+\begin_inset Formula \[
+\left|0\right>+\left|0'\right>=\left|0'\right>\]
+
+\end_inset
+
+and
+\begin_inset Formula \[
+\left|0\right>+\left|0'\right>=\left|0\right>.\]
+
+\end_inset
+
+Since the two expresssions must be equal, one concludes that
+\begin_inset Formula \[
+\left|0\right>=\left|0'\right>\]
+
+\end_inset
+
+which means that 
+\begin_inset Formula $\left|0\right>$
+\end_inset
+
+ is unique.
+ 
+\end_layout
+
+\end_body
+\end_document
