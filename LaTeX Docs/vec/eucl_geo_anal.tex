@@ -1,4 +1,6 @@
 %Euclidean Vector Analysis - filename eucl_geo_anal.tex
+%finished for version 1.0 on 5/24/11
+
 
 \null
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -335,12 +337,17 @@ I11: & $\frac{d }{dt} \int_{\mathcal V} \rho d {\mathbf V} =
 \vspace{1.5mm}
 \end{textblock*}
 
+\begin{textblock*}{140.15mm}(0mm,170mm)
+ \vspace{51.05mm}
+\end{textblock*}
+
+
 \TPshowboxesfalse
-\begin{textblock*}{70mm}(0.2mm,170mm)
+\begin{textblock*}{70mm}(0.2mm,170.2mm)
 {\centering \bf Jacobian}\\
   Let a $n$-dimensional space be spanned by a
-  set of vectors $\{ | {\mathbf e}_i \rangle\}$.
-  Then the column-wise collection
+  set of vectors $\{{\mathbf e}_i \}$.
+  Then the components collected column-wise
     \[
       {\mathbf J} = \left[\, |{\mathbf e}_1 \rangle, \, | {\mathbf e}_2 \rangle, \,  \dots , \, | {\mathbf e}_n \rangle \, \vspace{10mm} \right]
     \]
@@ -348,9 +355,10 @@ I11: & $\frac{d }{dt} \int_{\mathcal V} \rho d {\mathbf V} =
     \[
       {\mathbf J}^{-1} = \left[ \begin{array}{c} \langle {\mathbf e}^1 | \vspace{1mm}\\ \langle {\mathbf e}^2 | \\ \vdots \\ \langle {\mathbf e}^n | \end{array} \right]
     \]
-    gives a vector space spanned by the \emph{dual vectors} that obey the contraction rule
+    gives the \emph{dual vector space} with corresponding components collected row-wise and obeying the contraction rule
 \end{textblock*}
-\begin{textblock*}{70mm}(70mm,170mm)
+
+\begin{textblock*}{70mm}(70mm,170.1mm)
 \begin{eqnarray*}
   {\mathbf J}^{-1} {\mathbf J} & = &  \left[ \begin{array}{cccc}
                  \langle {\mathbf e}^1 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
@@ -364,6 +372,7 @@ and the completeness relation
 \[
   {\mathbf J} {\mathbf J}^{-1} = \sum_i | {\mathbf e}_i \rangle \langle {\mathbf e}^i | = \mbox{Id}_{n \times n} .
 \]
+Finally $\det( {\mathbf J} ) \equiv J$ and $\det( {\mathbf J}^{-1}) \equiv J^{-1}$.
 \end{textblock*}
 
 \TPshowboxestrue
@@ -373,10 +382,10 @@ and the completeness relation
   \multicolumn{2}{c}{\bf Permutation Tensor}\\
   \end{tabular*}
   \[
-    \epsilon_{ijk} = \det({\mathbf J}) [ijk] = J [ijk]
+    \epsilon_{ijk} = ( {\mathbf e}_i \times {\mathbf e}_j ) \cdot {\mathbf e}_k = J [ijk]
   \]
   \[
-    \epsilon^{ijk} = \det \left( {\mathbf J}^{-1} \right) [ijk] = J^{-1} [ijk]
+    \epsilon^{ijk} = ( {\mathbf e}^i \times {\mathbf e}^j ) \cdot {\mathbf e}^k = J^{-1} [ijk]
   \]
   \[
     \epsilon^{ijk} \epsilon_{pqr} = \left| 
@@ -396,11 +405,9 @@ and the completeness relation
   \[
       \epsilon^{ijk} \epsilon_{ijk} = 6
   \]
+ \vspace{5mm}
 \end{textblock*}
 
-\begin{textblock*}{140.15mm}(0mm,170mm)
- \vspace{51.05mm}
-\end{textblock*}
 
 %\begin{textblock*}
 %A vector is uniquely specified by givings its divergence and curl within a reqion and its 
