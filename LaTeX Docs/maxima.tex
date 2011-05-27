@@ -1,0 +1,281 @@
+\documentclass[10pt]{article}
+\usepackage[absolute]{textpos}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+
+\usepackage[absolute]{textpos}
+\TPshowboxestrue
+\begin{document}
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header - Maxima
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Maxima} \\
+       \multicolumn{2}{r}{\scriptsize \emph{C. Schiff - 11/22/10}} \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          File Loading
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{105mm}(0mm,12.54mm)
+\begin{tabular*}{105mm}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\scriptsize \bf File Loading} \\
+       \tiny ~ & ~\\	   
+\end{tabular*}
+To load a file use either full path version, such as \verb#load("c:/work2/qxxx.mac")#, or
+the brief version, such as \verb#load(qxxx.mac)#.  For the brief version to work the 
+file \verb#qxxx.mac# needs to be placed in one of the folders Maxima searches by default, 
+or else, Maxima must be directed to search the desired directory.  To determine
+which directories Maxima searches by default, a query at the prompt, of \verb#file_search_maxima#. 
+To add to the default path, put a line like:
+\begin{verbatim}
+  file_search_maxima : append(["c:/work2/###.{mac,mc}"], file_search_maxima )$
+\end{verbatim}
+and likewise with \verb#maxima# replaced by \verb#lisp#
+in the personal startup file \verb#maxima-init.mac#.
+
+The file \verb#maxima-init.mac# is located somewhere like (type \verb#maxima_userdir# to see):\\
+\verb$c:\users\cschiff\maxima\maxima-init.mac$.  
+
+\end{textblock*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Misc. Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightGreen}
+\begin{textblock*}{85.68mm}(104.85mm,12.54mm)
+\begin{tabular*}{85.68mm}{l @{\extracolsep{\fill}} l}
+                           & \\
+\multicolumn{2}{c}{\bf Misc. Commands} \\
+                           & \\
+\verb#ctrl-q#              & quits Maxima \\
+\verb#ctrl-r#              & Evaluates all cells\\
+\verb#<command>$#          & runs command and supresses \verb#%o<n># output\\
+\verb#ratsimp#             & perform rational simplification (once)\\
+\verb#fullratsimp#         & perform rational simplification\\
+                           & (stops when no change occurs)\\
+\verb#rat#                 & puts an expression into CRE\\
+                           & (Canonical Rational Expression)\\				   
+\verb#/*<text>*/#          & Insert a comment in file or cell\\
+\verb#apropos("foo")#      & returns list of core Maxima names\\
+                           & which have \verb#foo# within them\\
+\verb#describe("e",<tag>)# & prints to screen a numbered list of all items\\					  
+                           & which contain \verb@"e"@ as part of their name.  The\\
+						   & \verb%<tag>% can be \verb#exact# or \verb#inexact# which defaults\\
+                           & to \verb#exact# if \verb%<tag>% is ommitted\\
+\verb#kill#                & \verb#kill(a,b)# will eliminate objects \verb#a# and \verb#b#\\
+\verb#ev#                  & \verb#ev ( expr, options )# (or \verb# expr, options# for \\
+                           & the interactive version) evaluates the expression \\
+						   & \verb#expr# in the environment specified by the \\
+						   & arguments \verb#arg_1, ..., arg_n#.  The arguments\\
+						   & are switches, assignments, equations, and \\
+						   & functions. \\
+\verb#evflag#			   & A symbol \verb#x# has the evflag property, the \\
+                           & expressions \verb#ev(expre, x)# are equivalent to\\
+						   & \verb#ev(expr, x = true)#.\\
+\verb#evflag# options      & \verb#algebraic, cauchysum, demoivre, dotscrules,#\\
+                           & \verb#%emode, %enumer, exponentialize, exptisolate#,\\ 
+						   & \verb#factorflag, float, halfangles, infeval#,\\ 
+						   & \verb#isolate_wrt_times, keepfloat, letrat#,\\
+						   & \verb#listarith, logabs, logarc, logexpand#,\\
+                           & \verb#lognegint, lognumer, m1pbranch#,\\
+						   & \verb#numer_pbranch, prgrammode, radexpand#, \\
+						   & \verb#ratalgdenom, ratfac, ratmx, ratsimpexpons#,\\
+						   & \verb#simp, simpsum, sumexpand, and trigexpand.#\\
+\verb#evfun#               & \\
+\verb#properties#		   & gives the properties of any expression\\
+\verb#declare#             & \\
+\verb#fundef#              & \\
+\verb#values#              & \\
+\verb#map#                 & sgsgds \\
+\verb#fullmap#             & \\
+\verb#apply#               & \\
+\verb#subst#               & \\
+\verb#ratsubst#            & \\
+\verb#part#                & \\
+\verb#substpart#           & \\
+\verb#coeff#               & \\
+\verb#ratcoef#             & \\
+
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Directory Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{test}
+\begin{textblock*}{100mm}(0mm,127.7mm)
+\begin{tabular*}{100mm}{l @{\extracolsep{\fill}} l}
+                & \\
+\multicolumn{2}{c}{\bf Directory Commands} \\
+                & \\
+opendir:        & opendir(DIR,\$dir\_path) opens the directory specified by\\
+                &\$dir\_path, assigns a directory handle DIR is possible\\
+                &(return of $true$) or returns $false$\\
+                & \\
+readdir:        & @files = readdir(DIR); puts a list of files in the\\
+                & directory handle specified by DIR.  \emph{Note:} that\\
+				& @files includes the directories `$.$' and `$..$'\\
+                & \\
+closedir:       & closedir(DIR) closes the directory specified by the\\
+                & directory handle DIR\\
+				&\\
+system:         & system(``dir'') run a system command with a \$string = ``dir'' or\\
+                & system(@command) where @command is a list of strings\\
+                & \\
+\end{tabular*}
+\end{textblock*}
+
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header - FreeFlyer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf FreeFlyer} \\
+       \multicolumn{2}{r}{\scriptsize \emph{C. Schiff - 1/28/08}} \\
+\end{tabular*}
+\vspace{0.85mm}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Ephemeris Object
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TPMargin{1mm}
+\textblockcolor{LightYellow}
+\begin{textblock*}{101.65mm}(0mm,10mm)
+\normalsize \textbf{Ephemeris Object}\\
+\scriptsize\\
+\textbf{Object Representation}\\
+\begin{tabular*}{97.15 mm}{|lll|}\hline
+  \textbf{\emph{Parameter}} & \textbf{\emph{Values}} & \textbf{\emph{Explanation}}\\
+                            &                        &                            \\
+  Name                      & ``Ephemeris''          & String denoting the\\
+                            &                        & object name\\
+  CentralBody               & ``Earth''              & Central body\\
+                            &                        & as origin\\
+  StepSize                  & 0 \emph{or} $\# > 0$   & 0 variable step\\
+                            &                        & $\# > 0$ fixed step\\
+  Branch                    &  ????                  & ???? 		      \\
+  WritePosVel               & Record position and    & `0' off   	      \\
+                            & velocity               & `1' on\\ 
+  WriteAcceleration         & Record accelerations   & `0' off	      \\
+                            & (derived from what)    & `1' on\\ 
+  WriteAttitude             & Record attitude        & `0' off				      \\
+                            & (what parametrization) & `1' on\\ 
+  WriteAngularVelocity      & Record attitude rates  & `0' off				      \\
+                            & (what parametrization) & `1' on\\ 
+  WriteAngularAcceleration  & Record `torque'        & `0' off			      \\
+                            & (what parametrization) & `1' on\\ 
+\hline
+\end{tabular*}\\
+\\
+\textbf{Create}\\
+Create Ephemeris ephem\_name;\\
+\\
+\textbf{Putting a SC to an Ephem}\\
+Put SC to Ephem;\\
+Put SC to Ephem as Global;\\
+\\
+\textbf{Ephem to Disk}\\
+Put Ephem to FFephem  ``\textless path \textgreater \textbackslash \textless filename \textgreater'';\\
+Put Ephem to STKephem ``\textless path \textgreater \textbackslash \textless filename \textgreater'';\\
+Put Ephem to PCephem  ``\textless path \textgreater \textbackslash \textless filename \textgreater'';\\
+Put Ephem to PCephem  ``\textless path \textgreater \textbackslash \textless filename \textgreater'' with StepSize = 60 and CS as J2000 or TOD;\\
+Put Ephem to ephem    ``\textless path \textgreater \textbackslash \textless filename \textgreater'' with StepSize = 60 and CS as J2000 or TOD;\\
+\\
+where:\\
+~~~FFephem - flat ASCII file in native FF format\\
+~~~STKephem - flat ASCII file in native STK format\\
+~~~PCephem - Code 500 binary file (little endian)\\
+~~~ephem   - Code 500 binary file (big endian)\\
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Dynamic Ephemeris Naming
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightGreen}
+\begin{textblock*}{89mm}(101.5mm,10mm)
+\normalsize \textbf{Dynamic Ephemeris Naming}\\
+\scriptsize\\
+\textbullet Create String eph\_name\\
+\textbullet Create UserInterface my\_gui\\
+\begin{tabular*}{60 mm}{llll}
+  & \textperiodcentered my\_gui.NumberOfInputs      &     &= 1;\\
+  & \textperiodcentered my\_gui.ObjectNameToDisplay &     &= ``'';\\
+  & \textperiodcentered my\_gui.ContinueButtonLabel &     &= ``Continue'';\\  
+  & \textperiodcentered my\_gui.ExplicitEdit        &(0)  &= 0;\\
+  & \textperiodcentered my\_gui.ParameterLabel      &(0)  &= ``Input Ephem Name'';\\
+  & \textperiodcentered my\_gui.DefaultValue        &(0)  &= ``'';\\
+  & \textperiodcentered my\_gui.MinimumRange        &(0)  &= 999;\\
+  & \textperiodcentered my\_gui.MaximumRange        &(0)  &= -999;\\
+  & \textperiodcentered my\_gui.Units               &(0)  &= ``'';\\
+  & \textperiodcentered my\_gui.ParameterName       &(0)  &= ``eph\_name.Value'';\\
+  & \textperiodcentered my\_gui.EntryType           &(0)  &= ``Enter Value'';\\
+  & \textperiodcentered my\_gui.FormatString        &(0)  &= ``'';\\
+\end{tabular*}\\
+\textbullet Create Ephemeris  ephem;\\
+\textbullet Create Spacecraft SC using ephem;\\
+\textbullet Show my\_gui; \emph{//gets string via UserInterface into eph\_name}\\
+\textbullet Get ephem from FFephem eph\_name;\\
+\end{textblock*}
+
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header - Maxima
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Maxima} \\
+       \multicolumn{2}{r}{\scriptsize \emph{C. Schiff - 2/4/08}} \\
+\end{tabular*}
+\vspace{0.85mm}
+\end{textblock*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
