@@ -1,0 +1,61 @@
+%Fourier Analysis - filename fourier.tex
+
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Fourier Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Fourier Analysis} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          FT of the Unit Step
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{75mm}(0mm,12.77mm)
+The Fourier transform (FT) of the unit step can be obtained by considering
+the Schwartz function approximation
+\begin{equation}
+  U_{\alpha}(t) = \left\{ \begin{array}{cc} e^{-\alpha t} & t \geq 0 \\ 0 & t < 0 \end{array} \right.  
+\end{equation}
+in the limit as $\alpha \rightarrow \infty$.
+The FT of $U_{\alpha}$ is given by
+\begin{eqnarray}
+{\mathcal F} U_{\alpha} & = & \int_{-\infty}^{\infty} U_{\alpha}(t) e^{-2 \pi i s t} dt \\ \nonumber
+                        & = & \int_{0}^{\infty} e^{-\alpha t} e^{-2 \pi i s t} dt \\ \nonumber
+                        & = & \left. \frac{-1}{\alpha + 2 \pi i s} e^{-(\alpha + 2 \pi i s) t}  \right|_{0}^{\infty} \\ \nonumber
+                        & = & \frac{1}{\alpha + 2 \pi i s}.
+\end{eqnarray}
+The next step is to take the limit, but to make the limit meaningful, ${\mathcal F}U_{\alpha}$ must
+be separated into real and imaginary parts
+\begin{equation}
+  {\mathcal F} U_{\alpha} = \frac{\alpha}{\alpha^2 + 4 \pi^2 s^2} - \frac{2 \pi s}{\alpha^2 + 4 \pi^3 s^2} i.
+\end{equation}
+The limit of the imaginary part is straightforward and yields $\frac{1}{2 \pi i s}$ but the real
+part requires more care.  First calculate the integral of the real part $s \in [-\infty,\infty]$
+\begin{equation}
+I =  \int_{-\infty}^{\infty} \frac{\alpha}{\alpha^2 + 4 \pi^2 s^2} ds .
+\end{equation}
+The value of $I$ is obtained by making the subsitution $s = \frac{\alpha}{2 \pi} \tan(\theta)$ to yield
+\[
+  I = \frac{1}{2 \pi} \int_{-\pi/2}^{\pi/2} \frac{ \sec^2{\theta} }{1 + \tan^2(\theta)} d \theta = \frac{1}{2} .
+\]
+Now note that the real part is zero as $s = \pm \infty$ and $1/\alpha$ at $s=0$, which means that the real part
+is strongly-peaked at $s=0$.  The only function that integrates to a constant over $[-\infty,\infty]$, is 
+strongly-peaked at the origin, where it tends to infinity, and is zero everywhere else is a function
+proportional to the $\delta$ function.  Thus
+\begin{equation}
+ \lim_{\alpha \rightarrow 0} {\mathcal F} U_{\alpha} = {\mathcal F}U = \frac{1}{2} \delta(s) + \frac{1}{2 \pi i s} .
+\end{equation}
+\end{textblock*}
+
+
+
+
+\newpage
