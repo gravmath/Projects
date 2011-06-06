@@ -13,49 +13,80 @@
 \end{tabular*}
 \end{textblock*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%          FT of the Unit Step
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\scriptsize
-\textblockcolor{LightYellow}
-\begin{textblock*}{75mm}(0mm,12.77mm)
-The Fourier transform (FT) of the unit step can be obtained by considering
-the Schwartz function approximation
-\begin{equation}
-  U_{\alpha}(t) = \left\{ \begin{array}{cc} e^{-\alpha t} & t \geq 0 \\ 0 & t < 0 \end{array} \right.  
-\end{equation}
-in the limit as $\alpha \rightarrow \infty$.
-The FT of $U_{\alpha}$ is given by
-\begin{eqnarray}
-{\mathcal F} U_{\alpha} & = & \int_{-\infty}^{\infty} U_{\alpha}(t) e^{-2 \pi i s t} dt \\ \nonumber
-                        & = & \int_{0}^{\infty} e^{-\alpha t} e^{-2 \pi i s t} dt \\ \nonumber
-                        & = & \left. \frac{-1}{\alpha + 2 \pi i s} e^{-(\alpha + 2 \pi i s) t}  \right|_{0}^{\infty} \\ \nonumber
-                        & = & \frac{1}{\alpha + 2 \pi i s}.
+\begin{textblock*}{90mm}(0mm,15mm)
+Consider a periodic function $f(x-2\ell) = f(x) = f(x + 2\ell)$ defined on the interval $[-\ell,\ell]$.  
+Because of the underlying periodicity of $f(x)$, both the derivative and the integral also inherit 
+periodic properties.
+
+In the case of the derivative, the observation is evident simply from 
+the standard definition as follows:
+\begin{eqnarray*}
+  \frac{d f}{d x}(x) & = & \lim_{dx \rightarrow 0} \frac{ f(x+dx)-f(x)}{dx}\\
+                     & = & \lim_{dx \rightarrow 0} \frac{ f(x + 2\ell + dx) - f(x + 2\ell) }{dx} \\
+                     & = & \frac{d f}{d x}(x + 2\ell).
+\end{eqnarray*}
+In the case of the integral, a bit more thinking and manipulation is needed.
+To begin, consider the integral of $f(x)$ over an interval $[a,b]$.  The value of this integral 
+is invariant if the entire interval is shifted by $2 \ell$.  This is proven by direct substitution
+as 
+\begin{eqnarray}\label{eq_per_ab_int}
+  \int_{a}^{b} f(x) dx & = & \int_{a}      ^{b}       f(x - 2\ell) dx            \\
+                       & = & \int_{a+2\ell}^{b+2\ell} f(y)         dy  \nonumber \\
+                       & = & \int_{a+2\ell}^{b+2\ell} f(x)         dx. \nonumber
 \end{eqnarray}
-The next step is to take the limit, but to make the limit meaningful, ${\mathcal F}U_{\alpha}$ must
-be separated into real and imaginary parts
-\begin{equation}
-  {\mathcal F} U_{\alpha} = \frac{\alpha}{\alpha^2 + 4 \pi^2 s^2} - \frac{2 \pi s}{\alpha^2 + 4 \pi^3 s^2} i.
+With this result, it is easy (although somewhat subtle) to show that the integral
+of $f(x)$ over the interval $[c-\ell,c+\ell]$ is equal to the integral over 
+the interval $[-\ell,\ell]$.  To do so, start by letting $a = c - \ell$ and $b = -\ell$
+in (\ref{eq_per_ab_int}), which yields the identity 
+\begin{equation}\label{eq_per_int}
+  \int_{c-\ell}^{-\ell} f(x) dx  =  \int_{c+\ell}^{\ell} f(x) dx,
 \end{equation}
-The limit of the imaginary part is straightforward and yields $\frac{1}{2 \pi i s}$ but the real
-part requires more care.  First calculate the integral of the real part $s \in [-\infty,\infty]$
-\begin{equation}
-I =  \int_{-\infty}^{\infty} \frac{\alpha}{\alpha^2 + 4 \pi^2 s^2} ds .
-\end{equation}
-The value of $I$ is obtained by making the subsitution $s = \frac{\alpha}{2 \pi} \tan(\theta)$ to yield
+which is then used to manipulate the integral over $[c-\ell,c+\ell]$ as follows,
+\begin{eqnarray} 
+  \int_{c-\ell}^{c+\ell} f(x) dx  & = &  \int_{c-\ell}^{-\ell} f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \\
+                                  & = &  \int_{c+\ell}^{\ell}  f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \nonumber \\
+                                  & = &  \int_{-\ell}^{c+\ell} f(x) dx + \int_{c+\ell}^{\ell}  f(x) dx \nonumber \\
+                                  & = &  \int_{-\ell}^{\ell}   f(x) dx                                 \nonumber
+\end{eqnarray}
+where (\ref{eq_per_int}) was used in going from the first to the second line.
+
 \[
-  I = \frac{1}{2 \pi} \int_{-\pi/2}^{\pi/2} \frac{ \sec^2{\theta} }{1 + \tan^2(\theta)} d \theta = \frac{1}{2} .
+  -\frac{d}{d x}\left( p(x) \frac{d y}{d x} \right) + q(x) y = \lambda w(x) y
 \]
-Now note that the real part is zero as $s = \pm \infty$ and $1/\alpha$ at $s=0$, which means that the real part
-is strongly-peaked at $s=0$.  The only function that integrates to a constant over $[-\infty,\infty]$, is 
-strongly-peaked at the origin, where it tends to infinity, and is zero everywhere else is a function
-proportional to the $\delta$ function.  Thus
-\begin{equation}
- \lim_{\alpha \rightarrow 0} {\mathcal F} U_{\alpha} = {\mathcal F}U = \frac{1}{2} \delta(s) + \frac{1}{2 \pi i s} .
-\end{equation}
 \end{textblock*}
 
+\begin{textblock*}{100mm}(89.85mm,15mm)
+\[
+  \int_{c}^{c+2L} \cos \left( \frac{m \pi x}{L} \right) dx = 0
+ \]
+ \[
+  \int_{c}^{c+2L} \sin \left( \frac{m \pi x}{L} \right) dx = 0
+ \]
+ 
+\[
+  \int_{c}^{c+2L} dx \, \cos \left( \frac{m \pi x}{L} \right) \cos \left( \frac{n \pi x}{L} \right) = 
+      \left\{ \begin{array}{cc} 2 L \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
+\]
+\[
+  \int_{c}^{c+2L} dx \, \sin \left( \frac{m \pi x}{L} \right) \sin \left( \frac{n \pi x}{L} \right) = 
+      \left\{ \begin{array}{cc} 0 \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
+\]
+\[
+ {\tilde f}(x) = \frac{a_0}{2} + 
+    \sum_{n=1}^{\infty} \left( a_n \cos \left( \frac{n \pi x}{L} \right) + b_n \sin \left( \frac{n \pi x}{L} \right) \right)
+\]
+\[
+  a_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \cos \left( \frac{n \pi x}{L} \right) dx
+\]
+\[
+  b_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \sin \left( \frac{n \pi x}{L} \right) dx
+\]
 
-
-
+\[
+  {\tilde f}(x) = \sum_{n = - \infty}^{\infty} c_n e^{i n \pi x/L}
+\]
+\[
+  c_n = \frac{1}{2 L} \int_{c}^{c+2L} f(x) e^{-i n \pi x/L} dx
+\]
+\end{textblock*}
 \newpage

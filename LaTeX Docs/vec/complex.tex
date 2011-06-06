@@ -20,7 +20,6 @@
 \textblockcolor{LightYellow}
 \begin{textblock*}{100mm}(0mm,12.54mm)
 \begin{tabular*}{98mm}{l @{\extracolsep{\fill}} l}
-   & ~\\
 \multicolumn{2}{c}{\bf Basic Results} \\
    & ~\\
 mapping:            & $\phi : z \equiv (x+iy) \rightarrow w \equiv \left(u(x,y) + iv(x,y)\right)$\\
@@ -58,7 +57,6 @@ residue:            & $a_{-1} = \left. \left(z-z_0\right) q(z) \right|_{z=z_0}$\
 \begin{textblock*}{90.65mm}(99.85mm,12.54mm)
 
 \begin{tabular*}{88.65mm}{l @{\extracolsep{\fill}} l}
-   & ~\\
 \multicolumn{2}{c}{\bf Residue Primitive} \\
    & ~\\
 \end{tabular*}
@@ -117,4 +115,57 @@ From Cauchy's theorem $\left(z - z_0 \right)^n$ is analytic in the region bound 
 contour and the integrals over ${\mathcal C}_{in}$ and ${\mathcal C}_{out}$ cancel leaving
 $I_{\mathcal C} = -I_{ {\mathcal C}_2 }$.
 \end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Pole on the Real Axis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightYellow}
+\begin{textblock*}{90.65mm}(0mm,89.30mm)
+
+\begin{tabular*}{88.65mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Pole on the Real Axis - Principle Value} \\
+   & ~\\
+\end{tabular*}
+It sometimes happens that there is a pole on the real axis of an integral that
+requires some additional effort in the calculus of residues. The approach is to
+`side-step' the singularity by either going around it above or below
+in the complex plane.  The figure below shows the situation with the 
+pole at $z_0$ and where the contour along the real axis goes around it
+by going above  along $\mathcal C$.
+\begin{figure}[htp]
+\centering
+\psscalebox{2}{
+\begin{pspicture}(-1.5,-0.2)(1.5,0.6)
+  \psline[linewidth=0.5pt]{->}(-2,0)(2,0)
+  \psline[linewidth=1pt]{->}(-2,0.05)(-0.7,0.05)
+  \psline[linewidth=1pt]{-}(-0.8,0.05)(-0.4,0.05)
+  \psarc[linewidth=1pt]{<-}(0,0){0.4}{78}{175}
+  \psarc[linewidth=1pt]{-}(0,0){0.4}{5}{90}
+  \psline[linewidth=1pt]{->}(0.4,0.05)(1.0,0.05)
+  \psline[linewidth=1pt]{-}(0.8,0.05)(2.0,0.05)
+  \qdisk(0,0){1pt}
+  \uput{0.1}[270](0,0){$z_0$}
+  \psline[linewidth=0.2pt]{->}(0,0)(0.136808,0.375877)
+  \qdisk(0.136808,0.375877){1.pt}
+  \uput{0.05}[90](0.153909,0.422862){$z$}
+  \uput{0}[0](-0.5,0.5){$\mathcal C$}  
+  %\psgrid(-1.5,-0.2)(1.5,0.4)
+\end{pspicture}}
+\end{figure}
+Let $z-z_0 = \rho e^{i\theta}$ on $\mathcal C$ with
+$\theta \in [\pi,0]$ and $dz = \rho i e^{i \theta} d \theta$.  The integral 
+\[
+   I = \int_{\mathcal C} \frac{1}{z-z_0} dz
+\]
+becomes
+\[
+  I = \int_{\pi}^{0} i d\theta = -i \pi .
+\]
+If the lower contour is instead chosen, dropping below the pole into the lower half
+of the complex plane, then the range of $\theta$ is now from $\pi$ to $2\pi$ meaning
+that the value of the integral changes to $i \pi$.  This process is known as taking
+the Principle Value of the integral.
+\end{textblock*}
+
 \newpage

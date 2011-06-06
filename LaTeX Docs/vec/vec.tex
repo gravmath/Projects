@@ -28,6 +28,7 @@
 \include{integral}
 \include{complex}
 \include{fourier}
+\include{unit_step}
 \include{diff_forms_classical_vec}
 \include{class_mech}
 \include{em}
@@ -99,116 +100,8 @@ and solve for $f$
 %\scriptsize\caption{Blah Blag}\label{fig:erptsqfit}
 %\end{figure}
 \newpage
-
-\[
-  \theta(x - q) = \left\{ \begin{array}{ll} 0 & x < q \\ 1 & x > q \end{array} \right.
-\]
-\[
- \int_{a}^{b} dx \, \theta(x-q) = \int_{a}^{q} d x
-\]
-\begin{eqnarray*}
- \int_{a}^{b} dx \, \theta(q - x)	& = & \int_{a}^{b} dx \left\{1 - \theta(x-q) \right\} \\
-								& = & \int_{a}^{b} dx - \int_{a}^{q} dx \\
-								& = & \int_{a}^{q} dx + \int_{q}^{b} dx - \int_{a}^{q} dx\\
-								& = & \int_{q}^{b} dx
-\end{eqnarray*}
-
-$\bullet$  
-
-
-\newpage
 \null
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%          Fourier Analysis
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textblockcolor{test}
-\begin{textblock*}{7.5in}(0mm,0mm)
-\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
-       \tiny ~ & ~\\
-       \multicolumn{2}{c}{\normalsize \bf Periodic Functions, Fourier Analysis, and Sturm-Liouville Theory} \\
-       \tiny~ & ~\\
-\end{tabular*}
-\end{textblock*}
-
-\begin{textblock*}{90mm}(0mm,15mm)
-Consider a periodic function $f(x-2\ell) = f(x) = f(x + 2\ell)$ defined on the interval $[-\ell,\ell]$.  
-Because of the underlying periodicity of $f(x)$, both the derivative and the integral also inherit 
-periodic properties.
-
-In the case of the derivative, the observation is evident simply from 
-the standard definition as follows:
-\begin{eqnarray*}
-  \frac{d f}{d x}(x) & = & \lim_{dx \rightarrow 0} \frac{ f(x+dx)-f(x)}{dx}\\
-                     & = & \lim_{dx \rightarrow 0} \frac{ f(x + 2\ell + dx) - f(x + 2\ell) }{dx} \\
-                     & = & \frac{d f}{d x}(x + 2\ell).
-\end{eqnarray*}
-In the case of the integral, a bit more thinking and manipulation is needed.
-To begin, consider the integral of $f(x)$ over an interval $[a,b]$.  The value of this integral 
-is invariant if the entire interval is shifted by $2 \ell$.  This is proven by direct substitution
-as 
-\begin{eqnarray}\label{eq_per_ab_int}
-  \int_{a}^{b} f(x) dx & = & \int_{a}      ^{b}       f(x - 2\ell) dx            \\
-                       & = & \int_{a+2\ell}^{b+2\ell} f(y)         dy  \nonumber \\
-                       & = & \int_{a+2\ell}^{b+2\ell} f(x)         dx. \nonumber
-\end{eqnarray}
-With this result, it is easy (although somewhat subtle) to show that the integral
-of $f(x)$ over the interval $[c-\ell,c+\ell]$ is equal to the integral over 
-the interval $[-\ell,\ell]$.  To do so, start by letting $a = c - \ell$ and $b = -\ell$
-in (\ref{eq_per_ab_int}), which yields the identity 
-\begin{equation}\label{eq_per_int}
-  \int_{c-\ell}^{-\ell} f(x) dx  =  \int_{c+\ell}^{\ell} f(x) dx,
-\end{equation}
-which is then used to manipulate the integral over $[c-\ell,c+\ell]$ as follows,
-\begin{eqnarray} 
-  \int_{c-\ell}^{c+\ell} f(x) dx  & = &  \int_{c-\ell}^{-\ell} f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \\
-                                  & = &  \int_{c+\ell}^{\ell}  f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \nonumber \\
-                                  & = &  \int_{-\ell}^{c+\ell} f(x) dx + \int_{c+\ell}^{\ell}  f(x) dx \nonumber \\
-                                  & = &  \int_{-\ell}^{\ell}   f(x) dx                                 \nonumber
-\end{eqnarray}
-where (\ref{eq_per_int}) was used in going from the first to the second line.
-
-\[
-  -\frac{d}{d x}\left( p(x) \frac{d y}{d x} \right) + q(x) y = \lambda w(x) y
-\]
-\end{textblock*}
-
-\begin{textblock*}{100mm}(89.85mm,15mm)
-\[
-  \int_{c}^{c+2L} \cos \left( \frac{m \pi x}{L} \right) dx = 0
- \]
- \[
-  \int_{c}^{c+2L} \sin \left( \frac{m \pi x}{L} \right) dx = 0
- \]
- 
-\[
-  \int_{c}^{c+2L} dx \, \cos \left( \frac{m \pi x}{L} \right) \cos \left( \frac{n \pi x}{L} \right) = 
-      \left\{ \begin{array}{cc} 2 L \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
-\]
-\[
-  \int_{c}^{c+2L} dx \, \sin \left( \frac{m \pi x}{L} \right) \sin \left( \frac{n \pi x}{L} \right) = 
-      \left\{ \begin{array}{cc} 0 \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
-\]
-\[
- {\tilde f}(x) = \frac{a_0}{2} + 
-    \sum_{n=1}^{\infty} \left( a_n \cos \left( \frac{n \pi x}{L} \right) + b_n \sin \left( \frac{n \pi x}{L} \right) \right)
-\]
-\[
-  a_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \cos \left( \frac{n \pi x}{L} \right) dx
-\]
-\[
-  b_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \sin \left( \frac{n \pi x}{L} \right) dx
-\]
-
-\[
-  {\tilde f}(x) = \sum_{n = - \infty}^{\infty} c_n e^{i n \pi x/L}
-\]
-\[
-  c_n = \frac{1}{2 L} \int_{c}^{c+2L} f(x) e^{-i n \pi x/L} dx
-\]
-\end{textblock*}
-\newpage
-\null
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %          Harmonic Oscillators
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
