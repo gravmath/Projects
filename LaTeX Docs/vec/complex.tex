@@ -120,19 +120,19 @@ $I_{\mathcal C} = -I_{ {\mathcal C}_2 }$.
 %          Pole on the Real Axis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textblockcolor{LightYellow}
-\begin{textblock*}{90.65mm}(0mm,89.30mm)
+\begin{textblock*}{100mm}(0mm,89.30mm)
 
-\begin{tabular*}{88.65mm}{l @{\extracolsep{\fill}} l}
+\begin{tabular*}{98mm}{l @{\extracolsep{\fill}} l}
    & ~\\
-\multicolumn{2}{c}{\bf Pole on the Real Axis - Principle Value} \\
+\multicolumn{2}{c}{\bf Pole on the Real Axis - Principal Value} \\
    & ~\\
 \end{tabular*}
-It sometimes happens that there is a pole on the real axis of an integral that
-requires some additional effort in the calculus of residues. The approach is to
+When there is a pole on the real axis of an integral, the approach is to
 `side-step' the singularity by either going around it above or below
-in the complex plane.  The figure below shows the situation with the 
+in the complex plane along a semi-circular contour whose radius $\rho$ will
+be allowed to go to zero.  The figure below shows the situation with the 
 pole at $z_0$ and where the contour along the real axis goes around it
-by going above  along $\mathcal C$.
+by going above along $\mathcal C$.
 \begin{figure}[htp]
 \centering
 \psscalebox{2}{
@@ -149,23 +149,52 @@ by going above  along $\mathcal C$.
   \psline[linewidth=0.2pt]{->}(0,0)(0.136808,0.375877)
   \qdisk(0.136808,0.375877){1.pt}
   \uput{0.05}[90](0.153909,0.422862){$z$}
-  \uput{0}[0](-0.5,0.5){$\mathcal C$}  
+  \uput{0}[0](-0.5,0.35){$\mathcal C$}  
+  \uput{0}[0](0.1,0.15){$\rho$}
   %\psgrid(-1.5,-0.2)(1.5,0.4)
 \end{pspicture}}
 \end{figure}
 Let $z-z_0 = \rho e^{i\theta}$ on $\mathcal C$ with
-$\theta \in [\pi,0]$ and $dz = \rho i e^{i \theta} d \theta$.  The integral 
+$\theta \in [\pi,0]$ and $dz = \rho i e^{i \theta} d \theta$.  The residue 
+primitive integral 
 \[
-   I = \int_{\mathcal C} \frac{1}{z-z_0} dz
+   I_n = \int_{\mathcal C} (z-z_0)^n dz
 \]
 becomes
 \[
-  I = \int_{\pi}^{0} i d\theta = -i \pi .
+  I_n = i \rho^{n+1} \int_{\pi}^{0} e^{i(n+1)\theta} d\theta 
+      = \left\{ \begin{array}{ll} i \int_{\pi}^{0} d \theta = -i \pi & n = -1 \\
+                                  & \\
+                                  \frac{i \rho^{n+1}}{n+1}\left( 1 - e^{i (n+1) \pi} \right) & n \neq -1  
+                \end{array} \right. .
 \]
+In the limit as $\rho$ goes to zero,
+\[
+   I_n = \left\{ \begin{array}{ll} 
+                     -i \pi              & n = -1                        \\ 
+                      0                  & n > -1                        \\
+                      0                  & n < -1 \; \mathrm{and \; odd} \\ 
+                      \mathrm{undefined} & n < -1 \; \mathrm{and \; even} 
+                 \end{array} \right. .
+\] 
+These results bascially say that only the $n = -1$ term in the Laurent series 
+contributes a well defined non-zero value to this `side-stepping', known as the 
+Cauchy principal value. In the case where $n>-1$ the integrand is finite and the length
+of the contour goes to zero, effectively killing the contribution along $\mathcal C$.
+In the case where $n<-1$ and $n$ is odd, areas of equal magnitude and opposite sign
+around the pole cancel each other out as the arc length of $\mathcal C$ goes to zero.
+In the final case where $n<-1$ and even, no such cancellation can occur and no well-defined
+limit can be assigned.
+
 If the lower contour is instead chosen, dropping below the pole into the lower half
 of the complex plane, then the range of $\theta$ is now from $\pi$ to $2\pi$ meaning
-that the value of the integral changes to $i \pi$.  This process is known as taking
-the Principle Value of the integral.
+that the value of the integral for $n=-1$ changes to $i \pi$. 
+
+The complex analysis presented here justifies the real analysis definition of the principal value
+of an integral whose integrand has a singularity at $x=c \in [a,b]$ as
+\[
+   PV \int_{a}^{b} f(x) dx = \lim_{\epsilon \rightarrow 0} \left( \int_{a}^{c-\epsilon} f(x) + \int_{c+\epsilon}^{b} f(x) \right) .
+\]
 \end{textblock*}
 
 \newpage
