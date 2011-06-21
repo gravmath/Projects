@@ -1,0 +1,57 @@
+%Solutions for ODEs - filename ode.tex
+
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          ODEs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{190.5mm}(0mm,0mm)
+\begin{tabular*}{190.5mm}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Ordinary Differential Equations} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{110mm}(0mm,12.77mm)
+\begin{tabular*}{108mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Definitions} \\
+  & \\
+Canonial Linear 2$^{nd}$ Order ODE: & $y''(x) + P(x) y'(x) + Q(x) y(x) = R(x)$\\
+  & \\
+Independent Solutions:              & $y_1(x)$, $y_2(x)$\\
+  & \\
+Wronskian:                          & $W\left[ y_1(x), y_2(x) \right] = y_1(x) y'_2(x) - y_2(x) y'_1(x)$\\
+  & \\
+Green Function:                     & \\
+  & \\
+State Space Form:                   & \\  
+  & \\
+State Transition Matrix:            & \\
+  & \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Specific Results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{110mm}(0mm,90mm)
+\begin{tabular*}{108mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Specific Results} \\
+ & \\
+ ODE01: Wronskian Formula                & $W(x) = W(x_0) \exp \left\{ - \int_{x_0}^{x} P(x') d x' \right\}$ \\
+ & \\
+ ODE02: Second Solution                  & $y_2(x) = \int_{x_0}^{x} dx' \frac{W(x')}{y_1(x')^2}$ \\
+ & \\
+ ODE03: Particular Solution (Linear VOP) & $\left\{ \begin{array}{l} u(x) = v_1(x) y_1(x) + v_2(x) y_2(x) \\ 
+                                                                     v_1(x) = - \int \frac{y_2(x')}{W(x') R(x')} dx' \\
+																	 v_2(x) =   \int \frac{y_1(x')}{W(x') R(x')} dx' \end{array} \right.$\\
+ & \\
+ \end{tabular*}
+\end{textblock*}
+\newpage
