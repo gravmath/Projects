@@ -1,0 +1,200 @@
+%Complex Analysis - filename complex.tex
+
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Complex Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{190.5mm}(0mm,0mm)
+\begin{tabular*}{190.5mm}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Complex Analysis} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Basic Results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{100mm}(0mm,12.54mm)
+\begin{tabular*}{98mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Basic Results} \\
+   & ~\\
+mapping:            & $\phi : z \equiv (x+iy) \rightarrow w \equiv \left(u(x,y) + iv(x,y)\right)$\\
+                    & \\
+Cauchy-Riemann:     & $ \frac{\partial u}{\partial x} =  \frac{\partial v}{\partial v} 
+                        \quad \& \quad 
+                        \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \iff w$ analytic\\
+& \\
+contour integral:   & $\int_{z_1}^{z_2} f(z) dz = \int_{(x_1,y_1)}^{(x_2,y_2)}\left[ u(x,y) + iv(x,y)\right]\left[dx + idy\right]$\\
+                    & with the path from $(x_1,y_1)$ to $(x_2,y_2)$ specified\\
+& \\
+Cauchy's theorem:   & $\oint_{\mathcal C} f(z) dz = 0 \iff f(z)$ is analytic throughout some\\
+                    &  simply connected region ${\mathcal R}$ bound by ${\mathcal C}$\\
+& \\                    
+Cauchy's formula:   & $\oint_{\mathcal C} \frac{f(z)}{z-z_0} dz = 2 \pi i f(z_0)$ where $f(z)$ is analytic\\
+& \\
+Cauchy's formula:   & $f^{(n)}(z_0) = \frac{n!}{2\pi i} \oint_{\mathcal C} \frac{f(z) dz}{\left(z-z_0\right)^n}$\\
+& \\
+residue primitve:   & $\oint_{\mathcal C} \left(z-z_0\right)^n dz = \left\{ \begin{array}{ccc}  2 \pi i & n = -1    & {\mathcal C} \quad ccw \\
+                                                                                               -2 \pi i & n = -1    & {\mathcal C} \quad cw  \\
+                                                                                                      0 & n \neq -1 &                   
+                                                                           \end{array} \right. $\\
+& \\
+Laurent series:     & $q(z) = \sum_{n=-\infty}^{n=\infty} a_n \left(z - z_0\right)^n$\\
+& \\
+residue:            & $a_{-1} = \left. \left(z-z_0\right) q(z) \right|_{z=z_0}$\\
+& \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Residue Primitive
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightYellow}
+\begin{textblock*}{90.65mm}(99.85mm,12.54mm)
+
+\begin{tabular*}{88.65mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Residue Primitive} \\
+   & ~\\
+\end{tabular*}
+The point of this article is to establish the residue primitive result by explicitly
+evaluating the contour integral
+\[
+   I = \oint_{\mathcal C} \left( z - z_0 \right)^n dz,
+\]
+where ${\mathcal C}$ is a circular contour around $z_0$ in a counterclock-wise (ccw)
+direction.  Assume on ${\mathcal C}$ that $z - z_0 = R e^{i \theta}$ where $\theta$ 
+goes from $0$ to $2 \pi$. With this parametrization $dz = R i e^{i \theta} d \theta$ and
+\[
+  I = i R^{n+1} \int_0^{2 \pi} e^{i \theta \left( n + 1 \right)} d \theta .
+\]
+There are two cases to consider: $n \neq -1$ and $n = -1$. 
+In the first case
+\begin{eqnarray*}
+  I_{n \neq -1}  & = & i R^{n+1} \int_0^{2 \pi} e^{i \theta \left(n+1\right)} d \theta \\
+                & = & \frac{R^{n+1}}{n+1} \left. e^{i \theta \left(n+1\right)} \right|^{2 \pi}_0 \\
+                & = & 0
+\end{eqnarray*}
+and in the second
+\[
+  I_{n = -1}   = i \int_0^{2 \pi} d \theta = 2 \pi i
+\]
+To determine the value of the integral if the contour were traversed in the clockwise direction,
+the limits of the integral can be reversed so that it went from $2 \pi$ to $0$ but ir is more
+instructive to consider the closed contour ${\mathcal C} \rightarrow {\mathcal C}_{in} 
+\rightarrow {\mathcal C}_{out} \rightarrow {\mathcal C}_{2}$. 
+\begin{figure}[htp]
+\centering
+\psscalebox{2}{
+\begin{pspicture}(-1.5,-1.5)(1.5,1.5)
+  \pscircle[fillstyle=solid,fillcolor=LightGreen,linestyle=none](0,0){1.005}
+  \psarc[linewidth=0.5pt]{->}(0,0){1}{32.96709734}{212}
+  \psarc[linewidth=0.5pt]{-}(0,0){1}{210}{27.03290266}
+  \pscircle[fillstyle=solid,fillcolor=LightYellow,linestyle=none](0,0){0.21}  
+  \psarc[linewidth=0.5pt]{-}(0,0){0.205}{45}{190}
+  \psarc[linewidth=0.5pt]{<-}(0,0){0.205}{180}{15}
+  \pspolygon[fillstyle=solid,fillcolor=LightYellow,linestyle=none,linewidth=0.5pt](0.19125331,0.05124617)(0.89067955,0.45446836)(0.83892092,0.54411694)(0.14140721,0.14140721)
+  \psline[linewidth=0.5pt]{-}(0.19318517,0.05176381)(0.89076863,0.45451381)
+  \psline[linewidth=0.5pt]{-}(0.14142136,0.14142136)(0.83900482,0.54417136)
+  \psline[linewidth=0.5pt]{<-}(0.5419769,0.25313881)(0.89076863,0.45451381)
+  \psline[linewidth=0.5pt]{->}(0.14142136,0.14142136)(0.49021309,0.34279636)
+  \psline[linewidth=0.2pt]{->}(0,0)(1.29903811,0.75)
+  \pscircle[fillstyle=solid,fillcolor=black,linestyle=none](0,0){0.05}
+  \uput[45](0.6,0.6){${\scriptsize {\mathcal C}}$}
+  \uput[1](-0.8,-0.05){${z_0}$}
+  \uput[1](-0.4,-0.4){${{\mathcal C}_2}$}
+  \uput[1](-0.2,0.45){${{\mathcal C}_{in}}$}  
+  \uput[1](0.2,0){${{\mathcal C}_{out}}$}  
+  %\psgrid(-1.5,-1.5)(1.5,1.5)
+\end{pspicture}}
+\end{figure}
+From Cauchy's theorem $\left(z - z_0 \right)^n$ is analytic in the region bound by this combined
+contour and the integrals over ${\mathcal C}_{in}$ and ${\mathcal C}_{out}$ cancel leaving
+$I_{\mathcal C} = -I_{ {\mathcal C}_2 }$.
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Pole on the Real Axis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightYellow}
+\begin{textblock*}{100mm}(0mm,89.30mm)
+
+\begin{tabular*}{98mm}{l @{\extracolsep{\fill}} l}
+   & ~\\
+\multicolumn{2}{c}{\bf Pole on the Real Axis - Principal Value} \\
+   & ~\\
+\end{tabular*}
+When there is a pole on the real axis of an integral, the approach is to
+`side-step' the singularity by either going around it above or below
+in the complex plane along a semi-circular contour whose radius $\rho$ will
+be allowed to go to zero.  The figure below shows the situation with the 
+pole at $z_0$ and where the contour along the real axis goes around it
+by going above along $\mathcal C$.
+\begin{figure}[htp]
+\centering
+\psscalebox{2}{
+\begin{pspicture}(-1.5,-0.2)(1.5,0.6)
+  \psline[linewidth=0.5pt]{->}(-2,0)(2,0)
+  \psline[linewidth=1pt]{->}(-2,0.05)(-0.7,0.05)
+  \psline[linewidth=1pt]{-}(-0.8,0.05)(-0.4,0.05)
+  \psarc[linewidth=1pt]{<-}(0,0){0.4}{78}{175}
+  \psarc[linewidth=1pt]{-}(0,0){0.4}{5}{90}
+  \psline[linewidth=1pt]{->}(0.4,0.05)(1.0,0.05)
+  \psline[linewidth=1pt]{-}(0.8,0.05)(2.0,0.05)
+  \qdisk(0,0){1pt}
+  \uput{0.1}[270](0,0){$z_0$}
+  \psline[linewidth=0.2pt]{->}(0,0)(0.136808,0.375877)
+  \qdisk(0.136808,0.375877){1.pt}
+  \uput{0.05}[90](0.153909,0.422862){$z$}
+  \uput{0}[0](-0.5,0.35){$\mathcal C$}  
+  \uput{0}[0](0.1,0.15){$\rho$}
+  %\psgrid(-1.5,-0.2)(1.5,0.4)
+\end{pspicture}}
+\end{figure}
+Let $z-z_0 = \rho e^{i\theta}$ on $\mathcal C$ with
+$\theta \in [\pi,0]$ and $dz = \rho i e^{i \theta} d \theta$.  The residue 
+primitive integral 
+\[
+   I_n = \int_{\mathcal C} (z-z_0)^n dz
+\]
+becomes
+\[
+  I_n = i \rho^{n+1} \int_{\pi}^{0} e^{i(n+1)\theta} d\theta 
+      = \left\{ \begin{array}{ll} i \int_{\pi}^{0} d \theta = -i \pi & n = -1 \\
+                                  & \\
+                                  \frac{i \rho^{n+1}}{n+1}\left( 1 - e^{i (n+1) \pi} \right) & n \neq -1  
+                \end{array} \right. .
+\]
+In the limit as $\rho$ goes to zero,
+\[
+   I_n = \left\{ \begin{array}{ll} 
+                     -i \pi              & n = -1                        \\ 
+                      0                  & n > -1                        \\
+                      0                  & n < -1 \; \mathrm{and \; odd} \\ 
+                      \mathrm{undefined} & n < -1 \; \mathrm{and \; even} 
+                 \end{array} \right. .
+\] 
+These results bascially say that only the $n = -1$ term in the Laurent series 
+contributes a well defined non-zero value to this `side-stepping', known as the 
+Cauchy principal value. In the case where $n>-1$ the integrand is finite and the length
+of the contour goes to zero, effectively killing the contribution along $\mathcal C$.
+In the case where $n<-1$ and $n$ is odd, areas of equal magnitude and opposite sign
+around the pole cancel each other out as the arc length of $\mathcal C$ goes to zero.
+In the final case where $n<-1$ and even, no such cancellation can occur and no well-defined
+limit can be assigned.
+
+If the lower contour is instead chosen, dropping below the pole into the lower half
+of the complex plane, then the range of $\theta$ is now from $\pi$ to $2\pi$ meaning
+that the value of the integral for $n=-1$ changes to $i \pi$. 
+
+The complex analysis presented here justifies the real analysis definition of the principal value
+of an integral whose integrand has a singularity at $x=c \in [a,b]$ as
+\[
+   PV \int_{a}^{b} f(x) dx = \lim_{\epsilon \rightarrow 0} \left( \int_{a}^{c-\epsilon} f(x) + \int_{c+\epsilon}^{b} f(x) \right) .
+\]
+\end{textblock*}
+
+\newpage

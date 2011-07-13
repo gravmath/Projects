@@ -1,0 +1,286 @@
+%Fourier Analysis - filename fourier.tex
+
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Fourier Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{test}
+\begin{textblock*}{7.5in}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Fourier Analysis} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+\begin{textblock*}{90mm}(0mm,15mm)
+Consider a periodic function $f(x-2\ell) = f(x) = f(x + 2\ell)$ defined on the interval $[-\ell,\ell]$.  
+Because of the underlying periodicity of $f(x)$, both the derivative and the integral also inherit 
+periodic properties.
+
+In the case of the derivative, the observation is evident simply from 
+the standard definition as follows:
+\begin{eqnarray*}
+  \frac{d f}{d x}(x) & = & \lim_{dx \rightarrow 0} \frac{ f(x+dx)-f(x)}{dx}\\
+                     & = & \lim_{dx \rightarrow 0} \frac{ f(x + 2\ell + dx) - f(x + 2\ell) }{dx} \\
+                     & = & \frac{d f}{d x}(x + 2\ell).
+\end{eqnarray*}
+In the case of the integral, a bit more thinking and manipulation is needed.
+To begin, consider the integral of $f(x)$ over an interval $[a,b]$.  The value of this integral 
+is invariant if the entire interval is shifted by $2 \ell$.  This is proven by direct substitution
+as 
+\begin{eqnarray}\label{eq_per_ab_int}
+  \int_{a}^{b} f(x) dx & = & \int_{a}      ^{b}       f(x - 2\ell) dx            \\
+                       & = & \int_{a+2\ell}^{b+2\ell} f(y)         dy  \nonumber \\
+                       & = & \int_{a+2\ell}^{b+2\ell} f(x)         dx. \nonumber
+\end{eqnarray}
+With this result, it is easy (although somewhat subtle) to show that the integral
+of $f(x)$ over the interval $[c-\ell,c+\ell]$ is equal to the integral over 
+the interval $[-\ell,\ell]$.  To do so, start by letting $a = c - \ell$ and $b = -\ell$
+in (\ref{eq_per_ab_int}), which yields the identity 
+\begin{equation}\label{eq_per_int}
+  \int_{c-\ell}^{-\ell} f(x) dx  =  \int_{c+\ell}^{\ell} f(x) dx,
+\end{equation}
+which is then used to manipulate the integral over $[c-\ell,c+\ell]$ as follows,
+\begin{eqnarray} 
+  \int_{c-\ell}^{c+\ell} f(x) dx  & = &  \int_{c-\ell}^{-\ell} f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \\
+                                  & = &  \int_{c+\ell}^{\ell}  f(x) dx + \int_{-\ell}^{c+\ell} f(x) dx \nonumber \\
+                                  & = &  \int_{-\ell}^{c+\ell} f(x) dx + \int_{c+\ell}^{\ell}  f(x) dx \nonumber \\
+                                  & = &  \int_{-\ell}^{\ell}   f(x) dx                                 \nonumber
+\end{eqnarray}
+where (\ref{eq_per_int}) was used in going from the first to the second line.
+
+\[
+  -\frac{d}{d x}\left( p(x) \frac{d y}{d x} \right) + q(x) y = \lambda w(x) y
+\]
+\end{textblock*}
+
+\begin{textblock*}{100mm}(89.85mm,15mm)
+\[
+  \int_{c}^{c+2L} \cos \left( \frac{m \pi x}{L} \right) dx = 0
+ \]
+ \[
+  \int_{c}^{c+2L} \sin \left( \frac{m \pi x}{L} \right) dx = 0
+ \]
+ 
+\[
+  \int_{c}^{c+2L} dx \, \cos \left( \frac{m \pi x}{L} \right) \cos \left( \frac{n \pi x}{L} \right) = 
+      \left\{ \begin{array}{cc} 2 L \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
+\]
+\[
+  \int_{c}^{c+2L} dx \, \sin \left( \frac{m \pi x}{L} \right) \sin \left( \frac{n \pi x}{L} \right) = 
+      \left\{ \begin{array}{cc} 0 \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
+\]
+\[
+ {\tilde f}(x) = \frac{a_0}{2} + 
+    \sum_{n=1}^{\infty} \left( a_n \cos \left( \frac{n \pi x}{L} \right) + b_n \sin \left( \frac{n \pi x}{L} \right) \right)
+\]
+\[
+  a_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \cos \left( \frac{n \pi x}{L} \right) dx
+\]
+\[
+  b_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \sin \left( \frac{n \pi x}{L} \right) dx
+\]
+
+\[
+  {\tilde f}(x) = \sum_{n = - \infty}^{\infty} c_n e^{i n \pi x/L}
+\]
+\[
+  c_n = \frac{1}{2 L} \int_{c}^{c+2L} f(x) e^{-i n \pi x/L} dx
+\]
+\[
+  x = 6
+\]
+\end{textblock*}
+
+\newpage
+\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Fourier Transform
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{190.5mm}(0mm,0mm)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Fourier Transform} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{80mm}(0mm,12.77mm)
+\begin{tabular*}{78mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Definitions} \\
+  & \\
+Constants                        & $a, b$\\
+  & \\
+General function                 & $f, g$\\
+  & \\
+Schwartz function                & $\phi$, $\psi$\\
+  & \\
+Tempered distribution            & ${\mathcal T}, {\mathcal T}_{f}, {\mathcal S}$\\
+  & \\
+Shift Operator                   & $( \tau_{\pm b} f)(x) \equiv f(x \mp b) $\\  
+  & \\
+Distributational pairing         & $\langle {\mathcal T}_{f} , \phi \rangle \equiv \int_{-\infty}^{\infty} f(x) \phi(x) dx$ \\
+  & \\
+Distributional linearity         & $\langle {\mathcal T}, a \phi + b \psi \rangle \equiv a \langle {\mathcal T},\phi \rangle + b \langle {\mathcal T}, \psi \rangle$\\
+  & \\
+Distributional derivative        & $\langle {\mathcal T}' , \phi \rangle \equiv - \langle {\mathcal T} , \phi' \rangle$ \\
+  & \\
+Distributional reversal          & $\langle {\mathcal T}^{-} , \phi \rangle \equiv \langle {\mathcal T} , \phi^{-} \rangle$ \\
+  & \\  
+Convolution                      & $(g * f)(t) \equiv \int_{-\infty}^{\infty} g(t-\tau) f(\tau) d \tau$\\
+  & \\
+Dist. Fourier Transform          & $\langle {\mathcal F} {\mathcal T} , \phi \rangle \equiv \langle {\mathcal T} , {\mathcal F}  \phi \rangle$ \\
+  & \\
+Dist. Inverse FT                 & $\langle {\mathcal F}^{-1} {\mathcal T} , \phi \rangle \equiv \langle {\mathcal T} , {\mathcal F}^{-1}  \phi \rangle$  \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Specifc Distributions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{80mm}(0mm,90mm)
+\begin{tabular*}{78mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Specific Distributions} \\
+ & \\
+ delta            & $\delta = \left\{ \begin{array}{l} \delta(x) = 0 \; x \neq 0 \\  \\ \int_{-\infty}^{\infty} \delta(x) dx = 1 \end{array} \right.$ \\
+ & \\
+ signum           & $sgn(x) = \left\{ \begin{array}{ll} -1 & x < 0 \\ 1 & x > 0 \end{array} \right.$ \\
+ & \\
+ unit step        & $H(x) = \left\{ \begin{array}{ll} 0 & x < 0 \\ 1 & x > 0 \end{array} \right.$    \\
+ & \\
+ unit ramp        & $R(x) = \left\{ \begin{array}{ll} 0 & x \le 0 \\ x & x > 0 \end{array} \right.$  \\  
+ & \\
+ delta pairing    & $\langle \delta , \phi \rangle = \phi(0)$   \\
+ & \\
+ delta pairing    & $\langle \delta_a , \phi \rangle = \phi(a)$ \\
+ & \\
+ unit step deriv. & $H' = \delta$ \\
+ & \\
+ signum deriv.    & $sgn' = 2 \delta$ \\
+ & \\
+ delta deriv.     & $\langle \delta' , \phi \rangle = - \langle \delta , \phi' \rangle =  -\phi'(0)$ \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Specific Fourier Transforms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{75mm}(0mm,180mm)
+\begin{tabular*}{73mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Specific Fourier Transforms} \\
+ & \\
+ delta            & ${\mathcal F} \delta = 1$ \\
+ & \\
+ 1                & ${\mathcal F} 1 = \delta$ \\
+ & \\
+ unit step        & ${\mathcal F} \delta_{\pm a} = e^{\mp 2 \pi i s a}$    \\
+ & \\
+ unit ramp        & ${\mathcal F} e^{\pm 2 \pi i x a} = \delta_{\pm a}$  \\  
+ & \\
+ delta pairing    & ${\mathcal F} \left[ \frac{1}{2} \left( \delta_a + \delta_{-a} \right) \right] = \cos 2 \pi s a$   \\
+ & \\
+ delta pairing    & ${\mathcal F} cos 2 \pi a x = \frac{1}{2} \left[ \delta_a + \delta_{-a} \right]$ \\
+ & \\
+ unit step deriv. & $H' = \delta$ \\
+ & \\
+ signum deriv.    & $sgn' = 2 \delta$ \\
+ & \\
+ delta deriv.     & ${\mathcal F}\left[ \frac{1}{2 i} \left( \delta_{-a} - \delta_{a} \right) \right] = \sin 2 \pi s a$ \\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Fourier Transform Notation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{110.5mm}(79.85mm,12.77mm)
+\begin{tabular*}{108.5mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Fourier Transform Notation} \\
+ & \\
+\end{tabular*}
+There are many different conventions and notations for the Fourier transform.  
+The convention used here will be that the complex exponentials will
+have the $2 \pi$ explicitly indicated and paired with the transform
+variable rather than the usual physics standard of angular frequency,
+(\emph{e.g.}, $2 \pi s$ instead of $\omega$.  This usage
+supresses the needs for $1/\sqrt{2 \pi}$ or similar terms outside the 
+integral.
+
+For notation, two types are employed.  The first is this simple
+pairing $f(t) \rightleftharpoons F(s)$ which tends to emphasize 
+the two domains (time and frequency) but which clouds the duality.
+The second is the script notation ${\mathcal F}f(s)$ which allows
+for greater insight into the transform but which should be interpretted as 
+follows:
+\begin{enumerate}
+  \item ${\mathcal F} f$ means substitute $f$ into a Fourier integral
+  \item the absence or presence of teh inverse symbol ${}^{-1}$ indicates
+        which sign to use ($-$ - absence, $+$ - presence)
+  \item the variable that follows $(s)$ indicates the free variable in the 
+        integral (can be suppressed), the other being dummy. 
+\end{enumerate}
+Finally, there will be occasions when the reversal of a signal,
+defiend as $f(t) \rightarrow f(-t)$, will be examined.  When pairing
+this $f(-t)$ with a Fourier integral in the script notation, a 
+convenient way to suppress the dummy variable (\emph{i.e.} $t$)
+is with the notation $f^{-}$.  It can also be applied to the 
+transform itself - ${\mathcal F}f(-s) \equiv ({\mathcal F} f)^{-}$.
+\end{textblock*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Basic Fourier Transform Results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{110.5mm}(79.85mm,84.7mm)
+\begin{tabular*}{108.5mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Basic Fourier Transform Results} \\
+ & \\
+       Pairing Notation 1  & $f(t) \rightleftharpoons F(s)$ \\
+& \\      
+       Pairing Notation 2  & $f(t) \rightleftharpoons {\mathcal F}f(s)$ \\
+& \\
+ FT01:  Forward Transform  & $F(s) \equiv \int_{-\infty}^{\infty} f(t) e^{-2 \pi i s t} dt$\\
+  & \\
+ FT02:  Inverse Transform  & $f(t) \equiv \int_{-\infty}^{\infty} F(s) e^{2 \pi i s t} ds$ \\
+  & \\
+ FT03:  Forward Reversal   & $({\mathcal F}{\mathcal T})^{-} = {\mathcal F}^{-1} {\mathcal T}$\\
+  & \\
+ FT04:  Inverse Reversal   & $({\mathcal F}^{-1} {\mathcal T})^{-} = {\mathcal F} {\mathcal T}$ \\
+  & \\
+ FT05:  Reversed Forward   & ${\mathcal F} {\mathcal T}^{-}  = {\mathcal F}^{-1} {\mathcal T}$ \\
+  & \\
+ FT06:  Reversed Inverse   & ${\mathcal F}^{-1} {\mathcal T}^{-} = {\mathcal F} {\mathcal T}$ \\
+  & \\
+ FT07:  Linearity          & ${\mathcal F}(a {\mathcal T} + b {\mathcal S} ) = a {\mathcal F}{\mathcal T} + b {\mathcal F}{\mathcal S}$\\
+  & \\
+ FT08:  Shift \& Pairing   & $\langle \tau_{\pm b} f, \phi \rangle = \langle f, \tau_{\mp b} \phi \rangle$\\
+  & \\
+ FT09:  Time Shift         & ${\mathcal F}( \tau_{\pm b} f) = e^{\mp 2 \pi i s b} {\mathcal F} f$ \\
+  & \\
+ FT10: Frequency Shift     & $\tau_{\pm b} {\mathcal F}f (s) \rightleftharpoons f(t) e^{\pm 2 \pi i b t}$ \\
+  & \\
+ FT11: Shift Theorem       & ${\mathcal F}(\tau_{\pm b} {\mathcal T}) = e^{\mp 2 \pi i b x} {\mathcal T}$\\
+  & \\
+ FT12: Scaling             & $f(at) \rightleftharpoons \frac{1}{|a|} {\mathcal F}f\left( \frac{s}{a} \right)$ \\
+  & \\
+ FT13: Deriv. Func.        & $f' \rightleftharpoons (2 \pi i s) F(s)$\\
+  & \\
+ FT14: Power Rule Func.    & $(-2 \pi i t) f(t) \rightleftharpoons F'(s)$\\  
+  & \\
+ FT15: Deriv. Dist.        & ${\mathcal T}' \rightleftharpoons 2 \pi i x {\mathcal F}{\mathcal T}$\\
+  & \\
+ FT16: Power Rule Dist.    & $-2 \pi i t {\mathcal T} \rightleftharpoons ( {\mathcal F} {\mathcal T} )'$\\
+  & \\
+ FT17: Convolution Theorem & $f*g \rightleftharpoons F(s) G(s)$\\
+  & \\
+ FT18: Convolution Assoc.  & $(k*g)*f = k*(g*f)$\\
+\end{tabular*}
+\end{textblock*}
+\newpage
