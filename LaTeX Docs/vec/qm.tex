@@ -1,0 +1,188 @@
+\documentclass[10pt]{article}
+\usepackage[absolute]{textpos}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+%\usepackage{geometry}
+%\geometry{hmargin={1in,1in}}
+%\geometry{vmargin={1in,1in}}
+%\pagestyle{empty}
+\usepackage{color}
+\usepackage{amssymb}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen} {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}{rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+
+
+\usepackage[absolute]{textpos}
+\begin{document}
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightGreen}
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \tiny ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf Quantum Mechanics} \\
+       \tiny~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Structure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{74mm}(0mm,12.75mm)
+\begin{tabular*}{74mm}{|l @{\extracolsep{\fill}} l|}\hline
+\multicolumn{2}{|c|}{\bf Structure} \\
+1  & Promote classical dynamic variables to\\
+   & Hilbert space linear operators \hfill\\
+2  & Operators $\hat A$ and $\hat B$ have a commutator related to \\
+   & their Poisson bracket by $\left\{ A, B \right\}_{PB} = \left( i \hbar \right) \left[ \hat A, \hat B \right]$\\
+3  & System state is denoted by the ket $| \psi \rangle$ \\
+4  & The space containing $| \psi \rangle$ has a dual satifying\\
+~~a& $ \langle \phi | \big( \alpha | \psi_1 \rangle + \beta | \psi_2 \rangle \big) 
+     = \alpha \langle \phi | \psi_1 \rangle + \beta \langle \phi | \psi_2 \rangle$ \\
+~~b& $\langle \phi | \psi \rangle ^* = \langle \psi | \phi \rangle$ \\
+~~c& $\langle \phi | \phi \rangle = 0$ implies $| \phi \rangle = 0$ \\
+~~d& $\langle \phi | = | \phi \rangle ^{\dagger}$ \\
+5  & Observables are associated with Hermitian \\
+   & operators $\langle \phi | \hat O | \psi \rangle
+        = \langle \psi | \hat O ^ \dagger | \phi \rangle 
+        = \langle \psi | \hat O | \phi \rangle$ )\\
+6  & Statistical average of an observable is \\
+   &$O = \langle \psi | \hat O | \psi \rangle$\\
+7  & Statisitical fluctuations are given by:\\
+   &$\sigma_{O}^2 = \langle \psi | \hat O ^2 | \psi \rangle 
+     - \langle \psi | \hat O | \psi \rangle ^2$ \\
+8  &Non-commuting operators $\hat A$, $\hat B$ have\\
+   &uncertainties related by $ \sigma_A \sigma_B 
+    \ge \frac{1}{2} \left| \langle \psi | [ \hat A , \hat B ] | \psi \rangle \right|$\\
+\hline
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Translation Operator
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{68mm}(74mm,12.75mm)
+\begin{tabular*}{68mm}{|l @{\extracolsep{\fill}} l|}\hline
+  \multicolumn{2}{|c|}{\bf Translation Operator} \\
+  \multicolumn{2}{|l|}{A translation operator should satisfy:}\\
+  1~ & ${\mathcal T}(d \vec x) | \vec x \rangle = |\vec x + d \vec x \rangle $\\
+  2~ & ${\mathcal T}^{\dagger} (d \vec x) {\mathcal T} (d \vec x) 
+         = {\mathcal T} (d \vec x) {\mathcal T}^{\dagger} (d \vec x) = 1$ \\
+  3~ & ${\mathcal T} (d \vec x) {\mathcal T} (d \vec x_1) = {\mathcal T} (d \vec x + d \vec x_1)$\\
+  4~ & ${\mathcal T} (-d \vec x) = {\mathcal T}^{-1} (d \vec x)$\\
+  5~ & $\lim_{|d \vec x| \rightarrow 0} {\mathcal T} (d \vec x) = 1$\\
+  \multicolumn{2}{|l|}{These conditions are met by ${\mathcal T} (d \vec x) = 1 - i \vec K \cdot d \vec x$,}\\
+  \multicolumn{2}{|l|}{where $\vec K \doteq \{\hat K_i\}$ are Hermitian operators. The}\\
+  \multicolumn{2}{|l|}{commutator is found to be $[\hat X_i,\hat K_j] = i \delta_{ij}$ and}\\
+  \multicolumn{2}{|l|}{since classically $\{x_i, p_j\}_{PB} = \delta_{ij}$ then $\hat K_{i} = \hat p_{i} / \hbar$.}\\
+  \hline
+\end{tabular*}
+\end{textblock*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textblockcolor{LightGreen}
+\normalsize
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \tiny ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf Quantum Mechanics} \\
+       \tiny~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+\scriptsize
+
+\begin{textblock*}{70mm}(10mm,20mm)
+\begin{figure}
+  \centering
+  \includegraphics[width=6cm]{rolling_disk}
+  \caption{Transverse momentum distributions}\label{fig:erptsqfit}
+\end{figure}
+\end{textblock*}
+
+\newpage
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     NEW PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightGreen}
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
+       \hline
+       \small ~ & ~\\
+       \multicolumn{2}{|c|}{\normalsize \bf Classical Mechanics} \\
+       \small~ & ~\\
+       \hline
+\end{tabular*}
+\end{textblock*}
+
+Work Energy\\
+\[
+ \frac{d \left( m T \right)}{d t} = {\mathbf F} \cdot {\mathbf p}
+\]
+
+\[
+  \frac{d T}{d t} = {\mathbf F} \cdot {\mathbf v}
+\]
+
+Cancellation of Dots\\
+\[
+  \frac{d}{dt} \left( \frac{\partial G}{\partial q^i} \right) = \frac{\partial \dot G}{\partial q^i}
+\]
+\[
+  \frac{d}{dt} \left( \frac{\partial G}{\partial \dot q^j} \right) 
+     = \frac{\partial \dot G}{\partial \dot q^j} - \frac{\partial G}{\partial q^j}
+\]
+\[
+  \frac{d}{dt} \left( \frac{\partial \dot G}{\partial \dot q^j} \right)
+     = \frac{\partial \dot G}{\partial q^j} + \frac{d^2}{dt^2} \left( \frac{\partial G}{\partial \dot q^j} \right)
+\]
+
+Generalized Force\\
+\[
+  Q_i = \frac{d}{dt} \left( \frac{\partial T}{\partial \dot q^k} \right) - \frac{\partial T}{\partial q^k}
+\]
+Hamiltonian\\
+\[
+   H(q,p,t) = \dot q^i p_i - L(q,\dot q,t)  
+\]
+\[
+  p_i = \frac{\partial L(q,\dot q,t)}{\partial \dot q^i}
+\]
+\[
+  \dot q^i = \frac{\partial H}{\partial p_i}
+\]
+\[
+  \dot p_i = -\frac{\partial H}{\partial q^i}
+\]
+\[
+  -\frac{\partial L}{\partial t} = \frac{\partial H}{\partial t} = \frac{d H}{d t}
+\]
+
+D'Alembert's Principle\\
+\[
+  \delta W - {\mathbf p} \cdot \delta {\mathbf r} = 0 
+\]
+
+\end{document}
+

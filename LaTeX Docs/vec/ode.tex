@@ -22,6 +22,8 @@
 \begin{tabular*}{108mm}{l @{\extracolsep{\fill}} l}
 \multicolumn{2}{c}{\bf Definitions} \\
   & \\
+General 1$^{st}$ Order ODE :        & $\frac{d y}{d x} = f(x,y) = - \frac{P(x,y)}{Q(x,y)}$\\
+  & \\
 Canonial Linear 2$^{nd}$ Order ODE: & $y''(x) + P(x) y'(x) + Q(x) y(x) = R(x)$\\
   & \\
 Independent Solutions:              & $y_1(x)$, $y_2(x)$\\
@@ -53,5 +55,87 @@ State Transition Matrix:            & \\
 																	 v_2(x) =   \int \frac{y_1(x')}{W(x') R(x')} dx' \end{array} \right.$\\
  & \\
  \end{tabular*}
+\end{textblock*}
+
+\begin{textblock*}{150mm}(0mm,60mm)
+\begin{tabular*}{150mm}{l @{\extracolsep{\fill}} l}
+  \multicolumn{2}{c}{\bf First Order ODEs}
+\end{tabular*}
+\vspace{20mm}
+\begin{figure}
+\psscalebox{1}{
+\begin{pspicture}(-1.5,-0.2)(1.5,0.6)
+  \begin{psmatrix}[rowsep=0.6,colsep=0.5]
+  %1st order ode (1st row 1st column
+  \psframebox[shadow=true]{\begin{tabular}{c} 1$^{st}$ Order ODE \\   
+                            $\frac{dy}{dx} = f(x,y) = -\frac{P(x,y)}{Q(x,y)}$
+                           \end{tabular}} & 
+  %empty space (1st row 2nd column)
+  &
+  %integral equation (1st row third column)
+  \psframebox[shadow=true]{\begin{tabular}{c} Integral Equation \\
+                           $y(x) - y(x_0) = \int_{x_0}^x f[x',y(x')] dx'$
+                           \end{tabular} } \\
+  %Linear 1st order (2nd row 1st column)
+  \psframebox[shadow=true]{\begin{tabular}{c} Linear 1$^{st}$ Order ODE\\
+                           $\frac{dy}{dx} + p(x) y = q(x)$
+                           \end{tabular}} & 
+  %Separable Variables (2nd row 2nd column)
+  \psframebox[shadow=true]{\begin{tabular}{c}Separable Variables\\
+                           $\frac{dy}{dx} = f(x,y) = -\frac{P(x)}{Q(x)}$
+                           \end{tabular}} &  
+  %Exact (2nd row third column)
+  \psframebox[shadow=true]{\begin{tabular}{c}Exact\\
+                           $d \phi = \frac{d \phi}{dx} + \frac{d\phi}{dy}$
+                           \end{tabular}}
+  \end{psmatrix}
+\end{pspicture}}
+\end{figure}
+\vspace{10mm}
+\end{textblock*}
+
+\begin{textblock*}{110mm}(80mm,150mm)
+\[
+  A_2(x) y'' + A_1(x) y' + A_0(x) y = F(x)  \quad x_1 < x < x_2
+\]
+\[
+  M \equiv A_2(x) D^2 + A_1(x) D + A_0(x)  \quad D \equiv \frac{d}{dx} 
+\]
+\[
+  B_i[y] = a_{ijk\ell} \left( D^j y_k \right) (x = x_{\ell} )
+\]
+
+\[
+  y'' - y = 0 \quad y'(0) + 3 y(0) = 0 \quad y'(1) + y(1) = 1
+\]
+\[
+  M = D^2 - 1 = (D + 1)(D -1) \rightarrow y_1 = k_1 e^x \quad y_2 = k_2 e^{-x}
+\]
+\[
+  B_1[y]   \begin{array}{l}
+               = a_{1011}(D^0 y_1)(x=x_1) + a_{1111}(D^1 y_1)(x=x_1) + a_{1021}(D^0 y_2)(x=x_1) + a_{1121}(D^1 y_2)(x=x_1) \\
+               = 3 k_1 e^0 + k_1 e^0 + 3 k_2 e^{-0} - k_2 e^{-0} \\
+               = 4 k_1 + 2 k_2
+           \end{array}
+\]
+\[
+  B_2[y]  \begin{array}{l}
+              = a_{2012} (D^0 y_1)(x=x_2) + a_{2112} (D^1 y_1)(x=x2) + a_{2022} (D^0 y_2)(x=x_2) + a_{2122}(D^1y_2)(x=x_2) \\
+              = k_1 e + k_1 e + k_2/e - k_2/e \\
+              = 2 k1 e
+          \end{array}
+\]
+\[
+  B_1[y] = 0 \rightarrow 4 k_1 + 2 k_2 = 0 
+\]
+\[
+  B_2[y] = 1 \rightarrow 2 k_1 e = 1
+\] 
+\[
+  k_1 = \frac{1}{2 e} \quad k_2 = \frac{-1}{e}
+\]
+\[
+  y = 1/e( 1/2e^x - e^{-x})
+\]
 \end{textblock*}
 \newpage
