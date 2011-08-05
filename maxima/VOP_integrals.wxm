@@ -1,0 +1,127 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(f,L,e) := quad_qag(f/(1+e*cos(v))^L,v,0,2*%pi,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+e1 : (12 - 1.2)/(12 + 1.2);
+e2 : (25 - 1.2)/(25 + 1.2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(1,4,e1);
+Q(cos(2*v),4,e1);
+Q(sin(v)^2*cos(v)*(2+e1*cos(v)),4,e1);
+Q(cos(v),3,e1);
+Q(cos(v)*cos(2*v),3,e1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(1,4,e2);
+Q(cos(2*v),4,e2);
+Q(sin(v)^2*cos(v)*(2+e2*cos(v)),4,e2);
+Q(cos(v),3,e2);
+Q(cos(v)*cos(2*v),3,e2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I(f,L,e) := integrate(f/(1+e*cos(v))^L,v,0,2*%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I11 : I(1,4,e1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I11,numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I14 : I(cos(v),3,e1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I14,numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I21 : I(1,4,e2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I21,numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I24 : I(cos(v),3,e2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I24, numer;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+N : 120;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ecc_vals : makelist(0.80+i*0.001,i,0,N);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I1_vals : makelist(Q(1,4,ecc_vals[i])[1],i,1,N+1);
+I2_vals : makelist(Q(cos(2*v),4,ecc_vals[i])[1],i,1,N+1);
+I3_vals : makelist(Q(sin(v)^2*cos(v)*(2+ecc_vals[i]*cos(v)),4,ecc_vals[i])[1],i,1,N+1);
+I4_vals : makelist(Q(cos(v),3,ecc_vals[i])[1],i,1,N+1);
+I5_vals : makelist(Q(cos(v)*cos(2*v),3,ecc_vals[i])[1],i,1,N+1);
+I6_vals : makelist(Q(cos(2*v),2,ecc_vals[i])[1],i,1,N+1);
+I7_vals : makelist(Q(sin(v)*sin(2*v),3,ecc_vals[i])[1],i,1,N+1);
+I8_vals : makelist(Q(cos(2*v)*(ecc_vals[i]*(1 + cos(v)^2) + 2*cos(v)),4,ecc_vals[i])[1],i,1,N+1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([[discrete,ecc_vals,I1_vals],
+          [discrete,ecc_vals,I2_vals],
+          [discrete,ecc_vals,I3_vals],
+          [discrete,ecc_vals,I4_vals],
+          [discrete,ecc_vals,I5_vals],
+          [discrete,ecc_vals,I6_vals],
+          [discrete,ecc_vals,I7_vals],
+          [discrete,ecc_vals,I8_vals]],[logx],[logy],[x,0.75,0.95]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([[discrete,ecc_vals,I1_vals],
+          [discrete,ecc_vals,I2_vals],
+          [discrete,ecc_vals,I3_vals],
+          [discrete,ecc_vals,I4_vals],
+          [discrete,ecc_vals,I5_vals],
+          [discrete,ecc_vals,I6_vals],
+          [discrete,ecc_vals,I7_vals],
+          [discrete,ecc_vals,I8_vals]],[x,0.75,0.95]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+e1 : (12 - 1.2)/(12 + 1.2);
+e2 : (25 - 1.2348)/(25 + 1.2348);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(1,4,e1)[1];
+Q(cos(2*v),4,e1)[1];
+Q(sin(v)^2*cos(v)*(2+e1*cos(v)),4,e1)[1];
+Q(cos(v),3,e1)[1];
+Q(cos(v)*cos(2*v),3,e1)[1];
+Q(cos(2*v),2,e1)[1];
+Q(sin(v)*sin(2*v),3,e1)[1];
+Q(cos(2*v)*(e1*(1 + cos(v)^2) + 2*cos(v)),4,e1)[1];
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,45 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([q,p],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(V,q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : 1/2*m*diff(q,t)^2 - V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : p = diff(L,diff(q,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+conj_mo_q : solve(eq1,diff(q,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h : p*diff(q,t) - L;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : subst(conj_mo_q,h);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+q_dot : diff(H,p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p_dot : -diff(H,q);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

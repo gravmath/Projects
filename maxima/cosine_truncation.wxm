@@ -1,0 +1,57 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : m/2*(diff(q,t)^2*sin(omega*t)^2 + diff(q,t)*q*omega*sin(2*omega*t) + q^2*omega^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+conj_mo_eq : p = diff(L,diff(q,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+conj_mo : solve(conj_mo_eq,diff(q,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+h : p*diff(q,t) - L;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : subst(conj_mo,h);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : ratsimp(H);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(Q,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q_eq : Q = q*sin(omega*t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q_dot_eq : diff(Q_eq,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln : solve(Q_dot_eq,diff(q,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L_new : subst(soln,L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ratsimp(L_new);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

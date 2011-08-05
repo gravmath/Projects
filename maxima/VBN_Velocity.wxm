@@ -1,0 +1,40 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+r_RSW: matrix([r],[0],[0]);
+v_RSW: matrix([r_dot],[r*nu_dot],[0]);
+Q:     matrix([sin(gamma),cos(gamma),0],[cos(gamma),-sin(gamma),0],[0,0,1]);
+Q_dot: matrix([gamma_dot*cos(gamma),-gamma_dot*sin(gamma),0],[-gamma_dot*sin(gamma),-gamma_dot*cos(gamma),0],[0,0,0]);
+
+r_VBN: Q.r_RSW;
+v_VBN: Q.v_RSW + Q_dot.r_RSW;
+v_VBN: Q.v_RSW;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([gamma],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(Q,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V1_RSW : diff(Q,t).r_RSW;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V2_RSW : Q.v_RSW;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

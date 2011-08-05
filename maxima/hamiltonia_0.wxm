@@ -1,0 +1,55 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([q,p],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(V,q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : p^2/2/m + V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+qdot_eq : diff(q,t) =  diff(H,p);
+pdot_eq : diff(p,t) = -diff(H,q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : diff(qdot_eq,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Newton : subst(pdot_eq,eq1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+l : p*diff(q,t) - H;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : subst(solve(qdot_eq,p),l);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EL : diff(diff(L,diff(q,t)),t) - diff(L,q) = 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EL_soln     : solve(EL,diff(q,t,2));
+Newton_soln : solve(Newton,diff(q,t,2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EL_soln - Newton_soln;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

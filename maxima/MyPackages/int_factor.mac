@@ -1,0 +1,6 @@
+/*maxima program integrating factor*/
+G() := (
+         P : read("Please enter P(x)"),
+		 Q : read("Please enter Q(x)"),
+		 Y : exp( integrate(-P,x) ) * ( C + integrate(Q * exp(integrate(P,x)), x) ),
+		 print("The general solution is:",Y) )$

@@ -1,0 +1,57 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([q,p],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H : p^2/2/alpha -b*q*p*exp(-alpha*t) +b*a/2*q^2*exp(-alpha*t)*(alpha+b*exp(-alpha*t))+ k*q^2/2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : diff(q,t) = diff(H,p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+conj_mo_q : solve(eq1,p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+l : p*diff(q,t) - H;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L : subst(conj_mo_q,l);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(L);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq2 : diff(diff(L,diff(q,t)),t) - diff(L,q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst([b=alpha*exp(alpha*t),a=alpha],eq2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Hnew : subst([b=alpha*exp(alpha*t),a=alpha],H);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(Hnew,p);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(Hnew,q);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

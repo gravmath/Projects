@@ -1,0 +1,4 @@
+/* this is c:\users\cschiff\maxima\maxima-init.mac */
+maxima_tempdir     : "c:/users/cschiff/maxima"$
+file_search_maxima : append(["c:/cschiff/development/maxima/###.{mac,mc}"],file_search_maxima)$
+file_search_lisp   : append(["c:/cschiff/development/maxima/###.lisp"],    file_search_lisp)$

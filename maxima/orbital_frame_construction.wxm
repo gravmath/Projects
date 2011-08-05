@@ -1,0 +1,147 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: title   start ]
+Constructing the Orbital Frame
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+A study by Mat Samuel and Conrad Schiff on 2/1/2010
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: section start ]
+Orbital Frame Unit Vectors
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+First construct the node vector, which lies entirely in the x-y plane
+and an angle of RAAN with respect to the x-axis
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n : matrix([cos(RAAN)],[sin(RAAN)],[0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Next construct the angular momentum vector, which makes an angle of 
+INC with respect to the z-axis and which lies at a angle of (2%pi - alpha) 
+with respect to the x-axis.  The cos and sin of 2%pi-alpha reduce as shown 
+below
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+cos(2*%pi-alpha);
+sin(2*%pi-alpha);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+leaving a vector h_vec, as a function of alpha as
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+h_vec(alpha) := matrix([sin(Inc)*cos(alpha)],[-sin(Inc)*sin(alpha)],[cos(Inc)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+From the diagram on the whiteboard (to be supplied soon), the
+relationship between alpha and RAAN is found to be 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+alpha : %pi/2-RAAN;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The cos and sin of %pi/2-RAAN yield
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+cos(%pi/2 - RAAN);
+sin(%pi/2 - RAAN);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+which gives the following expression for the angular momentum vector
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+h : h_vec(%pi/2-RAAN);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The m unit vector is then given as
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+m : trigsimp(matrix( h[2]*n[3] - h[3]*n[2],h[3]*n[1] - h[1]*n[3], h[1]*n[2] - h[2]*n[1]));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Euler Sequence
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+To check, we use an indepent way of arriving at the same thing.
+
+Define the transformation primitives Tx(a), Ty(a), Tz(a)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Tx(a) := matrix([1,0,0],[0,cos(a),sin(a)],[0,-sin(a),cos(a)]);
+Ty(a) := matrix([cos(a),0,-sin(a)],[0,1,0],[sin(a),0,cos(a)]);
+Tz(a) := matrix([cos(a),sin(a),0],[-sin(a),cos(a),0],[0,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The Euler sequence is to first rotate around z by RAAN and then
+to rotate around the 'new' x, yielding
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+T : Tx(Inc).Tz(RAAN);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The rows of the above matrix can be immediately seen to be the node vector 
+(n - first row), the m vector (m - second row), and the angular momentum 
+(h - third row)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp( sqrt( T[1,2]^2 + T[2,2]^2 + T[3,2]^2) );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q : Tx(1.0).Ty(-0.04).Tx(0.2).Tz(0.7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Qt : transpose(Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Qt.Q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Qi :invert(Q);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Qt - Qi;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Qt*Q;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r : matrix([35489],[-450],[13.4640]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+r : matrix([35489],[-450],[13.4640]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

@@ -1,0 +1,108 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: section start ]
+A Study in Implementing the Euler Lagrange Equations in Maxima
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+General Form in 1-D
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Get the general form for a problem with a single degree of freedom that depends 
+on time and a potential function that depends only on the degree of freedom.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(u,t); depends(V,u);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Define the generalized velocity.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+vu : diff(u,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Define the Lagrangian.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L : m/2*vu^2 - V;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Calculate the EL equations and note that one 'recovers' Newton's laws
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+EL : diff(diff(L,vu),t) - diff(L,u) = 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Specializing to the Simple Harmonic Oscillator
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Use the 'ev' command to evaluate the potential for the simple harmonic oscillator (SHO). Note 
+that 'subst' doesn't work.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+'subst' implementation
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+EL_sho : subst(V=k/2*u^2,EL);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+versus 'ev'
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+EL_sho : ev(EL,diff,V=k/2*u^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Use 'ode2' to solve the above differential equation formally and use 'rhs' to isolate 
+the right-hand side in order to assign it to an expression. Note the appearance of the 
+two constants of integration %k1 and %k2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+u_sho : rhs(ode2(EL_sho, u, t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Now to apply the initial conditions (ICs) and solve for the constants of integration 
+in terms of them. For the first equation we can use either 'ev' or 'subst'.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+IC1 : ev(u_sho,t=0) = u0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+But in the second equation, we can only use 'subst' since application of 'ev' doesn't work.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+IC2 : ev(diff(u_sho,t),t=0) = vu0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+IC2 : subst(t=0,diff(u_sho,t)) = vu0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Things to work on:
+1) is it possible to get one consistent use of either 'ev' or 'subst'
+2) eliminating sqrt(k/m) as omega
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

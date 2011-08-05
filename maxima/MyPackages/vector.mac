@@ -1,0 +1,42 @@
+dot(a,b)   := block(
+                [q,i],
+                q : 0,
+                for i:1 step 1 thru a[1][2] do
+                  q : q + a[2][i]*b[2][i],
+                q
+              );
+          
+norm(a)    := radcan( sqrt( dot(a,a) ) );
+
+cross(a,b) := block(
+                [c],
+                c : [["<name>",3,"up"],[0,0,0]],
+                c[2][1] : a[2][2]*b[2][3] - a[2][3]*b[2][2],
+                c[2][2] : a[2][3]*b[2][1] - a[2][1]*b[2][3],
+                c[2][3] : a[2][1]*b[2][2] - a[2][2]*b[2][1],
+                c
+              );
+                 
+add(a,b)   := block(
+                [c,i],                  
+                c : [["<name>",3,"up"],[0,0,0]],
+                for i:1 step 1 thru a[1][2] do
+                  c[2][i] : a[2][i] + b[2][i],
+                c
+              );
+                
+sub(a,b)   := block(
+                [c,i],                  
+                c : [["<name>",3,"up"],[0,0,0]],
+                for i:1 step 1 thru a[1][2] do
+                  c[2][i] : a[2][i] -b[2][i],
+                c
+                );
+                 
+m(k,a)     := block(
+                [c,i],                  
+                c : [["<name>",3,"up"],[0,0,0]],
+                for i:1 step 1 thru a[1][2] do
+                  c[2][i] : k * a[2][i],
+                c
+              );
