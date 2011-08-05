@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{pstricks-add}
+\pagestyle{empty}
+\begin{document}
+% Definition of new arrows "diamond" and "diamond*" (d and d*)
+% using adapted dot definitions
+\makeatletter
+\newpsfontdot{ArrowDiamond}%
+[1.9 0.0 0.0 1.9 0.1 -0.70775]{Symbol}{<E0>}
+\newpsfontdot{ArrowDiamond*}%
+[2.3 0.0 0.0 2.3 0.38 -0.6]{Symbol}{<A8>}
+\@namedef{psas@d}{\psk@dotsize \psds@ArrowDiamond 90 rotate 0 0 Dot}
+\@namedef{psas@d*}{\psk@dotsize \@nameuse{psds@ArrowDiamond*} 90 rotate 0 0 Dot}
+\makeatother
+
+\begin{pspicture}(4,4)
+  \psline[arrowscale=2]{d-d}(0,4)(4,4)
+  \psline[arrowscale=4]{d-d*}(0,2)(4,2)
+  \psline[arrowscale=10]{d->}(4,0)
+\end{pspicture}
+
+\begin{pspicture}(3,5)
+  \psset{arrowscale=3,arrows=d-d}
+  \psline(3,3)
+  \psarc(0,0){2}{0}{90}
+  \psarc[arrowsize=2mm]{d*-d*}(1,1){2}{20}{70}
+\end{pspicture}
+
+\begin{pspicture}(3,5)
+  \psset{arrowscale=3,arrows=]-[}
+  \psline(3,3)
+  \psarc(0,0){2}{0}{90}
+  \psarc(1,1){2}{20}{70}
+\end{pspicture}
+
+\end{document}
