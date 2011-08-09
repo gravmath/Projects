@@ -1,4 +1,8 @@
-function elem = elem_from_state(R, V, mu)
+function elem = elem_from_state(S, mu)
+
+%unpack the state
+R = S(1:3);
+V = S(4:6);
 
 % Compute state magnitudes:
 r = norm(R);
@@ -29,8 +33,8 @@ else
 end
 
 % Compute eccentricity vector/magnitude:
-E = 1/mu*((v^2 - mu/r)*R - r*(v_r)*V);
-e = norm(E);
+Evec = 1/mu*((v^2 - mu/r)*R - r*(v_r)*V);
+e    = norm(Evec);
 
 % Compute AOP (quandrant ambiguity):
 if n ~= 0
@@ -70,7 +74,13 @@ sin_E = (sin(nu)*sqrt(1 - e^2))/(1 + e*cos(nu));
 E = atan2(sin_E,cos_E);
 M = E - e*sin(E);
 
-% Output Keplerian elements:
-elem = [a; e; incl; RAAN; AOP; M];
+% Output Keplerian elements: (km & deg)
+incl = incl*180/pi;
+RAAN = RAAN*180/pi;
+AOP  = AOP *180/pi;
+M    = M   *180/pi;
+nu   = nu  *180/pi;
+E    = E   *180/pi
+elem = [a; e; incl; RAAN; AOP; M; nu; E];
 
 end

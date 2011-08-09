@@ -1,4 +1,4 @@
-function dS = MSP(t,S,parms)
+function dS = MSP(t,S,dummy,parms)
 
 %unpack physical parameters
 mu = parms.mu;
