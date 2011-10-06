@@ -1,0 +1,85 @@
+%Frenet-Serret and Related Frames
+\documentclass[10pt]{article}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+\usepackage{hyperref}
+
+\TPshowboxestrue
+\TPMargin{2mm}
+\begin{document}
+\[
+  \frac{d}{d \lambda} \vec V \equiv \dot {\vec V}
+\]
+
+\[
+    \frac{d}{d \lambda} | {\vec V} | 
+  = \frac{d}{d\lambda} \left( \vec V \cdot \vec V \right)^{1/2}
+  = \frac{1}{2} \left( \vec V \cdot \vec V \right)^{-1/2} \frac{d}{d \lambda} \left( \vec V \cdot \vec V \right) 
+  = \frac{1}{2} \frac{1}{|\vec V|} 2 \vec V \cdot \frac{d \vec V}{d\lambda}
+  = \frac{\vec V \cdot \dot{\vec V}}{|\vec V|}
+\]
+
+\[
+  \frac{d}{d \lambda} |\vec V| = \frac{\vec V \cdot \dot {\vec V}}{|\vec V|}
+\]
+\[
+     \frac{d}{d \lambda} \frac{1}{| {\vec V} |}
+  =  \frac{d}{d\lambda} \left( \vec V \cdot \vec V \right)^{-1/2}
+  = -\frac{1}{2} \left( \vec V \cdot \vec V \right)^{-3/2} \frac{d}{d \lambda} \left( \vec V \cdot \vec V \right) 
+  = -\frac{1}{2} \frac{1}{|\vec V|^3} 2 \vec V \cdot \frac{d \vec V}{d\lambda}
+  = -\frac{\vec V \cdot \dot{\vec V}}{|\vec V|^3}
+\]
+\[
+     \frac{d}{d \lambda} \frac{1}{| {\vec V} |} 
+  = -\frac{\vec V \cdot \dot{\vec V}}{|\vec V|^3}
+\]
+
+\[
+  \frac{d}{d\lambda} \frac{\vec V}{|\vec V|} = \frac{\dot {\vec V}}{|\vec V|} - \frac{\vec V}{|\vec V|^3} \vec V \cdot \dot{\vec V}
+\]
+
+\[
+   \hat U \cdot \hat U = 1 \rightarrow \dot {\hat U } \cdot \hat U = 0
+\]
+
+\[
+  \left\{\hat u_1, \hat u_2, \hat u_3 \right\}
+\]
+\[
+  \dot {\hat u_i} \cdot \hat u_j = - \hat u_i \cdot \dot {\hat u_j}
+\]
+\[
+  \hat R = \frac{\vec r}{|\vec r|}
+\]
+\[
+  \hat N = \frac{\vec r \times \dot {\vec r}}{|\vec r \times \dot {\vec v}|}
+\]
+\[
+  \hat T = \hat N \times \hat R
+\]
+
+\[
+  \dot {\hat R} = \frac{\dot {\hat r}}{|\vec r|} - \frac{\vec r}{|\vec r|^3} \vec r \cdot \dot {\vec r} 
+\]
+
+\[
+  \dot {\hat N} = \frac{ \vec r \times \ddot {\vec r} }{|\vec r \times \dot {\vec r} |} - \frac{ \vec r \times \dot {\vec r}}{|\vec r \times \dot {\vec r}|^3}
+                    (\vec r \times \dot {\vec r} ) \cdot (\vec r \times \ddot {\vec r} )
+\]
+
+\end{document} 

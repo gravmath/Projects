@@ -1,0 +1,11 @@
+lbracket(t_list,b_list) := block(
+                                 [temp,i,u,v],
+                                 temp : 0,
+                                 u : b_list[1],
+                                 v : b_list[2],
+                                 for i:1 step 1 thru 3 do
+                                   q : t_list[i],
+                                   p : t_list[i+3],
+                                   temp : temp + diff(q,u)*diff(p,v) - diff(q,v)*diff(p,u),
+                                 temp                                   
+                                );

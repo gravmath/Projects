@@ -1,0 +1,21 @@
+find_op(x) := 
+  block(
+    [top_op],
+    if atom(x) then top_op : "atom" else top_op : op(x)
+  )$    
+
+num_terms(x) :=
+  block(
+     [num_terms],
+     if atom(x) then num_terms : 1 else num_terms : length( args(x) )
+  )$
+ 
+print_terms(x) :=
+  block(
+     [i],
+     if atom(x) 
+     then print(x)
+     else
+       for i : 1 thru num_terms(x) step 1 do
+         print(args(x)[i])
+  )$
