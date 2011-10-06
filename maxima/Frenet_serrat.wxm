@@ -1,0 +1,135 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Define helper functions
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+ip(a,b) := block( [c,i,ret_val], 
+                  c       : a*b,
+                  ret_val : 0,
+                  for i:1 step 1 thru length(a) do
+                    ret_val : ret_val + c[i],
+                  ret_val
+                );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+norm(a) := block( [ret_val],
+                 ret_val : sqrt(trigsimp(ip(a,a)))
+                );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+cross(a,b) := block( [c],
+                     c    : [0,0,0],
+                     c[1] : a[2]*b[3] - a[3]*b[2],
+                     c[2] : a[3]*b[1] - a[1]*b[3],
+                     c[3] : a[1]*b[2] - a[2]*b[1],
+                     c
+                   );
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Define the helix spacecurve
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+assume(a>0);
+assume(b>0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+helix(a,b,t) := [a*cos(t),a*sin(t),b*t];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dhelix(a,b,t,n) := diff(helix(a,b,t),t,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Frenet-Serrat Field
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+First define the velocity, acceleration, and jerk
+and then the unit vectors of the moving 
+Frenet-Serrat field
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+vel : dhelix(a,b,t,1);
+acc : dhelix(a,b,t,2);
+jer : dhelix(a,b,t,3);
+V   : vel/norm(vel);
+N   : acc/norm(acc);
+B   : trigsimp(cross(V,N));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(V,[a=3,b=4]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Investigate the motion of the field
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+Note the
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+ip(vel,acc);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ip(acc,jer);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ip(vel,jer);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Take the explicit time derivatives of the
+field's unit vectors
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+dV : diff(V,t);
+dN : diff(N,t);
+dB : diff(B,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Confirm the general derivative formula
+for unit vectors
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+Tdot  : acc/norm(vel) - vel*ip(vel,acc)/norm(vel)^3;
+Ndot1 : trigsimp(jer/norm(vel) - 2*acc*ip(vel,acc)/norm(vel)^3 );
+Ndot2 : trigsimp(- vel*ip(acc,acc)/norm(vel)^3 - vel*ip(vel,jer)/norm(vel)^3 + 3*vel*ip(vel,acc)^2/norm(vel)^5);
+trigsimp(vel*ip(acc,acc)/norm(vel)^3);
+trigsimp(vel*ip(vel,jer)/norm(vel)^3);
+trigsimp(3*vel*ip(vel,acc)^2/norm(vel)^5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Construct the 'angular rate' matrix and
+confirm the curvature and torsion structure
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+row1 : trigsimp([ ip(dV,V), ip(dV,N), ip(dV,B) ]);
+row2 : trigsimp([ ip(dN,V), ip(dN,N), ip(dN,B) ]);
+row3 : trigsimp([ ip(dB,V), ip(dB,N), ip(dB,B) ]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
