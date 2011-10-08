@@ -1,0 +1,8 @@
+/*maxima program for simple 2D smoothing kernels*/
+
+
+Wn(a,b,h,n) := block([d,r,N,W],
+                     d : b - a,
+                     r : sqrt( d[1]^2 + d[2]^2 ),
+                     N : (n+1)/%pi/h^2,
+                     if r <= h then N*(1 - r^2/h^2)^n else 0)$
