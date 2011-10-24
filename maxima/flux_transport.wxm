@@ -1,0 +1,186 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dot(a,b)   := a[1]*b[1] + a[2]*b[2] + a[3]*b[3];
+norm(a)    := sqrt( dot(a,a) );
+cross(a,b) := [a[2]*b[3] - a[3]*b[2], a[3]*b[1] - a[1]*b[3], a[1]*b[2] - a[2]*b[1]];
+div(a,b)   := diff(a[1],b[1]) + diff(a[2],b[2]) + diff(a[3],b[3]);
+grad(a,b)  := [diff(a,b[1]),diff(a,b[2]),diff(a,b[3])];
+curl(a,b)  := [diff(a[3],b[2]) - diff(a[2],b[3]),diff(a[1],b[3]) - diff(a[3],b[1]),diff(a[2],b[1]) - diff(a[1],b[2])];
+del2(a,b)  := div(grad(a,b),b);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+%c : [x,y,z];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F : sin(t)*[x*y^2,y*z^2,z*x^2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+div(F,%c);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+curlF : curl(F,%c);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A : [t,-t,-1/t];
+B : [t,t,-1/t];
+C : [t,t,1/t];
+D : [t,-t,1/t];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L1(s) := A + s*(B-A);
+L2(s) := B + s*(C-B);
+L3(s) := C + s*(D-C);
+L4(s) := D + s*(A-D);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+onL1 : [x=L1(u)[1],y=L1(u)[2],z=L1(u)[3]];
+onL2 : [x=L2(v)[1],y=L2(v)[2],z=L2(v)[3]];
+onL3 : [x=L3(u)[1],y=L3(u)[2],z=L3(u)[3]];
+onL4 : [x=L4(v)[1],y=L4(v)[2],z=L4(v)[3]];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R(0,v);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dL1(s) := diff(L1(s),s);
+dL2(s) := diff(L2(s),s);
+dL3(s) := diff(L3(s),s);
+dL4(s) := diff(L4(s),s);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dL1(u);
+dL2(v);
+dL3(u);
+dL4(v);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R(a,b) := A + a*(B-A) + b*(D-A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+R(1,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dR_du : diff(R(u,v),u);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dR_dv : diff(R(u,v),v);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dS : cross(dR_du,dR_dv);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+vel : diff(R(u,v),t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+onS : [x=R(u,v)[1],y=R(u,v)[2],z=R(u,v)[3]];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+FdotdS : dot(F,dS),onS;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Flux : integrate(integrate(FdotdS,u,0,1),v,0,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dFlux_dt : diff(Flux,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+I1 : integrate(ev(dot(cross(F,vel),dL1(u)),onL1),u,0,1),v=0;
+I2 : integrate(ev(dot(cross(F,vel),dL2(v)),onL2),v,0,1),u=1;
+I3 : integrate(ev(dot(cross(F,vel),dL3(u)),onL3),u,0,1),v=1;
+I4 : integrate(ev(dot(cross(F,vel),dL4(v)),onL4),v,0,1),u=0;
+Ic : (I1 + I2 + I3 + I4),ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Flux_transport_density : diff(F,t) + div(F,%c)*vel;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(dot(Flux_transport_density,dS),onS);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q1 : integrate( integrate( ev(dot(Flux_transport_density,dS),onS), u,0,1), v,0,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+FTT : Ic + Q1,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+FTT - dFlux_dt,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+
+
+
+
+
+
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+vel;
+onS;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Vel : [x/t,y/t,-z/t];
+Vel,onS,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+cross(F,Vel);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Flux_transport_curl : curl(cross(F,Vel),%c);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dot(Flux_transport_curl,dS);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q2 : integrate(integrate( ev(dot(Flux_transport_curl,dS),onS), u, 0,1),v,0,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q2-Ic,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
