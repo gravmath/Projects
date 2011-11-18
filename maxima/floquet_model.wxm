@@ -1,0 +1,141 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: title   start ]
+Investigating a 'Floquet' model
+C. Schiff - 11/1/11
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Define the system of ODEs
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+Define the process matrix A
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+A(t) := matrix([-2 + cos(2*t),0],[0,-3 + cos(2*t)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Define the state vector
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+X : matrix([x1(t)],[x2(t)]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Define the system as d/dt (X) = A X
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+my_odes : diff(X,t) - A(t).X;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Look for a state transition matrix
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+Note that A(t) is periodic with period \pi
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+A(0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(0.5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(1.0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(1.5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Note that A(t) is communtative at different times
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+A(t1)*A(t2) - A(t2)*A(t1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Use the observation in Section 2.2 to see that the
+state transition matrix must be defined as the matrix
+exponential of the time integral of A(t)
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi(t) := matrixexp(integrate(A(t1),t1,0,t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Note that Phi is not, repeat not, periodic
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi(0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi(%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi(t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi(1+%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Area(t) := determinant(Phi(t));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Area(0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d(Area(t),[t,0,%pi]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Now solve the ODEs directly
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: input   start ] */
+my_odes[1];
+my_odes[2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln1 : subst(1,%c,rhs(ode2(my_odes[1],x1(t),t)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln2 : subst(1,%c,rhs(ode2(my_odes[2],x2(t),t)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([soln1,soln2],[t,0,%pi]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

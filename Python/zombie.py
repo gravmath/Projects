@@ -35,13 +35,13 @@ Z = soln[:, 1]
 R = soln[:, 2]
 
 # plot results
-# plt.figure()
-# plt.plot(t, S, label='Living')
-# plt.plot(t, Z, label='Zombies')
-# plt.xlabel('Days from outbreak')
-# plt.ylabel('Population')
-# plt.title('Zombie Apocalypse - No Init. Dead Pop.; No New Births.')
-# plt.legend(loc=0)
+plt.figure()
+plt.plot(t, S, label='Living')
+plt.plot(t, Z, label='Zombies')
+plt.xlabel('Days from outbreak')
+plt.ylabel('Population')
+plt.title('Zombie Apocalypse - No Init. Dead Pop.; No New Births.')
+plt.legend(loc=0)
 
 # change the initial conditions
 R0 = 0.01*S0   # 1% of initial pop is dead

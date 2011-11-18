@@ -1,0 +1,47 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.3 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([u,p,q],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst_lst : [diff(u,t) = -3*u*p, diff(p,t) = q - 2*p^2, diff(q,t) = p*(u+2*q)];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+get_f_g(lst) := block([Fnm1,Gnm1,Fn,Gn],
+                      Fnm1 : lst[1],
+                      Gnm1 : lst[2],
+                      Fn   : diff(Fnm1,t) - u*Gnm1,
+                      Fn   : ratsimp(subst(subst_lst,Fn)),
+                      Gn   : Fnm1 + diff(Gnm1,t),
+                      Gn   : ratsimp(subst(subst_lst,Gn)),
+                      [Fn,Gn]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Num      : 20$
+coeff[0] : [1,0]$
+for counter:1 step 1 thru Num do
+  block([],
+        coeff[counter]   : get_f_g(coeff[counter-1]),
+        coeff[counter-1] : factor(ratsimp(expand(coeff[counter-1]/(counter-1)!))));
+coeff[Num] : ratsimp(expand(coeff[Num]/Num!))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for counter:0 step 1 thru 20 do
+  display(coeff[counter]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+? do;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
