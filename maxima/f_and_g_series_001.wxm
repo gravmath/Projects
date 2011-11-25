@@ -1,0 +1,88 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+? if;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([u,p,q],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sub_lst : [diff(u,t) = -3*u*p,diff(p,t) = q - 2*p^2, diff(q,t)=-p*(u+2*q)];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[0] : 1;
+G[0] : 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[1] : diff(F[0],t) - u*G[0];
+G[1] : F[0] + diff(G[0],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[2] : diff(F[1],t) - u*G[1];
+G[2] : F[1] + diff(G[1],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[3] : diff(F[2],t) - u*G[2];
+G[3] : F[2] + diff(G[2],t);
+F[3] : subst(sub_lst,F[3]);
+G[3] : subst(sub_lst,G[3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[4] : diff(F[3],t) - u*G[3];
+G[4] : F[3] + diff(G[3],t);
+F[4] : subst(sub_lst,F[4]),ratsimp;
+G[4] : subst(sub_lst,G[4]),ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[5] : diff(F[4],t) - u*G[4];
+G[5] : F[4] + diff(G[4],t);
+F[5] : subst(sub_lst,F[5]),ratsimp;
+G[5] : subst(sub_lst,G[5]),ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[6] : diff(F[5],t) - u*G[5];
+G[6] : F[5] + diff(G[5],t);
+F[6] : subst(sub_lst,F[6]),ratsimp;
+G[6] : subst(sub_lst,G[6]),ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[7] : diff(F[6],t) - u*G[6];
+G[7] : F[6] + diff(G[6],t);
+F[7] : subst(sub_lst,F[7]),ratsimp;
+G[7] : subst(sub_lst,G[7]),ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(10395);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+10395/495;33*5;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(p*u*(u^2 - 2*(25*p^2-7*q)*u + 5*(33*p^4-30*p^2*q+5*q^2)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(F[7]/63);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+? subst;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
