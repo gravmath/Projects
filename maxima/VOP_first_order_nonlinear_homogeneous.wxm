@@ -1,0 +1,55 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+depends([y,C],x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L1(arg) := diff(arg,x) - a * arg^2;
+L2(arg) := diff(arg,x) - a*arg^2 - b*arg;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : L1(y);
+eq2 : L2(y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln1 : ode2(eq1,y,x);
+soln2 : ode2(eq2,y,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f1(arg) := -1/(a*(x+arg));
+f2(arg) := b*exp(b*(x+arg))/(1-a*exp(b*(x+arg)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L1(f1(k));
+L2(f2(k));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L1(f2(k));
+L2(f1(k));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq3 : L2(f1(C));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln3 : rhs(ode2(eq3,C,x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L2(f1(soln3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L2(f1(soln3)),ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
