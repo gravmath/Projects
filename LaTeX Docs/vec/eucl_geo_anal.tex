@@ -49,7 +49,7 @@ permutation symb:   & $[i,j,k]$\\
 column array:       & $| {\mathbf q} \rangle$\\
 row array:          & $\langle {\mathbf q} |$\\
 \end{tabular*}
-\vspace{11.56mm}
+\vspace{17.56mm}
 \end{textblock*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,22 +59,26 @@ row array:          & $\langle {\mathbf q} |$\\
 \textblockcolor{LightYellow}
 \begin{textblock*}{60mm}(59.85mm,12.54mm)
 \begin{tabular*}{58mm}{l @{\extracolsep{\fill}} l}
-   & ~\\
+  & \\
 \multicolumn{2}{c}{\bf Defining Vectors} \\
-   & ~\\
+  & \\
+A00:                  & ${\mathbf A} + {\mathbf B} \in {\mathbb V}$ \\
+A00a:                 & $m {\mathbf A} \equiv {\mathbf A} m \in {\mathbb V}$ \\
 A01:                  & ${\mathbf A} + {\mathbf B} \equiv 
                          {\mathbf B} + {\mathbf A}$\\
 A02:                  & ${\mathbf A} + \left( {\mathbf B} 
                         + {\mathbf C} \right) 
                       \equiv \left( {\mathbf A} + {\mathbf B} \right) 
                         + {\mathbf C}$\\
-A03:                  & $ m {\mathbf A} \equiv {\mathbf A} m$\\
+A03:                  & $ 1 {\mathbf A} = {\mathbf A}$\\
 A04:                  & $ m \left( n {\mathbf A} \right) 
                         \equiv \left( m n \right) {\mathbf A}$\\
 A05:                  & $\left( m + n \right) {\mathbf A} 
                         \equiv m {\mathbf A} + m {\mathbf A}$\\
 A06:                  & $m \left( {\mathbf A} + {\mathbf B} \right) 
                         \equiv m {\mathbf A} + m {\mathbf B}$\\
+A06a:                 & ${\mathbf A} + {\mathbf 0} = {\mathbf A}$\\
+A06b:                 & ${\mathbf A} + inv{\mathbf A} = {\mathbf 0}$\\
 A07:${}^\dagger$      & ${\mathbf A} \cdot {\mathbf B} 
                         \equiv {\mathbf B} \cdot {\mathbf A}$\\
 A08:${}^\dagger$      & ${\mathbf A} \cdot \left( {\mathbf B} 
@@ -127,7 +131,7 @@ A19:${}^\dag{}^\ddag$ & $| {\mathbf A} \times {\mathbf B} |
 A20:${}^\dag{}^\ddag$ & ${\mathbf A} \cdot( {\mathbf B} \times {\mathbf C} )
                        ={\mathbf B} \cdot( {\mathbf C} \times {\mathbf A} )$\\
 \end{tabular*}
-\vspace{7.85mm}
+%\vspace{7.85mm}
 \end{textblock*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +175,7 @@ F11:${}^\dag$         & $\int_{{\mathcal V}} div({\mathbf F}) d {\mathcal V}
 F12:${}\dag$          & $\int_{\mathcal S} curl({\mathbf F}) \cdot {\mathbf n} d {\mathcal S} 
                            = \int_{\partial {\mathcal S}} {\mathbf F} \cdot d {\mathbf r}$\\
 \end{tabular*}
-\vspace{2mm}
+\vspace{8mm}
 \end{textblock*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,7 +183,7 @@ F12:${}\dag$          & $\int_{\mathcal S} curl({\mathbf F}) \cdot {\mathbf n} d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \scriptsize
 \textblockcolor{LightYellow}
-\begin{textblock*}{65mm}(0mm,95.3mm)
+\begin{textblock*}{65mm}(0mm,101.3mm)
 \begin{tabular*}{64mm}{l @{\extracolsep{\fill}} l}
    & ~\\
 \multicolumn{2}{c}{\bf Orthogonal Coordinates$
@@ -230,7 +234,7 @@ N08:  & $\nabla = {\mathbf e}_x \partial_x +
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \scriptsize
 \textblockcolor{LightYellow}
-\begin{textblock*}{64mm}(64.85mm,95.3mm)
+\begin{textblock*}{64mm}(64.85mm,101.3mm)
 \begin{tabular*}{63mm}{l @{\extracolsep{\fill}} l}
    & ~\\
 \multicolumn{2}{c}{\bf Derivative Theorems${}^\dag{}^\ddag$} \\
@@ -286,10 +290,10 @@ D18: & $\phi({\mathbf A}\cdot{\mathbf r})$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \scriptsize
 \textblockcolor{LightYellow}
-\begin{textblock*}{61.8mm}(128.7mm,95.3mm)
+\begin{textblock*}{61.8mm}(128.7mm,101.3mm)
 \begin{tabular*}{60.8mm}{l @{\extracolsep{\fill}} l}
    & ~\\
-\multicolumn{2}{c}{\bf Integral Theorems${}^\dag{}^\ddag$} \\
+\multicolumn{2}{c}{\bf Integral Theorems${}^\dag{}^\ddag{}^*$} \\
    & \\
 I01: & $\int_{\mathcal V} \nabla \times {\mathbf F} \, 
         d {\mathcal V} = \int_{\partial {\mathcal V}} 
@@ -326,24 +330,39 @@ I09: & $ \int_{\partial {\mathcal S}} d \ell \,
       {\mathcal S} ( {\hat n} \times \nabla )\circ$\vspace{1.5mm}\\
 I10: & $\frac{d \Phi}{dt} = \int_{{\mathcal S}} 
                            \left[  \frac{\partial {\mathbf F}}{\partial t} 
-                                 + ( \nabla \cdot {\mathbf F} ) {\mathbf V}
+                                 + ( \nabla \cdot {\mathbf F} ) {\mathbf v}
                            \right] \cdot d {\mathcal S}$ \\
-     & $ + \quad \int_{\partial {\mathcal S}} 
-           {\mathbf F} \times {\mathbf V} \cdot {\hat t} d \ell$\vspace{1.5mm}\\
-I11: & $\frac{d }{dt} \int_{\mathcal V} \rho d {\mathbf V} = 
+     & $ \quad \quad \quad + \int_{\partial {\mathcal S}} 
+           {\mathbf F} \times {\mathbf v} \cdot {\hat t} d \ell$\vspace{1.5mm}\\
+I11: & $\frac{d }{dt} \int_{\mathcal V} \rho d {\mathcal V} = 
         \int_{\mathcal V} \frac{\partial \rho}{\partial t} d {\mathcal V} 
         + \int_{\partial {\mathcal V}} \rho {\mathbf v} \cdot d {\mathcal S}$\\ 
 \end{tabular*}
 \vspace{1.5mm}
 \end{textblock*}
 
-\begin{textblock*}{140.15mm}(0mm,170mm)
- \vspace{51.05mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Caveats as Footnotes 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TPshowboxestrue
+\textblockcolor{LightYellow}
+\begin{textblock*}{7.5in}(0mm,173mm)
+  $\dag$ - inner product required \quad $\ddag$ - valid only in 3 dimensions 
+    \quad $*$ - $\circ$ any product (I08 \& I09) \quad transport theorems I10 \& I11: ${\mathbf v}$ velocity of the region 
 \end{textblock*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Jacobian 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%frame box
+\TPshowboxestrue
+\begin{textblock*}{140.15mm}(0mm,179.00mm)
+ \vspace{51.3mm}
+\end{textblock*}
 
+%first column box
 \TPshowboxesfalse
-\begin{textblock*}{70mm}(0.2mm,170.2mm)
+\begin{textblock*}{70mm}(0.2mm,179.15mm)
 {\centering \bf Jacobian}\\
   Let a $n$-dimensional space be spanned by a
   set of vectors $\{{\mathbf e}_i \}$.
@@ -358,7 +377,9 @@ I11: & $\frac{d }{dt} \int_{\mathcal V} \rho d {\mathbf V} =
     gives the \emph{dual vector space} with corresponding components collected row-wise and obeying the contraction rule
 \end{textblock*}
 
-\begin{textblock*}{70mm}(70mm,170.1mm)
+%second column box
+\TPshowboxesfalse
+\begin{textblock*}{70mm}(70mm,179.15mm)
 \begin{eqnarray*}
   {\mathbf J}^{-1} {\mathbf J} & = &  \left[ \begin{array}{cccc}
                  \langle {\mathbf e}^1 | {\mathbf e}_1 \rangle & \langle {\mathbf e}^1 | {\mathbf e}_2 \rangle & \dots & \langle {\mathbf e}^1 | {\mathbf e}_n \rangle \vspace{1mm}\\
@@ -376,7 +397,7 @@ Finally $\det( {\mathbf J} ) \equiv J$ and $\det( {\mathbf J}^{-1}) \equiv J^{-1
 \end{textblock*}
 
 \TPshowboxestrue
-\begin{textblock*}{50.5mm}(140mm,170mm)
+\begin{textblock*}{50.5mm}(140mm,179.0mm)
   \begin{tabular*}{50mm}{l @{\extracolsep{\fill}} l}
     & \\
   \multicolumn{2}{c}{\bf Permutation Tensor}\\
@@ -402,16 +423,19 @@ E06: & $\epsilon^{ijk} \epsilon_{ijk} = 6$
 \end{textblock*}
 
 
-%\begin{textblock*}
-%A vector is uniquely specified by givings its divergence and curl within a reqion and its 
-%normal component over the boundary.
-
-%\emph{Helmholtz's Theorem:} A vector with both source and circulation densities vanishing at inifinity
-%may be written as the sum of two parts, one of which is irrotational, the other solenoidal --- 
-%$\mathbf{V} = - {\mathbf \nabla} \phi + \nabla \times {\mathbf A}$.
-%\end{textblock*}
-
-\begin{textblock*}{7.5in}(0mm,224.90mm)
-  $\dag$ = inner product required \quad \quad $\ddag$ = valid only in 3 dimensions 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Two Theorems: Vector Decomposition & Helmholtz  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{MintGreen}
+\begin{textblock*}{7.5in}(0mm,233mm)
+\begin{tabular*}{50mm}{l @{\extracolsep{\fill}} l}
+    & \\
+  \multicolumn{2}{c}{\bf Transport Theorems}\\
+TT01: & $\frac{d \Phi}{d t} = \int_{\partial {\mathcal V}_t} 
+                                      \left[ \frac{\partial \mathbf F}{\partial t} 
+                                           + (\nabla \cdot {\mathbf F} ){\mathbf v} \right] \cdot {\mathbf n} d {\mathcal S}$  \\
+& \\
+TT02: & $\frac{d}{d t} \int_{\mathcal V} \rho  $
+  \end{tabular*}
 \end{textblock*}
 \newpage
