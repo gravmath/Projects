@@ -1,0 +1,102 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(t) := matrix( [2*t,1],[-1,t]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi0 : matrix([1,0],[0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi1 : integrate(A(t1),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi2 : integrate(A(t1).subst(t1,t,Phi1),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi3 : integrate(A(t1).subst(t1,t,Phi2),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi4 : integrate(A(t1).subst(t1,t,Phi3),t1,0,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi5 : integrate(A(t1).subst(t1,t,Phi4),t1,0,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi6 : integrate(A(t1).subst(t1,t,Phi5),t1,0,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi7 : integrate(A(t1).subst(t1,t,Phi6),t1,0,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi8 : integrate(A(t1).subst(t1,t,Phi7),t1,0,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi9 : integrate(A(t1).subst(t1,t,Phi8),t1,0,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+P : Phi0 + Phi1 + Phi2 + Phi3 + Phi4 + Phi5 + Phi6 + Phi7 + Phi8 + Phi9$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(0.88176352705410832,t,P);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(0.88176352705410832,t,Phi0+Phi1+Phi2+Phi3+Phi4+Phi5+Phi6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prop(a) := matrix([1,a],[0,1]);
+V(a) := matrix([2*a,0],[-1,a]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F0 : Prop(t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F1 : integrate(Prop(t-t1).V(t1).Prop(t1-0),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F2 : integrate(Prop(t-t1).V(t1).subst(t1,t,F1),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F3 : integrate(Prop(t-t1).V(t1).subst(t1,t,F2),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F4 : integrate(Prop(t-t1).V(t1).subst(t1,t,F3),t1,0,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F : Prop(t) + F1 + F2 + F3 + F4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(0.88176352705410832,t,F);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+subst(0.88176352705410832,t,Phi0+Phi1+Phi2+Phi3+Phi4+Phi5+Phi6+Phi7+Phi8+Phi9);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

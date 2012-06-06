@@ -1,7 +1,9 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import odeint
+# zombie apocalypse modeling
+import numpy             as     np
+import matplotlib.pyplot as     plt
+from   scipy.integrate   import odeint
 plt.ion()
+
 
 P = 0       # birth rate
 d = 0.0001  # natural death percent (per day)
@@ -41,7 +43,7 @@ plt.xlabel('Days from outbreak')
 plt.ylabel('Population')
 plt.title('Zombie Apocalypse - No Init. Dead Pop.; No New Births.')
 plt.legend(loc=0)
-plt.show()
+#plt.show()
 
 # change the initial conditions
 R0 = 0.01*S0   # 1% of initial pop is dead
@@ -60,7 +62,7 @@ plt.xlabel('Days from outbreak')
 plt.ylabel('Population')
 plt.title('Zombie Apocalypse - 1% Init. Pop. is Dead; No New Births.')
 plt.legend(loc=0)
-plt.show()
+#plt.show()
 
 # change the initial conditions
 R0 = 0.01*S0   # 1% of initial pop is dead
@@ -73,10 +75,11 @@ S = soln[:, 0]
 Z = soln[:, 1]
 R = soln[:, 2]
 
-#plt.figure()
-#plt.plot(t, S, label='Living')
-#plt.plot(t, Z, label='Zombies')
-#plt.xlabel('Days from outbreak')
-#plt.ylabel('Population')
-#plt.title('Zombie Apocalypse - 1% Init. Pop. is Dead; 10 Daily Births')
-#plt.legend(loc=0)
+plt.figure()
+plt.plot(t, S, label='Living')
+plt.plot(t, Z, label='Zombies')
+plt.xlabel('Days from outbreak')
+plt.ylabel('Population')
+plt.title('Zombie Apocalypse - 1% Init. Pop. is Dead; 10 Daily Births')
+plt.legend(loc=0)
+plt.show()

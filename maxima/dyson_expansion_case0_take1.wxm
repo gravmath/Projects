@@ -1,0 +1,53 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+iter1(a) := (
+   block([c11,c12,c21,c22],
+     c11  : integrate(a[1,1],t1,0,t),
+     c11  : subst(t1,t,c11),
+     c12  : integrate(a[1,2],t1,0,t),
+     c12  : subst(t1,t,c12),
+     c21  : integrate(a[2,1],t1,0,t),
+     c21  : subst(t1,t,c21),
+     c22  : integrate(a[2,2],t1,0,t),
+     c22  : subst(t1,t,c22),
+     temp : matrix([c11,c12],[c21,c22])))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(t) := matrix([2*t,1],[1,t]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi : array(Phi,13);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi[0] : matrix([1,0],[0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for counter : 1 thru 13 do
+  Phi[counter] : iter1(A(t1).Phi[counter-1])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+calc_M(Phi,num) := (
+                block([M],
+                      M : matrix([0,0],[0,0]),
+                      for counter : 0 thru num do
+                          M : M + Phi[counter],
+                      M : expand(M)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M : calc_M(phi,3);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

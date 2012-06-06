@@ -1,0 +1,120 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+int_func(A) := ( block(
+                 [dims,temp,i,j],
+                  dims : matrix_size(A),
+                  temp : 0*A,
+                  for i:1 thru dims[1] do
+                    for j:1 thru dims[2] do
+                         temp[i,j] : integrate(A[i,j],t1,0,t),
+                  temp : subst(t1,t,temp)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+phi_list(A,num) := ( block(
+                 [dims,temp,i,j],
+                 temp : makelist(0,dummy,0,num-1),
+                 temp[1] : 0*A,
+                 dims : matrix_size(A),
+                 for i:1 thru dims[1] do
+                   for j:1 thru dims[2] do
+                      if i = j then temp[1][i,j] : 1,
+                 for i:2 thru num do
+                   temp[i] : int_func(A.temp[i-1]),
+                 subst(t,t1,temp)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+prop_list(A,Prop,num) := ( block(
+                     [temp,i],
+                     temp : makelist(0,dummy,0,num-1),
+                     temp[1] : subst(t1,t,Prop),
+                     for i:2 thru num do
+                       temp[i] : int_func(A.temp[i-1]),
+                     subst(t,t1,temp)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum_mat(lst,num) := ( block(
+                      [temp,i],
+                      temp : 0*lst[1],
+                      for i:1 thru num do
+                        temp : temp + lst[i],
+                      expand(temp)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(t) := matrix([2*t,1],[1,t]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi_lst : phi_list(A(t1),20)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Phi3 : sum_mat(Phi_lst,3);
+Phi4 : sum_mat(Phi_lst,4);
+Phi5 : sum_mat(Phi_lst,5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+H0 : matrix([0,1],[0,0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prop_lst : phi_list(H0,20)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prop_lst;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prop_sum : sum_mat(Prop_lst,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prop(t) := Prop_sum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prop(t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V(t) := A(t) - H0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V(t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+? if;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+i : 1;
+j : 1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+if i = j then 'true' else 'false';
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+if i = j then x : 7;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

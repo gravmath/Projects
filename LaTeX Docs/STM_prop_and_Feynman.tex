@@ -1,0 +1,204 @@
+\documentclass[10pt]{article}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+\usepackage{bbold}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+\TPshowboxestrue
+\TPMargin{2mm}
+\pagestyle{empty}
+
+
+\begin{document}
+\section{Introduction}
+In this note we go through the various approaches for formally solving  
+\[
+ \frac{d}{dt} \left| S \right> = {\mathbb A} \left| S \right> + \left| u \right> \, ,
+\]
+where $\left| S \right>$ is the state of the system, $A(t)$ called the process
+matrix, and $\left| u(t) \right>$ is an inhomogeneous forcing function. 
+This equation is the most general way of writing a linear nonhomogeneous coupled set 
+of differential equations.  Despite its innocent form, this equation is 
+general enough to encompass most linear equations (Maxwell's, Schrodingers, wave, 
+heat, and selected Newtonian equations).  The steps taken in this note will be to first
+solve the homogeneous equation formally in `time' space and show how the
+state transition matrix (STM) serves as a kernel or Green's function
+for solving the inhomogeneous equation.  We next explore the formal ways
+for constructing the STM and closely related matrix, called the evolution
+operator.  The evolution operator has the advantage of allowing the formal
+solution to transformed into the `frequency' space via the Fourier transform.
+ 
+\section{Homogeneous Equation}
+
+Begin by solving the homogeneous equation by setting the 
+$\left| u \right>$ term to zero.  Now multiply both sides
+by $dt$ resulting in 
+\[
+  d \left| S \right> = {\mathbb A} \left| S \right> dt \, ,
+\]
+which integrates formally to 
+\[
+  \left| S \right> = \left| S_0 \right> + \int_{t_0}^{t} dt' {\mathbb A}(t') \left| S(t') \right>  \, .
+\]
+Since the equation is linear, there must be an operator that connnects
+the state of the system at a latter time in terms of the initial 
+conditions
+\[
+ \left| S \right> = \Phi(t,t_0) \left| S_0 \right> \, .
+\]
+This operator is known as the state transition matrix
+(STM), denoted by $\Phi(t,t_0)$, and can be determined by an interative
+procedure using the integral equation. Before starting the iteration
+define the operator
+\[
+  {\mathbb B} \left[ \left| X \right> \right] = \left| X_0 \right> + \int_{t0}^t dt' {\mathbb A}(t') \left| X(t') \right>  \, ,
+\]
+where $\left| X_0 \right>$ is the argument evaluated at the initial
+conditions.  The iteration to find $\Phi$ is affected by 
+successive applications of $\mathbb B$ to produce the $n^{th}$ approximation
+$\left| S \right>^{(n)}$ to $\left| S \right>$. Generalizing the 
+obvious pattern to $\left| S \right>$ gives $\Phi$ as an
+infinite nested set of integrals. The interation starts
+with $\left| S \right>^{(0)} = \left| S_0 \right>$ and 
+the first iteration gives
+\begin{eqnarray*}
+  \left| S \right>^{(1)} & = &  {\mathbb B}\left[ \left| S \right>^{(0)} \right] \\
+                         & = & \left| S_0 \right> + \int_{t0}^t dt' {\mathbb A}(t') \left| S_0 \right> \, .
+\end{eqnarray*}
+Pluggin this result into the next iteration yields
+\begin{eqnarray*}
+  \left| S \right>^{(2)} & = &  {\mathbb B}\left[ \left| S \right>^{(1)}\right] \\
+                         & = & \left| S_0 \right> + \int_{t_0}^t dt' {\mathbb A}(t') 
+                                  \left[ \left| S_0 \right> + \int_{t_0}^{t'} dt'' {\mathbb A(t'')} \left| S_0 \right> \right] \\
+                         & = & \left[ {\mathbb I} + \int_{t_0}^t dt' {\mathbb A}(t') + \int_{t_0}^t \int_{t_0}^{t'} dt' dt'' {\mathbb A}(t') {\mathbb A}(t'') \right] \left| S_0 \right> \, .
+\end{eqnarray*}
+Abstracting to $n \rightarrow \infty$ yields
+\[
+  \left| S \right> = \left[ {\mathbb I} + \int_{t_0}^t dt' {\mathbb A}(t') + \int_{t_0}^t \int_{t_0}^{t'} dt' dt'' {\mathbb A}(t') {\mathbb A}(t'') + ...\right] \left| S_0 \right>
+\]
+from which the STM can be read off as 
+\[
+  \Phi(t,t_0) = {\mathbb I} + \int_{t_0}^t dt' {\mathbb A}(t') + \int_{t_0}^t \int_{t_0}^{t'} dt' dt'' {\mathbb A}(t') {\mathbb A}(t'') + ... \, .
+\]
+Finally, we can derive the equation of motion for the STM by first noting that 
+\[
+  \frac{d}{dt} \left| S \right> = \frac{d}{dt} \Phi(t,t_0) \left| S_0 \right>
+\]
+and that 
+\[
+  \frac{d}{dt} \left| S \right> = A(t) \left| S \right> = A(t) \Phi(t,t_0) \left| S \right> \, .
+\]
+Equatating the two right-hand sides yields
+\[
+  \frac{d}{dt} \Phi(t,t_0) = {\mathbb A}(t) \Phi(t,t_0) \, .
+\]
+
+\section{Solving the Inhomogeneous Solution}
+
+The STM offers a solution to the inhomogeneous equation by acting as a kernel
+that propagates the influence of the forcing function $\left| u(t) \right>$
+as follows
+\[
+ \left| S \right> = \left| S \right>_h + \int_{t_0}^t \Phi(t,t') \left| u(t') \right> dt' \, ,
+\]
+where $\left| S \right>_h$ is a solution to the homogeneous equation.
+To see that the proposed solution satifies the inhomogeneous solution
+start by taking the time derivative of each side
+\begin{eqnarray*}
+  \frac{d}{dt} \left| S \right> & = &  \frac{d}{dt} \left| S \right>_h + \frac{\partial}{\partial t} \int_{t_0}^t \Phi(t,t') \left|u(t')\right> dt' \\
+                                & = &  {\mathbb A}(t) \left| S \right>_h + \int_{t_0}^t \frac{\partial \Phi(t,t')}{\partial t} \left| u(t')\right> dt'
+                                       + \Phi(t,t) \left| u(t) \right> \\
+                                & = & {\mathbb A}(t) \left| S \right>_h + \int_{t_0}^t {\mathbb A}(t) \Phi(t,t') \left| u(t') \right> dt' 
+                                       + \left| u(t) \right>\\
+                                & = & {\mathbb A}(t) \left[ \left| S\right>_h + \int_{t_0}^t \Phi(t,t') \left| u(t') \right> dt' \right]
+                                       + \left| u(t) \right> \\
+                                & = & {\mathbb A}(t) \left|S\right> + \left|u(t)\right> \, ,
+\end{eqnarray*}
+where the Leibnitz rule for differentiating under an integral is used in line 
+two, the evolution equation for $\Phi$ is used in line three, and a regrouping
+of terms in used in line four.
+
+\section{Time Evolution Operator}
+
+Generally the iterated integrals used in defining the STM are difficult
+to implement and give a slow convergence to the final solution as
+$n \rightarrow \infty$.  The convergence of the process can be 
+increased by using a technique that involves the separation of the 
+using the 
+\[
+  {\mathbb A} = {\mathbb H} + {\mathbb V}(t)
+\]
+where ${\mathbb H}$ is time-invariant.  Now define a new state 
+$\left| T \right>$ by
+\[
+  \left| S \right> = e^{ {\mathbb H} (t-t_0) } \left| T \right> \,.
+\]
+Defining the free propagator 
+${\mathcal P}(t-t_0) = e^{ {\mathbb H} (t-t_0) }$ yields a time
+evolution for $\left| T \right>$ which depends only on $\mathbb V$. 
+To determine this relationship first derive the evolution equation
+for the free propagator.  Since the free propagator is the matrix 
+exponential of $\mathbb H$ it obeys the particularly simple
+evolution equation
+\[
+  \frac{d}{dt} {\mathcal P}(t-t_0) = {\mathbb H} \, {\mathcal P}(t-t_0) \, .
+\]
+\[
+  \frac{d}{dt} \left| S \right> = \frac{d}{dt} \Pi(t-t_0) \left| T \right> 
+                                = {\mathbb H} \, \Pi(t-t_0) \left| T \right> 
+                                  + \Pi(t-t_0) \frac{d}{dt} \left| T \right>
+\]
+\[
+  {\mathbb H} \, \Pi(t-t_0) \left| T \right> + \Phi(t-t_0) \frac{d}{dt} \left| T \right>
+    = ( {\mathbb H} + {\mathbb V}(t) ) \Pi(t-t_0) \left| T \right> + \left| U(t) \right>
+\]
+\[
+  \frac{d}{dt} \left| T \right> = \Pi(t_0-t) {\mathbb V}(t) \, \Pi(t-t_0) \left| T \right> + \Pi(t_0-t) \left| U(t) \right>
+\]
+\[
+  {\mathcal A}(t) = \Pi(t_0-t) {\mathbb V}(t) \, \Pi(t-t_0)
+\]
+\[
+  \left| {\mathcal U}(t) \right> = \Pi(t_0-t) \left| U(t) \right>
+\]
+\[
+  \frac{d}{dt} \left| T \right> = {\mathcal A}(t) \left| T \right> + \left| {\mathcal U}(t) \right>
+\]
+\[
+  \left| T \right> = {\mathbb U}(t,t_0) \left| T_0 \right>
+\]
+\[
+  {\mathbb U}(t,t_0) =    {\mathbb I} + \int_{t_0}^t dt' {\mathcal A}(t') 
+                        + \int_{t_0}^t \int_{t_0}^{t'} dt' dt'' {\mathcal A}(t') {\mathcal A}(t'') + ...
+\]
+
+
+Suppose that there exists a matrix $Q$ such that
+\[
+  Q \sum_{n=0}^{\infty} A^n = 1
+\]
+then by definition $Q^{-1}$ would be equal to $\sum_{n=0}^{\infty} A^n$. It 
+turns out that such a matrix can be trivially constructed.  Assume 
+$Q = 1 - A$ then:
+\begin{eqnarray}
+  (1-A) \sum_{n=0}^{\infty} A^n 
+       & = & (1-A) \left(1 + A + A^2 + A^3 + ... \right) \\
+       & = & (1-A) + (1-A)A + (1-A)A^2 + (1-A)A^3 + ...\\
+       & = & 1 - A + A - A^2 + A^2 - A^3 + A^3 - A^4 + ... \\
+       & = & 1 \, .
+\end{eqnarray}
+So therefore $(1-A)^{-1} = \sum_{n=0}^{\infty} A^n$
+\end{document}

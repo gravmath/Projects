@@ -1,0 +1,301 @@
+%vec
+\documentclass[10pt]{article}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+\usepackage{bbold}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+\TPshowboxestrue
+\TPMargin{2mm}
+\pagestyle{empty}
+
+\begin{document}
+
+\section{Introduction to Case Study 0}
+We want to examine the solutions to the equation 
+\begin{equation}\label{Eq:main_eq}
+  \frac{d^2}{dt^2} z + p \frac{d}{dt} z + q z = t e^{2 t}
+\end{equation}
+with $p = -4$ and $q = 4$, 
+by comparing and contrasting a variety of methods. First we will
+solve the homogeneous equation equation through 2 separate methods.  The
+first method will be through the standard second-order differential
+equation methods.  The second method is based on the state space formalism. 
+
+\section{Standard Second Order Method}
+In this section, we tackle Eq.(\ref{Eq:main_eq}) by first calculating 
+the characteristic equation for the homogeneous equation.  Ordinarily 
+the characteristic equation yields two separate roots yielding two 
+independent solutions.  However, in this case, the roots are repeated
+and the reduction of order method must be used. Once two independent
+solutions are obtained the particular solution is constructed by
+using the Variation of Parameters method.
+
+\subsection{Charateristic Equation}
+To determine the characteristic equation assume that the solution 
+has the form
+\[
+  z = \exp(r t) \; ,
+\]
+Substituting this form into Eq. (\ref{Eq:main_eq}) yields
+\[
+  r^2 - 4 r + 4 = 0 \;,
+\]
+which is solved immediately as $(r-2)^2 = 0$. The first independent
+solution
+\[
+  y_1 = e^{2t}
+\]
+is then arrived at. However, this is as far as it goes due to the
+double root.  
+
+\subsection{Reduction of Order}
+
+To obtain the second independent solution we turn to the \emph{reduction of order} technique.
+Start by defining
+\[
+  y(t) = y_1(t) v(t) .
+\]
+Taking the first and second derivatives yields
+\[
+  {\dot y} = y_1 {\dot v} + {\dot y}_1 v
+\]
+and
+\[
+  {\ddot y} = {\ddot y}_1 v + 2 {\dot y}_1 {\dot v} + y_1 {\ddot v} ,
+\]
+respectively.
+Substituting these forms for ${\dot y}$ and ${\ddot y}$ into the differential
+equation ${\ddot y} + p {\dot y} + q y = 0$ yields
+\[
+    \left( {\ddot y}_1 + p {\dot y}_1 + q y_1 \right) v 
+  + \left(2 {\dot y}_1 + p y_1 \right) {\dot v} 
+  + y_1 {\ddot v} = 0 .
+\]
+The first term cancels since $y_1$ is a solution of the differential equation.
+This leaves the following equation for $w = {\dot v}$
+\[
+  y_1 {\dot w} + (2 {\dot y}_1 + p y_1) w = 0
+\]
+which can be rearranged as
+\[
+ \frac{\dot w}{w} = -\frac{ (2 {\dot y}_1 + p y_1) {\dot v} }{y_1}
+\]
+which, since it is first-order, can be immediately integrated to
+\begin{eqnarray*}
+w & = & c \exp \left[ -\int dt \left(\frac{2 {\dot y}_1}{y_1} + p \right) \right] \\
+  & = & c \exp \left[ -2 \int \frac{ {\dot y}_1' }{y_1} dt \right] \exp \left[ -\int dt p \right]  \\
+  & = & c \frac{1}{{y_1}^2} \exp \left[ -\int dt p \right] 
+\end{eqnarray*}
+Now in the case of constant coeffcients, $p \neq p(t)$ and the integral can be 
+performed trivially and $w$ becomes
+\[
+  w = \frac{c}{ {y_1}^2 } e^{-p t} .
+\]
+Since in this particular case we have equal roots $y_1 = e^{-p t /2}$ and $w$ can be 
+written as
+\[
+  w = \frac{e^{-pt}}{\left( e^{-pt/2} \right)^2 } = 1 
+\]
+where the arbitrary constant of integration has been set to $1$ since we 
+are interested only in the functional form.  This equation can be integrated 
+immediately to give
+\[
+  v = \int dt \, w = \int dt = t
+\]
+so that the new independent solution is
+\[
+  y_2 = v y_1 = t y_1 = t e^{2 t}.
+\]
+
+\subsection{Variation of Parameters}
+To respond to the inhomogeneous term $t e^{2t}$ start by assuming a solution
+\[
+  y(t) = u_1(t) y_1(t) + u_2(t) y_2(t)
+\]
+where $u_1(t)$ and $u_2(t)$ are the now time varying `constants' of the 
+homogeneous solution.  Taking the first derivative gives
+\[
+{\dot y} = u_1 {\dot y}_1 + u_2 {\dot y}_2 + \left( {\dot u}_1 y_1 + {\dot u}_2 y_2 \right) \, .
+\]
+Taking the second derivative gives 
+\[
+  {\ddot y} =   {\dot u_1} {\dot y}_1 + u_1 {\ddot y_1}
+              + {\dot u_2} {\dot y}_2 + u_2 {\ddot y_2}
+              + \frac{d}{dt} \left( {\dot u}_1 y_1 + {\dot u}_2 y_2 \right)\, .
+\]
+Substituting these terms into the differential equation ${\ddot y} + p {\dot y} + q y = f$ and rearranging yields
+\begin{eqnarray}
+      u_1 \left( {\ddot y_1} + p {\dot y_1} + q y_1 \right) \,
+   +  u_2 \left( {\ddot y_2} + p {\dot y_2} + q y_2 \right) \, & & \\
+   +  {\dot u}_1 {\dot y}_1 + {\dot u}_2 {\dot y}_2                        
+   +  \left( \frac{d}{dt} + p \right) \left( {\dot u}_1 y_1 
+   + {\dot u}_2 y_2 \right) & = &  f \, .
+\end{eqnarray}
+The first two terms equal to zero since $y_1$ and $y_2$ are solutions to the homogeneous 
+equation ${\ddot y} + p {\dot y} + q y = 0$. 
+The equation now becomes
+\[
+  {\dot u}_1 {\dot y}_1 + {\dot u}_2 {\dot y}_2 
++ \left( \frac{d}{dt} + p \right) 
+  \left( {\dot u}_1 y_1  + {\dot u}_2 y_2 \right) = f \, ,
+\]
+which can be simplfied by assuming that the term in parentheses is zero.  
+Doing so yields the set of equations
+\begin{eqnarray}
+  {\dot u}_1 y_1        + {\dot u}_2 y_2        & = & 0 \\
+  {\dot u}_1 {\dot y}_1 + {\dot u}_2 {\dot y}_2 & = & f \, .
+\end{eqnarray}
+These last two can be separated easily in two steps.  In the first, multiply 
+the first equation by ${\dot y}_2$ and second by $y_2$ and then
+subtract the second from the first.  In the second, multiply the first equation
+by ${\dot y}_1$ and the second by $y_1$ and subtract the first from the second.
+The following equations result:
+\[
+  {\dot u}_1 \left( y_1 {\dot y}_2 - {\dot y}_1 y_2 \right) = - f y_2
+\]
+and
+\[
+  {\dot u}_2 \left( y_1 {\dot y}_2 - {\dot y}_1 y_2 \right) =   f y_1 \, .
+\]
+Defining the Wronskian as $W(y_1,y_2) = y_1 {\dot y}_2 - {\dot y}_1 y_2$ gives
+the final equations for $u_1$ 
+\[
+  {\dot u}_1 = \frac{-f \, y_2}{W(y_1,y_2)}
+\]
+and $u_2$
+\[
+  {\dot u}_2 = \frac{-f \, y_1}{W(y_1,y_2)} \, .
+\]
+These equations can be integrated directly to get the form for 
+$u_1$ and $u_2$.  In the current case of $f = t \exp{2 t}$, these 
+integrations yield ($W = \exp{4 t}$), $u_1 = -t^3/3$ and $u_2 = t^2/2$.
+So the particular solution is
+\[
+  y_p = \frac{t^3 e^{2t}}{6} \, ,
+\]
+to which can be added any linear multiples of the homogeneous solutions
+$y_1 = \exp{2 t}$ and $y_2 = t \exp{2 t}$.
+
+All things considered, the state space methods that 
+\section{State Space Methods}
+
+Since the 
+\[
+   \frac{d}{dt} \left[ \begin{array}{c}x \\ y \end{array} \right]
+     = \left[ \begin{array}{cc}
+                             0  & 1 \\
+                             -4 & 4 
+                       \end{array} \right]
+      \left[ \begin{array}{c}x \\ y \end{array} \right]
+\]
+The eigenvalues of $\mathbb A$ are degenerate with the value of $2$ occuring twice.
+The implication of this degeneracy is that there will only be one eigenvector that
+cvan be obtained with the usual method.
+\[
+  \left[\begin{array}{cc} \lambda & -1 \\ 4 & \lambda - 4 \end{array}\right]
+     \left[\begin{array}{c} a \\ b\end{array}\right]
+   = \left[\begin{array}{c} 0 \\ 0 \end{array}\right]
+\]
+\[
+  \left[\begin{array}{cc} 2 & -1 \\ 4 & -2 \end{array}\right]
+     \left[\begin{array}{c} a \\ b\end{array}\right]
+   = \left[\begin{array}{c} 0 \\ 0 \end{array}\right]
+\]
+yields $b = 2a$ with $a$ arbitrary.
+To obtain another, independent eigenvalue first take a vector that is not a multiple of the
+eigenvector determined above. Determine the action of 
+the operator ${\mathbb A} - \lambda {\mathbb I}$ on this vector.  It will always be a multiple of 
+the previous eigenvector.  Scaling the new vector so that exactly yields the eigenvector results in 
+a valid independent vector for diagonalization.  For concreteness, consider $\left< e'_2 \right| = [1,0]$.
+\[
+\left( {\mathbb A} - \lambda {\mathbb I} \right) \left| e'_2 \right> 
+    =    \left[ \begin{array}{cc} -2 & 1\\ -4 & 2\end{array}\right] \left[\begin{array}{c}1\\0\end{array} \right]
+    =    \left[\begin{array}{c}-2\\-4\end{array}\right]
+    = -2 \left[\begin{array}{c}1\\2\end{array}\right]
+    = \left| e_1 \right>
+\]
+So a proper second vector is $\left<e_2\right| = \left[-1/2,0\right]$ with the resulting 
+\[
+  \mathbb{S}      = \left[ \begin{array}{cc}1 & -1/2 \\ 2 & 0 \end{array} \right]
+\]
+and corresponding inverse
+\[
+  \mathbb{S}^{-1} = \left[ \begin{array}{cc}0 & 1/2 \\ -2 & 1 \end{array} \right]
+\]
+\[
+  {\mathbb S}^{-1} {\mathbb A} {\mathbb S} = {\mathbb M}
+\]
+where ${\mathbb M}$ takes the form
+\[
+  \mathbb{M} = \left[ \begin{array}{cc} 2 & 1 \\ 0 & 2 \end{array} \right]
+\]
+\[
+  \mathbb{M}  =       
+         \left[ \begin{array}{cc} 2 & 0 \\ 0 & 2 \end{array} \right] 
+       + \left[ \begin{array}{cc} 0 & 1 \\ 0 & 0 \end{array} \right]
+     \equiv   
+         2 \mathbb{I} + \mathbb{V}   
+\]
+\[
+  e^{\mathbb{M}t} = e^{2\mathbb{I}t} e^{\mathbb{V}t} 
+\]
+\[
+  \Phi = \mathbb{S} \mathbb{M} \mathbb{S}^{-1} 
+       = \left[ \begin{array}{cc} (1-2t) e^{2t} & t e^{2t} \\ -4 t e^{2 t} & (1+2t) e^{2t} \end{array} \right]
+\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\[
+   \frac{d}{dt} \left[ \begin{array}{c}x \\ y \end{array} \right]
+     = \left[ \begin{array}{cc}
+                             1  & 1 \\
+                             -1 & 3 
+                       \end{array} \right]
+      \left[ \begin{array}{c}x \\ y \end{array} \right]
+\]
+
+\[
+  \mathbb{S}      = \left[ \begin{array}{cc}1 & -1 \\ 1 & 0 \end{array} \right]
+\]
+\[
+  \mathbb{S}^{-1} = \left[ \begin{array}{cc}0 & 1 \\ -1 & 1 \end{array} \right]
+\]
+\[
+  \mathbb{M} = \left[ \begin{array}{cc} 2 & 1 \\ 0 & 2 \end{array} \right]
+\]
+\[
+  \mathbb{M}  =       
+         \left[ \begin{array}{cc} 2 & 0 \\ 0 & 2 \end{array} \right] 
+       + \left[ \begin{array}{cc} 0 & 1 \\ 0 & 0 \end{array} \right]
+     \equiv   
+         \mathbb{I} + \mathbb{V}   
+\]
+\[
+  e^{\mathbb{M}t} = e^{\mathbb{I}t} e^{\mathbb{V}t} 
+\]
+\[
+  e^{\mathbb{M}t} =  
+            \left[ \begin{array}{cc} e^{2t}   & 0          \\ 0 & e^{2 t} \end{array} \right]
+            \left[ \begin{array}{cc}        1 & t          \\ 0 & 1       \end{array} \right]
+          = \left[ \begin{array}{cc} e^{2t}   & t e^{2 t}  \\ 0 & e^{2 t} \end{array} \right]
+\]
+\[
+  \Phi = \mathbb{S} \mathbb{M} \mathbb{S}^{-1} 
+       = \left[ \begin{array}{cc} (1-t) e^{2t} & t e^{2t} \\ -t e^{2 t} & (1+t) e^{2t} \end{array} \right]
+\]
+
+
+\end{document} 
