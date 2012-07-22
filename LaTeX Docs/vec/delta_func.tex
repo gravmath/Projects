@@ -1,0 +1,71 @@
+\null
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textblockcolor{LightGreen}
+\begin{textblock*}{7.5in}(0in,0in)
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+       \tiny ~ & ~\\
+       \multicolumn{2}{c}{\normalsize \bf Delta Functions} \\
+       \tiny~ & ~\\
+\end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Delta Function Sequences 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{85mm}(0mm,30mm)
+\begin{tabular*}{84mm}{l l @{\extracolsep{\fill}} l}
+  \multicolumn{3}{c}{\bf Delta Function Sequences} \\
+               &
+             & \\
+  box        & $\phi_B(x;n)$ 
+             & $\left\{ 
+                  \begin{array}{cc} 
+                      0   &  |x| \ge 1/n \\  
+                      n/2 &  |x| < 1/n 
+                  \end{array} 
+                \right. n = 1, 2, \dots$ \\
+             &
+             & \\
+  Lorentz    & $\phi_L(x;n)$ 
+             & $\frac{n}{\pi} \frac{1}{1 + n^2 x^2}$ \\
+             &
+             & \\
+  Gaussian   & $\phi_G(x;n)$
+             & $\frac{n}{\sqrt{\pi}} e^{-n^2 x^2}$ \\
+             &
+             & \\
+  Sinc       & $\phi_{S}(x;n)$
+             & $\frac{1}{n\pi} \frac{\sin^2 nx}{x^2}$  
+  \end{tabular*}
+\end{textblock*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Basic Properties 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{LightYellow}
+\begin{textblock*}{85mm}(90mm,30mm)
+\begin{tabular*}{84mm}{l @{\extracolsep{\fill}} l}
+  \multicolumn{2}{c}{\bf Basic Properties} \\
+                  & \\
+    definition    & $\delta(x) = \frac{d}{dx} H(x)$ \\
+                  & \\
+    normalization & $ \int_{-\infty}^{\infty} \delta(x) dx = 1$ \\
+                  & \\    
+    sifting       & $\int_{-\infty}^{\infty} \delta(x) f(x) dx = f(0)$ \\
+                  & \\
+    derivative    & $\int_{-\infty}^{\infty} \left( \frac{d^m}{dx^m} \delta(x) \right) f(x) dx
+                      = (-1)^m \left. \frac{d^m}{dx^m} f(x) \right|_{x=0}$ \\
+                  & \\
+    scaling       & $\delta(a x) = 1/|a|\delta(x)$ \\
+                  & \\
+    parity        & $x \delta(x) = 0$ \\
+                  & \\
+    
+  \end{tabular*}
+\end{textblock*}
+

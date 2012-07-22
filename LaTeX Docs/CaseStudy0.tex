@@ -181,7 +181,28 @@ and $u_2$
   {\dot u}_2 = \frac{-f \, y_1}{W(y_1,y_2)} \, .
 \]
 These equations can be integrated directly to get the form for 
-$u_1$ and $u_2$.  In the current case of $f = t \exp{2 t}$, these 
+$u_1$ and $u_2$ to give
+\[
+  u_1(t) = - \int_{t_0}^t \frac{f(\tau) \, y_2(\tau)}{ W(y_1,y_2)(\tau) } d \tau
+\]
+and
+\[
+  u_2(t) =   \int_{t_0}^t \frac{f(\tau) \, y_1(\tau)}{ W(y_1,y_2)(\tau) } d \tau \, .
+\]
+Substituting these forms for $u_1(t)$ and $u_2(t)$ into the expression
+$y_p(t) = u_1(t) y_1(t) + u_2(t) y_2(t)$ yields
+\[
+  y_p(t) = \int_{t_0}^{t} \frac{ y_1(\tau) y_2(t) - y_1(t) y_2(\tau) }{W(y_1,y_2)(\tau)} f(\tau) d \tau \, .
+\]
+Defining the one-sided Green's function
+\[
+  g_1(t,\tau) = \frac{ y_1(\tau) y_2(t) - y_1(t) y_2(\tau) }{W(y_1,y_2)(\tau)}
+\]
+gives the usual form
+\[
+  y_p(t) = \int_{t_0}^t g_1(t,\tau) f(\tau) d \tau \, .
+\]
+ In the current case of $f = t \exp{2 t}$, these 
 integrations yield ($W = \exp{4 t}$), $u_1 = -t^3/3$ and $u_2 = t^2/2$.
 So the particular solution is
 \[

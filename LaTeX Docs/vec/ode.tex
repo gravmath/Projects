@@ -55,3 +55,64 @@ VOP:
 \[
   \frac{d}{dt} u_2(t) =   \frac{ g(t) y_1(t) }{ W\left[y_1,y_2\right](t) }
 \]
+
+One-sided Green's functions
+\[
+  g(t,\tau) = \theta(t-\tau) g_1(t,\tau)
+\]
+\[
+  g_1(t,\tau) = \frac{ y_1(\tau) y_2(t) - y_1(t) y_2(\tau) }{ W[y_1,y_2](\tau) }
+\]
+\[
+  N[g(t,t\tau)] = \delta(t-\tau) \quad y(t_0) = 0 \; {\dot y}(t_0) = 0 
+\]
+\[
+  g(\tau^{-},\tau) = g(\tau^{+},\tau)
+\]
+\[
+  \left. \frac{\partial g}{\partial t} \right|^{t=\tau^{+}}_{t=\tau^{-}} = 1
+\]
+Operators
+\[
+  M = A_2(x) D^2 + A_1(x) D + A_0(x)
+\]
+\[
+  L = D[ p(x) D] + q(x) \quad L[y] + \lambda r(x) y = 0
+\]
+\[
+  N = D^2 + a_1(x) D + a_0(x)
+\]
+\[
+  B_i[y_k] = a_{ijk\ell} D^j y_k(x_ell)
+\]
+The conversion $M \rightarrow L$ can be affected by multiplying $\mu(x) = 
+p(x)/A_2(x)$ with $p(x) = \exp\left( \int \frac{A_1}{A_2} \right)(x)$.  
+Likewise, the conversion $M \rightarrow N$ by dividing by $A_2(x)$.
+\[
+  N[ \theta(t-\tau) g_1(t,\tau) ] =  \left( \frac{d^2}{d t^2} + a_1 \frac{d}{dt} + a_0 \right) 
+                                     [\theta(t-\tau) g_1(t-\tau) ] 
+\]
+Using the short-hand $g_1 = g_1(t-\tau)$, $\theta = \theta(t-\tau)$, 
+$D = \frac{d}{dt}$ the equation becomes
+\begin{eqnarray*}
+  N[\theta g_1] & = & (D^2 + a_1 D + a_0)[\theta g_1] \\
+                & = & D^2(\theta g_1) + a_1 D(\theta g_1) + a_0 \theta g_1\\
+                & = & D(g_1 D\theta + \theta D g_1) + a_1 (g_1 D \theta + \theta D g_1 ) + a_0 \theta g_1 \\
+                & = & D g_1 D \theta + g_1 D^2 \theta + D\theta Dg_1 
+                      + \theta D^2 g_1 + a_1 g_1 D\theta + a_1 \theta Dg_1 + a_0 \theta g_1
+\end{eqnarray*}
+Now when $t \neq \tau$, $\theta$ is a constant and its derivative is zero.
+So it is only at the point when $t = \tau$ where care must be exercised. At 
+this time, $g_1 = 0$, $D \theta = \delta$, $Dg_1 = 1$, $g_1 D\delta = -\delta g_1 = -\delta$.
+Plugging these results in yields
+\begin{eqnarray*}
+  N[\theta g_1] & = &   \delta - \delta + \delta 
+                      + \theta (D^2 g_1 + a_1 g_1 + a_0 g_1 ) + a_1 g_1 \delta \\
+                & = & \delta \theta N[g_1] + a_1 g_1 \delta \, .
+\end{eqnarray*}
+Finally note that $N[g_1] = 0$ and that the $x*\delta(x) = 0$.  Since $g_1(\tau,\tau) = 0$, 
+then $g_1 \delta = 0$.  The final result is (restoring the arguments)
+\[
+  N[\theta(t-\tau) g_1(t,\tau)] = \delta(t-\tau) \, .
+\] 
+ 

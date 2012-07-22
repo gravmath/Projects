@@ -1,33 +1,13 @@
-\documentclass[10pt]{article}
-\usepackage[absolute]{textpos}
-\usepackage{graphicx}
-\setlength{\parindent}{0pt}
-%\usepackage{geometry}
-%\geometry{hmargin={1in,1in}}
-%\geometry{vmargin={1in,1in}}
-%\pagestyle{empty}
-\usepackage{color}
-\usepackage{amssymb}
-\textblockorigin{0.5in}{0.5in}
-\definecolor{MintGreen} {rgb}{0.2,0.85,0.5}
-\definecolor{LightGreen}{rgb}{0.9,1,0.9}
-\definecolor{LightYellow}    {rgb}{1,1,0.6}
-
-
-\usepackage[absolute]{textpos}
-\begin{document}
 \null
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %          Header
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textblockcolor{LightGreen}
 \begin{textblock*}{7.5in}(0in,0in)
-\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
-       \hline
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
        \tiny ~ & ~\\
-       \multicolumn{2}{|c|}{\normalsize \bf Quantum Mechanics} \\
+       \multicolumn{2}{c}{\normalsize \bf Quantum Mechanics} \\
        \tiny~ & ~\\
-       \hline
 \end{tabular*}
 \end{textblock*}
 
@@ -36,9 +16,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \scriptsize
 \textblockcolor{LightYellow}
-\begin{textblock*}{74mm}(0mm,12.75mm)
-\begin{tabular*}{74mm}{|l @{\extracolsep{\fill}} l|}\hline
-\multicolumn{2}{|c|}{\bf Structure} \\
+\begin{textblock*}{74mm}(0mm,12.765mm)
+\begin{tabular*}{74mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Structure} \\
 1  & Promote classical dynamic variables to\\
    & Hilbert space linear operators \hfill\\
 2  & Operators $\hat A$ and $\hat B$ have a commutator related to \\
@@ -62,32 +42,52 @@
 8  &Non-commuting operators $\hat A$, $\hat B$ have\\
    &uncertainties related by $ \sigma_A \sigma_B 
     \ge \frac{1}{2} \left| \langle \psi | [ \hat A , \hat B ] | \psi \rangle \right|$\\
-\hline
 \end{tabular*}
 \end{textblock*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %          Translation Operator
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{textblock*}{68mm}(74mm,12.75mm)
-\begin{tabular*}{68mm}{|l @{\extracolsep{\fill}} l|}\hline
-  \multicolumn{2}{|c|}{\bf Translation Operator} \\
-  \multicolumn{2}{|l|}{A translation operator should satisfy:}\\
+\begin{textblock*}{68mm}(74mm,12.765mm)
+\begin{tabular*}{68mm}{l @{\extracolsep{\fill}} l}
+  \multicolumn{2}{c}{\bf Translation Operator} \\
+  \multicolumn{2}{l}{A translation operator should satisfy:}\\
   1~ & ${\mathcal T}(d \vec x) | \vec x \rangle = |\vec x + d \vec x \rangle $\\
   2~ & ${\mathcal T}^{\dagger} (d \vec x) {\mathcal T} (d \vec x) 
          = {\mathcal T} (d \vec x) {\mathcal T}^{\dagger} (d \vec x) = 1$ \\
   3~ & ${\mathcal T} (d \vec x) {\mathcal T} (d \vec x_1) = {\mathcal T} (d \vec x + d \vec x_1)$\\
   4~ & ${\mathcal T} (-d \vec x) = {\mathcal T}^{-1} (d \vec x)$\\
   5~ & $\lim_{|d \vec x| \rightarrow 0} {\mathcal T} (d \vec x) = 1$\\
-  \multicolumn{2}{|l|}{These conditions are met by ${\mathcal T} (d \vec x) = 1 - i \vec K \cdot d \vec x$,}\\
-  \multicolumn{2}{|l|}{where $\vec K \doteq \{\hat K_i\}$ are Hermitian operators. The}\\
-  \multicolumn{2}{|l|}{commutator is found to be $[\hat X_i,\hat K_j] = i \delta_{ij}$ and}\\
-  \multicolumn{2}{|l|}{since classically $\{x_i, p_j\}_{PB} = \delta_{ij}$ then $\hat K_{i} = \hat p_{i} / \hbar$.}\\
-  \hline
+  \multicolumn{2}{l}{These conditions are met by ${\mathcal T} (d \vec x) = 1 - i \vec K \cdot d \vec x$,}\\
+  \multicolumn{2}{l}{where $\vec K \doteq \{\hat K_i\}$ are Hermitian operators. The}\\
+  \multicolumn{2}{l}{commutator is found to be $[\hat X_i,\hat K_j] = i \delta_{ij}$ and}\\
+  \multicolumn{2}{l}{since classically $\{x_i, p_j\}_{PB} = \delta_{ij}$ then $\hat K_{i} = \hat p_{i} / \hbar$.}\\
 \end{tabular*}
 \end{textblock*}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Representations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\scriptsize
+\textblockcolor{MintGreen}
+\begin{textblock*}{74mm}(0mm,80mm)
+\begin{tabular*}{74mm}{l @{\extracolsep{\fill}} l}
+\multicolumn{2}{c}{\bf Representations} \\
+  ~ & ~\\
+Position & ${\hat q} \left| q \right> = q \left| q \right>$ \\
+         & $\left< q' \right| \left. q \right> = \delta \left( q - q'\right)$ \\
+         & $ 1 = \int dq \left| q \right> \left< q \right|$\\
+         & $\psi(q) = \left< q \right| \left. \Psi \right>$\\
+  ~ & ~\\
+Momentum & ${\hat p} \left| p \right> $ \\
+         & $ \left< p' \right| \left. p \right> = 2 \pi \hbar \delta \left(p - p'\right)$\\
+         & $ 1 = \int \frac{dp}{2 \pi \hbar} \left| p \right> \left< p \right>$\\
+         & $\psi(p) = \left<p\right| \left. \Psi \right>$\\
+  ~ & ~\\
+Number   & $ N \left| n \right> = n \left| n \right>$ \\
+         & $a = b $\\  
+\end{tabular*}
+\end{textblock*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,23 +100,44 @@
 %\textblockcolor{LightGreen}
 \normalsize
 \begin{textblock*}{7.5in}(0in,0in)
-\begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
-       \hline
+\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+        
        \tiny ~ & ~\\
-       \multicolumn{2}{|c|}{\normalsize \bf Quantum Mechanics} \\
+       \multicolumn{2}{c}{\normalsize \bf Quantum Mechanics} \\
        \tiny~ & ~\\
-       \hline
+        
 \end{tabular*}
 \end{textblock*}
 \scriptsize
 
-\begin{textblock*}{70mm}(10mm,20mm)
-\begin{figure}
-  \centering
-  \includegraphics[width=6cm]{rolling_disk}
-  \caption{Transverse momentum distributions}\label{fig:erptsqfit}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Numerical Values
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{textblock*}{85mm}(0mm,30mm)
+\begin{tabular*}{84mm}{l l @{\extracolsep{\fill}} l}
+  \multicolumn{2}{c}{\bf Numerical Values} \\
+  speed of light       & $c$                          & $2.998 x 10^8 m/s$     \\
+  vacuum permittivity  & $\epsilon_0 = 1/{\mu_0} c^2$ & $8.854 x 10^{-12} F/m$ \\ 
+  Planck's constant    & $h$                          & $6.626 x 10^{-34} J s$ \\
+  hbar                 & $\hbar = h/2\pi$             & $1.055 x 10^{-34} J s$ \\
+  elementary charge    & $e$                          & $1.602 x 10^{-19} C$   \\
+  Boltzmann constant   & $k_B$                        & $1.381 x 10^{-23} J/K$ \\
+  Avogadro constant    & $N_A$                        & $6.022 x 10^{23} /mol$ \\
+  electron mass        & $m_e$                        & $9.109 x 10^{-31} kg$  \\
+  proton mass          & $m_p$                        & $1.673 x 10^{-27} kg$  \\
+  neutron mass         & $m_n$                        & $1.675 x 10^{-27} kg$  \\
+  atomic mass unit     & $m_u = 10^{-3}/N_A$          & $1.661 x 10^{-27} kg$  \\
+  Bohr radius          & $a_0 = 4 \pi\epsilon_0 
+                                 \hbar^2 /e^2 m_e$    & $5.292 x 10^{-11} m$   \\ 
+  Rydberg constant     & $ R_{\infty} = \hbar/
+                                 4\pi c m_e {a_0}^2$  & $1.097 x 10^7/m $      \\
+  fine structure const & $\alpha  = e^2/4 \pi 
+                                 \epsilon_0 c \hbar$  & $7.297 x 10^{-3}$      \\
+  Bohr magneton        & $\mu_B = e \hbar /2 m_e$     & $9.274 x 10^{-24} J/T$ \\
+  nuclear magneton     & $\mu_N = e \hbar /2 m_p$     & $5.051 x 10^{-27} J/T$ \\
+\end{tabular*}
 \end{textblock*}
+
 
 \newpage
 \null
@@ -128,11 +149,11 @@
 \textblockcolor{LightGreen}
 \begin{textblock*}{7.5in}(0in,0in)
 \begin{tabular*}{7.5in}{|c @{\extracolsep{\fill}} c |}
-       \hline
+        
        \small ~ & ~\\
        \multicolumn{2}{|c|}{\normalsize \bf Classical Mechanics} \\
        \small~ & ~\\
-       \hline
+        
 \end{tabular*}
 \end{textblock*}
 
@@ -183,6 +204,3 @@ D'Alembert's Principle\\
 \[
   \delta W - {\mathbf p} \cdot \delta {\mathbf r} = 0 
 \]
-
-\end{document}
-

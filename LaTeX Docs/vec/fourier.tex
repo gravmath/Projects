@@ -13,6 +13,9 @@
 \end{tabular*}
 \end{textblock*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Periodicity of Functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{textblock*}{90mm}(0mm,15mm)
 Consider a periodic function $f(x-2\ell) = f(x) = f(x + 2\ell)$ defined on the interval $[-\ell,\ell]$.  
 Because of the underlying periodicity of $f(x)$, both the derivative and the integral also inherit 
@@ -49,12 +52,13 @@ which is then used to manipulate the integral over $[c-\ell,c+\ell]$ as follows,
                                   & = &  \int_{-\ell}^{\ell}   f(x) dx                                 \nonumber
 \end{eqnarray}
 where (\ref{eq_per_int}) was used in going from the first to the second line.
-
-\[
-  -\frac{d}{d x}\left( p(x) \frac{d y}{d x} \right) + q(x) y = \lambda w(x) y
-\]
 \end{textblock*}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          Fourier Analysis on a Finite Interval
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{textblock*}{100mm}(89.85mm,15mm)
 \[
   \int_{c}^{c+2L} \cos \left( \frac{m \pi x}{L} \right) dx = 0
@@ -72,11 +76,20 @@ where (\ref{eq_per_int}) was used in going from the first to the second line.
       \left\{ \begin{array}{cc} 0 \, \delta_{mn} & m = 0 \\ L \, \delta_{mn} & m \neq 0 \end{array} \right.
 \]
 \[
+  u_n \equiv \frac{1}{\sqrt{L}} \sin\left( \frac{n \pi x}{L} \right) \quad n = 1, 2, \dots
+\]
+\[
+  v_n \equiv \frac{1}{\sqrt{L}} \cos\left( \frac{n \pi x}{L} \right) \quad n = 0, 1, 2, \dots
+\]
+\[
+  f = \sum_{n=1}^{\infty} \left\{ v_n (v_n \cdot f) + u_n (u_n \cdot f) \right\} + \frac{1}{2} (v_0 \cdot f) v_0
+\]
+\[
  {\tilde f}(x) = \frac{a_0}{2} + 
     \sum_{n=1}^{\infty} \left( a_n \cos \left( \frac{n \pi x}{L} \right) + b_n \sin \left( \frac{n \pi x}{L} \right) \right)
 \]
 \[
-  a_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \cos \left( \frac{n \pi x}{L} \right) dx
+  a_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \cos \left( \frac{n \pi x}{L} \right) dx \equiv \frac{1}{\sqrt{L}} (f \cdot v_n)
 \]
 \[
   b_n = \frac{1}{L} \int_{c}^{c+2L} f(x) \sin \left( \frac{n \pi x}{L} \right) dx
@@ -87,9 +100,6 @@ where (\ref{eq_per_int}) was used in going from the first to the second line.
 \]
 \[
   c_n = \frac{1}{2 L} \int_{c}^{c+2L} f(x) e^{-i n \pi x/L} dx
-\]
-\[
-  x = 6
 \]
 \end{textblock*}
 
