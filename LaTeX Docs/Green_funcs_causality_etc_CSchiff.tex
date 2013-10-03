@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+
+\TPshowboxestrue
+\TPMargin{2mm}
+\pagestyle{empty}
+
+\begin{document}
+
+\title{Green's Functions, Causality, and the $i \epsilon$ Prescription}
+\author{Conrad Schiff}
+
+\maketitle
+
+\begin{abstract}
+The abstract text goes here.
+\end{abstract}
+
+\section{Introduction}
+One of the most important strategies to follow in teaching a new topic or discipline
+is avoiding using same words to describe different things. The use of the same 
+words to describe closely related but nonetheless distinct concepts is particularly
+confusing. An equally important teaching strategy relates the unknown to the known, 
+along the way showing the connections between different phenomena described by the 
+same the equations or between the different descriptions of the phenomena . 
+Unfortunately, it seems that in the subject of Greens functions, 
+most treatments fail to achieve one or both of the goals just mentioned.  
+
+In this article, I first draw a very clear distinction between Greens functions 
+used to solve initial value problems (IVPs) and those used for boundary value problems (BVPs). 
+I adopt the terminology `one-sided Greens functions' (following \cite{}) to clearly label 
+those Greens functions used to solve IVPs from the adjective-less Greens functions used for (BVPs).  
+Secondly, I compare and contrast the simple Wronskian-based method presented in most
+undergraduate texts (e.g. \cite{}) from the more involved methods based on contour integration
+in the complex plane that are used in more advanced work. What emerges from this side-by-side
+ It is my hope that the student,
+encountering these techniques in the study of either classical or quantum field theory, will
+be able This latter  
+
+\[
+  x(t) = x_h(t) + \int_{t_0}^{t} g_1(t,\tau) f(\tau)
+\]
+
+\[
+  f(t) = v_0 \delta(t-\tau) + \theta(t-\tau) {\tilde f}(t)
+\]
+\[
+  x_h(t) = x_0
+\]
+\[
+  g_1(t,\tau) = \theta(t-\tau) (t-\tau)
+\]
+
+\begin{equation}
+    \label{simple_equation}
+    \alpha = \sqrt{ \beta }
+\end{equation}
+
+\subsection{Subsection Heading Here}
+Write your subsection text here.
+
+\begin{figure}[htp]
+\centering
+\psscalebox{2}{
+\begin{pspicture}(-1.5,-1.5)(1.5,1.5)
+  \pscircle[fillstyle=solid,fillcolor=LightGreen,linestyle=none](0,0){1.005}
+  \psarc[linewidth=0.5pt]{->}(0,0){1}{32.96709734}{212}
+  \psarc[linewidth=0.5pt]{-}(0,0){1}{210}{27.03290266}
+  \pscircle[fillstyle=solid,fillcolor=LightYellow,linestyle=none](0,0){0.21}  
+  \psarc[linewidth=0.5pt]{-}(0,0){0.205}{45}{190}
+  \psarc[linewidth=0.5pt]{<-}(0,0){0.205}{180}{15}
+  \pspolygon[fillstyle=solid,fillcolor=LightYellow,linestyle=none,linewidth=0.5pt](0.19125331,0.05124617)(0.89067955,0.45446836)(0.83892092,0.54411694)(0.14140721,0.14140721)
+  \psline[linewidth=0.5pt]{-}(0.19318517,0.05176381)(0.89076863,0.45451381)
+  \psline[linewidth=0.5pt]{-}(0.14142136,0.14142136)(0.83900482,0.54417136)
+  \psline[linewidth=0.5pt]{<-}(0.5419769,0.25313881)(0.89076863,0.45451381)
+  \psline[linewidth=0.5pt]{->}(0.14142136,0.14142136)(0.49021309,0.34279636)
+  \psline[linewidth=0.2pt]{->}(0,0)(1.29903811,0.75)
+  \pscircle[fillstyle=solid,fillcolor=black,linestyle=none](0,0){0.05}
+  \uput[45](0.6,0.6){${\scriptsize {\mathcal C}}$}
+  \uput[1](-0.8,-0.05){${z_0}$}
+  \uput[1](-0.4,-0.4){${{\mathcal C}_2}$}
+  \uput[1](-0.2,0.45){${{\mathcal C}_{in}}$}  
+  \uput[1](0.2,0){${{\mathcal C}_{out}}$}  
+  %\psgrid(-1.5,-1.5)(1.5,1.5)
+\end{pspicture}}
+\end{figure}
+
+\section{Conclusion}
+Write your conclusion here.
+
+\end{document}
