@@ -1,0 +1,308 @@
+\documentclass{article}
+\usepackage[affil-it]{authblk}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Why Don't We Teach The Helmholtz Theorem?}
+
+\author{Conrad Schiff%
+  \thanks{Electronic address: \texttt{gravmath@yahoo.gov}; Corresponding author}}
+\affil{Chesapeake Section of AAPT}
+
+\date{Date: Oct. 25, 2014}
+
+\maketitle
+
+\abstract{The traditional way we teach electricity and magnetism is to trace through the historic 
+development by examining a host of 18th and 19th century the experiments.  The usual course is to 
+introduce integral forms of the laws and then show how these can lead to Maxwell’s equation 
+(e.g. from Coulomb's law to Gauss's law).  In this paper, I present a 
+different path that starts with Maxwell's equations and the Helmholtz theorem and 
+produces the Coulomb and Biot-Savart laws.  I believe this approach, which is nearly impossible to 
+find in the usual textbooks, offers a clearer view into the unity of electricity and magnetism at the 
+cost of some slightly more mature vector calculus.  Even this ‘shortcoming’ can be turned to an 
+advantage as the techniques can be used to present modern ideas about generalized functions and 
+signals and to sharpen the what the fields are really doing physically far away from the 
+regions that we are investigating}
+
+
+\section{Introduction}
+Before discussing the physics, I want to start by framing the title question within a greater context.  
+As stated, it is neither meant to be accusatory nor Socratic.  My aim for this paper is to open 
+(or perhaps reopen) a dialog on the pedagogy of using the Helmholtz theorem.  Acknowledging that I am 
+not trained in physics education nor am I an educator, the only credentials I can offer are as a student, 
+but as one who actually remembers the struggles learning electromagnetic field theory.
+
+Central to the viewpoint I would like to promulgate is that the current approach, which I will 
+refer to as the traditional approach hereafter, presented in most commonly-used textbooks \cite{Halliday,Reitz,Jackson,Frankl,Slater,Griffiths}, 
+obscures the unity of the Maxwell 
+equations. It does so by presenting an analysis of static field configurations first, layering on 
+time dependence only much later, and then finally culminating in Maxwell's inspired addition of the 
+displacement current to the Ampere law.  By this time, a student is likely bored, confused, or overwhelmed 
+and can't or won't appreciate all the results that follow. To such a student is lost the wonder of realizing 
+that the fields can take on a life of their own, independent of the things that created them, and can radiate 
+outwards; that they can reflect and refract (i.e. optics as an inherently electromagnetic phenomenon); and that 
+they can be generated and controlled at will to form the communication network we all use on a daily basis. 
+Considering the ubiquitousness of cell-phones, tablets, and computers all connected to the web usually by 3G 
+or 4G wireless communications the current textbook approach seems to be asking the student to step back in 
+time to when the larger questions concerned condensers and Voltaic piles and not download speeds and the 
+number of bars a user has.
+
+An alternative approach presented by Solymar \cite{Solymar} is to state the Maxwell equations up front and then to 
+interrogate them mathematically to `discover' a host of new phenomena. This approach has the advantage that 
+the fields are introduced early and the equations they satisfy are complete. There is no unlearning facts 
+later on (e.g. $\nabla \times \vec E \neq 0$ generally) and the structure that leads to our modern wireless world is 
+fully available. The one serious flaw in Solymar's implementation, however, is that there is no argument as to
+ why knowing the divergence and curl of a vector field is all that is needed to uniquely specify the field.  
+ After all, why can't a uniform field be added as a constant of integration?  Another flaw is that the Coulomb 
+ law is `derived' by assuming spherical symmetry. 
+ 
+In the remainder of this paper, I present a modification to the approach presented by Solymar that employs 
+the Helmholtz theorem.  This modification addresses the identified deficiencies and also brings in new 
+pedagogical opportunities to present modern concepts.  To make the advantages of this modification clearer, 
+I start with a brief summary of the traditional approach in Sec. 2.  The statement of the Helmholtz theorem 
+and an outline of its proof are presented in Sec. 3.  Sec. 4 discusses the bulk of the physics and relevant pedagogy 
+while Sec. 5 discusses the open questions that remain in using the Helmholtz theorem and provides a critique of the method.
+
+\section{Traditional Approach}
+
+At the heart of the traditional approach is the idea of a force field as a physically real object and not 
+just a useful mathematical construct.  The prototype example is the electric field, which comes from 
+the experimental expression for the Coulomb law stating that the force on charge $q_2$ due to $q_1$ is given by 
+(note all equations are expressed in SI units):
+\begin{equation}
+  \vec F_{21} = \frac{1}{4 \pi \epsilon_0} \frac{ q_1 q_2 \left( \vec r_2 - \vec r_1 \right) }{|\vec r_2 - \vec r_1|^3} \, .
+\end{equation}
+By allowing one of the charges, say $q_2$, to become a test charge whose strength is so small that 
+its presence does not alter the behavior of $q_1$, the electric field at any point $\vec r$ where the 
+test charge may be placed is deduced as
+\begin{equation}
+\vec E(\vec r) = \frac{1}{4 \pi \epsilon_0} \frac{q_1 \left( \vec r - \vec r_1 \right) }{|\vec r - \vec r_1|^3} \, .
+\end{equation}
+A generalization of this expression to an arbitrary charge distribution within a volume $V$ then leads to Coulomb’s law 
+\begin{equation}\label{C_law}
+\vec E(\vec r) = \frac{1}{4 \pi \epsilon_0} \int_V d^3 r \frac{ \rho(\vec r \;') \left( \vec r - \vec r \; ' \right) }{|\vec r - \vec r \; '|^3} \, .
+\end{equation}
+At this point in the traditional approach, concepts of vector field divergence and curl are trotted out.  
+Although different texts order the content differently, they all present the vanishing curl of the (static) electric 
+field nearby discussions of the electric flux and Gauss's law for electricity.  The vanishing curl of the electric 
+field implies the existence of a conservative field, from which follows the definition of the electrostatic 
+potential $\phi$ and the Laplace/Poisson equation.  The introduction of electric flux and the divergence theorem 
+lead to Gauss's law, the first of the Maxwell equations, 
+\begin{equation}\label{G_law}
+\nabla \cdot \vec E (\vec r) = \rho(\vec r) / \epsilon_0 \, .
+\end{equation}
+Gauss's law is then used to determine the electric field of some simple (and often unmotivated) charge 
+distributions like a spherical shell or an infinite line or sheet of charge.
+
+There are several problems with the above pedagogy.  First, each text will be careful to point out that 
+Gauss's law, while holding in general, can really only be applied in situations of great symmetry.  The message 
+here is that somehow Coulomb's law is more general; an impression that usually emphasized by the fact that the 
+majority of homework problems focus determining the electric field from Eq. \ref{C_law}.  Coulomb's 
+law has been shown to imply Gauss's law, but the other direction is not as clear with one text even saying ``Thus 
+we have deduced Coulomb's law from Gauss's law and considerations of symmetry.'' \cite{Halliday} The second and much more 
+important problem is that the curl and divergence of the electric field are not linked.  The vanishing curl of 
+the electric field is not married in any way to the divergence as the measure of the charge density.  
+
+As the traditional program proceeds, magnetostatics follows with an analogous discussion about the magnetic field. 
+This time the vanishing of the divergence is used to find the vector potential and the curl is 
+related to the current via Ampere's law
+\begin{equation}
+  \nabla \times \vec B(\vec r) = \mu_0 \vec J(\vec r) \,.
+\end{equation}
+As in the electrostatic case, Ampere's law is applied only to situations with simple symmetry.  The Biot-Savart law 
+\begin{equation}\label{B_law}
+\vec B(\vec r) = \frac{\mu_0}{4 \pi}   \int_V d^3 r' \frac{ \vec J(\vec r \; ') \times (\vec r - \vec r \;')}{|\vec r - \vec r \; '|^3} \, ,
+\end{equation}
+gives the magnetic field for a given current density within a volume $V$.  Again it appears to be more general 
+than Ampere's law, with the logical arrow of deduction clearly pointing from the latter to the former while converse 
+is only tenuously seen.  
+
+By the time time-varying fields are introduced and the full Maxwell equations are on display, the linkage between the 
+different facets of each field is highly obscured, and the basic underpinning of the theory --- that the divergence and 
+curl tells all there is to know about a field --- is not to be found. The pedagogy seems to suffer from too many unconnected 
+facts with no common framework by which to relate them.
+
+\section{Using the Helmholtz Theorem}
+The various shortcomings identified in the previous section can be addressed by assuming the Maxwell equations as given
+and by employing the Helmholtz theorem to make sense of their content.  There are several slightly different 
+discussions on the Helmholtz theorem in the literature \cite{Arfken,Miller,Mirman}, but in essence they say that a 
+sufficiently well-behaved vector field can always be uniquely specified by its divergence and curl in some volume 
+$V$ and, in the case of a finite region, by its normal components on the boundary.  For now, the region in question 
+will be taken to be all space and the vector fields in question will be assumed to fall off fast enough that the normal 
+components can be ignored. This point will be revisited in the Sec. 5 later.  Mathematically, the decomposition takes the 
+form \cite{Miller}
+\begin{equation}\label{Helm}
+\vec F(\vec r) = - \nabla  U(\vec r) + \nabla \times \vec W(\vec r) \, ,
+\end{equation}
+where the fields $U(\vec r)$ and $\vec W(\vec r)$ are given by
+\begin{equation}\label{scalar}
+U(\vec r) = \frac{1}{4 \pi} \int d^3 r' \frac{\nabla' \cdot \vec F(\vec r \;') }{|\vec r - \vec r\;'|} \, ,
+\end{equation}
+and
+\begin{equation}\label{vector}
+\vec W (\vec r) = \frac{1}{4 \pi} \int d^3 r' \frac{\nabla' \times \vec F(\vec r\;')} {|\vec r - \vec r\;'|} \, ,
+\end{equation}
+and where $\nabla'$ denotes that the derivatives are to be taken with respect to the source points $\vec r\;'$.
+
+\subsection{Outline of the derivation}
+There are many ways to derive the Helmholtz theorem but the way that provides the most pedagogy is to start with 
+the following representation of the delta-function in three dimensions 
+\begin{equation}\label{delta}
+    \nabla^2 \left( \frac{1}{|\vec r - \vec r \;'|} \right) = -4 \pi \delta( \vec r - \vec r \; ' ) \, .
+\end{equation}
+Next use the identity 
+\begin{equation}
+   \vec F(\vec r) = \int_{V} d^3 r' \delta(\vec r - \vec r \;') F(\vec r \; ')
+\end{equation}
+for an arbitrary vector field $\vec F(\vec r)$ over a given volume $V$.  Using the explicit representation of the 
+delta-function stated above and factoring out the derivatives with respect to the field point $\vec r$ yields
+\begin{equation}
+   \vec F(\vec r) = \frac{ -\nabla^2 }{4 \pi} \int_V d^3 r' \frac{\vec F(\vec r\;')}{|\vec r - \vec r\;'|} \, .
+\end{equation}
+Now apply the vector identity
+\begin{equation}
+   \nabla^2 = \nabla ( \nabla \cdot ) - \nabla \times ( \nabla \times ) \; .
+\end{equation}
+Doing so allows the expression for $\vec F$ to take the form
+\begin{equation}\label{Helm1}
+  \vec F (\vec r) = \frac{1}{4 \pi} \nabla \times \vec I_{v} - \frac{1}{4 \pi} \nabla I_{s} \, ,
+\end{equation}
+where the integrals
+\begin{equation}\label{Ivec}
+  \vec I_{v} = \nabla \times \int_V d^3 r ' \frac{\vec F (\vec r\;')}{|\vec r - \vec r\;'|}
+\end{equation}
+and
+\begin{equation}\label{Iscal}
+  I_{s} = \nabla \cdot \int_V d^3 r ' \frac{\vec F (\vec r\,')}{|\vec r - \vec r\,'|} \; .
+\end{equation}
+
+The strategy for handling these terms is to:
+\begin{enumerate}
+  \item bring the derivative operator with respect to r into the integral,
+  \item switch the derivative from r to $r'$ with a cost of a minus sign,
+  \item integrate by parts,
+  \item apply the appropriate boundary conditions and boundary integral version of the divergence theorem to the total derivative piece.
+\end{enumerate}
+Application of this strategy to the vector integral, $\vec I_v$, gives
+\begin{equation}
+   \vec I _{v} =   \int_V d^3 r' \frac{ \nabla_{\vec r\,'} \times \vec F (\vec r \, ')}{|\vec r - \vec r\,'|} 
+                      - \int_{\partial V} dS \frac{\hat n \times \vec F(\vec r\,')}{|\vec r - \vec r\,'|} \; ,
+\end{equation}
+where $\partial V$ is the boundaing surface of the volume in question and $\hat n$ is the 
+corresponding outward normal.
+
+Likewise, the same strategy applied to the scalar integral, $I_s$, gives
+\begin{equation}
+        I_{s} =   \int_V d^3 r' \frac{ \nabla \cdot \vec F ( \vec r \,')}{|\vec r - \vec r\,'|} 
+                     - \int_{\partial V} dS \frac{\hat n \cdot \vec F ( \vec r \,')}{|\vec r - \vec r\,'|} \; .
+\end{equation}
+Allowing the bounding surfaces to recede to infinity eliminates the surface terms and Eq. \ref{Helm1} becomes 
+Eq. \ref{Helm} with $\vec I_v = 4 \pi \vec W$ and $I_s = 4 \pi U$.
+
+\section{Pedagogical Advantages}
+
+Using the Helmholtz Theorem in conjunction with a upfront statement of the Maxwell equations offers several advantages in 
+teaching electromagnetism. I will content myself with listing three that I think are particularly useful.
+
+The first is already manifest in the statement of the theorem itself.  From the structure of Eq. \ref{Helm} and the form
+of the functions $U(\vec r)$ and $\vec W(\vec r)$ in Eqs. \! \ref{scalar} and \ref{vector}, respectively, the student can clearly
+see that knowledge of the divergence and curl of a sufficiently well-behaved vector field uniquely and completely 
+characterizes it.  This observation serves to motivate why the Maxwell equations are all that are needed to solve 
+for $\vec E$ and $\vec B$. No `constant of integration' vector field is needed.
+
+The second advantage is that the derivation presented above gives further exposure to the properties of the 
+delta-function.  Not only is Eq. \ref{delta} a useful identity in its own right, it is also at the heart of 
+Gauss's law being a very simple and approachable form of a Green's function.  In addition, it is important
+to undo some of the rigidity imposed in introductory mathematics education.  Students learn early that only analytic
+functions are valid (although they aren't taught it explicitly that way).  But as nicely discussed by Penrose 
+\cite{Penrose} in his chapter on Fourier analysis and distributions, one must be willing to allow objects 
+like the delta-function if one wants to be able to ``model signals which can transmit `unexpected' (non-analytic) 
+messages.''  Such non-analytic functions form the backbone of the modern information- and message-driven economy.
+
+The third advantage is the `derivation' of the Coulomb and Biot-Savart laws from Maxwell's equations.  Start by 
+considering the Maxwell equations, presented here in vacuum, as
+\begin{subequations}\label{Max}
+\begin{align}\label{skippy}
+  \nabla \cdot  \vec E(\vec r,t) & =  \rho(\vec r,t) / \epsilon_0                                            \, , \\ \label{dude}
+  \nabla \cdot  \vec B(\vec r,t) & =  0                                                                      \, , \\ \label{betty}
+  \nabla \times \vec E(\vec r,t) & =  -\frac{\partial \vec B (\vec r,t)}{\partial t}                         \, ,\\ \label{al}
+  \nabla \times \vec B(\vec r,t) & =  \mu_0 \vec J (\vec r,t) + \epsilon_0 \mu_0 \frac{\partial \vec E(\vec r,t)}{\partial t} \, .
+\end{align}
+\end{subequations}
+Since the Coulomb and Biot-Savart laws are in the domain of the electro- and magnetostatics, all terms in Eqs. \ref{Max}
+involving time derivatives are set equal to zero to give
+\begin{subequations}
+\begin{align}\label{divE}
+  \nabla \cdot  \vec E(\vec r) & =        \rho(\vec r) / \epsilon_0 \, ,\\
+\label{divB}
+  \nabla \cdot  \vec B(\vec r) & =  0                               \, , \\
+\label{curlE}
+  \nabla \times \vec E(\vec r) & =  0                               \, , \\
+\label{curlB}
+  \nabla \times \vec B(\vec r) & = \mu_0 \vec J (\vec r)            \, .
+\end{align}
+\end{subequations}
+Now substituting Eqs. \ref{divE} and \ref{curlE} into Eqs. \ref{scalar} and Eqs. \ref{vector} yields
+\begin{equation}\label{electrostatic_potential}
+  U(\vec r) = \frac{1}{4 \pi \epsilon_0}\int_V d^3 r' \frac{\rho(\vec r \;')}{|\vec r - \vec r \;'|}
+\end{equation}
+and
+\begin{equation}
+  \vec W(\vec r) = \vec 0 \, .
+\end{equation}
+Eq. \ref{electrostatic_potential} is clearly identified as the electrostatic potential and upon substitution into
+Eq. \ref{Helm} yields the familiar form of the Coulomb law found in Eq. \ref{C_law}.
+In a similar fashion, substitution of Eqs. \ref{divB} and \ref{curlB} into $U(\vec r)$ and $\vec W (\vec r)$ and then those
+expressions into Eq. \ref{Helm} yields the Biot-Savart law found in Eq. \ref{B_law}.
+
+\section{Critique}
+
+The approach given above is not without difficulties, none of which are insurmountable but are worth discussion.
+
+The first difficulty is the treatment of the boundary values of the fields at infinity.  There is an implicit idea of 
+the field being well-behaved at infinity that is used to set the surface integrals in Eqs. \ref{Ivec} and \ref{Iscal} 
+to zero. The exact details of what this means are found in \cite{Miller} and boil down to the conditions that both the 
+divergence and curl of the field vanish faster than $r^{-1}$.  This statement has obvious physical implications on the 
+sources of the field but discussing this in a classroom setting can be tricky since integrals tend to be intimidating 
+and the discussion of convergence properties is usually glossed over in physics classes. Refinement on this point is 
+vital as no discussion of the Maxwell equations is complete without specification of the behavior of the fields at a boundary.
+
+The second difficulty is more pronounced.  It turns out the form of the Helmholtz equation as discussed above is 
+valid only for time-invariant fields.  A more complicated form, involving integrals with retarded time can be 
+derived \cite{Davis, Heras} which allows the recovery of the laws of Faraday and Ampere in addition to those of Coulomb 
+and Biot-Savart. It isn't clear that such a one-stop-shop approach will be meaningful for any except the most advance 
+students since the basic concept of retarded time is subtle and thus is usually relegated to the very end of a traditional 
+program or skipped entirely. One the other hand, not discussing it at all presents a situation in which the student has 
+to unlearn something at a latter point.  A reasonable compromise is pointed out by Heras \cite{Heras} in which the student 
+can be told that the divergence and curl uniquely specify a vector field via the Helmholtz theorem, that there exists 
+time-independent and time-varying forms, and then apply the time-independent form as above.   How students may react to 
+such a program remains to be seen.
+
+\section{Conclusion}
+An alternative to the traditional teaching of electromagnetism has been presented in which the Maxwell equations, 
+in their entirety, are used as a starting point.  The Helmholtz theorem, which demonstrates how a vector field can be 
+uniquely constructed once its divergence and curl are known, provides a unified framework for understanding why the Maxwell 
+equations related charge and current sources to derivatives of the electric and magnetic fields.  It also allows the more 
+traditional equations of Coulomb and Biot-Savart to be derived thus making a connection with experiment.  Although not 
+without its short-comings, this approach seems to be superior in its pedagogy to the traditional approach and I hope that 
+this paper helps to contribute to a dialog on its use.
+
+\begin{thebibliography}{20}
+  \bibitem{Halliday}  D. Halliday and R. Resnick, \emph{Physics, Parts 1 \& 2 Combined, 3rd Edition}, John Wiley \& Sons, New York, 1978
+  \bibitem{Reitz}     J. R. Reitz, F. J. Milford, and R. W. Christy, \emph{Foundations of Electromagnetic Theory, 4th Edition}, Addison-Wesley, Reading, 1993
+  \bibitem{Jackson}   J. D. Jackson, \emph{Classical Electrodynamics, 2nd Edition}, John Wiley \& Sons, New York, 1975
+  \bibitem{Frankl}    D. R. Frankl, \emph{Electromagnetic Theory}, Prentice-Hall, Englewood Cliffs, New Jersey, 1986
+  \bibitem{Slater}    J. C. Slater and N. H. Frank, \emph{Electromagnetism}, Dover Publications, New York, 1969
+  \bibitem{Griffiths} D. J. Griffiths, \emph{Introduction to Electrodynamics, 4th Edition}, Addison-Wesley, New York, 2012
+  \bibitem{Solymar}   L. Solymar, \emph{Lectures on Electromagnetic Theory}, Oxford University Press, Oxford, 1986
+  \bibitem{Arfken}    G. Arfken, \emph{Mathematical Methods for Physicists, 3rd Edition}, Academic Press, Orlando 1985
+  \bibitem{Miller}    B. P. Miller, ``Interpretations from Helmholtz’s theorem in classical electromagnetism'', Am. J. Phys. 52 , 948 (1984)
+  \bibitem{Mirman}    R. Mirman, ``Maxwell's Equations and Helmholtz's Theorem'', Am. J. Phys. 33, 503 (1965)
+  \bibitem{Penrose}   R. Penrose, \emph{The Road to Reality}, Alfred A. Knopf, New York, 2005
+  \bibitem{Davis}     A. M. Davis, ``A generalized Helmholtz theorem for time-varying vector fields'', Am. J. Phys. 74, 72 (2006)
+  \bibitem{Heras}     J. A. Heras, ``Comment on “A generalized Helmholtz theorem for time-varying vector fields,” by Artice M. Davis [Am. J. Phys.74, 72–76 (2006)]'', Am. J. Phys. 74, 743 (2006)
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,238 @@
+%vec
+\documentclass[10pt]{article}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{test}           {rgb}{0.8,0.95,0.95}
+\TPshowboxestrue
+
+
+\begin{document}
+
+\title{A Brief Note on First-order Gauss Markov Processes}
+\author{Conrad Schiff}
+\date{Dec. 10, 2009}
+\maketitle
+
+The aim of this note is to explain how to solve and then numerically
+model a First-order Gauss Markov process.  The physical justification
+for the model or its application domain are not covered.
+
+\section{Analytic Solution}
+
+The basic aim is model the First-order Gauss Markov process as a
+stochastic differential equation
+\begin{equation}\label{SDE_1}
+   {\dot x} = -\frac{1}{\tau} x + w \quad ,
+\end{equation}
+where $x(t)$ is defined as the state and $w$ is a inhomogenous
+noise term.  In the absence of the noise, the solution is given
+by a trivial time integration to yield
+\begin{equation}\label{homo_soln_1}
+   x_{h}(t) = x_{0} e^{ -(t-t_{0})/\tau } \quad ,
+\end{equation}
+assuming that $x(t=t_{0}) = x_{0}$.  The solution in Eq.\ (\ref{homo_soln_1}) 
+is known as the homogenous solution and it will help in integrating the 
+inhomogenous term $w$.  Ignore, for the moment, that $w$ (and, as a result, $x$)
+is a random variable.  Treated as just an ordinary function, $w$ is a driving term
+that can be handled via the state transition matrix (essentially a one-sided 
+Green's function for an initial-value problem).  Recall that a state transition
+matrix (STM) is defined as the object linking the state at time $t_{0}$ to the
+state at time $t$ according to
+\begin{equation}\label{STM_a}
+   x(t) = \Phi(t,t_{0}) x(t_{0}) \quad .
+\end{equation}
+By the definition in Eq.\ (\ref{STM_a}), the STM is obtained as
+\begin{equation}\label{STM_b}
+   \Phi(t,t_{0}) = \frac{\partial x(t)}{\partial x(t_{0})} \quad .
+\end{equation}
+Taking the partial derivative of Eq.\ (\ref{homo_soln_1}) as required
+by Eq.\ (\ref{STM_b}) gives 
+\begin{equation}\label{STM_c}
+   \Phi(t,t_{0}) = e^{ -(t-t_{0})/\tau } \quad .
+\end{equation}
+
+The solution of the inhomogenous equation is then given as
+\begin{equation}\label{part_soln_1}
+   x(t) = x_{h}(t) + \int_{t_{0}}^{t} \Phi(t,t') w(t') dt' \quad .
+\end{equation}
+To see how this is true, take the time derivative of Eq.\ (\ref{part_soln_1})
+to get
+\begin{eqnarray}\label{STM_proof_1}
+  {\dot x}(t) & = & {\dot x}_{h}(t) + \frac{d}{dt} \left[ \int_{t_{0}}^{t} \Phi(t,t') w(t') dt' \right] \nonumber \\
+              & = & {\dot x}_{h}(t) + \left[ \Phi(t,t) w(t) + \int_{t_{0}}^{t} \frac{\partial \Phi(t,t')}{\partial t} w(t') dt' \right] \nonumber \\
+			  & = & -\frac{1}{\tau} x_{h}(t) + \Phi(t,t) w(t) + \int_{t_{0}}^{t} \frac{\partial \Phi(t,t')}{\partial t} w(t') dt' \quad .
+\end{eqnarray}
+Now suppose that the following two conditions are met
+\begin{equation}\label{STM_conds_a}
+   \Phi(t,t) = 1 \quad , 			
+\end{equation}
+and
+\begin{equation}\label{STM_conds_b}
+   \frac{\partial \Phi(t,t')}{\partial t} = -\frac{1}{\tau} \Phi(t,t') \quad ,
+\end{equation}
+and that these are substituted into Eq.\ (\ref{STM_proof_1}).  Doing so yields
+\begin{eqnarray}\label{STM_proof_2}
+  {\dot x}(t) & = & -\frac{1}{\tau} x_{h}(t) + w(t) - \frac{1}{\tau} \int_{t_{0}}^{t} \Phi(t,t') w(t') dt' \nonumber \\
+              & = & -\frac{1}{\tau} \left[ x_{h}(t) + \int_{t_{0}}^{t} \Phi(t,t') w(t') dt' \right] + w(t) \nonumber \\
+              & = & -\frac{1}{\tau} x(t) + w(t) \quad .
+\end{eqnarray}
+It is worth noting that Eq.\ (\ref{STM_conds_a}) is always true and Eq.\ (\ref{STM_conds_b}) is a 
+specific example of the general equation
+\begin{equation}\label{STM_evolution}
+   \frac{\partial \Phi(t,t')}{\partial t} = A(t) \Phi(t,t') \quad ,
+\end{equation}
+where $A(t)$, known sometimes as the process matrix, is given, generally by
+\begin{equation}
+  A(t) = \frac{\partial {\mathbf f}( {\mathbf x} (t) ) }{\partial {\mathbf x}(t)} 
+\end{equation}
+and ${\mathbf f}( {\mathbf x} (t) )$ is given by
+\begin{equation}\label{system_evolution}
+   {\dot {\mathbf x}}(t) = {\mathbf f}( {\mathbf x}(t);t) \quad .
+\end{equation}
+Comparison of Eqs.\ (\ref{SDE_1}) and (\ref{system_evolution}) shows that
+\begin{equation}\label{process_matrix_compare}
+   {\mathbf f}( {\mathbf x} (t);t ) = -\frac{1}{\tau} x(t) \quad ,
+\end{equation}
+which is consistent with Eq.\ (\ref{STM_conds_b}).
+
+\section{Constructing Solutions}
+
+As demonstrated in the previous section
+\begin{equation}\label{full_soln}
+   x(t) = x_{0} e^{ -(t-t_{0})/\tau } + \int_{t_{0}}^{t} e^{ -(t-t')/\tau } w(t') dt'
+\end{equation}
+is a complete analytic solution of Eq.\ (\ref{SDE_1}).  However, Eq.\ (\ref{full_soln}) is not very useful since
+$w(t)$ is a random variable.  Instead of immediately calculating $x(t)$, calculate the solutions for the statistical
+moments about the origin (i.e. $E[x^n(t)]$, where $E[\cdot]$ denotes the expectation value of the argument).
+\\
+
+
+In order to do this, we need to say something about the statistical distribution of the noise.  We
+will assume that $w(t)$ is a Gaussian white-noise source with zero mean, a variance of $q$, and is uncorrelated.  
+Mathematically these assertations amount to the condition $E[w(t)] \equiv {\bar w} = 0$ and the condition
+\begin{eqnarray}\label{Gaussian_auto_corr}
+  E[(w(t)-{\bar w}) (w(s) - {\bar w}) ] & = & E[ w(t)w(s) - {\bar w} w(t) - {\bar w} w(s) - {\bar w}^2 ] \nonumber \\
+                                        & = & E[ w(t)w(s) ] \nonumber \\
+										& = & q \delta(t-s) \quad .
+\end{eqnarray}
+In addition, we assume that the state and the noise are independent giving
+\begin{equation}\label{state_noise_expect}
+  E[x(t) w(s) ] = E[x(t)] E[w(s)] = 0 \quad .
+\end{equation}
+Now we can compute the statistical moments of $x(t)$ about the origin.
+
+\subsection{First Moment}
+
+The first moment is given by
+\begin{eqnarray}\label{first_moment}
+  E[x(t)] & = & E \left[ x_{0} e^{ -(t-t_{0})/\tau } + \int_{t_{0}}^{t} e^{ -(t-t')/\tau } w(t') dt' \right] \nonumber \\
+          & = & E \left[ x_{0} e^{ -(t-t_{0})/\tau } \right] + E \left[ \int_{t_{0}}^{t} e^{ -(t-t')/\tau } w(t') dt' \right] \nonumber \\
+	      & = & E \left[ x_{0} \right] e^{ -(t-t_{0})/\tau } + \int_{t_{0}}^{t} e^{ -(t-t')/\tau } E \left[ w(t') \right] dt' \nonumber \\
+	      & = & E \left[ x_{0} \right] e^{ -(t-t_{0})/\tau } = E \left[ x(t_0) \right] e^{ -(t-t_{0})/\tau } ,
+\end{eqnarray}
+where, in the last term, $x_{0}$ is explicately written as $x(t_0)$ for comparison with a later numerical result.
+
+\subsection{Second Moment}
+
+The second moment is given by 
+\begin{eqnarray}\label{second_moment}
+   E[ x(t)^2 ] & = & E \left[ x_{0}^2 e^{ -2(t-t_{0})/\tau } + 2 x_{0} e^{ -(t-t_{0})/\tau } \int_{t_{0}}^{t} e^{ -(t-t')/\tau } w(t') dt' \right. \nonumber \\
+               &   & \left. + \int_{t_{0}}^{t} e^{ -(t-t')/\tau } w(t') dt' \int_{t_{0}}^{t} e^{ -(t-t'')/\tau } w(t'') dt'' \right] \nonumber \\
+		       & = & E \left[x_{0}^2\right]e^{ -2(t-t_{0})/\tau } +  \int_{t_{0}}^{t} \int_{t_{0}}^{t} e^{ -(2t-t'-t'')/\tau } 
+			         E \left[ w(t') w(t'') \right] dt' dt'' \nonumber \\
+			   & = & E \left[x_{0}^2\right]e^{ -2(t-t_{0})/\tau } +  \int_{t_{0}}^{t} \int_{t_{0}}^{t} e^{ -(2t-t'-t'')/\tau } 
+			         q \delta(t'-t'') dt' dt'' \nonumber \\
+		       & = & E \left[x_{0}^2\right]e^{ -2(t-t_{0})/\tau } +  \int_{t_{0}}^{t} e^{ -2(t-t')/\tau } q dt' \nonumber \\
+			   & = & E \left[x_{0}^2\right]e^{ -2(t-t_{0})/\tau } +  \left. \frac{q \tau}{2} e^{ -2(t-t')/\tau } \right|^t_{t_{0}} \nonumber \\
+			   & = & E \left[x_{0}^2\right]e^{ -2(t-t_{0})/\tau } +  \frac{q \tau}{2} \left( 1 - e^{ -2(t-t_{0})/\tau } \right) ,
+\end{eqnarray}
+where $x_0$ is shorthand for $x(t_0)$.
+
+\subsection{Variance}
+\begin{eqnarray}\label{variance}
+  E \left[x^2\right] - E\left[x\right]^2 & = & E\left[x_{0}^2\right] e^{-2(t-t_{0})/\tau} + \frac{q\tau}{2} \left(1- e^{-2(t-t_{0})/\tau} \right) \nonumber \\
+                                         &   & \quad - E\left[x_{0}\right]^2 e^{-2(t-t_{0})/\tau} \nonumber \\
+								         & = & \left( E\left[x_{0}^2\right] - E \left[x_{0}\right]^2 \right) e^{-2(t-t_{0})/\tau} \nonumber \\
+                                         &   & \quad + \frac{q\tau}{2} \left(1- e^{-2(t-t_{0})/\tau} \right)
+\end{eqnarray}
+Eq.\ (\ref{variance}) can be re-written as
+\begin{equation}\label{variance_2}
+  {\mathcal P}(t) = {\mathcal P}_0 e^{ -2(t-t_0)/\tau } + \frac{q\tau}{2}\left(1-e^{-2(t-t_{0})/\tau}\right) \quad ,
+\end{equation}
+where ${\mathcal P_0} = \left( E\left[x_0^2\right] - E\left[x_0\right]^2 \right)$ is the initial covariance.
+
+\subsection{Generating Numerical Trials}
+
+A numerical realization of the first-order Gauss Markov process is not obtained by directly solving 
+Eq. (\ref{SDE_1}) but rather by exploting the Markov property that states that the `system has no 
+memory'.  This means that the system's evolution only depends on the its current state.  As a result 
+we expect that there exists an equation that relates $x(t+\Delta t)$ to $x(t)$.  As a candidate
+to fill this roll, consider the equation
+\begin{equation}\label{numer_a}
+  x (t + \Delta t) = x(t) e^{-\Delta t/\tau} + \eta(t) \sqrt{ \frac{q\tau}{2} \left(1-e^{- 2 \Delta t/\tau}\right) },
+\end{equation}
+which is proposed as the correct numerical method for simulating Eq.\ (\ref{SDE_1}).  In Eq.\ (\ref{numer_a}) one imagines the 
+elapsed time from $t_{0}$ to $t$ as being divided up into $N$ increments, each of duration $\Delta t$ 
+(i.e., $t = t_{0} + N \Delta t$). At each time step, one constructs the `new' value of $x$ from the 
+`old' value and from a zero-mean, unit-variance normal random number $\eta(t)$. To verify Eq.\ (\ref{numer_a}),
+first look at it's mean value, which is
+\begin{eqnarray}\label{numer_1st_moment}
+  E\left[x (t) \right]          & = &  E\left[ x(t - \Delta t ) e^{-\Delta t/\tau} + \eta(t) \sqrt{\frac{q\tau}{2} \left(1-e^{-2 \Delta t/\tau}\right)}\; \right] \nonumber \\
+					    	    & = &  E\left[ x(t -  \Delta t) \right] e^{- \Delta t/\tau} \nonumber \\
+                                & = &  E\left[ x(t- 2 \Delta t) e^{- \Delta t/\tau} + \eta(t-\Delta t) 
+								        \sqrt{\frac{q\tau}{2} \left(1-e^{-2 \Delta t/\tau}\right)}
+										\; \right] e^{- \Delta t/\tau} \nonumber \\
+                                & = &  E\left[ x(t - 2 \Delta t) \right] e^{-2 \Delta t/\tau} \nonumber \\
+								& = &  ... \nonumber \\
+								& = &  E\left[ x(t-N \Delta t) \right] e^{-N \Delta t/\tau} \nonumber \\
+								& = &  E\left[ x(t_{0}) \right]  e^{-(t - t_{0})/\tau} \nonumber \\
+								& = &  E\left[ x_0      \right]  e^{-(t - t_{0})/\tau}\quad .
+\end{eqnarray}
+Comparison of Eq. (\ref{numer_1st_moment}) with Eq. (\ref{first_moment}) shows that two expectations are identical.
+
+Next look at its second moment about the origin.  Before carrying out this computation, define 
+$S = \sqrt{ \frac{q\tau}{2}\left(1-e^{-2 \Delta t/\tau}\right)}$ and recall that since $E[x(t) \eta(t)] = E[x(t)] E[\eta(t)] = 0$
+all cross terms in the computation can be ignored.  With these points in mind, the second moment about the origin becomes
+\begin{eqnarray}\label{numer_2nd_moment}
+  E\left[x^2 (t)         \right] & = & E\left[ \left( x(t - \Delta t) e^{-\Delta t/\tau} + \eta S \right)^2 \right] \nonumber \\
+                                 & = & E\left[ x^2(t - \Delta t)      e^{-2\Delta t/\tau} + \eta^2 S^2\right] \nonumber \\
+								 & = & E\left[x^2(t - \Delta t)\right]e^{-2\Delta t/\tau} + S^2 \nonumber \\
+								 & = & E\left[\left(x(t-2 \Delta t)e^{-\Delta t/\tau} + \eta S\right)^2\right]e^{-2\Delta t/\tau} + S^2\nonumber \\
+								 & = & E\left[x^2(t-2\Delta t) e^{-2\Delta t/\tau} + \eta^2 S^2\right]e^{-2\Delta t/\tau} + S^2 \nonumber \\
+								 & = & E\left[x^2(t-2\Delta t)\right]e^{-4\Delta t/\tau} \nonumber \\
+								 &   & + S^2\left(1+e^{-2\Delta t/\tau}\right) \nonumber \\
+								 & = & E\left[\left(x(t-3\Delta t)e^{-\Delta t/\tau} + \eta S\right)^2\right]e^{-4\Delta t/\tau} 								       + S^2\left(1+e^{-2\Delta t/\tau}\right) \nonumber \\
+								 & = & E\left[x^2(t-3\Delta t)\right] e^{-6\Delta t/\tau} \nonumber \\
+								 &   & \quad + S^2 \left(1+e^{-2\Delta t/\tau}+e^{-4\Delta t/\tau}\right) \nonumber \\
+								 & = & ... \nonumber \\
+								 & = & E\left[x^2(t-N\Delta t)\right] e^{-2 N \Delta t/\tau} \nonumber \\
+								 &   &  \quad + S^2\left(1+e^{-2 \Delta t/\tau} + e^{-4\Delta t/\tau}+
+								                         ...+e^{-2(N-1) \Delta t/\tau}\right) \nonumber \\
+								 & = & E\left[x(t_0)^2\right] e^{-2(t-t_{0})/\tau} \nonumber \\
+								 &   & \quad + S^2\left(1+e^{-2 \Delta t/\tau}+e^{-4\Delta t/\tau}+...+e^{-2(N-1) \Delta t/\tau}\right).
+\end{eqnarray}
+ The last term simplifies as
+\begin{eqnarray}\label{S_simplifies}
+   S^2\left(1+e^{-2\Delta t/\tau}+...+e^{-2(N-1) \Delta t/\tau}\right) & = &  \frac{q\tau}{2}\left(1-e^{-2 N \Delta t/\tau}\right) \nonumber \\
+                                                                       & = &  \frac{q\tau}{2}\left(1-e^{-2(t-t_{0})/\tau}\right) \quad ,
+\end{eqnarray}
+and when substituted into Eq.\ (\ref{numer_2nd_moment}) gives
+\begin{equation}\label{numer_2nd_moment_b}
+   E\left[x^2(t)\right] = E\left[x_{0}^2\right]e^{-2(t-t_{0})/\tau} + \frac{q\tau}{2}\left(1-e^{-2(t-t_{0})/\tau}\right) \quad .
+\end{equation}   
+Eq. (\ref{numer_2nd_moment_b}) is identical to Eq. (\ref{second_moment}). Since the first and second moments resulting from
+Eq. (\ref{numer_a}) match those of the analytic solution it must give realizations of the random process that are also consistent and this completes the proof.
+\end{document}

@@ -1,0 +1,245 @@
+\documentclass{article}
+
+%% Created with wxMaxima 0.8.3
+
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\begin{document}
+
+\pagebreak{}
+{\Huge {\sc Investigating a 'Floquet' model
+C. Schiff - 11/1/11}}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{figure}{0}
+
+
+\section{Define the system of ODEs}
+
+
+\subsection{Define the process matrix A}
+
+
+\begin{verbatim}
+(%i2) A(t) := matrix([-2 + cos(2*t),0],[0,-3 + cos(2*t)]);
+\end{verbatim}
+$$
+A\left( t\right) :=\begin{pmatrix}-2+cos\left( 2\,t\right)  & 0\cr 0 & -3+cos\left( 2\,t\right) \end{pmatrix}\leqno{\tt (\%o2)  }
+$$
+
+
+\subsection{Define the state vector}
+
+
+\begin{verbatim}
+(%i56) X : matrix([x1(t)],[x2(t)]);
+\end{verbatim}
+$$
+\begin{pmatrix}x1\left( t\right) \cr x2\left( t\right) \end{pmatrix}\leqno{\tt (\%o56)  }
+$$
+
+
+\subsection{Define the system as d/dt (X) = A X}
+
+
+\begin{verbatim}
+(%i62) my_odes : diff(X,t) - A(t).X;
+\end{verbatim}
+$$
+\begin{pmatrix}\frac{d}{d\,t}\,x1\left( t\right) -x1\left( t\right) \,\left( cos\left( 2\,t\right) -2\right) \cr \frac{d}{d\,t}\,x2\left( t\right) -x2\left( t\right) \,\left( cos\left( 2\,t\right) -3\right) \end{pmatrix}\leqno{\tt (\%o62)  }
+$$
+
+
+\section{Look for a state transition matrix}
+
+
+\subsection{Note that A(t) is periodic with period \pi}
+
+
+\begin{verbatim}
+(%i6) A(0);
+\end{verbatim}
+$$
+\begin{pmatrix}-1 & 0\cr 0 & -2\end{pmatrix}\leqno{\tt (\%o6)  }
+$$
+
+
+\begin{verbatim}
+(%i9) A(0.5);
+\end{verbatim}
+$$
+\begin{pmatrix}-1.45969769413186 & 0\cr 0 & -2.45969769413186\end{pmatrix}\leqno{\tt (\%o9)  }
+$$
+
+
+\begin{verbatim}
+(%i10) A(1.0);
+\end{verbatim}
+$$
+\begin{pmatrix}-2.416146836547143 & 0\cr 0 & -3.416146836547143\end{pmatrix}\leqno{\tt (\%o10)  }
+$$
+
+
+\begin{verbatim}
+(%i11) A(1.5);
+\end{verbatim}
+$$
+\begin{pmatrix}-2.989992496600445 & 0\cr 0 & -3.989992496600445\end{pmatrix}\leqno{\tt (\%o11)  }
+$$
+
+
+\begin{verbatim}
+(%i12) A(%pi);
+\end{verbatim}
+$$
+\begin{pmatrix}-1 & 0\cr 0 & -2\end{pmatrix}\leqno{\tt (\%o12)  }
+$$
+
+
+\subsection{Note that A(t) is communtative at different times}
+
+
+\begin{verbatim}
+(%i67) A(t1)*A(t2) - A(t2)*A(t1);
+\end{verbatim}
+$$
+\begin{pmatrix}0 & 0\cr 0 & 0\end{pmatrix}\leqno{\tt (\%o67)  }
+$$
+
+
+\subsection{Use the observation in Section 2.2 to see that the
+state transition matrix must be defined as the matrix
+exponential of the time integral of A(t)}
+
+
+\begin{verbatim}
+(%i23) Phi(t) := matrixexp(integrate(A(t1),t1,0,t));
+\end{verbatim}
+$$
+\Phi\left( t\right) :=matrixexp\left( \int_{0}^{t}A\left( t1\right) dt1\right) \leqno{\tt (\%o23)  }
+$$
+
+
+\subsection{Note that Phi is not, repeat not, periodic}
+
+
+\begin{verbatim}
+(%i25) Phi(0);
+\end{verbatim}
+$$
+\begin{pmatrix}1 & 0\cr 0 & 1\end{pmatrix}\leqno{\tt (\%o25)  }
+$$
+
+
+\begin{verbatim}
+(%i28) Phi(1);
+\end{verbatim}
+$$
+\begin{pmatrix}{e}^{\frac{sin\left( 2\right) }{2}-2} & 0\cr 0 & {e}^{\frac{sin\left( 2\right) }{2}-3}\end{pmatrix}\leqno{\tt (\%o28)  }
+$$
+
+
+\begin{verbatim}
+(%i30) Phi(%pi);
+\end{verbatim}
+$$
+\begin{pmatrix}{e}^{-2\,\pi} & 0\cr 0 & {e}^{-3\,\pi}\end{pmatrix}\leqno{\tt (\%o30)  }
+$$
+
+
+\begin{verbatim}
+(%i31) Phi(t);
+\end{verbatim}
+$$
+Is  t  positive, negative, or zero?p;Proviso: assuming 64*t # 0
+$$
+$$
+\begin{pmatrix}{e}^{\frac{sin\left( 2\,t\right) }{2}-2\,t} & 0\cr 0 & {e}^{\frac{sin\left( 2\,t\right) }{2}-3\,t}\end{pmatrix}\leqno{\tt (\%o31)  }
+$$
+
+
+\begin{verbatim}
+(%i69) Phi(1+%pi);
+\end{verbatim}
+$$
+\begin{pmatrix}{e}^{\frac{sin\left( 2\right) }{2}-2\,\pi-2} & 0\cr 0 & {e}^{\frac{sin\left( 2\right) }{2}-3\,\pi-3}\end{pmatrix}\leqno{\tt (\%o69)  }
+$$
+
+
+\begin{verbatim}
+(%i72) Area(t) := determinant(Phi(t));
+\end{verbatim}
+$$
+Area\left( t\right) :=determinant\left( \Phi\left( t\right) \right) \leqno{\tt (\%o72)  }
+$$
+
+
+\begin{verbatim}
+(%i73) Area(0);
+\end{verbatim}
+$$
+1\leqno{\tt (\%o73)  }
+$$
+
+
+\begin{verbatim}
+(%i74) wxplot2d(Area(t),[t,0,%pi]);
+\end{verbatim}
+$$
+Is  t  positive, negative, or zero?p;Proviso: assuming 64*t # 0
+$$
+$$
+\includegraphics[width=9cm]{floquet_model_img/floquet_model_1.png}
+\leqno{\tt (\%t74)  }
+$$
+$$
+\leqno{\tt (\%o74)  }
+$$
+
+
+\subsection{Now solve the ODEs directly}
+
+
+\begin{verbatim}
+(%i75) my_odes[1];
+my_odes[2];
+\end{verbatim}
+$$
+[\frac{d}{d\,t}\,x1\left( t\right) -x1\left( t\right) \,\left( cos\left( 2\,t\right) -2\right) ]\leqno{\tt (\%o75)  }
+$$
+$$
+[\frac{d}{d\,t}\,x2\left( t\right) -x2\left( t\right) \,\left( cos\left( 2\,t\right) -3\right) ]\leqno{\tt (\%o76)  }
+$$
+
+
+\begin{verbatim}
+(%i64) soln1 : subst(1,%c,rhs(ode2(my_odes[1],x1(t),t)));
+\end{verbatim}
+$$
+{e}^{\frac{sin\left( 2\,t\right) }{2}-2\,t}\leqno{\tt (\%o64)  }
+$$
+
+
+\begin{verbatim}
+(%i65) soln2 : subst(1,%c,rhs(ode2(my_odes[2],x2(t),t)));
+\end{verbatim}
+$$
+{e}^{\frac{sin\left( 2\,t\right) }{2}-3\,t}\leqno{\tt (\%o65)  }
+$$
+
+
+\begin{verbatim}
+(%i66) wxplot2d([soln1,soln2],[t,0,%pi]);
+\end{verbatim}
+$$
+\includegraphics[width=9cm]{floquet_model_img/floquet_model_2.png}
+\leqno{\tt (\%t66)  }
+$$
+$$
+\leqno{\tt (\%o66)  }
+$$
+
+\end{document}

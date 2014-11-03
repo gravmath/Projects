@@ -1,0 +1,130 @@
+%Derivation of the differential geometry of the RIC frame
+\documentclass[10pt]{article}
+\usepackage{epsfig}
+\usepackage{pstricks}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot}
+\usepackage{pst-node}
+\usepackage{pst-tree}
+\usepackage{pst-coil}
+
+\usepackage[absolute]{textpos}
+\setlength{\parindent}{0pt}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\textblockorigin{0.5in}{0.5in}
+\definecolor{MintGreen}      {rgb}{0.2,0.85,0.5}
+\definecolor{LightGreen}     {rgb}{0.9,1,0.9}
+\definecolor{LightYellow}    {rgb}{1,1,0.6}
+\definecolor{Blue}           {rgb}{0,0,1}
+\definecolor{RIC}            {rgb}{0,0,1}
+\TPshowboxestrue
+
+
+\begin{document}
+
+\title{On the Differential Geometry of the $RIC$ Frame}
+\author{Conrad Schiff}
+\date{Oct. 18, 2013}
+\maketitle
+This brief note is meant to lay out the differential geometry associated with 
+the $RIC$ frame.  The unit vectors that comprise the frame are defined at each 
+step along the object's trajectory in terms of its position $\vec r$ and velocity 
+$\vec v$ as
+\[
+  {\hat R} = \frac{\vec r}{| \vec r |} \, ,
+\]
+\[
+  {\hat C} = \frac{\vec r \times \vec v}{| \vec r \times \vec v |} \, ,
+\]
+and 
+\[
+  {\hat I} = {\hat C} \times {\hat R} \, .
+\]
+\begin{figure}
+\begin{center}
+\scalebox{1.2}
+{
+\begin{pspicture}(0,-3)(6.2,2.4)
+%\psgrid(0,0)(0,-3)(6.2,2.4)
+\rput{45.0}(0.91000307,-2.1969419){\psellipse[linewidth=0.04,dimen=outer](3.1069448,0.0)(3.02,1.3738835)}
+\pscircle[linewidth=0.04,dimen=outer,fillstyle=solid,fillcolor=black](1.8084271,-1.2814823){0.28}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.8084271,-1.2814823)(4.948427,0.19851768)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.008427,0.23851767)(5.768427,1.4585177)
+\psline[linewidth=0.04cm,linecolor=RIC,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.968427,0.19851768)(6.028427,0.6785177)
+\psline[linewidth=0.04cm,linecolor=RIC,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.988427,0.21851768)(4.448427,1.0185177)
+\psline[linewidth=0.04cm,linecolor=RIC,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.008427,0.25851768)(5.228427,1.1185176)
+\put(5.15,1.4){\textcolor{RIC}{$\vec I$}}
+\put(5.8,0.8) {\textcolor{RIC}{$\vec R$}}
+\put(4.4,1.2) {\textcolor{RIC}{$\vec C$}}
+\put(4.2,0.2) {$\vec r$}
+\put(5.8,1.55){$\vec v$}
+\end{pspicture} 
+}
+\end{center}
+\end{figure}
+%         1         2         3         4         5         6         7         8 
+%12345678901234567890123456789012345678901234567890123456789012345678901234567890
+Since the objects position and velocity change as the object moves, the $RIC$
+unit vectors change their orientation as a function of time. In order to fully 
+understand how these vectors change, it is neccessary to analyze their
+differential geometry.  That said, the general structure can be deduced simply 
+based on physical implications as follows.
+
+Generally define
+\[
+  \hat e_1 \equiv \hat R \, ,
+\]
+\[
+  \hat e_2 \equiv \hat I \, ,
+\]
+and
+\[
+  \hat e_3 \equiv \hat C \, .
+\]
+With this convenient notation, the time derivatives of the dot-products between
+these vectors yields
+\[
+  \frac{d}{dt} \left( \hat e_i \cdot \hat e_j \right) 
+             = \frac{d}{dt} \delta_{ij} = 0 \, ,
+\] 
+which breaks into two relations
+\[
+  \hat e_i \cdot \frac{d}{dt} \hat e_i = 0
+\]
+and
+\[
+  \hat e_i \cdot \frac{d}{dt} \hat e_j 
+       = - \hat e_j \cdot \frac{d}{dt} \hat e_i \, .
+\]
+Applying these two relations across the $RIC$ frame yields the coupled equations 
+\[
+  \frac{d}{dt} \left[ 
+                       \begin{array}{c} \hat R \\ \hat I \\ \hat C \end{array} 
+			   \right] = 
+               \left[ \begin{array}{ccc} 0       & \alpha & 0      \\
+			                             -\alpha & 0      & \beta  \\
+										 0       & -\beta & 0      \\
+					  \end{array}
+			   \right]
+			   \left[
+			          \begin{array}{c} \hat R \\ \hat I \\ \hat C \end{array}
+		       \right] \, ,
+\]
+where 
+\[
+  \alpha = \hat I \cdot \frac{d}{dt} \hat R \, 
+\]
+and
+\[
+  \beta = \hat C \cdot \frac{d}{dt} \hat I \, .
+\]
+\[
+  \frac{d}{dt} \frac{\vec r}{|\vec r|} 
+     = \frac{\vec v}{|\vec r|} - \frac{\vec r \vec v \cdot \vec r}{|\vec r|^3}
+\]
+\[
+  \hat I \cdot \hat R = (\hat C \times 
+\]
+\end{document}
