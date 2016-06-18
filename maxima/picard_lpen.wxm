@@ -1,0 +1,307 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(facexp);
+load(dynamics);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+picard(S_in,S0,t0,f,parms) := block([S_out,temp],
+                                temp : subst(t=t1,f(S_in,parms)),
+                                S_out : S0 + integrate(temp,t1,t0,t),
+                                expand(S_out));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f_lpen(S,parms) := block([ret_val,x,v,epsilon],
+                          x       : S[1],
+                          v       : S[2],
+                          epsilon : parms[1],
+                          ret_val : [v,-(1+epsilon*t)*x]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pos(sol) := makelist([sol[i][1],sol[i][2]],i,1,length(sol));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev_iter(iter,t_init,state0,t_current) := ev( collectterms(iter,x0,v0), [epsilon : eps, ti : t_init, t : t_current, x0 : state0[1], v0 : state0[2]]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S0 : [x0,v0];
+parms : [epsilon];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S1 :  picard(S0,S0,0,f_lpen,parms)$
+S2 :  picard(S1,S0,0,f_lpen,parms)$
+S3 :  picard(S2,S0,0,f_lpen,parms)$
+S4 :  picard(S3,S0,0,f_lpen,parms)$
+S5 :  picard(S4,S0,0,f_lpen,parms)$
+S6 :  picard(S5,S0,0,f_lpen,parms)$
+S7 :  picard(S6,S0,0,f_lpen,parms)$
+S8 :  picard(S7,S0,0,f_lpen,parms)$
+S9 :  picard(S8,S0,0,f_lpen,parms)$
+S10:  picard(S9,S0,0,f_lpen,parms)$
+S11: picard(S10,S0,0,f_lpen,parms)$
+S12: picard(S11,S0,0,f_lpen,parms)$
+S13: picard(S12,S0,0,f_lpen,parms)$
+S14: picard(S13,S0,0,f_lpen,parms)$
+S15: picard(S14,S0,0,f_lpen,parms)$
+S16: picard(S15,S0,0,f_lpen,parms)$
+S17: picard(S16,S0,0,f_lpen,parms)$
+S18: picard(S17,S0,0,f_lpen,parms)$
+S19: picard(S18,S0,0,f_lpen,parms)$
+S20: picard(S19,S0,0,f_lpen,parms)$
+S21: picard(S20,S0,0,f_lpen,parms)$
+S22: picard(S21,S0,0,f_lpen,parms)$
+S23: picard(S22,S0,0,f_lpen,parms)$
+S24: picard(S23,S0,0,f_lpen,parms)$
+S25: picard(S24,S0,0,f_lpen,parms)$
+S26: picard(S25,S0,0,f_lpen,parms)$
+S27: picard(S26,S0,0,f_lpen,parms)$
+S28: picard(S27,S0,0,f_lpen,parms)$
+S29: picard(S28,S0,0,f_lpen,parms)$
+S30: picard(S29,S0,0,f_lpen,parms)$
+S31: picard(S30,S0,0,f_lpen,parms)$
+S32: picard(S31,S0,0,f_lpen,parms)$
+S33: picard(S32,S0,0,f_lpen,parms)$
+S34: picard(S33,S0,0,f_lpen,parms)$
+S35: picard(S34,S0,0,f_lpen,parms)$
+S36: picard(S35,S0,0,f_lpen,parms)$
+S37: picard(S36,S0,0,f_lpen,parms)$
+S38: picard(S37,S0,0,f_lpen,parms)$
+S39: picard(S38,S0,0,f_lpen,parms)$
+S40: picard(S39,S0,0,f_lpen,parms)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S1[1],x0,v0);
+collectterms(S1[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S2[1],x0,v0);
+collectterms(S2[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S3[1],x0,v0);
+collectterms(S3[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S4[1],x0,v0);
+collectterms(S4[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S5[1],x0,v0);
+collectterms(S5[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S6[1],x0,v0);
+collectterms(S6[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S7[1],x0,v0);
+collectterms(S7[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S8[1],x0,v0);
+collectterms(S8[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S9[1],x0,v0);
+collectterms(S9[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eps    : 0.1;
+t0     : 0;
+tf     : 40;
+dt     : 0.01;
+state0 : [1,0];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sol_lpen : rk([v,-(1+eps*t)*x],[x,v],state0,[t,t0,tf,dt])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pos_lpen : pos(sol_lpen)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([[discrete,pos_lpen],ev_iter(S5[1],0,state0,t),ev_iter(S10[1],0,state0,t),ev_iter(S20[1],0,state0,t),ev_iter(S30[1],0,state0,t),ev_iter(S40[1],0,state0,t)],[t,0,40],[y,-1,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T1 :  picard(S0,S0,ti,f_lpen,parms)$
+T2 :  picard(T1,S0,ti,f_lpen,parms)$
+T3 :  picard(T2,S0,ti,f_lpen,parms)$
+T4 :  picard(T3,S0,ti,f_lpen,parms)$
+T5 :  picard(T4,S0,ti,f_lpen,parms)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(collectterms(T5[1],x0,v0,ti),[x0 : 1,v0:0,ti:0]);
+ev(collectterms(T5[2],x0,v0,ti),[x0 : 1,v0:0,ti:0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(T5[1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dt    : 0.05;
+N     : Trect/dt;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+time_part1 : makelist(dt*i,i,0,20);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+state_rect0 : [1,0];
+Trect1 : 1.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pfunc1(t) := ev(collectterms(T5[1],x0,v0),[x0 : state_rect0[1], v0 : state_rect0[2], ti:0,  epsilon :eps])$
+vfunc1(t) := ev(collectterms(T5[2],x0,v0),[x0 : state_rect0[1], v0 : state_rect0[2], ti:0,  epsilon :eps])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+part1      : makelist([time_part1[i],pfunc1(time_part1[i])],i,1,length(time_part1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+state_rect1 : [pfunc1(Trect1),vfunc1(Trect1)];
+Trect2 : 2.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pfunc2(t) := ev(collectterms(T5[1],x0,v0),[x0 : state_rect1[1],  v0:state_rect1[2],  ti:Trect1,  epsilon :eps])$
+vfunc2(t) := ev(collectterms(T5[2],x0,v0),[x0 : state_rect1[1],  v0:state_rect1[2],  ti:Trect1,  epsilon :eps])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+part2      : makelist([time_part1[i]+Trect1,pfunc2(time_part1[i]+Trect1)],i,1,length(time_part1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+state_rect2 : [pfunc2(Trect2),vfunc2(Trect2)];
+Trect3 : 3.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pfunc3(t) := ev(collectterms(T5[1],x0,v0),[x0 : state_rect2[1],  v0:state_rect2[2],  ti:Trect2,  epsilon :eps])$
+vfunc3(t) := ev(collectterms(T5[2],x0,v0),[x0 : state_rect2[1],  v0:state_rect2[2],  ti:Trect2,  epsilon :eps])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+part3      : makelist([time_part1[i]+Trect2,pfunc3(time_part1[i]+Trect2)],i,1,length(time_part1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([[discrete,pos_lpen],[discrete,part1],[discrete,part2],[discrete,part3]],[x,0,4],[y,-1,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+U0 : matrix([1,t],[0,-1]);
+Q0 : U0^^-1;
+V  : matrix([0,0],[0,-epsilon*t]);
+M  : Q0.V.U0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f_lpen_prop(S,parms) := block([ret_val],
+                         ret_val : M.S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f_lpen_prop(S0,parms);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y1 : picard(S0,S0,f_lpen_prop,parms)$
+Y2 : picard(Y1,S0,f_lpen_prop,parms)$
+Y3 : picard(Y2,S0,f_lpen_prop,parms)$
+Y4 : picard(Y3,S0,f_lpen_prop,parms)$
+Y5 : picard(Y4,S0,f_lpen_prop,parms)$
+Y6 : picard(Y5,S0,f_lpen_prop,parms)$
+Y7 : picard(Y6,S0,f_lpen_prop,parms)$
+Y8 : picard(Y7,S0,f_lpen_prop,parms)$
+Y9 : picard(Y8,S0,f_lpen_prop,parms)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+SS1 : U0.Y1,expand$
+SS2 : U0.Y2,expand$
+SS3 : U0.Y3,expand$
+SS4 : U0.Y4,expand$
+SS5 : U0.Y5,expand$
+SS6 : U0.Y6,expand$
+SS7 : U0.Y7,expand$
+SS8 : U0.Y8,expand$
+SS9 : U0.Y9,expand$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS1[1,1],x0,v0);
+collectterms(SS1[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS2[1,1],x0,v0);
+collectterms(SS2[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS3[1,1],x0,v0);
+collectterms(SS3[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS4[1,1],x0,v0);
+collectterms(SS4[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS5[1,1],x0,v0);
+collectterms(SS5[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS6[1,1],x0,v0);
+collectterms(SS6[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS7[1,1],x0,v0);
+collectterms(SS7[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS8[1,1],x0,v0);
+collectterms(SS8[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(SS9[1,1],x0,v0);
+collectterms(SS9[2,1],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

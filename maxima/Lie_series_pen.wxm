@@ -1,0 +1,94 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+D_pen(arg) := w*diff(arg,T) - g*sin(T)*diff(arg,w);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L(order,D) := block([ret,temp],
+                     ret  : T,
+                     temp : T,
+                     for n : 1 step 1 thru order do
+                         block([],
+                               temp : D(temp),
+                               ret  : ret + t^n/n!*temp),
+                     ret)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L(4,D_pen);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+tex(L(4,D_pen));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q(order,D,parms) := block([Lie],
+                  Lie : L(order,D),
+                  Lie : ev(Lie,parms));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("dynamics");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+G : 10;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dT_dt   : w;
+dw_dt   : -G*sin(T);
+my_odes : [dT_dt, dw_dt];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+var_names : [T,w];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T0  : 2;
+w0  : 0;
+ICs : [T0,w0];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+t_var   : t;
+t_start : 0;
+t_stop  : 3;
+t_step  : 0.1;
+t_domain: [t_var, t_start, t_stop, t_step];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Z : rk(my_odes, var_names, ICs, t_domain)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pen  : makelist( [Z[n][1],Z[n][2]],n,1,31)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+SHO   : makelist([(n-1)*0.1,2*cos(sqrt(10.0)*(n-1)*0.1)],n,1,31)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Lie5  : makelist([(n-1)*0.1,Q(5,D_pen,[T=2.0,w=0.0,g=10.0,t=(n-1)*0.1])],n,1,31)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Lie10 : makelist([(n-1)*0.1,Q(10,D_pen,[T=2.0,w=0.0,g=10.0,t=(n-1)*0.1])],n,1,31)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([[discrete,pen],[discrete,SHO],[discrete,Lie5],[discrete,Lie10]],[x,0,1],[y,-2,2],[legend,"Pendulum","SHO","Lie5","Lie10"],[xlabel,"time"],[ylabel,"theta"]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

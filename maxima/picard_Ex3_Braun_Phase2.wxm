@@ -1,0 +1,33 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+H0 : matrix([0,1],[0,0]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+U0 : matrix([1,t],[0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q0 : U0^^-1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Q0.U0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+U0.Q0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+V : matrix([0,0],[-2*t,-t^2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M : Q0.V.U0;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

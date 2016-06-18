@@ -1,0 +1,97 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(facexp);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+picard(S_in,S0,f,parms) := block([S_out,temp],
+                               temp : subst(t=t1,f(S_in,parms)),
+                               S_out : S0 + integrate(temp,t1,0,t),
+                               expand(S_out));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f_sho(S,parms) := block([ret_val,x,v,w0],
+                         x  : S[1],
+                         v  : S[2],
+                         w0 : parms[1],
+                         ret_val : [v,-w0^2*x]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S0 : [x0,v0];
+parms : [w0];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+S1 : picard(S0,S0,f_sho,parms);
+S2 : picard(S1,S0,f_sho,parms);
+S3 : picard(S2,S0,f_sho,parms);
+S4 : picard(S3,S0,f_sho,parms);
+S5 : picard(S4,S0,f_sho,parms);
+S6 : picard(S5,S0,f_sho,parms);
+S7 : picard(S6,S0,f_sho,parms);
+S8 : picard(S7,S0,f_sho,parms);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S1[1],x0,v0);
+collectterms(S1[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S2[1],x0,v0);
+collectterms(S2[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S3[1],x0,v0);
+collectterms(S3[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S4[1],x0,v0);
+collectterms(S4[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S5[1],x0,v0);
+collectterms(S5[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S6[1],x0,v0);
+collectterms(S6[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S7[1],x0,v0);
+collectterms(S7[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(S8[1],x0,v0);
+collectterms(S8[2],x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+exact : x0*cos(w0*t) + v0/w0*sin(w0*t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(exact,t,2) + w0^2*exact,ratsimp;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+collectterms(expand(taylor(exact,t,0,8)),x0,v0);
+collectterms(expand(taylor(diff(exact,t),t,0,8)),x0,v0);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
