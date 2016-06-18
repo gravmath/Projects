@@ -6,3 +6,4 @@ del *.out
 del *.aux
 del *.log
 del *.ps
+del *.dvi

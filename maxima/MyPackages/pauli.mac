@@ -2,7 +2,7 @@
 
 
 compose_matrix_2d(list) := (
-  block([id2m,sigma_x,sigma_y,sigma_z,M],
+  block([id2,sigma_x,sigma_y,sigma_z,M],
          id2         : matrix([1,0],[0,1]),
 		 sigma_x     : matrix([0,1],[1,0]),
 		 sigma_y     : matrix([0,-%i],[%i,0]),
@@ -13,16 +13,16 @@ compose_matrix_2d(list) := (
 )$
 
 decompose_matrix_2d(M) := (
-  block([id2m,sigma_x,sigma_y,sigma_z,spec],
+  block([id2,sigma_x,sigma_y,sigma_z,spec],
          id2         : matrix([1,0],[0,1]),
 		 sigma_x     : matrix([0,1],[1,0]),
 		 sigma_y     : matrix([0,-%i],[%i,0]),
 		 sigma_z     : matrix([1,0],[0,-1]),
 		 spec        : [0,0,0,0],
-		 spec[1]     : ratsimp(matrix_trace_2d( M . id2 )    /2),
-		 spec[2]     : ratsimp(matrix_trace_2d( M . sigma_x )/2),
-		 spec[3]     : ratsimp(matrix_trace_2d( M . sigma_y )/2),
-		 spec[4]     : ratsimp(matrix_trace_2d( M . sigma_z )/2),
+		 spec[1]     : ratsimp(matrix_trace_2d( id2     . M )/2),
+		 spec[2]     : ratsimp(matrix_trace_2d( sigma_x . M )/2),
+		 spec[3]     : ratsimp(matrix_trace_2d( sigma_y . M )/2),
+		 spec[4]     : ratsimp(matrix_trace_2d( sigma_z . M )/2),
 		 spec
        )
 )$

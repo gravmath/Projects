@@ -1,0 +1,90 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends([phi,theta,psi],t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tx(a) := matrix([1,0,0],[0,cos(a),sin(a)],[0,-sin(a),cos(a)]);
+Ty(a) := matrix([cos(a),0,-sin(a)],[0,1,0],[sin(a),0,cos(a)]);
+Tz(a) := matrix([cos(a),sin(a),0],[-sin(a),cos(a),0],[0,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Classic Euler 3-1-3
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+PAF1 : Tz(phi)$
+PAF2 : Tx(theta).Tz(phi)$
+PAF3 : Tz(psi).Tx(theta).Tz(phi)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x0 : matrix([1],[0],[0])$
+y0 : matrix([0],[1],[0])$
+z0 : matrix([0],[0],[1])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x1 : transpose(PAF1).x0$
+y1 : transpose(PAF1).y0$
+z1 : transpose(PAF1).z0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x2 : transpose(PAF2).x0$
+y2 : transpose(PAF2).y0$
+z2 : transpose(PAF2).z0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x3 : transpose(PAF3).x0$
+y3 : transpose(PAF3).y0$
+z3 : transpose(PAF3).z0$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dphi   : diff(phi,t)$
+dtheta : diff(theta,t)$
+dpsi   : diff(psi,t)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+omega_I : dphi*z1 + dtheta*x2 + dpsi*z3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+omega_P : map(trigsimp,PAF3.omega);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dA    : diff(PAF3,t)$
+Omega : map(trigsimp,dA.transpose(PAF3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+omega_P[1,1] - Omega[2,3];
+omega_P[2,1] - Omega[3,1];
+omega_P[3,1] - Omega[1,2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+One can clearly see that Omega is anti-symmetric by seeing that it plus its transpose is the zero matrix
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Omega + transpose(Omega);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+PAF2;
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

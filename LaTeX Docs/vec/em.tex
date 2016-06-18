@@ -5,14 +5,75 @@
 %          Classical Electromagnetism
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textblockcolor{test}
-\begin{textblock*}{7.5in}(0mm,0mm)
-\begin{tabular*}{7.5in}{c @{\extracolsep{\fill}} c }
+\begin{textblock*}{190.5mm}(0mm,0mm)
+\begin{tabular*}{190.5mm}{c @{\extracolsep{\fill}} c }
        \tiny ~ & ~\\
        \multicolumn{2}{c}{\normalsize \bf Classical Electromagnetism} \\
        \tiny~ & ~\\
 \end{tabular*}
 \end{textblock*}
 
+\begin{textblock*}{75mm}(0mm,15mm)
+\tiny
+Electromagnetic theory is built on::
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item Maxwell's equations - 4 linear PDEs in 5 vector and 1 scalar functions (16 variables)
+    \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+    \item $\vec E$ - electric field $[N/C]$ or $[V/m]$
+    \item $\vec D$ - electric displacement $[C/m^2]$
+    \item $\vec B$ - magnetic flux density $[Ns/Cm]$ or $[kg/Cs]$
+    \item $\vec H$ - magnetic intensity $[A/m]$
+    \item $\vec J$ - current density $[C/m^2/s]$
+    \item $\rho$ - charge density $[C/m^3]$
+    \end{itemize}
+\item Lorentz Force Law $\vec F = q \left( \vec E + \vec v \times \vec B \right)$ relating the force to 
+      the charge, electric field, velocity, and magnetic flux density.
+\item Constitutive relations
+    \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+    \item $\vec D = \vec D(\vec E)$; usually through $\vec D = \vec E + \vec P (\vec E) = \epsilon \vec E$ for linear polarization
+    \item $\vec H = \vec H(\vec B)$; usually through $\vec H = \vec B + \vec M (\vec B) = \frac{1}{\mu} \vec B$ for linear magnetization
+    \item $\vec J = \vec J(\vec E)$; usually through $\vec J = g \vec E$ for linear conductivity (Ohm's law)
+    \item Note that $\epsilon$ (permittivity) $[C^2/Nm]$, $\mu$ (permeability) $[N/A^2]$, \& $g$ $[A/V]$ can either be scalars or rank 2 tensors for isotropic 
+          or anisotropic linear materials, respectively
+    \item Nonlinear behavior occurs for all three cases
+    \end{itemize}
+\end{itemize}
+\end{textblock*}
+
+
+
+
+\begin{textblock*}{50mm}(76mm,15mm)
+\tiny
+The Maxwell Equations exhibit the following properties:
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item Charge conservation
+\item Well-pose initial-value problem
+\item Compact expression in terms of potentials
+    \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+    \item Vector \& scalar potentials - connected to fields
+    \item Connecting potentials \& sources - inhomogenous wave eqns.
+    \item Super potential - all in one
+    \item Gauge invariance
+    \item Lorentz gauge
+    \item Coulomb gauge
+    \end{itemize}
+\item Wave excitations
+    \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+    \item Magnetic Intensity
+    \item Electric Field
+    \end{itemize}
+\item Conservation of energy
+    \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+    \item Poynting Theorem
+    \item Energy \& momentum flow
+    \end{itemize}
+\item Well-defined boundary conditions
+\end{itemize}
+\end{textblock*}
+
+\begin{textblock*}{190.5mm}(0mm,100mm)
+\tiny
 \begin{tabular}{lll}
    \centering{Point Form} & Integral Form & Label and Name \\
               &               &                \\
@@ -46,8 +107,8 @@
     $\vec F$   & force                   & \\
     $q$        & charge                  & \\
     $\vec v$   & velocity                & \\
-    $\mu$      & permeability            & \\
-    $\epsilon$ & permittivity            & \\
+    $\mu$      &             & \\
+    $\epsilon$ &             & \\
                &                         & \\
     ${\vec E} = \frac{\partial \vec A}{\partial t} - \nabla \phi$ & & \\
     ${\vec B} = \nabla \times {\vec A}$ & & \\
@@ -71,3 +132,4 @@ simplifying assumptions:  $EMA1:  \epsilon = const \& \mu = const$
   $\frac{\tan \theta_1}{\tan \theta_2} = \frac{\mu_{r2}}     {\mu_{r1}}$      (current-free) &
   $\frac{\tan \theta_1}{\tan \theta_2} = \frac{\epsilon_{r2}}{\epsilon_{r1}}$ (charge-free)  \\
 \end{tabular}
+\end{textblock*}
