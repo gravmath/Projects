@@ -1,0 +1,76 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 14.12.1 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tx(a) := matrix([1,0,0],[0,cos(a),sin(a)],[0,-sin(a),cos(a)]);
+Ty(a) := matrix([cos(a),0,-sin(a)],[0,1,0],[sin(a),0,cos(a)]);
+Tz(a) := matrix([cos(a),sin(a),0],[-sin(a),cos(a),0],[0,0,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+The 3-2-1 rotation of Tx(phi).Ty(theta).Tz(psi) of Sidi (checked 11/9/2015)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A : Tx(phi).Ty(theta).Tz(psi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x_GCI : matrix([1],[0],[0])$
+y_GCI : matrix([0],[1],[0])$
+z_GCI : matrix([0],[0],[1])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x1 : transpose(Tz(psi)).x_GCI$
+y1 : transpose(Tz(psi)).y_GCI$
+z1 : transpose(Tz(psi)).z_GCI$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x2 : transpose(Ty(theta).Tz(psi)).x_GCI$
+y2 : transpose(Ty(theta).Tz(psi)).y_GCI$
+z2 : transpose(Ty(theta).Tz(psi)).z_GCI$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wpsi   : dpsi  *z_GCI$
+wtheta : dtheta*y1$
+wphi   : dphi  *x2$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+w      : wphi + wtheta + wpsi$
+w_PAF  : map(trigsimp,A.w);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+w_xyz :  matrix([wx],[wy],[wz]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1 : w_xyz - w_PAF;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+soln : solve([eq1[1,1],eq1[2,1],eq1[3,1]],[dphi,dtheta,dpsi]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(soln[1][1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(soln[1][2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+trigsimp(soln[1][3]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
