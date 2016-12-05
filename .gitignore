@@ -1,0 +1,74 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+#Data source files including ephems, cdfs, and pickles
+*.eph
+*.cdf
+*.p 
+
+#Hard linked files shared with PAD
+Convert.py
+equation_of_time.py
+SunEph.py
+ipy.py
+
+#Any updates to the .ipynb checkpoints directory
+.ipynb_*
+
+#python compile files
+*.pyc
+
+#dross from latex
+.\LaTeX Docs\*.aux
+.\LaTeX Docs\*.dvi
+.\LaTeX Docs\*.glo
+.\LaTeX Docs\*.log
+.\LaTeX Docs\vec\*.aux
+.\LaTeX Docs\vec\*.dvi
+.\LaTeX Docs\vec\*.glo
+.\LaTeX Docs\vec\*.log
