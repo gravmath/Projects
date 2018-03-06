@@ -1,0 +1,512 @@
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Define-a-typical-scientific-array">Define a typical scientific array<a class="anchor-link" href="#Define-a-typical-scientific-array">&#182;</a></h1><p>The definition of the matrix A is designed to represent a typical scientific data set that varies by orders of magnitude.  In addition, some of the data is invalid due to either no measurement ($A_{0,1} = 0$) or there was a measurement glitch ($A_{1,2} = -1$).</p>
+<p>For sake of completeness, the entire matrix is given by:</p>
+$$A = \left[ \begin{array}{ccc} 1\times 10^{-4} & 0 & 1\times 10^{-5} \\ 1\times 10^{-3} & 5\times 10^{-3} & -1 \end{array} \right]$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1e-4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1e-5</span><span class="p">],[</span><span class="mf">1e-3</span><span class="p">,</span><span class="mf">5e-3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="k">print</span> <span class="n">A</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[  1.00000000e-04   0.00000000e+00   1.00000000e-05]
+ [  1.00000000e-03   5.00000000e-03  -1.00000000e+00]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A simple matrix plot (using matplotlib's pcolormesh) doesn't show anything useful since all the 'good' numbers are orders of magnitude smaller than the bad.  Note also that the matrix is 'plotted up' as the zeroth row corresponds to the lowest row of the plot</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.collections.QuadMesh at 0x862fab0&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+LziCY7b9Wps6b9ZaUlXvqqobq+q+qtpfVZ+rqicfwXHbdr0tMmfWWlJVF1XVLVX1v/PH16rq5Yc5
+Zt3rbOmx4EZUi5k6b3MjyZMye9PpriSnjDHuOdpj3UJOzOwNuHszm4uWtfagSfM2t93X2tlJPpzk
+2UlekuRhSa6pqkeudYD1Nn3O5rb7WrsjyV8meUZmt1/4cpJ/r6rfOdTOG7bOxhhLfSS5IcmHVvxc
+mX1C4p1r7H9Zkm+u2vaZJFcue+yb+Vhg3s7J7Au0TtrssW+FR5IHklxwmH2stcXmzVr7zTk5eT53
+L2j2sd6mz5m1duh5+VGSN63xuw1ZZ0t9ZcGNqBaz4Lwls6C4uarurKprqup5R3ekx7xtv9bWwVr7
+dY/J7P+Af9zsY739uiOZs8Rae1BVPaSq/iiz7zpa64sON2SdLfsyRHcjql1rHNPeiGpjh7dlLTJv
+dyV5W5LXJHl1Zi9dXVtVZx6tQR4HrLXFWGsrzL/V9oNJvjrG+E6zq/U2N2HOrLUkVfW0qvpJkl9k
+duuMPxhjfHeN3TdknW3VG0mxTmOMfUn2rdh0Q1U9IcklSbbNm6g4+qy133B5kqcmef5mD+QYckRz
+Zq096LuZvf/g0Zl9I/KnquqFTTCs27JfWVjWjaiON4vM26HcmOSJGzWo45C1tnG25Vqrqo8kOT/J
+i8YYdx1md+stk+fsULbdWhtj/GqMcesY4xtjjL/K7A3vF6+x+4ass6XGwhjjl0kO3ogqya/diGqt
+m15cv3L/ufZGVMebBeftUM7M7GU8Dm3br7UNtO3W2vwvvVclefEY4/tHcMi2X28LzNmhbLu1dggP
+SbLWJYWNWWeb8K7N1yX5WZI3JnlKko9l9k7Ox85/f2mSK1bsf1qSn2T2js7TM/s41/8leclmvwN1
+i8/bxUkuSPKEJL+b2fXAX2ZW75v+51nSnJ2Y2Ut1Z2b2Lus/n/98qrW2ofNmrc1eRv+fzD4OuHPF
+Y8eKfd5rva17zqy12ZycneS3kzxt/u/jr5L8/vz3R+W/a5v1h92b5PYkP8+sbp654nf/lOTLq/Z/
+YWb/Z/3zJP+V5E82+x/YVp+3JH8xn6ufJrk3s09SvHCz/wxLnq9z5n/Z3b/q8Y/W2sbNm7X24EdM
+V8/X/UneuGIf622dc2atjST5RJJb52vm7iTXHAyFo7nO3EgKAGi5NwQA0BILAEBLLAAALbEAALTE
+AgDQEgsAQEssAAAtsQAAtMQCANASCwBASywAAK3/B2QRIazYT4M8AAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, the way to bring out the data is by taking a logarithm - but the inclusion of the '0' and the '-1' are going to cause problems.  Numpy gives two warnings (different ones) and it comes back with different values.  The resulting matrix should look like</p>
+$$ log_{10} (A) = \left[ \begin{array}{ccc} -4 & -\infty & -5 \\ -3 & -2.3 & nan \end{array} \right] $$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">log_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">log_A</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[-4.          -inf -5.     ]
+ [-3.      -2.30103      nan]]
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\Conrad\Anaconda2\lib\site-packages\ipykernel\__main__.py:1: RuntimeWarning: divide by zero encountered in log10
+  if __name__ == &#39;__main__&#39;:
+C:\Users\Conrad\Anaconda2\lib\site-packages\ipykernel\__main__.py:1: RuntimeWarning: invalid value encountered in log10
+  if __name__ == &#39;__main__&#39;:
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This helps a bit, but unfortunately the 'bad' values put in a false color that says something it shouldn't.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">log_A</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span><span class="n">vmax</span><span class="o">=-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.collections.QuadMesh at 0x870c4b0&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+vhsCAGiJBQCgtSax4Iuo5jPLvFXV8VX16LLbI1X1rEWOeS1V1bFVdUlV/WL6+z91N47Z8Gtt1nmz
+1pKq+mhVXVNV91bV9qr6WlU9bzeO27DrbZ45s9aSqjqjqn5YVfdMb9+vqvYTdlZjnS08FnwR1Xxm
+nbepkeS5mbzodEuSg8cYd+3tsa4jB2TyAtwzM5mLlrX2mJnmbWqjr7Vjk3w2ySuSnJRk/ySXV9XT
+VjrAept9zqY2+lq7LcnfJXlpJl+/8J0k/1lVf7iznVdtnY0xFnpLcnWS85fcr0zeIfGRFfY/J8kN
+y7ZdnOSbix77Wt7mmLfjM/kArQPXeuzr4Zbk0SSn7mIfa22+ebPWfndODprO3Wuafay32efMWtv5
+vPwqyekr/GxV1tlCn1nwRVTzmXPekklQXF9Vt1fV5VX1qr070n3ehl9re8Bae7xnZvI34F83+1hv
+j7c7c5ZYa4+pqidV1Z9m8llHK33Q4aqss0Vfhui+iGrLCse0X0S1usNbt+aZtzuSfDDJ25K8NZOn
+rq6oqqP21iCfAKy1+VhrS0w/1fYzSb43xrix2dV6m5phzqy1JFX1wqq6L8lDSS5I8pYxxk0r7L4q
+62y9fpEUe2iMsS3JtiWbrq6qZyfZmmTDvIiKvc9a+x0XJHlBklev9UD2Ibs1Z9baY27K5PUHz8jk
+E5G/XFXHNcGwxxb9zMKivojqiWaeeduZa5I8Z7UG9QRkra2eDbnWqupzSd6Y5IQxxh272N16y8xz
+tjMbbq2NMX47xrh5jPGDMcbfZ/KC97NW2H1V1tlCY2GM8XCSHV9EleRxX0S10pdeXLV0/6n2i6ie
+aOact505KpOn8di5Db/WVtGGW2vTP/TenOS1Y4yf78YhG369zTFnO7Ph1tpOPCnJSpcUVmedrcGr
+Nt+Z5P4k703y/CSfz+SVnL8//fnZSS5asv9hSe7L5BWdR2Tydq7/S3LSWr8CdZ3P21lJTk3y7CR/
+lMn1wIczqfc1//0saM4OyOSpuqMyeZX130zvH2qtreq8WWuTp9H/N5O3A25ectu0ZJ9PWm97PGfW
+2mROjk3yB0leOP3v8bdJ/nj6873y/7W1+s2emeTWJA9kUjcvW/Kzf0nynWX7H5fJ36wfSPKzJH+x
+1v/C1vu8Jfnb6Vz9JsndmbyT4ri1/j0seL6On/5h98iy2z9ba6s3b9baY28xXT5fjyR575J9rLc9
+nDNrbSTJF5PcPF0zdya5fEco7M115oukAICW74YAAFpiAQBoiQUAoCUWAICWWAAAWmIBAGiJBQCg
+JRYAgJZYAABaYgEAaIkFAKD1/6ZcN/W3KfFoAAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A much better alternative is to mark the bad points as invalid.  Numpy's masked array does this for us.  The correct invoccation is numpy.ma.masked_invalid, where ma is numpy's masked array package and masked_invalid is the function that takes care of $-\infty$ and $nan$.  The proper array is now</p>
+$$ \log_{10}(A) = \left[ \begin{array}{ccc}  -4 & -- & -5 \\ -3 & -2.3 & --  \end{array} \right] $$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">masked_log_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">log_A</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">masked_log_A</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[-4.0 -- -5.0]
+ [-3.0 -2.3010299956639813 --]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">masked_log_A</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span><span class="n">vmax</span><span class="o">=-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.collections.QuadMesh at 0x875cc90&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+gE1u5tcsjDH+fvqZCn+WydMJ9yR50xjj0emQXUlOWzb+waq6OMm1SX4/yX8mef8YY+U7JACATagm
+73wEADg83w0BALTEAgDQ2pBY8EVU85ll3arq/Kp6esXtqap68SLnvJGq6tyqurmqvj39819yFOds
++70267rZa0lV/XFV3VVVj1XVgar6dFW97CjO27b7bZ41s9eSqrq8qr5aVQenty9VVfsJO+uxzxYe
+C76Iaj6zrtvUSPLSTF50uivJKWOMR471XDeREzJ5Ae4VmaxFy157xkzrNrXd99q5Sf4qyS8luTDJ
+8Ulur6ofW+0E+232NZva7nvtW0n+KMk5mXz9wr8k+aeq+tnDDV63fTbGWOgtyZ1Jrlv2c2XyDokP
+rzL+qiRfW3FsKckti577Rt7mWLfzM/kArRM3eu6b4Zbk6SSXHGGMvTbfutlr/39NTp6u3S83Y+y3
+2dfMXjv8unwvyWWr/G5d9tlCH1nwRVTzmXPdkklQ3FNV36mq26vqtcd2plvett9ra2CvPduLMvkv
+4O83Y+y3ZzuaNUvstWdU1fOq6jcy+ayj1T7ocF322aKfhui+iGrXKue0X0S1vtPbtOZZt4eSfDDJ
+25O8LZOHrr5QVWcfq0k+B9hr87HXlpl+qu1fJPniGOPeZqj9NjXDmtlrSarqF6rq8SQ/THJ9kl8f
+Y9y/yvB12Web9YukWKMxxv4k+5cdurOqXpJkb5Jt8yIqjj177f+5PsnPJXndRk9kCzmqNbPXnnF/
+Jq8/OCmTT0T+ZFWd1wTDmi36kYVFfRHVc80863Y4dyX56fWa1HOQvbZ+tuVeq6qPJXlrktePMR46
+wnD7LTOv2eFsu702xvjfMcYDY4yvjDH+JJMXvH9oleHrss8WGgtjjB8lOfRFVEme9UVUq33pxZeX
+j59qv4jquWbOdTucszN5GI/D2/Z7bR1tu702/UvvV5O8YYzxzaM4ZdvvtznW7HC23V47jOclWe0p
+hfXZZxvwqs13JflBkvcm+ZkkH8/klZw/Of39lUluWjb+9CSPZ/KKzjMzeTvX/yS5cKNfgbrJ1+1D
+SS5J8pIkP5/J84E/yqTeN/zPs6A1OyGTh+rOzuRV1n8w/fk0e21d181emzyM/l+ZvB1w57LbjmVj
+/tx+W/Oa2WuTNTk3yU8l+YXpP4//m+RXpr8/Jv9e26g/7BVJHkzyRCZ186plv/vbJP+yYvx5mfyX
+9RNJvp7ktzf6/7DNvm5J/nC6Vv+d5NFM3klx3kb/GRa8XudP/7J7asXtb+y19Vs3e+2Zt5iuXK+n
+krx32Rj7bY1rZq+NJLkxyQPTPfNwktsPhcKx3Ge+SAoAaPluCACgJRYAgJZYAABaYgEAaIkFAKAl
+FgCAllgAAFpiAQBoiQUAoCUWAICWWAAAWv8Ha4RWuoNySwkAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
