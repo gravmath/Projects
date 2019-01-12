@@ -3,12 +3,13 @@
 ##### the basic data structure is a grid_point - a dictionary with 4 keys
 #####    1) 'loc'     - a tuple indicating the grid location
 #####    2) 'terrain' - a integer with the terrain cost
-#####    3) 'cost'    - total cost 'terrain' plus 'dist'
+#####    3) 'cost'    - total cost 'terrain' plus 'heuristic'
+#####    4) 'dist'    - distance from origin
 #####    4) 'parent'  - either a tuple like 'loc' indicating the location of the 
 #####                   the parent or the string 'self' 
 
 ##########################################################################
-def grid_point(loc,t,c):
+def grid_point(loc,t,c,d):
     """function to create the grid_point dictionary
 	   
 	   Arguments:  loc - tuple with the grid_point's location
@@ -21,7 +22,7 @@ def grid_point(loc,t,c):
 
        Note:       typically used by another funtion	   
 	   """
-    return {'loc':loc,'terrain':t,'cost':c,'parent':()}
+    return {'loc':loc,'terrain':t,'cost':c, 'dist':d,'parent':()}
 
 ##########################################################################	   
 def grid_index(loc,num_y):
