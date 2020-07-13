@@ -9,7 +9,7 @@
 #####                   the parent or the string 'self' 
 
 ##########################################################################
-def grid_point(loc,t,c,d):
+def grid_point(loc,t,c,d):;
     """function to create the grid_point dictionary
 	   
 	   Arguments:  loc - tuple with the grid_point's location
